@@ -26,6 +26,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::view('/user', 'user.index')->name('user.index');
+    Route::view('/ashnaf', 'ashnaf.index')->name('ashnaf.index');
+    Route::view('/kabupaten', 'kabupaten.index')->name('kabupaten.index');
+    Route::view('/lokasi', 'lokasi.index')->name('lokasi.index');
+    Route::view('/penerimamanfaat', 'penerimamanfaat.index')->name('penerimamanfaat.index');
+    Route::view('/penghimpunan', 'penghimpunan.index')->name('penghimpunan.index');
+    Route::view('/penyaluran', 'penyaluran.index')->name('penyaluran.index');
+    Route::view('/pilar', 'pilar.index')->name('pilar.index');
+    Route::view('/programpilar', 'programpilar.index')->name('programpilar.index');
+    Route::view('/programsumber', 'programsumber.index')->name('programsumber.index');
+    Route::view('/provinsi', 'provinsi.index')->name('provinsi.index');
+    Route::view('/sumberdana', 'sumberdana.index')->name('sumberdana.index');
+    Route::view('/tahun', 'tahun.index')->name('tahun.index');
 });
 
 require __DIR__.'/auth.php';
