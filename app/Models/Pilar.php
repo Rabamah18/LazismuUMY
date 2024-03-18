@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Pilar extends Model
 {
     use HasFactory;
+
+    protected $guarded = [
+        'id',
+    ];
+
+    public function penyalurans()
+    {
+        return $this->hasMany(Penyaluran::class);
+    }
+
+    public function programPilar()
+    {
+        return $this->belongsTo(ProgramPilar::class);
+    }
 }

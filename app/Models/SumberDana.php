@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class SumberDana extends Model
 {
     use HasFactory;
+
+    protected $guarded = [
+        'id',
+    ];
+
+    public function penghimpunans()
+    {
+        return $this->hasMany(Penghimpunan::class);
+    }
 }

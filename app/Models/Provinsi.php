@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Provinsi extends Model
 {
     use HasFactory;
+
+    protected $guarded = [
+        'id',
+    ];
+
+
+    public function lokasis()
+    {
+        return $this->hasMany(Lokasi::class);
+    }
+
+    public function kabupaten()
+    {
+        return $this->belongsTo(Kabupaten::class);
+    }
 }
