@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -41,5 +41,8 @@ Route::middleware('auth')->group(function () {
     Route::view('/sumberdana', 'sumberdana.index')->name('sumberdana.index');
     Route::view('/tahun', 'tahun.index')->name('tahun.index');
 });
+
+Route::view('/', 'public.home')->name('home');
+Route::view('/about', 'public.about')->name('about');
 
 require __DIR__.'/auth.php';
