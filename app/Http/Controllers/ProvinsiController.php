@@ -12,7 +12,7 @@ class ProvinsiController extends Controller
      */
     public function index()
     {
-        //
+        return view('provinsi.index');
     }
 
     /**

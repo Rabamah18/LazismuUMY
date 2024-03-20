@@ -12,7 +12,7 @@ class PenerimaManfaatController extends Controller
      */
     public function index()
     {
-        //
+        return view('penerimamanfaat.index');
     }
 
     /**

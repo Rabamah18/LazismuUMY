@@ -12,7 +12,7 @@ class ProgramPilarController extends Controller
      */
     public function index()
     {
-        //
+        return view('programpilar.index');
     }
 
     /**

@@ -12,7 +12,7 @@ class ProgramSumberController extends Controller
      */
     public function index()
     {
-        //
+        return view('programsumber.index');
     }
 
     /**
