@@ -20,7 +20,7 @@ class LokasiController extends Controller
      */
     public function create()
     {
-        //
+        return view('lokasi.index');
     }
 
     /**

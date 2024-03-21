@@ -20,7 +20,7 @@ class SumberDanaController extends Controller
      */
     public function create()
     {
-        //
+        return view('sumberdana.index');
     }
 
     /**

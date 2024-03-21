@@ -20,7 +20,7 @@ class PenyaluranController extends Controller
      */
     public function create()
     {
-        //
+        return view('penyaluran.index');
     }
 
     /**

@@ -20,7 +20,7 @@ class ProgramSumberController extends Controller
      */
     public function create()
     {
-        //
+        return view('programsumber.index');
     }
 
     /**
