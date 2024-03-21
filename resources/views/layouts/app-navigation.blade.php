@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex items-center shrink-0">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('home') }}">
                         <x-application-logo class="block w-auto text-gray-800 fill-current h-9 dark:text-gray-200" />
                     </a>
                 </div>
@@ -13,7 +13,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Dasbor') }}
                     </x-nav-link>
                     <x-nav-link :href="route('penghimpunan.index')" :active="request()->routeIs('penghimpunan.index')">
                         {{ __('Penghimpunan') }}
@@ -21,44 +21,85 @@
                     <x-nav-link :href="route('penyaluran.index')" :active="request()->routeIs('penyaluran.index')">
                         {{ __('Penyaluran') }}
                     </x-nav-link>
-                    {{-- <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
-                        {{ __('User') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('ashnaf.index')" :active="request()->routeIs('ashnaf.index')">
-                        {{ __('Ashnaf') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('kabupaten.index')" :active="request()->routeIs('kabupaten.index')">
-                        {{ __('Kabupaten') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('lokasi.index')" :active="request()->routeIs('lokasi.index')">
-                        {{ __('Lokasi') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('penerimamanfaat.index')" :active="request()->routeIs('penerimamanfaat.index')">
-                        {{ __('Penerima Manfaat') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('pilar.index')" :active="request()->routeIs('pilar.index')">
-                        {{ __('Pilar') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('programpilar.index')" :active="request()->routeIs('programpilar.index')">
-                        {{ __('Program Pilar') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('programsumber.index')" :active="request()->routeIs('programsumber.index')">
-                        {{ __('Program Sumber') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('provinsi.index')" :active="request()->routeIs('provinsi.index')">
-                        {{ __('Provinsi') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('sumberdana.index')" :active="request()->routeIs('sumberdana.index')">
-                        {{ __('Sumber Dana') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('tahun.index')" :active="request()->routeIs('tahun.index')">
-                        {{ __('Tahun') }}
-                    </x-nav-link> --}}
+                    <div class="items-center hidden border-t-2 border-transparent sm:flex">
+                        <x-dropdown align="left" width="48">
+                            <x-slot name="trigger">
+                                <button
+                                    class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md dark:text-gray-400 dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none">
+                                    <div>{{ __('Lainnya') }}</div>
+
+                                    <div class="ms-1">
+                                        <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </button>
+                            </x-slot>
+
+                            <x-slot name="content">
+                                <x-dropdown-link :href="route('ashnaf.index')">
+                                    {{ __('Ashnaf') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('penerimamanfaat.index')">
+                                    {{ __('Penerima Manfaat') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('sumberdana.index')">
+                                    {{ __('Sumber Dana') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('pilar.index')">
+                                    {{ __('Pilar') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('programsumber.index')">
+                                    {{ __('Program Sumber') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('programpilar.index')">
+                                    {{ __('Program Pilar') }}
+                                </x-dropdown-link>
+                            </x-slot>
+                        </x-dropdown>
+                    </div>
+                    <div class="items-center hidden border-t-2 border-transparent sm:flex">
+                        <x-dropdown align="left" width="48">
+                            <x-slot name="trigger">
+                                <button
+                                    class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md dark:text-gray-400 dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none">
+                                    <div>{{ __('Master Data') }}</div>
+
+                                    <div class="ms-1">
+                                        <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </button>
+                            </x-slot>
+
+                            <x-slot name="content">
+                                <x-dropdown-link :href="route('lokasi.index')">
+                                    {{ __('Lokasi') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('provinsi.index')">
+                                    {{ __('Provinsi') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('kabupaten.index')">
+                                    {{ __('Kabupaten') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('tahun.index')">
+                                    {{ __('Tahun') }}
+                                </x-dropdown-link>
+                            </x-slot>
+                        </x-dropdown>
+                    </div>
                 </div>
             </div>
 
             <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
+            <div class="hidden border-t-2 border-transparent sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button
@@ -78,10 +119,10 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('home')">
-                            {{ __('Home') }}
+                            {{ __('Beranda') }}
                         </x-dropdown-link>
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            {{ __('Profil') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -91,7 +132,7 @@
                             <x-dropdown-link :href="route('logout')"
                                 onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('Keluar') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -118,7 +159,7 @@
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('Dasbor') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('penghimpunan.index')" :active="request()->routeIs('penghimpunan.index')">
                 {{ __('Penghimpunan') }}
@@ -137,10 +178,10 @@
 
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('home')">
-                    {{ __('Home') }}
+                    {{ __('Beranda') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
+                    {{ __('Profil') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->
@@ -150,7 +191,7 @@
                     <x-responsive-nav-link :href="route('logout')"
                         onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        {{ __('Kelar') }}
                     </x-responsive-nav-link>
                 </form>
             </div>

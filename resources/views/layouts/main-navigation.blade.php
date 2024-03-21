@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex items-center shrink-0">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('home') }}">
                         <x-application-logo class="block w-auto text-gray-800 fill-current h-9 dark:text-gray-200" />
                     </a>
                 </div>
@@ -13,27 +13,17 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                        {{ __('Home') }}
+                        {{ __('Beranda') }}
                     </x-nav-link>
                     <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
-                        {{ __('About') }}
+                        {{ __('Tentang') }}
                     </x-nav-link>
-                    @guest
-
-                        <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
-                            {{ __('Login') }}
-                        </x-nav-link>
-
-                    @endguest
-
                 </div>
             </div>
 
             <!-- Settings Dropdown -->
-
             @auth
-
-                <div class="hidden sm:flex sm:items-center sm:ms-6">
+                <div class="hidden border-t-2 border-transparent sm:flex sm:items-center sm:ms-6">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button
@@ -53,16 +43,14 @@
 
                         <x-slot name="content">
                             <x-dropdown-link :href="route('dashboard')">
-                                {{ __('Dashboard') }}
+                                {{ __('Dasbor') }}
                             </x-dropdown-link>
                             <x-dropdown-link :href="route('profile.edit')">
-                                {{ __('Profile') }}
+                                {{ __('Profil') }}
                             </x-dropdown-link>
-
 
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-
                                 <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
@@ -72,6 +60,10 @@
                         </x-slot>
                     </x-dropdown>
                 </div>
+            @else
+                <x-nav-link :href="route('login')" :active="request()->routeIs('login')" class="hidden sm:flex">
+                    {{ __('Masuk') }}
+                </x-nav-link>
             @endauth
 
             <!-- Hamburger -->
@@ -93,18 +85,21 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('penghimpunan.index')" :active="request()->routeIs('penghimpunan.index')">
-                {{ __('Penghimpunan') }}
+            <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                {{ __('Beranda') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('penyaluran.index')" :active="request()->routeIs('penyaluran.index')">
-                {{ __('Penyaluran') }}
+            <x-responsive-nav-link :href="route('about')" :active="request()->routeIs('about')">
+                {{ __('Tentang') }}
             </x-responsive-nav-link>
-            @guest
-                <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
-                    {{ __('Login') }}
-                </x-responsive-nav-link>
-            @endguest
         </div>
+
+        @guest
+            <div class="py-3 border-t border-gray-200 dark:border-gray-600">
+                <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
+                    {{ __('Masuk') }}
+                </x-responsive-nav-link>
+            </div>
+        @endguest
 
         <!-- Responsive Settings Options -->
         @auth
@@ -117,10 +112,10 @@
 
                 <div class="mt-3 space-y-1">
                     <x-responsive-nav-link :href="route('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Dasbor') }}
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('profile.edit')">
-                        {{ __('Profile') }}
+                        {{ __('Profil') }}
                     </x-responsive-nav-link>
 
                     <!-- Authentication -->
@@ -130,7 +125,7 @@
                         <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                            {{ __('Log Out') }}
+                            {{ __('Keluar') }}
                         </x-responsive-nav-link>
                     </form>
                 </div>
