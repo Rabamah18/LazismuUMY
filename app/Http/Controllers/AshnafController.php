@@ -12,7 +12,7 @@ class AshnafController extends Controller
      */
     public function index()
     {
-        //
+        return view('ashnaf.index');
     }
 
     /**

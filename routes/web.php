@@ -1,7 +1,29 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AshnafController;
+use App\Http\Controllers\KabupatenController;
+use App\Http\Controllers\LokasiController;
+use App\Http\Controllers\PenerimaManfaatController;
+use App\Http\Controllers\PenghimpunanController;
+use App\Http\Controllers\PenyaluranController;
+use App\Http\Controllers\PilarController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProgramPilarController;
+use App\Http\Controllers\ProgramSumberController;
+use App\Http\Controllers\ProvinsiController;
+use App\Http\Controllers\SumberDanaController;
+use App\Http\Controllers\TahunController;
+use App\Models\Kabupaten;
+use App\Models\Lokasi;
+use App\Models\PenerimaManfaat;
+use App\Models\Penghimpunan;
+use App\Models\Penyaluran;
+use App\Models\Pilar;
+use App\Models\ProgramPilar;
+use App\Models\ProgramSumber;
+use App\Models\Provinsi;
+use App\Models\SumberDana;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,19 +49,33 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::resource('ashnaf', AshnafController::class);
+    Route::resource('kabupaten', KabupatenController::class);
+    Route::resource('lokasi', LokasiController::class);
+    Route::resource('penerimamanfaat', PenerimaManfaatController::class);
+    Route::resource('penghimpunan', PenghimpunanController::class);
+    Route::resource('penyaluran', PenyaluranController::class);
+    Route::resource('pilar', PilarController::class);
+    Route::resource('programpilar', ProgramPilarController::class);
+    Route::resource('programsumber', ProgramSumberController::class);
+    Route::resource('provinsi', ProvinsiController::class);
+    Route::resource('sumberdana', SumberDanaController::class);
+    Route::resource('tahun', TahunController::class);
+
+
     Route::view('/user', 'user.index')->name('user.index');
-    Route::view('/ashnaf', 'ashnaf.index')->name('ashnaf.index');
-    Route::view('/kabupaten', 'kabupaten.index')->name('kabupaten.index');
-    Route::view('/lokasi', 'lokasi.index')->name('lokasi.index');
-    Route::view('/penerimamanfaat', 'penerimamanfaat.index')->name('penerimamanfaat.index');
-    Route::view('/penghimpunan', 'penghimpunan.index')->name('penghimpunan.index');
-    Route::view('/penyaluran', 'penyaluran.index')->name('penyaluran.index');
-    Route::view('/pilar', 'pilar.index')->name('pilar.index');
-    Route::view('/programpilar', 'programpilar.index')->name('programpilar.index');
-    Route::view('/programsumber', 'programsumber.index')->name('programsumber.index');
-    Route::view('/provinsi', 'provinsi.index')->name('provinsi.index');
-    Route::view('/sumberdana', 'sumberdana.index')->name('sumberdana.index');
-    Route::view('/tahun', 'tahun.index')->name('tahun.index');
+    // Route::view('/ashnaf', 'ashnaf.index')->name('ashnaf.index');
+    // Route::view('/kabupaten', 'kabupaten.index')->name('kabupaten.index');
+    // Route::view('/lokasi', 'lokasi.index')->name('lokasi.index');
+    // Route::view('/penerimamanfaat', 'penerimamanfaat.index')->name('penerimamanfaat.index');
+    // Route::view('/penghimpunan', 'penghimpunan.index')->name('penghimpunan.index');
+    // Route::view('/penyaluran', 'penyaluran.index')->name('penyaluran.index');
+    // Route::view('/pilar', 'pilar.index')->name('pilar.index');
+    // Route::view('/programpilar', 'programpilar.index')->name('programpilar.index');
+    // Route::view('/programsumber', 'programsumber.index')->name('programsumber.index');
+    // Route::view('/provinsi', 'provinsi.index')->name('provinsi.index');
+    // Route::view('/sumberdana', 'sumberdana.index')->name('sumberdana.index');
+    // Route::view('/tahun', 'tahun.index')->name('tahun.index');
 });
 
 Route::view('/', 'public.home')->name('home');

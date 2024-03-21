@@ -12,7 +12,7 @@ class LokasiController extends Controller
      */
     public function index()
     {
-        //
+        return view('lokasi.index');
     }
 
     /**

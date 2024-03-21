@@ -12,7 +12,7 @@ class KabupatenController extends Controller
      */
     public function index()
     {
-        //
+        return view('kabupaten.index');
     }
 
     /**

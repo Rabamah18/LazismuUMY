@@ -12,7 +12,7 @@ class PenghimpunanController extends Controller
      */
     public function index()
     {
-        //
+        return view('penghimpunan.index');
     }
 
     /**
