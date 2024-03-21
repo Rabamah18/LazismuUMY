@@ -15,10 +15,10 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dasbor') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('penghimpunan.index')" :active="request()->routeIs('penghimpunan.index')">
+                    <x-nav-link :href="route('penghimpunan.index')" :active="request()->routeIs('penghimpunan.*')">
                         {{ __('Penghimpunan') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('penyaluran.index')" :active="request()->routeIs('penyaluran.index')">
+                    <x-nav-link :href="route('penyaluran.index')" :active="request()->routeIs('penyaluran.*')">
                         {{ __('Penyaluran') }}
                     </x-nav-link>
                     <div class="items-center hidden border-t-2 border-transparent sm:flex">

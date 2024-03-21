@@ -12,7 +12,11 @@ class PenghimpunanController extends Controller
      */
     public function index()
     {
-        return view('penghimpunan.index');
+        $penghimpunans = Penghimpunan::query()
+            ->with('sumberDana', 'programSumber', 'tahun')
+            ->paginate(10);
+
+        return view('penghimpunan.index', compact('penghimpunans'));
     }
 
     /**
@@ -20,7 +24,7 @@ class PenghimpunanController extends Controller
      */
     public function create()
     {
-        return view('penghimpunan.index');
+        return view('penghimpunan.create');
     }
 
     /**

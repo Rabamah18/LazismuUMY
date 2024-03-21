@@ -13,7 +13,11 @@ class Penghimpunan extends Model
         'id',
     ];
 
-    public function suberDana()
+    protected $casts = [
+        'tanggal' => 'datetime',
+    ];
+
+    public function sumberDana()
     {
         return $this->belongsTo(SumberDana::class);
     }
