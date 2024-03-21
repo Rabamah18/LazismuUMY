@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Lokasi;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class PenerimaManfaatFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'lembaga_count' => fake()->numerify(),
+            'male_count' => fake()->numerify(),
+            'female_count' => fake()->numerify(),
+            'lokasi_id' => Lokasi::factory(),
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\ProgramPilar;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,8 @@ class PilarFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->word(),
+            'program_pilar_id' => ProgramPilar::factory(),
         ];
     }
 }

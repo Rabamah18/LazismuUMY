@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\PenerimaManfaat;
 use Illuminate\Database\Seeder;
 
 class PenerimaManfaatSeeder extends Seeder
@@ -12,6 +12,6 @@ class PenerimaManfaatSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        PenerimaManfaat::factory(5)->create();
     }
 }

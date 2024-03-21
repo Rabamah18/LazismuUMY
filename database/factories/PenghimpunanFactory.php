@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\ProgramSumber;
+use App\Models\SumberDana;
+use App\Models\Tahun;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +20,12 @@ class PenghimpunanFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'tanggal' => fake()->dateTime(),
+            'uraian' => fake()->word(),
+            'nominal' => fake()->randomDigit(),
+            'sumber_dana_id' => SumberDana::factory(),
+            'program_sumber_id' => ProgramSumber::factory(),
+            'tahun_id' => Tahun::factory(),
         ];
     }
 }

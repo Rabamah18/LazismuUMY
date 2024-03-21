@@ -2,6 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Pilar;
+use App\Models\Tahun;
+use App\Models\Ashnaf;
+use App\Models\PenerimaManfaat;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +21,13 @@ class PenyaluranFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'tanggal' => fake()->dateTime(),
+            'uraian' => fake()->word(),
+            'nominal' => fake()->randomNumber(5, true),
+            'penerima_manfaat_id' => PenerimaManfaat::factory(),
+            'ashnaf_id' => Ashnaf::factory(),
+            'pilar_id' => Pilar::factory(),
+            'tahun_id' => Tahun::factory(),
         ];
     }
 }

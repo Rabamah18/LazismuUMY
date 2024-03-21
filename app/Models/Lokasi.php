@@ -13,7 +13,7 @@ class Lokasi extends Model
         'id',
     ];
 
-    
+
     public function penerimaManfaats()
     {
         return $this->hasMany(PenerimaManfaat::class);
@@ -24,4 +24,10 @@ class Lokasi extends Model
     {
         return $this->belongsTo(Provinsi::class);
     }
+
+    public function kabupaten()
+    {
+        return $this->belongsTo(Kabupaten::class);
+    }
+
 }

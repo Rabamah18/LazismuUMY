@@ -13,8 +13,4 @@ class Kabupaten extends Model
         'id',
     ];
 
-    public function provinsis()
-    {
-        return $this->hasMany(Provinsi::class);
-    }
 }

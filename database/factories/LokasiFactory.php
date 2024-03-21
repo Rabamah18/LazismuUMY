@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Kabupaten;
+use App\Models\Provinsi;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,8 @@ class LokasiFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'provinsi_id' => Provinsi::factory(),
+            'kabupaten_id' => Kabupaten::factory(),
         ];
     }
 }
