@@ -20,7 +20,7 @@ class PilarController extends Controller
      */
     public function create()
     {
-        //
+        return view('pilar.index');
     }
 
     /**
