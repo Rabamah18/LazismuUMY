@@ -20,7 +20,7 @@ class ProgramPilarController extends Controller
      */
     public function create()
     {
-        return view('programpilar.index');
+        return view('programpilar.create');
     }
 
     /**
