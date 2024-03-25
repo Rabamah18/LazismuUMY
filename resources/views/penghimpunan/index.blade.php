@@ -10,7 +10,7 @@
             <x-card.app>
                 <div class="flex">
                     <x-card.title>
-                        {{ __('All Users') }}
+                        {{ __('Data Penghimpunan') }}
                     </x-card.title>
                     <div class="ml-auto">
                         <x-button.link-primary href="{{ route('penghimpunan.create') }}">
@@ -39,7 +39,7 @@
                     </x-card.description>
                 @else
                     <x-card.description>
-                        {{ __('Manage all user, search by name or email.') }}
+                        {{ __('Manage Data Penghimpunan, search berdasarkan uraian dan tahun.') }}
                     </x-card.description>
                 @endif
                 @if ($errors->any())

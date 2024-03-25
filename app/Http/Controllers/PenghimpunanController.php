@@ -78,7 +78,12 @@ class PenghimpunanController extends Controller
      */
     public function edit(Penghimpunan $penghimpunan)
     {
-        //
+        $sumberDanas = SumberDana::query()->get();
+        $programSumbers = ProgramSumber::query()->get();
+        $tahuns = Tahun::query()->get();
+
+        //dd($penghimpunan);
+        return view('penghimpunan.edit', compact('penghimpunan', 'sumberDanas', 'programSumbers', 'tahuns'));
     }
 
     /**
@@ -86,7 +91,30 @@ class PenghimpunanController extends Controller
      */
     public function update(Request $request, Penghimpunan $penghimpunan)
     {
-        //
+        $request->validate([
+            'tanggal' => 'required|date',
+            'uraian' => 'required|max:255',
+            'nominal' => 'required|numeric',
+            'sumber_dana_id' => 'nullable|exists:sumber_danas,id',
+            'program_sumber_id' => 'nullable|exists:program_sumbers,id',
+            'tahun_id' => 'nullable|exists:tahuns,id',
+
+        ]);
+        //dd($request);
+
+        $penghimpunan->update([
+            'tanggal' => $request->tanggal,
+            'uraian' => $request->uraian,
+            'nominal' => $request->nominal,
+            'sumber_dana_id' => $request->sumber_dana_id,
+            'program_sumber_id' => $request->program_sumber_id,
+            'tahun_id' => $request->tahun_id,
+
+            // 'user_id' => auth()->user()->id,
+            // 'title' => $request->title,
+        ]);
+
+        return redirect()->route('penghimpunan.index')->with('success', 'Penghimpunan created successfully!');
     }
 
     /**
