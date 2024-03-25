@@ -95,10 +95,10 @@
                         {{-- The default pagination view is pagination.custom-tailwind blade component.
                     You can change the default pagination view using the AppServiceProvider
                     or by passing the pagination view as parameter to the links method. --}}
-                        {{ $penghimpunans->links() }}
+                        {{-- {{ $penghimpunans->links() }} --}}
                         {{-- {{ $users->links('vendor.pagination.tailwind') }} --}}
                         {{-- {{ $users->links('vendor.pagination.simple-tailwind') }} --}}
-                        {{-- {{ $users->links('vendor.pagination.custom-tailwind') }} --}}
+                        {{ $penghimpunans->links('vendor.pagination.custom-tailwind') }}
                     </div>
                 @endif
             </x-card.app>
