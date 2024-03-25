@@ -13,7 +13,7 @@ class PenghimpunanController extends Controller
     public function index()
     {
         $penghimpunans = Penghimpunan::query()
-            ->with('sumberDana', 'programSumber', 'tahun')
+            //->with('sumberDana', 'programSumber', 'tahun')
             ->paginate(10);
 
         return view('penghimpunan.index', compact('penghimpunans'));
