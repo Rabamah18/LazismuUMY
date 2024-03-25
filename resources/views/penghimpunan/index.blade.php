@@ -10,7 +10,7 @@
             <x-card.app>
                 <div class="flex">
                     <x-card.title>
-                        {{ __('All Users') }}
+                        {{ __('Data Penghimpunan') }}
                     </x-card.title>
                     <div class="ml-auto">
                         <x-button.link-primary href="{{ route('penghimpunan.create') }}">
@@ -18,14 +18,14 @@
                         </x-button.link-primary>
                     </div>
                 </div>
-                @if (request('search') || request('role') || request('verified_account'))
+                @if (request('search') || request('sumber_dana') || request('verified_account'))
                     <x-card.description>
                         {{ __('Filter for') }}
                         @if (request('search'))
                             <span class="font-semibold">{{ request('search') }}</span>
                         @endif
-                        @if (request('role'))
-                            {{ __('role') }} <span class="font-semibold">{{ request('role') }}</span>
+                        @if (request('sumber_dana'))
+                            {{ __('sumber_dana') }} <span class="font-semibold">{{ request('sumber_dana') }}</span>
                         @endif
                         @if (request('verified_account'))
                             {{ __('status') }} <span class="font-semibold">
@@ -39,7 +39,7 @@
                     </x-card.description>
                 @else
                     <x-card.description>
-                        {{ __('Manage all user, search by name or email.') }}
+                        {{ __('Manage Data Penghimpunan, search berdasarkan uraian dan tahun.') }}
                     </x-card.description>
                 @endif
                 @if ($errors->any())
@@ -57,25 +57,32 @@
                             placeholder="{{ __('Search here') }}" value="{{ request('search') }}" autofocus />
                         <div class="flex items-center justify-between gap-2">
                             <div class="">
-                                <x-select-input id="role" name="role" class="">
-                                    <option value="">{{ __('Select Role') }}</option>
-                                    <option value="admin" {{ request('role') == 'admin' ? 'selected' : '' }}>
-                                        {{ __('Admin') }}
-                                    </option>
-                                    <option value="user" {{ request('role') == 'user' ? 'selected' : '' }}>
-                                        {{ __('User') }}
-                                    </option>
+                                <x-select-input id="sumber_dana" name="sumber_dana" class="">
+                                    <option value="">{{ __('Select Sumber Dana') }}</option>
+                                    @foreach ($sumberDanas as $sumberDana)
+                                        <option value="{{ $sumberDana->id }}"
+                                            {{ request('sumber_dana') == $sumberDana->id ? 'selected' : '' }}>
+                                            {{ $sumberDana->name }}
+                                        </option>
+                                    @endforeach
                                 </x-select-input>
-                                <x-select-input id="verified_account" name="verified_account" class="">
-                                    <option value="">{{ __('Select Status') }}</option>
-                                    <option value="true"
-                                        {{ request('verified_account') == 'true' ? 'selected' : '' }}>
-                                        {{ __('Verified') }}
-                                    </option>
-                                    <option value="false"
-                                        {{ request('verified_account') == 'false' ? 'selected' : '' }}>
-                                        {{ __('Not Verified') }}
-                                    </option>
+                                <x-select-input id="program_sumber" name="program_sumber" class="">
+                                    <option value="">{{ __('Select Program Sumber') }}</option>
+                                    @foreach ($programSumbers as $programSumber)
+                                        <option value="{{ $programSumber->id }}"
+                                            {{ request('program_sumber') == $programSumber->id ? 'selected' : '' }}>
+                                            {{ $programSumber->name }}
+                                        </option>
+                                    @endforeach
+                                </x-select-input>
+                                <x-select-input id="tahun" name="tahun" class="">
+                                    <option value="">{{ __('Select Tahun') }}</option>
+                                    @foreach ($tahuns as $tahun)
+                                        <option value="{{ $tahun->id }}"
+                                            {{ request('tahun') == $tahun->id ? 'selected' : '' }}>
+                                            {{ $tahun->name }}
+                                        </option>
+                                    @endforeach
                                 </x-select-input>
                             </div>
                             <div class="">
