@@ -12,7 +12,10 @@ class PenyaluranController extends Controller
      */
     public function index()
     {
-        return view('penyaluran.index');
+        $penyalurans = Penyaluran::query()
+            ->with('ashnaf', 'penerimaManfaat', 'tahun', 'pilar')
+            ->paginate(10);
+        return view('penyaluran.index', compact('penyalurans'));
     }
 
     /**
