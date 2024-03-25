@@ -70,7 +70,7 @@
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
-                                {{ $penghimpunan->sumberDana->name }}
+                                {{ $penghimpunan->sumberDana->name ?? '-' }}
                             </p>
 
                         </div>
@@ -78,7 +78,7 @@
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
-                                {{ $penghimpunan->programSumber->name }}
+                                {{ $penghimpunan->programSumber->name ?? '-' }}
                             </p>
 
                         </div>
@@ -86,7 +86,7 @@
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
-                                {{ $penghimpunan->tahun->name }}
+                                {{ $penghimpunan->tahun->name ?? '-' }}
                             </p>
 
                         </div>

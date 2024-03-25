@@ -20,30 +20,58 @@
                         @method('post')
                         <div>
                             <x-input-label for="tanggal" :value="__('Tanggal')" />
-                            <x-text-input id="tanggal" name="tanggal" type="text" class="block w-full mt-1"
+                            <x-text-input id="tanggal" name="tanggal" type="date" class="block w-full mt-1"
                                 :value="old('tanggal')" autofocus required autocomplete="tanggal" />
                             <x-input-error class="mt-2" :messages="$errors->get('tanggal')" />
                         </div>
 
                         <div>
+                            <x-input-label for="tahun_id" :value="__('Tahun')" />
+                            <x-select-input id="tahun" name="tahun_id" class="block w-full mt-1">
+                                <option value="">{{ __('Select Tahun') }}</option>
+                                @foreach ($tahuns as $tahun)
+                                    <option value="{{ $tahun->id }}"
+                                        {{ request('tahun_id') == 'tahun_id' ? 'selected' : '' }}>
+                                        {{ $tahun->name }}
+                                    </option>
+                                @endforeach
+                            </x-select-input>
+                            <x-input-error class="mt-2" :messages="$errors->get('tahun_id')" />
+                        </div>
+
+                        <div>
                             <x-input-label for="uraian" :value="__('Uraian')" />
-                            <x-text-input id="uraian" name="uraian" type="text" class="block w-full mt-1"
+                            <x-textarea-input id="uraian" name="uraian" type="text" class="block w-full mt-1"
                                 :value="old('uraian')" required autocomplete="uraian" />
                             <x-input-error class="mt-2" :messages="$errors->get('uraian')" />
                         </div>
 
                         <div>
-                            <x-input-label for="sumber_dana" :value="__('Sumber_dana')" />
-                            <x-text-input id="sumber_dana" name="sumber_dana" type="text" class="block w-full mt-1"
-                                :value="old('sumber_dana')" required autocomplete="sumber_dana" />
-                            <x-input-error class="mt-2" :messages="$errors->get('sumber_dana')" />
+                            <x-input-label for="sumber_dana_id" :value="__('Sumber Dana')" />
+                            <x-select-input id="sumber_dana" name="sumber_dana_id" class="block w-full mt-1">
+                                <option value="">{{ __('Select Sumber Dana') }}</option>
+                                @foreach ($sumberDanas as $sumberDana)
+                                    <option value="{{ $sumberDana->id }}"
+                                        {{ request('sumber_dana_id') == 'sumber_dana_id' ? 'selected' : '' }}>
+                                        {{ $sumberDana->name }}
+                                    </option>
+                                @endforeach
+                            </x-select-input>
+                            <x-input-error class="mt-2" :messages="$errors->get('sumber_dana_id')" />
                         </div>
 
                         <div>
-                            <x-input-label for="program_sumber" :value="__('Program_sumber')" />
-                            <x-text-input id="program_sumber" name="program_sumber" type="text"
-                                class="block w-full mt-1" :value="old('program_sumber')" required autocomplete="program_sumber" />
-                            <x-input-error class="mt-2" :messages="$errors->get('program_sumber')" />
+                            <x-input-label for="program_sumber_id" :value="__('Program Sumber')" />
+                            <x-select-input id="program_sumber" name="program_sumber_id" class="block w-full mt-1">
+                                <option value="">{{ __('Select Program Sumber') }}</option>
+                                @foreach ($programSumbers as $programSumber)
+                                    <option value="{{ $programSumber->id }}"
+                                        {{ request('program_sumber_id') == 'program_sumber_id' ? 'selected' : '' }}>
+                                        {{ $programSumber->name }}
+                                    </option>
+                                @endforeach
+                            </x-select-input>
+                            <x-input-error class="mt-2" :messages="$errors->get('program_sumber_id')" />
                         </div>
 
                         <div>
