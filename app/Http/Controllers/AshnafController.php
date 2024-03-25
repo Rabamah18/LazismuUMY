@@ -12,7 +12,10 @@ class AshnafController extends Controller
      */
     public function index()
     {
-        return view('ashnaf.index');
+        $ashnafs = Ashnaf::query()
+            ->paginate(10);
+
+        return view('ashnaf.index', compact('ashnafs'));
     }
 
     /**

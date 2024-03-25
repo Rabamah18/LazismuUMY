@@ -12,7 +12,11 @@ class TahunController extends Controller
      */
     public function index()
     {
-        return view('tahun.index');
+        $tahuns = Tahun::query()
+            ->paginate(10);
+
+
+        return view('tahun.index', compact('tahuns'));
     }
 
     /**

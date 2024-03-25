@@ -13,6 +13,7 @@ class Tahun extends Model
         'id',
     ];
 
+
     public function penghimpunans()
     {
         return $this->hasMany(Penghimpunan::class);
@@ -21,5 +22,10 @@ class Tahun extends Model
     public function penyalurans()
     {
         return $this->hasMany(Penyaluran::class);
+    }
+
+    public function tahun()
+    {
+        return $this->hasMany(Tahun::class);
     }
 }

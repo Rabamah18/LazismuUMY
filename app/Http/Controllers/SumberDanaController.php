@@ -12,7 +12,8 @@ class SumberDanaController extends Controller
      */
     public function index()
     {
-        return view('sumberdana.index');
+        $sumberDanas = SumberDana::query()->paginate(10);
+        return view('sumberdana.index', compact('sumberDanas'));
     }
 
     /**

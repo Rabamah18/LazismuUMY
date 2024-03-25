@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PenerimaManfaat;
 use App\Models\ProgramPilar;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,10 @@ class ProgramPilarController extends Controller
      */
     public function index()
     {
-        return view('programpilar.index');
+        $programPilars = ProgramPilar::query()
+            ->paginate(10);
+
+        return view('programpilar.index', compact('programPilars'));
     }
 
     /**
