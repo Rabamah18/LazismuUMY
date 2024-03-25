@@ -13,6 +13,10 @@ class Penyaluran extends Model
         'id',
     ];
 
+    protected $casts = [
+        'tanggal' => 'datetime',
+    ];
+
     /**
      * Get the pemenimaManfaat that owns the Penyaluran
      *
