@@ -20,7 +20,7 @@ class AshnafController extends Controller
      */
     public function create()
     {
-        return view('ashnaf.index');
+        return view('ashnaf.create');
     }
 
     /**

@@ -20,7 +20,7 @@ class ProvinsiController extends Controller
      */
     public function create()
     {
-        return view('provinsi.index');
+        return view('provinsi.create');
     }
 
     /**

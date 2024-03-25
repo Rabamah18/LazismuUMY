@@ -20,7 +20,7 @@ class KabupatenController extends Controller
      */
     public function create()
     {
-        return view('kabupaten.index');
+        return view('kabupaten.create');
     }
 
     /**
