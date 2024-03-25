@@ -1,4 +1,4 @@
-<div class="relative mt-6 overflow-x-scroll overflow-y-visible rounded-md md:block">
+<div class="relative mt-6 overflow-auto rounded-md">
     <table class="w-full text-base text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -92,10 +92,13 @@
                         </div>
                     </td>
                     <td class="py-4 pl-6 pr-2 lg:pr-4">
-                        <div class="flex justify-items-start">
-                            {{-- <a href="{{ route('admin.users.edit', $penghimpunan) }}"
-                            class="hover:underline">Edit</a> --}}
-                            @include('penghimpunan.partials.action')
+                        <div class="flex space-x-2 justify-items-start">
+                            <a href="{{ route('penghimpunan.edit', $penghimpunan) }}" class="hover:underline">View</a>
+                            <a href="{{ route('penghimpunan.edit', $penghimpunan) }}"
+                                class="text-indigo-500 hover:underline">Edit</a>
+                            <a href="{{ route('penghimpunan.edit', $penghimpunan) }}"
+                                class="text-red-500 hover:underline">Delete</a>
+                            {{-- @include('penghimpunan.partials.action') --}}
                         </div>
                     </td>
                 </tr>
