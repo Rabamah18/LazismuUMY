@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ashnaf;
 use App\Models\Penyaluran;
+use App\Models\Pilar;
+use App\Models\Tahun;
 use Illuminate\Http\Request;
 
 class PenyaluranController extends Controller
@@ -10,12 +13,32 @@ class PenyaluranController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $penyalurans = Penyaluran::query()
+        $ashnafs = Ashnaf::query()->get();
+        $pilars = Pilar::query()->get();
+        $tahuns = Tahun::query()->get();
+
+        $penyalurans = Penyaluran::orderByDesc('tanggal')
+        ->when($request->search, function ($query, $search) {
+            $query->where(function ($query) use ($search) {
+                $query->where('uraian', 'like', '%'.$search.'%');
+                // ->orWhere('', 'like', '%'.$search.'%');
+            });
+        })
+        ->when($request->ashnaf, function ($query, $ashnaf) {
+            $query->where('ashnaf_id', '=', $ashnaf);
+        })
+        ->when($request->pilar, function ($query, $pilar) {
+            $query->where('pilar_id', '=', $pilar);
+        })
+        ->when($request->tahun, function ($query, $tahun) {
+            $query->where('tahun_id', '=', $tahun);
+        })
             ->with('ashnaf', 'penerimaManfaat', 'tahun', 'pilar')
-            ->paginate(10);
-        return view('penyaluran.index', compact('penyalurans'));
+            ->paginate(10)
+            ->withQueryString();
+        return view('penyaluran.index', compact('penyalurans', 'ashnafs', 'pilars', 'tahuns'));
     }
 
     /**
