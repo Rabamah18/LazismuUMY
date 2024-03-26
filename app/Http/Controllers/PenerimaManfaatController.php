@@ -12,7 +12,11 @@ class PenerimaManfaatController extends Controller
      */
     public function index()
     {
-        return view('penerimamanfaat.index');
+        $penerimaManfaats = PenerimaManfaat::query()
+            ->with('lokasi')
+            ->paginate(10);
+
+        return view('penerimamanfaat.index', compact('penerimaManfaats'));
     }
 
     /**
@@ -20,6 +24,7 @@ class PenerimaManfaatController extends Controller
      */
     public function create()
     {
+
         return view('penerimamanfaat.create');
     }
 

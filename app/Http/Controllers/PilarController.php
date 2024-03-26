@@ -12,7 +12,11 @@ class PilarController extends Controller
      */
     public function index()
     {
-        return view('pilar.index');
+        $pilars = Pilar::query()
+            ->with( 'programPilar')
+            ->paginate(10);
+
+        return view('pilar.index', compact('pilars'));
     }
 
     /**

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ProgramSumber;
+use App\Models\Penghimpunan;
 use Illuminate\Http\Request;
+use App\Models\ProgramSumber;
 
 class ProgramSumberController extends Controller
 {
@@ -12,7 +13,11 @@ class ProgramSumberController extends Controller
      */
     public function index()
     {
-        return view('programsumber.index');
+        $programSumbers = ProgramSumber::query()
+            
+            ->paginate(10);
+
+        return view('programsumber.index', compact('programSumbers'));
     }
 
     /**

@@ -12,7 +12,11 @@ class LokasiController extends Controller
      */
     public function index()
     {
-        return view('lokasi.index');
+        $lokasis = Lokasi::query()
+            ->with('provinsi', 'kabupaten')
+            ->paginate(10);
+
+        return view('lokasi.index', compact('lokasis'));
     }
 
     /**
