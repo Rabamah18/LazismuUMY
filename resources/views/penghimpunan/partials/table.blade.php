@@ -45,7 +45,7 @@
                         <div class="flex">
                             <a href="{{ route('penghimpunan.create', $penghimpunan) }}"
                                 class="hover:underline whitespace-nowrap">
-                                {{ $penghimpunan->uraian }}
+                                {{ Str::limit($penghimpunan->uraian, 10, '...') }}
                             </a>
 
                         </div>
@@ -93,7 +93,7 @@
                     </td>
                     <td class="py-4 pl-6 pr-2 lg:pr-4">
                         <div class="flex space-x-2 justify-items-start">
-                            <a href="{{ route('penghimpunan.edit', $penghimpunan) }}" class="hover:underline">View</a>
+                            <a href="{{ route('penghimpunan.show', $penghimpunan) }}" class="hover:underline">View</a>
                             <a href="{{ route('penghimpunan.edit', $penghimpunan) }}"
                                 class="text-indigo-500 hover:underline">Edit</a>
                             <a href="{{ route('penghimpunan.edit', $penghimpunan) }}"
