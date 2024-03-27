@@ -18,7 +18,7 @@
                         </x-button.link-primary>
                     </div>
                 </div>
-                @if (request('search') || request('sumber_dana') || request('verified_account'))
+                @if (request('search') || request('sumber_dana'))
                     <x-card.description>
                         {{ __('Filter for') }}
                         @if (request('search'))
@@ -26,15 +26,6 @@
                         @endif
                         @if (request('sumber_dana'))
                             {{ __('sumber_dana') }} <span class="font-semibold">{{ request('sumber_dana') }}</span>
-                        @endif
-                        @if (request('verified_account'))
-                            {{ __('status') }} <span class="font-semibold">
-                                @if (request('verified_account') == 'true')
-                                    {{ __('verified') }}
-                                @else
-                                    {{ __('not verified') }}
-                                @endif
-                            </span>
                         @endif
                     </x-card.description>
                 @else
@@ -58,7 +49,7 @@
                         <div class="flex items-center justify-between gap-2">
                             <div class="">
                                 <x-select-input id="sumber_dana" name="sumber_dana" class="">
-                                    <option value="">{{ __('Select Sumber Dana') }}</option>
+                                    <option value="">{{ __('Sumber Dana') }}</option>
                                     @foreach ($sumberDanas as $sumberDana)
                                         <option value="{{ $sumberDana->id }}"
                                             {{ request('sumber_dana') == $sumberDana->id ? 'selected' : '' }}>
@@ -67,7 +58,7 @@
                                     @endforeach
                                 </x-select-input>
                                 <x-select-input id="program_sumber" name="program_sumber" class="">
-                                    <option value="">{{ __('Select Program Sumber') }}</option>
+                                    <option value="">{{ __('Program Sumber') }}</option>
                                     @foreach ($programSumbers as $programSumber)
                                         <option value="{{ $programSumber->id }}"
                                             {{ request('program_sumber') == $programSumber->id ? 'selected' : '' }}>
@@ -76,7 +67,7 @@
                                     @endforeach
                                 </x-select-input>
                                 <x-select-input id="tahun" name="tahun" class="">
-                                    <option value="">{{ __('Select Tahun') }}</option>
+                                    <option value="">{{ __('Tahun') }}</option>
                                     @foreach ($tahuns as $tahun)
                                         <option value="{{ $tahun->id }}"
                                             {{ request('tahun') == $tahun->id ? 'selected' : '' }}>
@@ -84,6 +75,19 @@
                                         </option>
                                     @endforeach
                                 </x-select-input>
+                                <x-select-input id="paginate" name="paginate" class="">
+                                    <option value="">{{ __('Paginate') }}</option>
+                                    <option value="10" {{ request('paginate') == 10 ? 'selected' : '' }}>
+                                        10
+                                    </option>
+                                    <option value="20" {{ request('paginate') == 20 ? 'selected' : '' }}>
+                                        20
+                                    </option>
+                                    <option value="30" {{ request('paginate') == 30 ? 'selected' : '' }}>
+                                        30
+                                    </option>
+                                </x-select-input>
+
                             </div>
                             <div class="">
                                 <x-button.secondary type="submit">

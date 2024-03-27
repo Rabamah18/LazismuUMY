@@ -20,10 +20,11 @@ class PenghimpunanController extends Controller
         $tahuns = Tahun::query()->get();
 
         $penghimpunans = Penghimpunan::orderByDesc('tanggal')
+            ->with('sumberDana', 'programSumber', 'tahun')
             ->when($request->search, function ($query, $search) {
                 $query->where(function ($query) use ($search) {
-                    $query->where('uraian', 'like', '%'.$search.'%');
-                    // ->orWhere('', 'like', '%'.$search.'%');
+                    $query->where('uraian', 'like', '%'.$search.'%')
+                        ->orWhere('tanggal', 'like', '%'.$search.'%');
                 });
             })
             ->when($request->sumber_dana, function ($query, $sumber_dana) {
@@ -35,8 +36,13 @@ class PenghimpunanController extends Controller
             ->when($request->tahun, function ($query, $tahun) {
                 $query->where('tahun_id', '=', $tahun);
             })
-            ->with('sumberDana', 'programSumber', 'tahun')
-            ->paginate(10)
+            ->when($request->paginate, function ($query, $paginate) {
+                return $query->paginate($paginate);
+            }, function ($query) {
+                return $query->paginate();
+            })
+
+            // ->paginate(10)
             ->withQueryString();
 
         return view('penghimpunan.index', compact('penghimpunans', 'sumberDanas', 'programSumbers', 'tahuns'));
@@ -90,7 +96,9 @@ class PenghimpunanController extends Controller
      */
     public function show(Penghimpunan $penghimpunan)
     {
-        //
+        //$penghimpunan->load('sumberDana', 'programSumber', 'tahun');
+
+        return view('penghimpunan.view', compact('penghimpunan'));
     }
 
     /**
