@@ -96,9 +96,39 @@
                             <a href="{{ route('penghimpunan.show', $penghimpunan) }}" class="hover:underline">View</a>
                             <a href="{{ route('penghimpunan.edit', $penghimpunan) }}"
                                 class="text-indigo-500 hover:underline">Edit</a>
-                            <a href="{{ route('penghimpunan.edit', $penghimpunan) }}"
-                                class="text-red-500 hover:underline">Delete</a>
-                            {{-- @include('penghimpunan.partials.action') --}}
+                            <button x-data="" class="text-red-500 hover:underline"
+                                x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion{{ $penghimpunan->id }}')">
+                                Hapus
+                            </button>
+
+                            <x-modal name="confirm-user-deletion{{ $penghimpunan->id }}" :show="$errors->userDeletion->isNotEmpty()" focusable>
+                                <form method="post" action="{{ route('penghimpunan.destroy', $penghimpunan) }}"
+                                    class="p-6">
+                                    @csrf
+                                    @method('delete')
+
+                                    <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                                        Apakah anda yakin ingin menghapus data ini?
+                                    </h2>
+
+                                    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                        {{ $penghimpunan->uraian }}
+                                    </p>
+                                    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                        {{ $penghimpunan->tanggal->format('d F Y') }}
+                                    </p>
+
+                                    <div class="flex justify-end mt-6">
+                                        <x-secondary-button x-on:click="$dispatch('close')">
+                                            {{ __('Batal') }}
+                                        </x-secondary-button>
+
+                                        <x-danger-button class="ms-3">
+                                            {{ __('Hapus') }}
+                                        </x-danger-button>
+                                    </div>
+                                </form>
+                            </x-modal>
                         </div>
                     </td>
                 </tr>
