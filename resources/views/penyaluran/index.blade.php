@@ -75,6 +75,15 @@
                                         </option>
                                     @endforeach
                                 </x-select-input>
+                                <x-select-input id="program_pilar" name="program_pilar" class="">
+                                    <option value="">{{ __('Select Program Pilar') }}</option>
+                                    @foreach ($programPilars as $programPilar)
+                                        <option value="{{ $programPilar->id }}"
+                                            {{ request('program_pilar') == $programPilar->id ? 'selected' : '' }}>
+                                            {{ $programPilar->name }}
+                                        </option>
+                                    @endforeach
+                                </x-select-input>
                                 <x-select-input id="tahun" name="tahun" class="">
                                     <option value="">{{ __('Select Tahun') }}</option>
                                     @foreach ($tahuns as $tahun)

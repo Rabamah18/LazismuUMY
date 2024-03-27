@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ashnaf;
 use App\Models\Penyaluran;
 use App\Models\Pilar;
+use App\Models\ProgramPilar;
 use App\Models\Tahun;
 use Illuminate\Http\Request;
 
@@ -17,6 +18,7 @@ class PenyaluranController extends Controller
     {
         $ashnafs = Ashnaf::query()->get();
         $pilars = Pilar::query()->get();
+        $programPilars = ProgramPilar::query()->get();
         $tahuns = Tahun::query()->get();
 
         $penyalurans = Penyaluran::orderByDesc('tanggal')
@@ -32,13 +34,16 @@ class PenyaluranController extends Controller
         ->when($request->pilar, function ($query, $pilar) {
             $query->where('pilar_id', '=', $pilar);
         })
+        ->when($request->program_pilar, function ($query, $program_pilar) {
+            $query->where('program_pilar_id', '=', $program_pilar);
+        })
         ->when($request->tahun, function ($query, $tahun) {
             $query->where('tahun_id', '=', $tahun);
         })
-            ->with('ashnaf', 'penerimaManfaat', 'tahun', 'pilar')
+            ->with('ashnaf', 'penerimaManfaat', 'tahun', 'pilar', 'programPilar')
             ->paginate(10)
             ->withQueryString();
-        return view('penyaluran.index', compact('penyalurans', 'ashnafs', 'pilars', 'tahuns'));
+        return view('penyaluran.index', compact('penyalurans', 'ashnafs', 'pilars', 'programPilars', 'tahuns'));
     }
 
     /**
