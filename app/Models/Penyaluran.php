@@ -37,6 +37,11 @@ class Penyaluran extends Model
         return $this->belongsTo(Pilar::class);
     }
 
+    public function programPilar()
+    {
+        return $this->belongsTo(ProgramPilar::class);
+    }
+
     public function tahun()
     {
         return $this->belongsTo(Tahun::class);

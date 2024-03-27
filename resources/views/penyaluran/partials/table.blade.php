@@ -18,10 +18,15 @@
                     {{ __('Ashnaf') }}
                 </th>
                 <th scope="col" class="px-6 py-3 lg:table-cell">
-                    {{ __('Penerima Manfaat') }}
+                    {{ __('Lembaga') }} /
+                    {{ __('Pria') }} /
+                    {{ __('Wanita') }}
                 </th>
                 <th scope="col" class="px-6 py-3 lg:table-cell">
                     {{ __('Pilar') }}
+                </th>
+                <th scope="col" class="px-6 py-3 lg:table-cell">
+                    {{ __('Program Pilar') }}
                 </th>
                 <th scope="col" class="px-6 py-3 lg:table-cell">
                     {{ __('Tahun') }}
@@ -81,7 +86,7 @@
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
-                                {{ $penyaluran->penerimaManfaat->name }}
+                                {{ $penyaluran->penerimaManfaat->lembaga_count ?? '-'  }} / {{ $penyaluran->penerimaManfaat->male_count ?? '-' }} / {{ $penyaluran->penerimaManfaat->female_count ?? '-' }}
                             </p>
 
                         </div>
@@ -90,6 +95,14 @@
                         <div class="flex">
                             <p>
                                 {{ $penyaluran->pilar->name }}
+                            </p>
+
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 lg:table-cell">
+                        <div class="flex">
+                            <p>
+                                {{ $penyaluran->pilar->programPilar->name ?? '-'}}
                             </p>
 
                         </div>
