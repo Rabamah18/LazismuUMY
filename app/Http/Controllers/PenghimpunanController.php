@@ -150,6 +150,10 @@ class PenghimpunanController extends Controller
      */
     public function destroy(Penghimpunan $penghimpunan)
     {
-        //
+        $penghimpunan->delete();
+
+        return redirect()
+            ->route('penghimpunan.index')
+            ->with('success', 'Penghimpunan deleted successfully!');
     }
 }
