@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ashnaf;
+use App\Models\PenerimaManfaat;
 use App\Models\Penyaluran;
 use App\Models\Pilar;
 use App\Models\ProgramPilar;
@@ -51,7 +52,13 @@ class PenyaluranController extends Controller
      */
     public function create()
     {
-        return view('penyaluran.create');
+        $ashnafs = Ashnaf::query()->get();
+        $penerimaManfaats = PenerimaManfaat::query()->get();
+        $pilars = Pilar::query()->get();
+        $programPilars = ProgramPilar::query()->get();
+        $tahuns = Tahun::query()->get();
+
+        return view('penyaluran.create', compact('ashnafs', 'penerimaManfaats', 'pilars', 'programPilars', 'tahuns'));
     }
 
     /**
