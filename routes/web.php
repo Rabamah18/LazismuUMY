@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AshnafController;
 use App\Http\Controllers\KabupatenController;
 use App\Http\Controllers\LokasiController;
@@ -24,6 +23,7 @@ use App\Models\ProgramPilar;
 use App\Models\ProgramSumber;
 use App\Models\Provinsi;
 use App\Models\SumberDana;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,7 +61,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('provinsi', ProvinsiController::class);
     Route::resource('sumberdana', SumberDanaController::class);
     Route::resource('tahun', TahunController::class);
-
 
     Route::view('/user', 'user.index')->name('user.index');
     // Route::view('/ashnaf', 'ashnaf.index')->name('ashnaf.index');

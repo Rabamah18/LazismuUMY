@@ -8,8 +8,6 @@ use App\Models\PenerimaManfaat;
 use App\Models\Penghimpunan;
 use App\Models\Penyaluran;
 use App\Models\Pilar;
-use App\Models\ProgramSumber;
-use App\Models\SumberDana;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,7 +18,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         \App\Models\User::factory()->create([
-            'name' => 'admin',
+            'name' => 'Admin',
             'email' => 'admin@admin.com',
         ]);
 

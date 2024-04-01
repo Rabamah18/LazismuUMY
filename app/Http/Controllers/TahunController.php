@@ -15,7 +15,6 @@ class TahunController extends Controller
         $tahuns = Tahun::query()
             ->paginate(10);
 
-
         return view('tahun.index', compact('tahuns'));
     }
 

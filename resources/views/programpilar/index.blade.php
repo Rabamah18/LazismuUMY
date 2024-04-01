@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="sm:py-7">
         <div class="max-w-full mx-auto sm:px-6 sm:space-y-6">
             <x-card.app>
                 <div class="flex">
@@ -91,15 +91,15 @@
 
                 {{-- Pagination --}}
                 {{-- @if ($programpilars->hasPages()) --}}
-                    <div class="mt-6">
-                        {{-- The default pagination view is pagination.custom-tailwind blade component.
+                <div class="mt-6">
+                    {{-- The default pagination view is pagination.custom-tailwind blade component.
                     You can change the default pagination view using the AppServiceProvider
                     or by passing the pagination view as parameter to the links method. --}}
-                        {{ $programPilars->links() }}
-                        {{-- {{ $users->links('vendor.pagination.tailwind') }} --}}
-                        {{-- {{ $users->links('vendor.pagination.simple-tailwind') }} --}}
-                        {{-- {{ $users->links('vendor.pagination.custom-tailwind') }} --}}
-                    </div>
+                    {{ $programPilars->links() }}
+                    {{-- {{ $users->links('vendor.pagination.tailwind') }} --}}
+                    {{-- {{ $users->links('vendor.pagination.simple-tailwind') }} --}}
+                    {{-- {{ $users->links('vendor.pagination.custom-tailwind') }} --}}
+                </div>
                 {{-- @endif --}}
             </x-card.app>
         </div>

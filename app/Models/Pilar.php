@@ -18,8 +18,8 @@ class Pilar extends Model
         return $this->hasMany(Penyaluran::class);
     }
 
-    public function programPilar()
+    public function programPilars()
     {
-        return $this->belongsTo(ProgramPilar::class);
+        return $this->hasMany(ProgramPilar::class);
     }
 }

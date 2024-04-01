@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::table('penyalurans', function (Blueprint $table) {
             $table->foreignId('penerima_manfaat_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('ashnaf_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('pilar_id')->nullable()->constrained()->nullOnDelete();
+            // $table->foreignId('pilar_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('program_pilar_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('tahun_id')->nullable()->constrained()->nullOnDelete();
         });
     }

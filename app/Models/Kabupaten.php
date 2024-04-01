@@ -12,5 +12,4 @@ class Kabupaten extends Model
     protected $guarded = [
         'id',
     ];
-
 }
