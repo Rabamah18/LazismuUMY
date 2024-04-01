@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Ashnaf;
 use App\Models\PenerimaManfaat;
 use App\Models\Pilar;
+use App\Models\ProgramPilar;
 use App\Models\Tahun;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -26,7 +27,8 @@ class PenyaluranFactory extends Factory
             'nominal' => fake()->randomNumber(5, true),
             'penerima_manfaat_id' => PenerimaManfaat::factory(),
             'ashnaf_id' => Ashnaf::factory(),
-            'pilar_id' => Pilar::factory(),
+            // 'pilar_id' => Pilar::factory(),
+            'program_pilar_id' => ProgramPilar::factory(),
             'tahun_id' => Tahun::factory(),
         ];
     }

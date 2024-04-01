@@ -1,4 +1,4 @@
-<div class="relative mt-6 overflow-x-visible overflow-y-visible rounded-md md:block">
+<div class="relative mt-6 overflow-auto rounded-md">
     <table class="w-full text-base text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -51,7 +51,7 @@
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-gray-200">
                         {{-- loop --}}
                         <div class="flex">
-                            <a href="{{ route('penyaluran.create', $penyaluran) }}"
+                            <a href="{{ route('penyaluran.show', $penyaluran) }}"
                                 class="hover:underline whitespace-nowrap">
                                 {{ $penyaluran->uraian }}
                             </a>
@@ -96,17 +96,15 @@
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
-                                {{ $penyaluran->pilar->name }}
+                                {{ $penyaluran->programPilar->pilar->name ?? '-' }}
                             </p>
-
                         </div>
                     </td>
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
-                                {{ $penyaluran->pilar->programPilar->name ?? '-' }}
+                                {{ $penyaluran->programPilar->name ?? '-' }}
                             </p>
-
                         </div>
                     </td>
                     <td class="px-6 py-4 lg:table-cell">

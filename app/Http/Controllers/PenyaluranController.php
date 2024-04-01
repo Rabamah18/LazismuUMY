@@ -23,27 +23,28 @@ class PenyaluranController extends Controller
         $tahuns = Tahun::query()->get();
 
         $penyalurans = Penyaluran::orderByDesc('tanggal')
-        ->when($request->search, function ($query, $search) {
-            $query->where(function ($query) use ($search) {
-                $query->where('uraian', 'like', '%'.$search.'%');
-                // ->orWhere('', 'like', '%'.$search.'%');
-            });
-        })
-        ->when($request->ashnaf, function ($query, $ashnaf) {
-            $query->where('ashnaf_id', '=', $ashnaf);
-        })
-        ->when($request->pilar, function ($query, $pilar) {
-            $query->where('pilar_id', '=', $pilar);
-        })
-        ->when($request->program_pilar, function ($query, $program_pilar) {
-            $query->where('program_pilar_id', '=', $program_pilar);
-        })
-        ->when($request->tahun, function ($query, $tahun) {
-            $query->where('tahun_id', '=', $tahun);
-        })
             ->with('ashnaf', 'penerimaManfaat', 'tahun', 'pilar', 'programPilar')
+            ->when($request->search, function ($query, $search) {
+                $query->where(function ($query) use ($search) {
+                    $query->where('uraian', 'like', '%'.$search.'%');
+                    // ->orWhere('', 'like', '%'.$search.'%');
+                });
+            })
+            ->when($request->ashnaf, function ($query, $ashnaf) {
+                $query->where('ashnaf_id', '=', $ashnaf);
+            })
+            ->when($request->pilar, function ($query, $pilar) {
+                $query->where('pilar_id', '=', $pilar);
+            })
+            ->when($request->program_pilar, function ($query, $program_pilar) {
+                $query->where('program_pilar_id', '=', $program_pilar);
+            })
+            ->when($request->tahun, function ($query, $tahun) {
+                $query->where('tahun_id', '=', $tahun);
+            })
             ->paginate(10)
             ->withQueryString();
+
         return view('penyaluran.index', compact('penyalurans', 'ashnafs', 'pilars', 'programPilars', 'tahuns'));
     }
 

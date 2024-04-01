@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="sm:py-7">
         <div class="max-w-full mx-auto sm:px-6 sm:space-y-6">
             <x-card.app>
                 <div class="flex">
@@ -43,11 +43,11 @@
                     </div>
                 @endif
                 <div class="w-full mt-6">
-                    <form class="flex flex-col justify-between gap-2 lg:flex-row">
+                    <form class="flex flex-col justify-between gap-2 xl:flex-row">
                         <x-text-input id="search" name="search" type="text" class="w-full lg:w-1/3"
                             placeholder="{{ __('Search here') }}" value="{{ request('search') }}" autofocus />
                         <div class="flex items-center justify-between gap-2">
-                            <div class="">
+                            <div class="space-y-1">
                                 <x-select-input id="sumber_dana" name="sumber_dana" class="">
                                     <option value="">{{ __('Sumber Dana') }}</option>
                                     @foreach ($sumberDanas as $sumberDana)
@@ -76,7 +76,7 @@
                                     @endforeach
                                 </x-select-input>
                                 <x-select-input id="paginate" name="paginate" class="">
-                                    <option value="">{{ __('Paginate') }}</option>
+                                    <option value="">{{ __('Per Halaman') }}</option>
                                     <option value="10" {{ request('paginate') == 10 ? 'selected' : '' }}>
                                         10
                                     </option>

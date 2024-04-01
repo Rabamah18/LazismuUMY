@@ -1,11 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
             {{ __('Penyaluran') }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="sm:py-7">
         <div class="max-w-full mx-auto sm:px-6 sm:space-y-6">
             <x-card.app>
                 <div class="flex">
@@ -52,13 +52,13 @@
                     </div>
                 @endif
                 <div class="w-full mt-6">
-                    <form class="flex flex-col justify-between gap-2 lg:flex-row">
+                    <form class="flex flex-col justify-between gap-2 xl:flex-row">
                         <x-text-input id="search" name="search" type="text" class="w-full lg:w-1/3"
                             placeholder="{{ __('Search here') }}" value="{{ request('search') }}" autofocus />
                         <div class="flex items-center justify-between gap-2">
-                            <div class="">
+                            <div class="space-y-1">
                                 <x-select-input id="ashnaf" name="ashnaf" class="">
-                                    <option value="">{{ __('Select ashnaf') }}</option>
+                                    <option value="">{{ __('Ashnaf') }}</option>
                                     @foreach ($ashnafs as $ashnaf)
                                         <option value="{{ $ashnaf->id }}"
                                             {{ request('ashnaf') == $ashnaf->id ? 'selected' : '' }}>
@@ -67,7 +67,7 @@
                                     @endforeach
                                 </x-select-input>
                                 <x-select-input id="pilar" name="pilar" class="">
-                                    <option value="">{{ __('Select pilar') }}</option>
+                                    <option value="">{{ __('Pilar') }}</option>
                                     @foreach ($pilars as $pilar)
                                         <option value="{{ $pilar->id }}"
                                             {{ request('pilar') == $pilar->id ? 'selected' : '' }}>
@@ -76,7 +76,7 @@
                                     @endforeach
                                 </x-select-input>
                                 <x-select-input id="program_pilar" name="program_pilar" class="">
-                                    <option value="">{{ __('Select Program Pilar') }}</option>
+                                    <option value="">{{ __('Program Pilar') }}</option>
                                     @foreach ($programPilars as $programPilar)
                                         <option value="{{ $programPilar->id }}"
                                             {{ request('program_pilar') == $programPilar->id ? 'selected' : '' }}>
@@ -85,7 +85,7 @@
                                     @endforeach
                                 </x-select-input>
                                 <x-select-input id="tahun" name="tahun" class="">
-                                    <option value="">{{ __('Select Tahun') }}</option>
+                                    <option value="">{{ __('Tahun') }}</option>
                                     @foreach ($tahuns as $tahun)
                                         <option value="{{ $tahun->id }}"
                                             {{ request('tahun') == $tahun->id ? 'selected' : '' }}>

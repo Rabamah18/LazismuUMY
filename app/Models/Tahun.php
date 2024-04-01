@@ -13,7 +13,6 @@ class Tahun extends Model
         'id',
     ];
 
-
     public function penghimpunans()
     {
         return $this->hasMany(Penghimpunan::class);

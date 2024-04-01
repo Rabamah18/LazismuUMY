@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PenerimaManfaat;
 use App\Models\ProgramPilar;
 use Illuminate\Http\Request;
 

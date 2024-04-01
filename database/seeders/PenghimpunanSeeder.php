@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Penghimpunan;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class PenghimpunanSeeder extends Seeder

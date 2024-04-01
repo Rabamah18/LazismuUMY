@@ -13,7 +13,6 @@ class Provinsi extends Model
         'id',
     ];
 
-
     public function lokasis()
     {
         return $this->hasMany(Lokasi::class);
