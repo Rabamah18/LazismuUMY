@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('pilars', function (Blueprint $table) {
-            $table->foreignId('program_pilar_id')->nullable()->constrained()->nullOnDelete();
+        Schema::table('program_pilars', function (Blueprint $table) {
+            $table->foreignId('pilar_id')->nullable()->constrained()->nullOnDelete();
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('pilars', function (Blueprint $table) {
-            $table->dropForeign('program_pilar_id');
+        Schema::table('program_pilars', function (Blueprint $table) {
+            $table->dropForeign('pilar_id');
         });
     }
 };

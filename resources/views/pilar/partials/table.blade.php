@@ -1,4 +1,5 @@
 <div class="relative mt-6 overflow-x-visible overflow-y-visible rounded-md md:block">
+    {{-- "@dump($pilars)" --}}
     <table class="w-full text-base text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -7,6 +8,9 @@
                 </th>
                 <th scope="col" class="px-6 py-3 lg:table-cell">
                     {{ __('Name') }}
+                </th>
+                <th scope="col" class="px-6 py-3 lg:table-cell">
+                    {{ __('Program') }}
                 </th>
                 <th scope="col" class="py-3 pl-6 pr-2 lg:pr-4">
                     {{ __('Option') }}
@@ -32,7 +36,13 @@
                             <p>
                                 {{ $pilar->name }}
                             </p>
-
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 lg:table-cell">
+                        <div class="flex">
+                            <p>
+                                {{ $pilar->program_pilars_count}}
+                            </p>
                         </div>
                     </td>
                     <td class="py-4 pl-6 pr-2 lg:pr-4">

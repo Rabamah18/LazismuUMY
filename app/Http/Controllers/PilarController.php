@@ -13,7 +13,7 @@ class PilarController extends Controller
     public function index()
     {
         $pilars = Pilar::query()
-            ->with('programPilar')
+            ->withCount('programPilars')
             ->paginate(10);
 
         return view('pilar.index', compact('pilars'));

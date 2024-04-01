@@ -26,9 +26,9 @@ class PenyaluranFactory extends Factory
             'uraian' => fake()->word(),
             'nominal' => fake()->randomNumber(5, true),
             'penerima_manfaat_id' => PenerimaManfaat::factory(),
-            'ashnaf_id' => Ashnaf::factory(),
+            'ashnaf_id' => Ashnaf::all()->random()->id,
             // 'pilar_id' => Pilar::factory(),
-            'program_pilar_id' => ProgramPilar::factory(),
+            'program_pilar_id' => ProgramPilar::all()->random()->id,
             'tahun_id' => Tahun::factory(),
         ];
     }

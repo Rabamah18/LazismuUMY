@@ -19,7 +19,7 @@ class PilarFactory extends Factory
     {
         return [
             'name' => fake()->word(),
-            'program_pilar_id' => ProgramPilar::factory(),
+            // 'program_pilar_id' => ProgramPilar::factory(),
         ];
     }
 }

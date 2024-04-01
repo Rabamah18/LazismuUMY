@@ -23,8 +23,8 @@ class PenghimpunanFactory extends Factory
             'tanggal' => fake()->dateTime(),
             'uraian' => fake()->word(),
             'nominal' => fake()->randomDigit(),
-            'sumber_dana_id' => SumberDana::factory(),
-            'program_sumber_id' => ProgramSumber::factory(),
+            'sumber_dana_id' => SumberDana::all()->random()->id,
+            'program_sumber_id' => ProgramSumber::all()->random()->id,
             'tahun_id' => Tahun::factory(),
         ];
     }
