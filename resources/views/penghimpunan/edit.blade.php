@@ -12,7 +12,7 @@
                     {{ __('Edit Data Penghimpunan') }}
                 </x-card.title>
                 <x-card.description>
-                    {{ __('Edit Data Penghimpunanyang sudah ada.') }}
+                    {{ __('Edit Data Penghimpunan yang sudah ada.') }}
                 </x-card.description>
                 <div class="max-w-xl">
                     {{-- @dump($penghimpunan) --}}
