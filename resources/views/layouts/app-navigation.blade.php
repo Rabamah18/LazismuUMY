@@ -26,7 +26,7 @@
                             <x-slot name="trigger">
                                 <button
                                     class="inline-flex items-center py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md dark:text-gray-400 dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none">
-                                    <div>{{ __('Lainnya') }}</div>
+                                    <div>{{ __('Setting') }}</div>
 
                                     <div class="ms-1">
                                         <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg"
@@ -40,28 +40,40 @@
                             </x-slot>
 
                             <x-slot name="content">
-                                <x-dropdown-link :href="route('ashnaf.index')">
-                                    {{ __('Ashnaf') }}
-                                </x-dropdown-link>
-                                <x-dropdown-link :href="route('penerimamanfaat.index')">
-                                    {{ __('Penerima Manfaat') }}
-                                </x-dropdown-link>
-                                <x-dropdown-link :href="route('sumberdana.index')">
-                                    {{ __('Sumber Dana') }}
-                                </x-dropdown-link>
                                 <x-dropdown-link :href="route('pilar.index')">
                                     {{ __('Pilar') }}
-                                </x-dropdown-link>
-                                <x-dropdown-link :href="route('programsumber.index')">
-                                    {{ __('Program Sumber') }}
                                 </x-dropdown-link>
                                 <x-dropdown-link :href="route('programpilar.index')">
                                     {{ __('Program Pilar') }}
                                 </x-dropdown-link>
+                                <x-dropdown-link :href="route('sumberdana.index')">
+                                    {{ __('Sumber Dana') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('programsumber.index')">
+                                    {{ __('Program Sumber') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('penerimamanfaat.index')">
+                                    {{ __('Penerima Manfaat') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('ashnaf.index')">
+                                    {{ __('Ashnaf') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('lokasi.index')">
+                                    {{ __('Lokasi') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('provinsi.index')">
+                                    {{ __('Provinsi') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('kabupaten.index')">
+                                    {{ __('Kabupaten') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('tahun.index')">
+                                    {{ __('Tahun') }}
+                                </x-dropdown-link>
                             </x-slot>
                         </x-dropdown>
                     </div>
-                    <div class="items-center hidden border-t-2 border-transparent sm:flex">
+                    {{-- <div class="items-center hidden border-t-2 border-transparent sm:flex">
                         <x-dropdown align="left" width="48">
                             <x-slot name="trigger">
                                 <button
@@ -80,21 +92,10 @@
                             </x-slot>
 
                             <x-slot name="content">
-                                <x-dropdown-link :href="route('lokasi.index')">
-                                    {{ __('Lokasi') }}
-                                </x-dropdown-link>
-                                <x-dropdown-link :href="route('provinsi.index')">
-                                    {{ __('Provinsi') }}
-                                </x-dropdown-link>
-                                <x-dropdown-link :href="route('kabupaten.index')">
-                                    {{ __('Kabupaten') }}
-                                </x-dropdown-link>
-                                <x-dropdown-link :href="route('tahun.index')">
-                                    {{ __('Tahun') }}
-                                </x-dropdown-link>
+
                             </x-slot>
                         </x-dropdown>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 
@@ -161,11 +162,41 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dasbor') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('penghimpunan.index')" :active="request()->routeIs('penghimpunan.index')">
+            <x-responsive-nav-link :href="route('penghimpunan.index')" :active="request()->routeIs('penghimpunan.*')">
                 {{ __('Penghimpunan') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('penyaluran.index')" :active="request()->routeIs('penyaluran.index')">
+            <x-responsive-nav-link :href="route('penyaluran.index')" :active="request()->routeIs('penyaluran.*')">
                 {{ __('Penyaluran') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('pilar.index')" :active="request()->routeIs('pilar.*')">
+                {{ __('Pilar') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('programpilar.index')" :active="request()->routeIs('programpilar.*')">
+                {{ __('Program Pilar') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('sumberdana.index')" :active="request()->routeIs('sumberdana.*')">
+                {{ __('Sumber Dana') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('programsumber.index')" :active="request()->routeIs('programsumber.*')">
+                {{ __('Program Sumber') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('penerimamanfaat.index')" :active="request()->routeIs('penerimamanfaat.*')">
+                {{ __('Penerima Manfaat') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('ashnaf.index')" :active="request()->routeIs('ashnaf.*')">
+                {{ __('Ashnaf') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('lokasi.index')" :active="request()->routeIs('lokasi.*')">
+                {{ __('Lokasi') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('provinsi.index')" :active="request()->routeIs('provinsi.*')">
+                {{ __('Provinsi') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('kabupaten.index')" :active="request()->routeIs('kabupaten.*')">
+                {{ __('Kabupaten') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('tahun.index')" :active="request()->routeIs('tahun.*')">
+                {{ __('Tahun') }}
             </x-responsive-nav-link>
         </div>
 
