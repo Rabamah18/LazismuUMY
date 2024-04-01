@@ -53,7 +53,7 @@
                     <td scope="row" class="px-6 py-4 text-gray-500 font-base dark:text-gray-400 xl:table-cell">
                         <div class="flex">
                             <p>
-                                {{ $penghimpunan->tanggal->format('d F Y') }}
+                                {{ $penghimpunan->tanggal->isoFormat('LL') }}
                             </p>
 
                         </div>

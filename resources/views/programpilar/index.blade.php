@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
             {{ __('Program Pilar') }}
         </h2>
     </x-slot>
@@ -18,16 +18,16 @@
                         </x-button.link-primary>
                     </div>
                 </div>
-                @if (request('search') || request('role') || request('verified_account'))
+                @if (request('search') || request('pilar'))
                     <x-card.description>
                         {{ __('Filter for') }}
                         @if (request('search'))
                             <span class="font-semibold">{{ request('search') }}</span>
                         @endif
-                        @if (request('role'))
-                            {{ __('role') }} <span class="font-semibold">{{ request('role') }}</span>
+                        @if (request('pilar'))
+                            {{ __('pilar') }} <span class="font-semibold">{{ request('pilar') }}</span>
                         @endif
-                        @if (request('verified_account'))
+                        {{-- @if (request('verified_account'))
                             {{ __('status') }} <span class="font-semibold">
                                 @if (request('verified_account') == 'true')
                                     {{ __('verified') }}
@@ -35,7 +35,7 @@
                                     {{ __('not verified') }}
                                 @endif
                             </span>
-                        @endif
+                        @endif --}}
                     </x-card.description>
                 @else
                     <x-card.description>
@@ -57,16 +57,16 @@
                             placeholder="{{ __('Search here') }}" value="{{ request('search') }}" autofocus />
                         <div class="flex items-center justify-between gap-2">
                             <div class="">
-                                <x-select-input id="role" name="role" class="">
-                                    <option value="">{{ __('Select Role') }}</option>
-                                    <option value="admin" {{ request('role') == 'admin' ? 'selected' : '' }}>
-                                        {{ __('Admin') }}
-                                    </option>
-                                    <option value="user" {{ request('role') == 'user' ? 'selected' : '' }}>
-                                        {{ __('User') }}
-                                    </option>
+                                <x-select-input id="pilar" name="pilar" class="">
+                                    <option value="">{{ __('Pilar') }}</option>
+                                    @foreach ($pilars as $pilar)
+                                        <option value="{{ $pilar->id }}"
+                                            {{ request('pilar') == $pilar->id ? 'selected' : '' }}>
+                                            {{ $pilar->name }}
+                                        </option>
+                                    @endforeach
                                 </x-select-input>
-                                <x-select-input id="verified_account" name="verified_account" class="">
+                                {{-- <x-select-input id="verified_account" name="verified_account" class="">
                                     <option value="">{{ __('Select Status') }}</option>
                                     <option value="true"
                                         {{ request('verified_account') == 'true' ? 'selected' : '' }}>
@@ -76,7 +76,7 @@
                                         {{ request('verified_account') == 'false' ? 'selected' : '' }}>
                                         {{ __('Not Verified') }}
                                     </option>
-                                </x-select-input>
+                                </x-select-input> --}}
                             </div>
                             <div class="">
                                 <x-button.secondary type="submit">

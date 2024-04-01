@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pilar;
 use App\Models\ProgramPilar;
 use Illuminate\Http\Request;
 
@@ -10,12 +11,16 @@ class ProgramPilarController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $pilars = Pilar::query()->get();
         $programPilars = ProgramPilar::query()
+            ->when($request->pilar, function ($query, $pilar) {
+                $query->where('pilar_id', '=', $pilar);
+            })
             ->paginate(10);
 
-        return view('programpilar.index', compact('programPilars'));
+        return view('programpilar.index', compact('programPilars', 'pilars'));
     }
 
     /**
