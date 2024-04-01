@@ -78,7 +78,7 @@
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
-                                {{ $penyaluran->ashnaf->name }}
+                                {{ $penyaluran->ashnaf->name ?? '-' }}
                             </p>
 
                         </div>
@@ -86,7 +86,9 @@
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
-                                {{ $penyaluran->penerimaManfaat->lembaga_count ?? '-'  }} / {{ $penyaluran->penerimaManfaat->male_count ?? '-' }} / {{ $penyaluran->penerimaManfaat->female_count ?? '-' }}
+                                {{ $penyaluran->penerimaManfaat->lembaga_count ?? '-' }} /
+                                {{ $penyaluran->penerimaManfaat->male_count ?? '-' }} /
+                                {{ $penyaluran->penerimaManfaat->female_count ?? '-' }}
                             </p>
 
                         </div>
@@ -102,7 +104,7 @@
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
-                                {{ $penyaluran->pilar->programPilar->name ?? '-'}}
+                                {{ $penyaluran->pilar->programPilar->name ?? '-' }}
                             </p>
 
                         </div>
