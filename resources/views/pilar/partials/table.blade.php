@@ -34,24 +34,26 @@
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
-                                {{ $pilar->name }}
+                                <a href="{{ route('pilar.show', $pilar) }}"
+                                    class="hover:underline whitespace-nowrap">
+                                    {{ $pilar->name }}
+                                </a>
+
                             </p>
                         </div>
                     </td>
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
-                            <p>
-                                {{ $pilar->program_pilars_count}}
-                            </p>
+                            <a href="{{ route('programpilar.index', ['pilar' => $pilar->id]) }}">
+                                {{ $pilar->program_pilars_count }}
+                            </a>
                         </div>
                     </td>
                     <td class="py-4 pl-6 pr-2 lg:pr-4">
                         <div class="flex space-x-2 justify-items-start">
                             <a href="{{ route('pilar.edit', $pilar) }}" class="hover:underline">View</a>
-                            <a href="{{ route('pilar.edit', $pilar) }}"
-                                class="text-indigo-500 hover:underline">Edit</a>
-                            <a href="{{ route('pilar.edit', $pilar) }}"
-                                class="text-red-500 hover:underline">Delete</a>
+                            <a href="{{ route('pilar.edit', $pilar) }}" class="text-indigo-500 hover:underline">Edit</a>
+                            <a href="{{ route('pilar.edit', $pilar) }}" class="text-red-500 hover:underline">Delete</a>
                         </div>
                         {{-- <div class="flex justify-items-start">
                             <a href="{{ route('admin.users.edit', $pilar) }}"

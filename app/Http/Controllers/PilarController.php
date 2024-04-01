@@ -40,7 +40,10 @@ class PilarController extends Controller
      */
     public function show(Pilar $pilar)
     {
-        //
+
+        $pilar->load('programPilars');
+        //dd($pilar);
+        return view('pilar.view', compact('pilar'));
     }
 
     /**
