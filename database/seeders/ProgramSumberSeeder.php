@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ProgramSumber;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,10 @@ class ProgramSumberSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        ProgramSumber::factory()->count(3)->sequence(
+            ['name' => 'Zakat Maal'],
+            ['name' => 'Zakat Fitrah'],
+            ['name' => 'Infak']
+        )->create();
     }
 }

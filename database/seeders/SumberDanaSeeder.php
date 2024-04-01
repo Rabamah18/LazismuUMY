@@ -13,6 +13,12 @@ class SumberDanaSeeder extends Seeder
      */
     public function run(): void
     {
-        SumberDana::factory(5)->create();
+        //SumberDana::factory(5)->create();
+
+        SumberDana::factory()->count(3)->sequence(
+            ['name' => 'BSI'],
+            ['name' => 'BPDDIY'],
+            ['name' => 'Kaleng Amal']
+        )->create();
     }
 }

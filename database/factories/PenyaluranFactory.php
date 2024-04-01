@@ -2,10 +2,10 @@
 
 namespace Database\Factories;
 
-use App\Models\Pilar;
-use App\Models\Tahun;
 use App\Models\Ashnaf;
 use App\Models\PenerimaManfaat;
+use App\Models\Pilar;
+use App\Models\Tahun;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

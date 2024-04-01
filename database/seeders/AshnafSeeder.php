@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Ashnaf;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class AshnafSeeder extends Seeder
@@ -13,6 +12,17 @@ class AshnafSeeder extends Seeder
      */
     public function run(): void
     {
-        Ashnaf::factory(10)->create();
+        //Ashnaf::factory(10)->create();
+
+        Ashnaf::factory()->count(8)->sequence(
+            ['name' => 'Fakir'],
+            ['name' => 'Miskin'],
+            ['name' => 'Amil'],
+            ['name' => 'Mualaf'],
+            ['name' => 'Riqan'],
+            ['name' => 'Gharimin'],
+            ['name' => 'Fisabilillah'],
+            ['name' => 'Ibnu Sabil'],
+        )->create();
     }
 }
