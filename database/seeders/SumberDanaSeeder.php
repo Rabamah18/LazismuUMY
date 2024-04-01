@@ -15,9 +15,9 @@ class SumberDanaSeeder extends Seeder
         //SumberDana::factory(5)->create();
 
         SumberDana::factory()->count(3)->sequence(
-            ['name' => 'BSI'],
-            ['name' => 'BPDDIY'],
-            ['name' => 'Kaleng Amal']
+            ['name' => 'BSI Zakat'],
+            ['name' => 'BSI Infaq'],
+            ['name' => 'BPDDIY Infaq']
         )->create();
     }
 }

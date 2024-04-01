@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Pilar;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,6 +19,7 @@ class ProgramPilarFactory extends Factory
     {
         return [
             'name' => fake()->word(),
+            'pilar_id' => Pilar::all()->random()->id,
         ];
     }
 }
