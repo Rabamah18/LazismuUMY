@@ -5,14 +5,23 @@
                 <th scope="col" class="px-6 py-3">
                     {{ __('No.') }}
                 </th>
-                <th scope="col" class="px-6 py-3">
-                    {{ __('Uraian') }}
-                </th>
                 <th scope="col" class="px-6 py-3 xl:table-cell">
                     {{ __('Tanggal') }}
                 </th>
+                <th scope="col" class="px-6 py-3">
+                    {{ __('Uraian') }}
+                </th>
                 <th scope="col" class="px-6 py-3 lg:table-cell">
                     {{ __('Nominal') }}
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    {{ __('Lembaga') }}
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    {{ __('Pria') }}
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    {{ __('Wanita') }}
                 </th>
                 <th scope="col" class="px-6 py-3 lg:table-cell">
                     {{ __('Sumber Dana') }}
@@ -40,6 +49,13 @@
 
                         </div>
                     </td>
+                    <td scope="row" class="px-6 py-4 text-gray-500 font-base dark:text-gray-400 xl:table-cell">
+                        <div class="flex">
+                            <p>
+                                {{ $penghimpunan->tanggal->isoFormat('LL') }}
+                            </p>
+                        </div>
+                    </td>
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-gray-200">
                         {{-- loop --}}
                         <div class="flex">
@@ -50,19 +66,35 @@
 
                         </div>
                     </td>
-                    <td scope="row" class="px-6 py-4 text-gray-500 font-base dark:text-gray-400 xl:table-cell">
-                        <div class="flex">
-                            <p>
-                                {{ $penghimpunan->tanggal->isoFormat('LL') }}
-                            </p>
 
-                        </div>
-
-                    </td>
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
                                 {{ $penghimpunan->nominal }}
+                            </p>
+
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 lg:table-cell">
+                        <div class="flex">
+                            <p>
+                                {{ $penghimpunan->donatur->lembaga_count ?? '-' }}
+                            </p>
+
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 lg:table-cell">
+                        <div class="flex">
+                            <p>
+                                {{ $penghimpunan->donatur->male_count ?? '-' }}
+                            </p>
+
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 lg:table-cell">
+                        <div class="flex">
+                            <p>
+                                {{ $penghimpunan->donatur->female_count ?? '-' }}
                             </p>
 
                         </div>
