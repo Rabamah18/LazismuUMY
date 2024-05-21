@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Donatur;
 use App\Models\Penghimpunan;
 use App\Models\ProgramSumber;
 use App\Models\SumberDana;
@@ -15,12 +16,13 @@ class PenghimpunanController extends Controller
      */
     public function index(Request $request)
     {
+        // $donatur = Donatur::query()->get();
         $sumberDanas = SumberDana::query()->get();
         $programSumbers = ProgramSumber::query()->get();
         $tahuns = Tahun::query()->get();
 
         $penghimpunans = Penghimpunan::orderByDesc('tanggal')
-            ->with('sumberDana', 'programSumber', 'tahun')
+            ->with('donatur', 'sumberDana', 'programSumber', 'tahun')
             ->when($request->search, function ($query, $search) {
                 $query->where(function ($query) use ($search) {
                     $query->where('uraian', 'like', '%'.$search.'%')

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Penghimpunan extends Model
 {
@@ -16,6 +17,12 @@ class Penghimpunan extends Model
     protected $casts = [
         'tanggal' => 'datetime',
     ];
+
+
+    public function donatur(): BelongsTo
+    {
+        return $this->belongsTo(Donatur::class);
+    }
 
     public function sumberDana()
     {
