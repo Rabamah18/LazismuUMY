@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Donatur;
 use App\Models\ProgramSumber;
 use App\Models\SumberDana;
 use App\Models\Tahun;
@@ -23,6 +24,7 @@ class PenghimpunanFactory extends Factory
             'tanggal' => fake()->dateTime(),
             'uraian' => fake()->word(),
             'nominal' => fake()->randomDigit(),
+            'donatur_id' => Donatur::factory(),
             'sumber_dana_id' => SumberDana::all()->random()->id,
             'program_sumber_id' => ProgramSumber::all()->random()->id,
             'tahun_id' => Tahun::factory(),

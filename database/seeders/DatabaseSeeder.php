@@ -3,11 +3,12 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Donatur;
 use App\Models\Lokasi;
 use App\Models\PenerimaManfaat;
 use App\Models\Penghimpunan;
 use App\Models\Penyaluran;
-use App\Models\Pilar;
 use App\Models\ProgramPilar;
 use Illuminate\Database\Seeder;
 
@@ -23,7 +24,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@admin.com',
         ]);
 
-
         $this->call(PilarSeeder::class);
         $this->call(ProgramSumberSeeder::class);
         $this->call(AshnafSeeder::class);
@@ -31,10 +31,10 @@ class DatabaseSeeder extends Seeder
 
         Lokasi::factory(10)->create();
         ProgramPilar::factory(10)->create();
+        Donatur::factory(10)->create();
         PenerimaManfaat::factory(10)->create();
-        Penghimpunan::factory(10)->create();
+        Penghimpunan::factory(100)->create();
         Penyaluran::factory(10)->create();
-
 
     }
 }
