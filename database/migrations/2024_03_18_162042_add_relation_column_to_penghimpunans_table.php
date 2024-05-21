@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('penghimpunans', function (Blueprint $table) {
+            $table->foreignId('donatur_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('sumber_dana_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('program_sumber_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('tahun_id')->nullable()->constrained()->nullOnDelete();
@@ -25,6 +26,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('penghimpunans', function (Blueprint $table) {
+            $table->dropForeign('donatur_id');
             $table->dropForeign('sumber_dana_id');
             $table->dropForeign('program_sumber_id');
             $table->dropForeign('tahun_id');
