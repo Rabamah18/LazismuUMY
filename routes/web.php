@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AshnafController;
+use App\Http\Controllers\DonaturController;
 use App\Http\Controllers\KabupatenController;
 use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\PenerimaManfaatController;
@@ -61,6 +62,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('provinsi', ProvinsiController::class);
     Route::resource('sumberdana', SumberDanaController::class);
     Route::resource('tahun', TahunController::class);
+    Route::resource('donatur', DonaturController::class);
 
     Route::view('/user', 'user.index')->name('user.index');
     // Route::view('/ashnaf', 'ashnaf.index')->name('ashnaf.index');

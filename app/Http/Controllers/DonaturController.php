@@ -12,7 +12,10 @@ class DonaturController extends Controller
      */
     public function index()
     {
-        //
+        $donaturs = Donatur::query()
+        ->paginate(10);
+
+        return view('donatur.index', compact('donaturs'));
     }
 
     /**
