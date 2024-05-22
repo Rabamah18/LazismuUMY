@@ -102,7 +102,9 @@ class PenyaluranController extends Controller
      */
     public function show(Penyaluran $penyaluran)
     {
-        //
+        //$penyaluran->load('ashnaf', 'penerimaManfaat', 'pilar', 'programPilar', 'tahun');
+
+        return view('penyaluran.view', compact('penyaluran'));
     }
 
     /**
@@ -125,7 +127,34 @@ class PenyaluranController extends Controller
      */
     public function update(Request $request, Penyaluran $penyaluran)
     {
-        //
+        $request->validate([
+            'tanggal' => 'required|date',
+            'uraian' => 'required|max:255',
+            'nominal' => 'required|numeric',
+            'ashnaf_id' => 'nullable|exists:ashnafs,id',
+            'penerima_manfaat_id' => 'nullable|exists:penerima_manfaats,id',
+            'pilar_id' => 'nullable|exists:pilars,id',
+            'program_pilar_id' => 'nullable|exists:program_pilars,id',
+            'tahun_id' => 'nullable|exists:tahuns,id',
+
+        ]);
+        //dd($request);
+
+        $penyaluran->update([
+            'tanggal' => $request->tanggal,
+            'uraian' => $request->uraian,
+            'nominal' => $request->nominal,
+            'ashnaf_id' => $request->ashnaf_id,
+            'penerima_manfaat_id' => $request->penerima_manfaat_id,
+            'pilar_id' => $request->pilar_id,
+            'program_pilar_id' => $request->program_pilar_id,
+            'tahun_id' => $request->tahun_id,
+
+            // 'user_id' => auth()->user()->id,
+            // 'title' => $request->title,
+        ]);
+
+        return redirect()->route('penyaluran.index')->with('success', 'Penyaluran created successfully');
     }
 
     /**
