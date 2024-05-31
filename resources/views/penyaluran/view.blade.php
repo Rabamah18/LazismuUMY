@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
             <a href="{{ route('penyaluran.index') }}"
-                class="hover:text-indigo-800 hover:dark:text-indigo-400">Penyaluran</a> /
+                class="hover:text-indigo-600 hover:dark:text-indigo-400">Penyaluran</a> /
             {{ $penyaluran->tanggal->format('d F Y') }}
         </h2>
     </x-slot>
@@ -28,26 +28,32 @@
                             <p>{{ $penyaluran->id }}</p>
                         </div>
                         <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
-                            <p class="w-36">{{ __('Tanggal') }}</p>
-                            <p>{{ $penyaluran->tanggal->format('d F Y') }}</p>
-                        </div>
-                        <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
                             <p class="w-36">{{ __('Uraian') }}</p>
                             <p class="break-normal truncate hover:break-all">{{ $penyaluran->uraian }}</p>
                         </div>
                         <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
-                            <p class="w-36">{{ __('Ashnaf') }}</p>
-                            <p>{{ $penyaluran->ashnaf->name ?? '-' }}</p>
+                            <p class="w-36">{{ __('Tanggal') }}</p>
+                            <p>{{ $penyaluran->tanggal->format('d F Y') }}</p>
                         </div>
                         <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
-                            <p class="w-36">{{ __('Penerima Manfaat') }}</p>
-                            <p>{{ $penyaluran->penerimaManfaat->lembaga_count ?? '-' }}</p>
-                            <p>{{ $penyaluran->penerimaManfaat->male_count ?? '-' }}</p>
-                            <p>{{ $penyaluran->penerimaManfaat->female_count ?? '-' }}</p>
+                            <p class="w-36">{{ __('Nominal') }}</p>
+                            <p>{{ $penyaluran->nominal }}</p>
+                        </div>
+                        <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
+                            <p class="w-36">{{ __('Ashnaf') }}</p>
+                            <p>{{ $penyaluran->ashnaf->name }}</p>
+                        </div>
+                        <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
+                            <p class="w-36">{{ __('Lembaga / Pria / Wanita') }}</p>
+                            <p>
+                                {{ $penyaluran->penerimaManfaat->lembaga_count ?? '-' }} /
+                                {{ $penyaluran->penerimaManfaat->male_count ?? '-' }} /
+                                {{ $penyaluran->penerimaManfaat->female_count ?? '-' }}
+                            </p>
                         </div>
                         <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
                             <p class="w-36">{{ __('Pilar') }}</p>
-                            <p>{{ $penyaluran->pilar->name ?? '-' }}</p>
+                            <p>{{ $penyaluran->programPilar->pilar->name ?? '-' }}</p>
                         </div>
                         <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
                             <p class="w-36">{{ __('Program Pilar') }}</p>
@@ -55,11 +61,7 @@
                         </div>
                         <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
                             <p class="w-36">{{ __('Tahun') }}</p>
-                            <p>{{ $penyaluran->tahun>name ?? '-' }}</p>
-                        </div>
-                        <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
-                            <p class="w-36">{{ __('Nominal') }}</p>
-                            <p>{{ $penyaluran->nominal->name ?? '-' }}</p>
+                            <p>{{ $penyaluran->tahun->name }}</p>
                         </div>
                         <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
                             <p class="w-36">{{ __('Created At') }}</p>
@@ -74,6 +76,7 @@
                                 <p>{{ $penyaluran->updated_at }}</p>
                                 <p>{{ $penyaluran->updated_at->diffForHumans() }}</p>
                             </div>
+                        </div>
                     </div>
                 </div>
             </x-card.app>

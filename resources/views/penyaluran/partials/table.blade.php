@@ -117,10 +117,10 @@
                     </td>
                     <td class="py-4 pl-6 pr-2 lg:pr-4">
                         <div class="flex space-x-2 justify-items-start">
-                            <a href="{{ route('penyaluran.edit', $penyaluran) }}" class="hover:underline">View</a>
+                            <a href="{{ route('penyaluran.show', $penyaluran) }}" class="hover:underline">View</a>
                             <a href="{{ route('penyaluran.edit', $penyaluran) }}"
                                 class="text-indigo-500 hover:underline">Edit</a>
-                            <a href="{{ route('penyaluran.edit', $penyaluran) }}"
+                            <a href="{{ route('penyaluran.destroy', $penyaluran) }}"
                                 class="text-red-500 hover:underline">Delete</a>
                         </div>
                         {{-- <div class="flex justify-items-start">
