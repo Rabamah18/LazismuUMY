@@ -26,8 +26,8 @@ class PenyaluranController extends Controller
             ->with('ashnaf', 'penerimaManfaat', 'tahun', 'pilar', 'programPilar')
             ->when($request->search, function ($query, $search) {
                 $query->where(function ($query) use ($search) {
-                    $query->where('uraian', 'like', '%'.$search.'%');
-                    // ->orWhere('', 'like', '%'.$search.'%');
+                    $query->where('uraian', 'like', '%'.$search.'%')
+                        ->orWhere('tanggal', 'like', '%'.$search.'%');
                 });
             })
             ->when($request->ashnaf, function ($query, $ashnaf) {

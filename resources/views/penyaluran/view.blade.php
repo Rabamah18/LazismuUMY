@@ -44,10 +44,20 @@
                             <p>{{ $penyaluran->ashnaf->name }}</p>
                         </div>
                         <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
-                            <p class="w-36">{{ __('Lembaga / Pria / Wanita') }}</p>
+                            <p class="w-36">{{ __('Lembaga') }}</p>
                             <p>
-                                {{ $penyaluran->penerimaManfaat->lembaga_count ?? '-' }} /
-                                {{ $penyaluran->penerimaManfaat->male_count ?? '-' }} /
+                                {{ $penyaluran->penerimaManfaat->lembaga_count ?? '-' }}
+                            </p>
+                        </div>
+                        <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
+                            <p class="w-36">{{ __('Pria') }}</p>
+                            <p>
+                                {{ $penyaluran->penerimaManfaat->male_count ?? '-' }}
+                            </p>
+                        </div>
+                        <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
+                            <p class="w-36">{{ __('Wanita') }}</p>
+                            <p>
                                 {{ $penyaluran->penerimaManfaat->female_count ?? '-' }}
                             </p>
                         </div>

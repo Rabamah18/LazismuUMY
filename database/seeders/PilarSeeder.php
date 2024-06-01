@@ -16,9 +16,9 @@ class PilarSeeder extends Seeder
             ['name' => 'Pendidikan'],
             ['name' => 'Kesehatan'],
             ['name' => 'Ekonomi'],
-            ['name' => 'Kemanusian'],
+            ['name' => 'Kemanusiaan'],
             ['name' => 'Sosial Dakwah'],
-            ['name' => 'Linkungan']
+            ['name' => 'Lingkungan']
         )->create();
     }
 }

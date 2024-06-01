@@ -5,9 +5,6 @@
                 <th scope="col" class="px-6 py-3">
                     {{ __('No.') }}
                 </th>
-                <th scope="col" class="px-6 py-3">
-                    {{ __('Uraian') }}
-                </th>
                 <th scope="col" class="px-6 py-3 xl:table-cell">
                     {{ __('Tanggal') }}
                 </th>
@@ -15,21 +12,28 @@
                     {{ __('Nominal') }}
                 </th>
                 <th scope="col" class="px-6 py-3 lg:table-cell">
-                    {{ __('Ashnaf') }}
-                </th>
-                <th scope="col" class="px-6 py-3 lg:table-cell">
-                    {{ __('Lembaga') }} /
-                    {{ __('Pria') }} /
-                    {{ __('Wanita') }}
-                </th>
-                <th scope="col" class="px-6 py-3 lg:table-cell">
                     {{ __('Pilar') }}
                 </th>
                 <th scope="col" class="px-6 py-3 lg:table-cell">
-                    {{ __('Program Pilar') }}
+                    {{ __('Program') }}
+                </th>
+                <th scope="col" class="px-6 py-3 lg:table-cell">
+                    {{ __('Ashnaf') }}
+                </th>
+                <th scope="col" class="px-6 py-3 lg:table-cell">
+                    {{ __('Lembaga') }}
+                </th>
+                <th scope="col" class="px-6 py-3 lg:table-cell">
+                    {{ __('Pria') }}
+                </th>
+                <th scope="col" class="px-6 py-3 lg:table-cell">
+                    {{ __('Wanita') }}
                 </th>
                 <th scope="col" class="px-6 py-3 lg:table-cell">
                     {{ __('Tahun') }}
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    {{ __('Uraian') }}
                 </th>
                 <th scope="col" class="py-3 pl-6 pr-2 lg:pr-4">
                     {{ __('Option') }}
@@ -48,20 +52,10 @@
 
                         </div>
                     </td>
-                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-gray-200">
-                        {{-- loop --}}
-                        <div class="flex">
-                            <a href="{{ route('penyaluran.show', $penyaluran) }}"
-                                class="hover:underline whitespace-nowrap">
-                                {{ $penyaluran->uraian }}
-                            </a>
-
-                        </div>
-                    </td>
                     <td scope="row" class="px-6 py-4 text-gray-500 font-base dark:text-gray-400 xl:table-cell">
                         <div class="flex">
                             <p>
-                                {{ $penyaluran->tanggal->format('d F Y') }}
+                                {{ $penyaluran->tanggal->isoformat('LL') }}
                             </p>
 
                         </div>
@@ -71,24 +65,6 @@
                         <div class="flex">
                             <p>
                                 {{ $penyaluran->nominal }}
-                            </p>
-
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 lg:table-cell">
-                        <div class="flex">
-                            <p>
-                                {{ $penyaluran->ashnaf->name ?? '-' }}
-                            </p>
-
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 lg:table-cell">
-                        <div class="flex">
-                            <p>
-                                {{ $penyaluran->penerimaManfaat->lembaga_count ?? '-' }} /
-                                {{ $penyaluran->penerimaManfaat->male_count ?? '-' }} /
-                                {{ $penyaluran->penerimaManfaat->female_count ?? '-' }}
                             </p>
 
                         </div>
@@ -110,8 +86,50 @@
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
+                                {{ $penyaluran->ashnaf->name ?? '-' }}
+                            </p>
+
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 lg:table-cell">
+                        <div class="flex">
+                            <p>
+                                {{ $penyaluran->penerimaManfaat->lembaga_count ?? '-' }}
+                            </p>
+
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 lg:table-cell">
+                        <div class="flex">
+                            <p>
+                                {{ $penyaluran->penerimaManfaat->male_count ?? '-' }}
+                            </p>
+
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 lg:table-cell">
+                        <div class="flex">
+                            <p>
+                                {{ $penyaluran->penerimaManfaat->female_count ?? '-' }}
+                            </p>
+
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 lg:table-cell">
+                        <div class="flex">
+                            <p>
                                 {{ $penyaluran->tahun->name }}
                             </p>
+
+                        </div>
+                    </td>
+                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-gray-200">
+                        {{-- loop --}}
+                        <div class="flex">
+                            <a href="{{ route('penyaluran.show', $penyaluran) }}"
+                                class="hover:underline whitespace-nowrap">
+                                {{ $penyaluran->uraian }}
+                            </a>
 
                         </div>
                     </td>
@@ -120,14 +138,40 @@
                             <a href="{{ route('penyaluran.show', $penyaluran) }}" class="hover:underline">View</a>
                             <a href="{{ route('penyaluran.edit', $penyaluran) }}"
                                 class="text-indigo-500 hover:underline">Edit</a>
-                            <a href="{{ route('penyaluran.destroy', $penyaluran) }}"
-                                class="text-red-500 hover:underline">Delete</a>
+                            <button x-data="" class="text-red-500 hover:underline"
+                                x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion{{ $penyaluran->id }}')">
+                                Hapus
+                            </button>
+
+                            <x-modal name="confirm-user-deletion{{ $penyaluran->id }}" :show="$errors->userDeletion->isNotEmpty()" focusable>
+                                <form method="post" action="{{ route('penyaluran.destroy', $penyaluran) }}"
+                                    class="p-6">
+                                    @csrf
+                                    @method('delete')
+
+                                    <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                                        Apakah anda yakin ingin menghapus data ini?
+                                    </h2>
+
+                                    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                        {{ $penyaluran->uraian }}
+                                    </p>
+                                    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                        {{ $penyaluran->tanggal->format('d F Y') }}
+                                    </p>
+
+                                    <div class="flex justify-end mt-6">
+                                        <x-secondary-button x-on:click="$dispatch('close')">
+                                            {{ __('Batal') }}
+                                        </x-secondary-button>
+
+                                        <x-danger-button class="ms-3">
+                                            {{ __('Hapus') }}
+                                        </x-danger-button>
+                                    </div>
+                                </form>
+                            </x-modal>
                         </div>
-                        {{-- <div class="flex justify-items-start">
-                            <a href="{{ route('admin.users.edit', $penyaluran) }}"
-                            class="hover:underline">Edit</a>
-                            @include('penyaluran.partials.action')
-                        </div> --}}
                     </td>
                 </tr>
             @empty
