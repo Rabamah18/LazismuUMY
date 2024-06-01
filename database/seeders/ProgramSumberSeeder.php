@@ -15,7 +15,7 @@ class ProgramSumberSeeder extends Seeder
         ProgramSumber::factory()->count(3)->sequence(
             ['name' => 'Zakat Maal'],
             ['name' => 'Zakat Fitrah'],
-            ['name' => 'Infak']
+            ['name' => 'Infaq']
         )->create();
     }
 }

@@ -39,7 +39,7 @@
                     </x-card.description>
                 @else
                     <x-card.description>
-                        {{ __('Manage Data Penyaluran, search by Uraian.') }}
+                        {{ __('Manage Data Penyaluran, search berdasarkan uraian dan tahun.') }}
                     </x-card.description>
                 @endif
                 @if ($errors->any())
@@ -92,6 +92,18 @@
                                             {{ $tahun->name }}
                                         </option>
                                     @endforeach
+                                </x-select-input>
+                                <x-select-input id="paginate" name="paginate" class="">
+                                    <option value="">{{ __('Per Halaman') }}</option>
+                                    <option value="10" {{ request('paginate') == 10 ? 'selected' : '' }}>
+                                        10
+                                    </option>
+                                    <option value="20" {{ request('paginate') == 20 ? 'selected' : '' }}>
+                                        20
+                                    </option>
+                                    <option value="30" {{ request('paginate') == 30 ? 'selected' : '' }}>
+                                        30
+                                    </option>
                                 </x-select-input>
                             </div>
                             <div class="">
