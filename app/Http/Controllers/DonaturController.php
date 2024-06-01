@@ -87,6 +87,10 @@ class DonaturController extends Controller
      */
     public function destroy(Donatur $donatur)
     {
-        //
+        $donatur->delete();
+
+        return redirect()
+            ->route('donatur.index')
+            ->with('success', 'Donatur deleted successfully!');
     }
 }
