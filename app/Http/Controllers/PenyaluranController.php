@@ -154,7 +154,7 @@ class PenyaluranController extends Controller
             // 'title' => $request->title,
         ]);
 
-        return redirect()->route('penyaluran.index')->with('success', 'Penyaluran created successfully');
+        return redirect()->route('penyaluran.index')->with('success', 'Penyaluran created successfully!');
     }
 
     /**
@@ -162,6 +162,10 @@ class PenyaluranController extends Controller
      */
     public function destroy(Penyaluran $penyaluran)
     {
-        //
+        $penyaluran->delete();
+
+        return redirect()
+            ->route('penyaluran.index')
+            ->with('success', 'Penyaluran delete successfully!');
     }
 }
