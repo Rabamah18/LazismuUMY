@@ -13,7 +13,7 @@
                         {{ __('All Users') }}
                     </x-card.title>
                     <div class="ml-auto">
-                        <x-button.link-primary href="{{ route('lokasi.create') }}">
+                        <x-button.link-primary href="{{ route('donatur.create') }}">
                             {{ __('Create') }}
                         </x-button.link-primary>
                     </div>

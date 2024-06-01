@@ -13,7 +13,7 @@ class DonaturController extends Controller
     public function index()
     {
         $donaturs = Donatur::query()
-        ->paginate(10);
+            ->paginate(10);
 
         return view('donatur.index', compact('donaturs'));
     }
@@ -23,7 +23,7 @@ class DonaturController extends Controller
      */
     public function create()
     {
-        //
+        return view('donatur.create');
     }
 
     /**
@@ -31,7 +31,19 @@ class DonaturController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'lembaga' => 'nullable|numeric',
+            'pria' => 'nullable|numeric',
+            'wanita' => 'nullable|numeric',
+        ]);
+
+        Donatur::create([
+            'lembaga_count' => $request->lembaga,
+            'male_count' => $request->pria,
+            'female_count' => $request->wanita,
+        ]);
+
+        return redirect()->route('donatur.index')->with('success', 'Donatur created successfully!');
     }
 
     /**
@@ -47,7 +59,7 @@ class DonaturController extends Controller
      */
     public function edit(Donatur $donatur)
     {
-        //
+        return view('donatur.edit', compact('donatur'));
     }
 
     /**
@@ -55,7 +67,19 @@ class DonaturController extends Controller
      */
     public function update(Request $request, Donatur $donatur)
     {
-        //
+        $request->validate([
+            'lembaga' => 'nullable|numeric',
+            'pria' => 'nullable|numeric',
+            'wanita' => 'nullable|numeric',
+        ]);
+
+        $donatur->update([
+            'lembaga_count' => $request->lembaga,
+            'male_count' => $request->pria,
+            'female_count' => $request->wanita,
+        ]);
+
+        return redirect()->route('donatur.index')->with('success', 'Donatur created successfully!');
     }
 
     /**
@@ -63,6 +87,10 @@ class DonaturController extends Controller
      */
     public function destroy(Donatur $donatur)
     {
-        //
+        $donatur->delete();
+
+        return redirect()
+            ->route('donatur.index')
+            ->with('success', 'Donatur deleted successfully!');
     }
 }
