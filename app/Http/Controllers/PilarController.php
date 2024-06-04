@@ -24,6 +24,8 @@ class PilarController extends Controller
      */
     public function create()
     {
+        $pilar = Pilar::query()->get();
+
         return view('pilar.create');
     }
 
@@ -32,7 +34,17 @@ class PilarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'pilar' => 'required|max:35',
+
+        ]);
+        //dd($request);
+
+        Pilar::create([
+            'name' => $request->pilar,
+        ]);
+
+        return redirect()->route('pilar.index')->with('success', 'Pilar created successfully!');
     }
 
     /**
@@ -51,7 +63,8 @@ class PilarController extends Controller
      */
     public function edit(Pilar $pilar)
     {
-        //
+        //dd($pilar);
+        return view('pilar.edit', compact('pilar'));
     }
 
     /**
@@ -59,7 +72,18 @@ class PilarController extends Controller
      */
     public function update(Request $request, Pilar $pilar)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:35'
+
+        ]);
+        //dd($request);
+
+        $pilar->update([
+            'name' =>$request->name,
+
+        ]);
+
+        return redirect()->route('pilar.index')->with('success', 'Pilar created successfully!');
     }
 
     /**
@@ -67,6 +91,10 @@ class PilarController extends Controller
      */
     public function destroy(Pilar $pilar)
     {
-        //
+        $pilar->delete();
+
+        return redirect()
+           ->route('pilar.index')
+           ->with('success', 'Pilar deleted successfully!');
     }
 }
