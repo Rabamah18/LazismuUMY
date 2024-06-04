@@ -30,7 +30,15 @@ class SumberDanaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:35',
+        ]);
+
+        SumberDana::create([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->route('sumberdana.index')->with('success', 'Sumber dana created successfully!');
     }
 
     /**
@@ -44,17 +52,25 @@ class SumberDanaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SumberDana $sumberDana)
+    public function edit(SumberDana $sumberdana)
     {
-        //
+        return view('sumberdana.edit', compact('sumberdana'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SumberDana $sumberDana)
+    public function update(Request $request, SumberDana $sumberdana)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:35',
+        ]);
+
+        $sumberdana->update([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->route('sumberdana.index')->with('success', 'Sumber dana edited successfully!');
     }
 
     /**
@@ -62,6 +78,8 @@ class SumberDanaController extends Controller
      */
     public function destroy(SumberDana $sumberDana)
     {
-        //
+        $sumberDana->delete();
+
+        return redirect()->route('sumberdana.index')->with('success', 'Sumber dana deleted successfully!');
     }
 }
