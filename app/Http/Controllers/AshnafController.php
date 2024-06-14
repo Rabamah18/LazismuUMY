@@ -88,6 +88,10 @@ class AshnafController extends Controller
      */
     public function destroy(Ashnaf $ashnaf)
     {
-        //
+        $ashnaf->delete();
+
+        return redirect()
+           ->route('ashnaf.index')
+           ->with('success', 'Ashnaf deleted successfully!');
     }
 }
