@@ -43,7 +43,7 @@ class AshnafController extends Controller
             'name' => $request->ashnaf,
         ]);
 
-        return redirect()->route('ashnaf.index')->with('success', 'Ashnaf created successfully');
+        return redirect()->route('ashnaf.index')->with('success', 'Ashnaf created successfully!');
     }
 
     /**
@@ -59,7 +59,9 @@ class AshnafController extends Controller
      */
     public function edit(Ashnaf $ashnaf)
     {
-        //
+
+        //dd($ashnaf);
+        return view('ashnaf.edit', compact('ashnaf'));
     }
 
     /**
@@ -67,7 +69,18 @@ class AshnafController extends Controller
      */
     public function update(Request $request, Ashnaf $ashnaf)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:35'
+
+        ]);
+        //dd($request);
+
+        $ashnaf->update([
+            'name' =>$request->name,
+
+        ]);
+
+        return redirect()->route('ashnaf.index')->with('success', 'Ashnaf created successfully!');
     }
 
     /**

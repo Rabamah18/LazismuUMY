@@ -19,10 +19,10 @@
                         @csrf
                         @method('post')
                         <div>
-                            <x-input-label for="ashnaf_id" :value="__('Ashnaf')" />
-                            <x-textarea-input id="ashnaf" name="ashnaf" type="text" class="block w-full mt-1"
+                            <x-input-label for="ashnaf" :value="__('Ashnaf')" />
+                            <x-text-input id="ashnaf" name="ashnaf" type="text" class="block w-full mt-1"
                                 :value="old('ashnaf')" required autocomplete="ashnaf" />
-                            <x-input-error class="mt-2" :messages="$errors->get('ashnaf_id')" />
+                            <x-input-error class="mt-2" :messages="$errors->get('ashnaf')" />
                         </div>
 
                         <div class="flex items-center gap-4">
