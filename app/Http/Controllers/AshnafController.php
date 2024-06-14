@@ -23,6 +23,8 @@ class AshnafController extends Controller
      */
     public function create()
     {
+        $ashnaf = Ashnaf::query()->get();
+
         return view('ashnaf.create');
     }
 
@@ -31,7 +33,17 @@ class AshnafController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'ashnaf' => 'required|max:35',
+
+        ]);
+        //dd($request);
+
+        Ashnaf::create([
+            'name' => $request->ashnaf,
+        ]);
+
+        return redirect()->route('ashnaf.index')->with('success', 'Ashnaf created successfully');
     }
 
     /**

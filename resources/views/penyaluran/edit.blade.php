@@ -85,7 +85,7 @@
                                 <option value="">{{ __('Select Pilar') }}</option>
                                 @foreach ($pilars as $pilar)
                                     <option value="{{ $pilar->id }}"
-                                        {{ $pilar->id == $penyaluran->pilar_id ? 'selected' : '' }}>
+                                        {{ $pilar->id == $penyaluran->programPilar->pilar_id ? 'selected' : '' }}>
                                         {{ $pilar->name }}
                                     </option>
                                 @endforeach
