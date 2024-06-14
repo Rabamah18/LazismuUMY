@@ -33,7 +33,19 @@ class PenerimaManfaatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'lembaga' => 'nullable|numeric',
+            'pria' => 'nullable|numeric',
+            'wanita' => 'nullable|numeric',
+        ]);
+
+        PenerimaManfaat::create([
+            'lembaga_count' => $request->lembaga,
+            'male_count' => $request->pria,
+            'female_count' => $request->wanita,
+        ]);
+
+        return redirect()->route('penerimamanfaat.index')->with('success', 'Penerima Manfaat created successfully!');
     }
 
     /**
@@ -47,24 +59,40 @@ class PenerimaManfaatController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(PenerimaManfaat $penerimaManfaat)
+    public function edit(PenerimaManfaat $penerimamanfaat)
     {
-        //
+        return view('penerimamanfaat.edit', compact('penerimamanfaat'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, PenerimaManfaat $penerimaManfaat)
+    public function update(Request $request, PenerimaManfaat $penerimamanfaat)
     {
-        //
+        $request->validate([
+            'lembaga' => 'nullable|numeric',
+            'pria' => 'nullable|numeric',
+            'wanita' => 'nullable|numeric',
+        ]);
+
+        $penerimamanfaat->update([
+            'lembaga_count' => $request->lembaga,
+            'male_count' => $request->pria,
+            'female_count' => $request->wanita,
+        ]);
+
+        return redirect()->route('penerimamanfaat.index')->with('success', 'Penerima Manfaat created successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PenerimaManfaat $penerimaManfaat)
+    public function destroy(PenerimaManfaat $penerimamanfaat)
     {
-        //
+        $penerimamanfaat->delete();
+
+        return redirect()
+            ->route('penerimamanfaat.index')
+            ->with('success', 'Penerima Manfaat deleted successfully!');
     }
 }
