@@ -51,8 +51,37 @@
                             <a href="{{ route('programsumber.edit', $programSumber) }}" class="hover:underline">View</a>
                             <a href="{{ route('programsumber.edit', $programSumber) }}"
                                 class="text-indigo-500 hover:underline">Edit</a>
-                            <a href="{{ route('programsumber.edit', $programSumber) }}"
-                                class="text-red-500 hover:underline">Delete</a>
+                            <button x-data="" class="text-red-500 hover:underline"
+                                x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion{{ $programSumber->id }}')">
+                                Hapus
+                            </button>
+
+                            <x-modal name="confirm-user-deletion{{ $programSumber->id }}" :show="$errors->userDeletion->isNotEmpty()" focusable>
+                                <form method="post"
+                                    action="{{ route('programsumber.destroy', $programsumber = $programSumber) }}"
+                                    class="p-6">
+                                    @csrf
+                                    @method('delete')
+
+                                    <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                                        Apakah anda yakin ingin menghapus data ini?
+                                    </h2>
+
+                                    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                        {{ $programSumber->name }}
+                                    </p>
+
+                                    <div class="flex justify-end mt-6">
+                                        <x-secondary-button x-on:click="$dispatch('close')">
+                                            {{ __('Batal') }}
+                                        </x-secondary-button>
+
+                                        <x-danger-button class="ms-3">
+                                            {{ __('Hapus') }}
+                                        </x-danger-button>
+                                    </div>
+                                </form>
+                            </x-modal>
                         </div>
                         {{-- <div class="flex justify-items-start">
                             <a href="{{ route('admin.users.edit', $programSumber) }}"

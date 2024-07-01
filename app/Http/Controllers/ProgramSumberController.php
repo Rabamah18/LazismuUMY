@@ -32,7 +32,15 @@ class ProgramSumberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:35',
+        ]);
+
+        ProgramSumber::create([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->route('programsumber.index')->with('success', 'Program sumber created successfully!');
     }
 
     /**
@@ -46,24 +54,34 @@ class ProgramSumberController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ProgramSumber $programSumber)
+    public function edit(ProgramSumber $programsumber)
     {
-        //
+        return view('programsumber.edit', compact('programsumber'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ProgramSumber $programSumber)
+    public function update(Request $request, ProgramSumber $programsumber)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:35',
+        ]);
+
+        $programsumber->update([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->route('programsumber.index')->with('success', 'Program sumber edited successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ProgramSumber $programSumber)
+    public function destroy(ProgramSumber $programsumber)
     {
-        //
+        $programsumber->delete();
+
+        return redirect()->route('programsumber.index')->with('success', 'ProgramSumber deleted successfully!');
     }
 }
