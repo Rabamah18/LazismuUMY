@@ -89,7 +89,7 @@ class ProgramPilarController extends Controller
 
         ]);
 
-        return redirect()->route('programpilar.index')->with('success', 'Program Pilar created successfully!');
+        return redirect()->route('programpilar.index')->with('success', 'Program Pilar edited successfully!');
     }
 
     /**
