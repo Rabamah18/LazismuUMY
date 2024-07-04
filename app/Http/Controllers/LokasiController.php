@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lokasi;
+use App\Models\Provinsi;
+use App\Models\Kabupaten;
 use Illuminate\Http\Request;
 
 class LokasiController extends Controller
@@ -24,7 +26,10 @@ class LokasiController extends Controller
      */
     public function create()
     {
-        return view('lokasi.create');
+        $provinsis = Provinsi::query()->get();
+        $kabupatens = Kabupaten::query()->get();
+
+        return view('lokasi.create', compact('provinsis', 'kabupatens'));
     }
 
     /**
@@ -32,7 +37,18 @@ class LokasiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'provinsi_id' => 'required|exists:provinsis,id',
+            'kabupaten_id' => 'required|exists:kabupatens,id'
+        ]);
+        //dd($request);
+
+        Lokasi::create([
+            'provinsi_id' => $request->provinsi_id,
+            'kabupaten_id' => $request->kabupaten_id,
+        ]);
+
+        return redirect()->route('lokasi.index')->with('success', 'Lokasi created successfully!');
     }
 
     /**
@@ -48,7 +64,11 @@ class LokasiController extends Controller
      */
     public function edit(Lokasi $lokasi)
     {
-        //
+        $provinsis = Provinsi::query()->get();
+        $kabupatens = Kabupaten::query()->get();
+
+        //dd($lokasi);
+        return view('lokasi.edit', compact('lokasi','provinsis', 'kabupatens'));
     }
 
     /**
@@ -56,7 +76,20 @@ class LokasiController extends Controller
      */
     public function update(Request $request, Lokasi $lokasi)
     {
-        //
+        $request->validate([
+            'provinsi_id' => 'required|exists:provinsis,id',
+            'kabupaten_id' => 'required|exists:kabupatens,id'
+
+        ]);
+        //dd($request);
+
+        $lokasi->update([
+            'provinsi_id' =>$request->provinsi_id,
+            'kabupaten_id' =>$request->kabupaten_id,
+
+        ]);
+
+        return redirect()->route('lokasi.index')->with('success', 'Lokasi edited successfully!');
     }
 
     /**
@@ -64,6 +97,10 @@ class LokasiController extends Controller
      */
     public function destroy(Lokasi $lokasi)
     {
-        //
+        $lokasi->delete();
+
+        return redirect()
+           ->route('lokasi.index')
+           ->with('success', 'Lokasi deleted successfully!');
     }
 }
