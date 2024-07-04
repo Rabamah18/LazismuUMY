@@ -40,7 +40,7 @@
                             <a href="{{ route('provinsi.show', $provinsi) }}" class="hover:underline">View</a>
                             <a href="{{ route('provinsi.edit', $provinsi) }}"
                                 class="text-indigo-500 hover:underline">Edit</a>
-                                <button x-data="" class="text-red-500 hover:underline"
+                            <button x-data="" class="text-red-500 hover:underline"
                                 x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion{{ $provinsi->id }}')">
                                 Hapus
                             </button>
