@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-            {{ __('Lokasi') }}
+            {{ __('Donatur') }}
         </h2>
     </x-slot>
 
@@ -10,7 +10,7 @@
             <x-card.app>
                 <div class="flex">
                     <x-card.title>
-                        {{ __('All Users') }}
+                        {{ __('Semua Daftar Donatur') }}
                     </x-card.title>
                     <div class="ml-auto">
                         <x-button.link-primary href="{{ route('donatur.create') }}">
@@ -24,22 +24,10 @@
                         @if (request('search'))
                             <span class="font-semibold">{{ request('search') }}</span>
                         @endif
-                        @if (request('role'))
-                            {{ __('role') }} <span class="font-semibold">{{ request('role') }}</span>
-                        @endif
-                        @if (request('verified_account'))
-                            {{ __('status') }} <span class="font-semibold">
-                                @if (request('verified_account') == 'true')
-                                    {{ __('verified') }}
-                                @else
-                                    {{ __('not verified') }}
-                                @endif
-                            </span>
-                        @endif
                     </x-card.description>
                 @else
                     <x-card.description>
-                        {{ __('Manage all user, search by name or email.') }}
+                        {{ __('Mengatur seluruh daftar Donatur.') }}
                     </x-card.description>
                 @endif
                 @if ($errors->any())
@@ -57,28 +45,6 @@
                             placeholder="{{ __('Search here') }}" value="{{ request('search') }}" autofocus />
                         <div class="flex items-center justify-between gap-2">
                             <div class="">
-                                <x-select-input id="role" name="role" class="">
-                                    <option value="">{{ __('Select Role') }}</option>
-                                    <option value="admin" {{ request('role') == 'admin' ? 'selected' : '' }}>
-                                        {{ __('Admin') }}
-                                    </option>
-                                    <option value="user" {{ request('role') == 'user' ? 'selected' : '' }}>
-                                        {{ __('User') }}
-                                    </option>
-                                </x-select-input>
-                                <x-select-input id="verified_account" name="verified_account" class="">
-                                    <option value="">{{ __('Select Status') }}</option>
-                                    <option value="true"
-                                        {{ request('verified_account') == 'true' ? 'selected' : '' }}>
-                                        {{ __('Verified') }}
-                                    </option>
-                                    <option value="false"
-                                        {{ request('verified_account') == 'false' ? 'selected' : '' }}>
-                                        {{ __('Not Verified') }}
-                                    </option>
-                                </x-select-input>
-                            </div>
-                            <div class="">
                                 <x-button.secondary type="submit">
                                     {{ __('Apply') }}
                                 </x-button.secondary>
@@ -86,21 +52,7 @@
                         </div>
                     </form>
                 </div>
-                {{-- @include('admin.users.partials.list') --}}
                 @include('donatur.partials.table')
-
-                {{-- Pagination --}}
-                {{-- @if ($lokasis->hasPages()) --}}
-                <div class="mt-6">
-                    {{-- The default pagination view is pagination.custom-tailwind blade component.
-                    You can change the default pagination view using the AppServiceProvider
-                    or by passing the pagination view as parameter to the links method. --}}
-                    {{ $donaturs->links() }}
-                    {{-- {{ $users->links('vendor.pagination.tailwind') }} --}}
-                    {{-- {{ $users->links('vendor.pagination.simple-tailwind') }} --}}
-                    {{-- {{ $users->links('vendor.pagination.custom-tailwind') }} --}}
-                </div>
-                {{-- @endif --}}
             </x-card.app>
         </div>
     </div>
