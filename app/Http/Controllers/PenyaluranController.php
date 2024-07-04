@@ -42,7 +42,13 @@ class PenyaluranController extends Controller
             ->when($request->tahun, function ($query, $tahun) {
                 $query->where('tahun_id', '=', $tahun);
             })
-            ->paginate(10)
+            ->when($request->paginate, function ($query, $paginate) {
+                return $query->paginate($paginate);
+            }, function ($query) {
+                return $query->paginate();
+            })
+
+            //->paginate(10)
             ->withQueryString();
 
         return view('penyaluran.index', compact('penyalurans', 'ashnafs', 'pilars', 'programPilars', 'tahuns'));
