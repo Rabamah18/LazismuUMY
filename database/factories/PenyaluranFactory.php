@@ -2,11 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\Ashnaf;
-use App\Models\PenerimaManfaat;
 use App\Models\Pilar;
-use App\Models\ProgramPilar;
 use App\Models\Tahun;
+use App\Models\Ashnaf;
+use App\Models\Lokasi;
+use App\Models\ProgramPilar;
+use App\Models\PenerimaManfaat;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -26,9 +27,13 @@ class PenyaluranFactory extends Factory
             'uraian' => fake()->word(),
             'nominal' => fake()->randomNumber(5, true),
             'penerima_manfaat_id' => PenerimaManfaat::factory(),
+            'lembaga_count' => fake()->numerify(),
+            'male_count' => fake()->numerify(),
+            'female_count' => fake()->numerify(),
             'ashnaf_id' => Ashnaf::all()->random()->id,
             // 'pilar_id' => Pilar::factory(),
             'program_pilar_id' => ProgramPilar::all()->random()->id,
+            'lokasi_id' => Lokasi::factory(),
             'tahun_id' => Tahun::factory(),
         ];
     }

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('ashnaf_id')->nullable()->constrained()->nullOnDelete();
             // $table->foreignId('pilar_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('program_pilar_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('lokasi_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('tahun_id')->nullable()->constrained()->nullOnDelete();
         });
     }
@@ -29,6 +30,7 @@ return new class extends Migration
             $table->dropForeign('penerima_manfaat_id');
             $table->dropForeign('ashnaf_id');
             $table->dropForeign('pilar_id');
+            $table->dropForeign('lokasi_id');
             $table->dropForeign('tahun_id');
         });
     }
