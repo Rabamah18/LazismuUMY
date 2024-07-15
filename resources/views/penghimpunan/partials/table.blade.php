@@ -78,7 +78,7 @@
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
-                                {{ $penghimpunan->donatur->lembaga_count ?? '-' }}
+                                {{ $penghimpunan->lembaga_count ?? '-' }}
                             </p>
 
                         </div>
@@ -86,7 +86,7 @@
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
-                                {{ $penghimpunan->donatur->male_count ?? '-' }}
+                                {{ $penghimpunan->male_count ?? '-' }}
                             </p>
 
                         </div>
@@ -94,7 +94,7 @@
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
-                                {{ $penghimpunan->donatur->female_count ?? '-' }}
+                                {{ $penghimpunan->female_count ?? '-' }}
                             </p>
 
                         </div>

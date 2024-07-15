@@ -16,6 +16,9 @@ return new class extends Migration
             $table->datetime('tanggal');
             $table->string('uraian');
             $table->integer('nominal');
+            $table->integer('lembaga_count')->nullable();
+            $table->integer('male_count')->nullable();
+            $table->integer('female_count')->nullable();
             $table->timestamps();
         });
     }
