@@ -30,6 +30,9 @@
                     {{ __('Wanita') }}
                 </th>
                 <th scope="col" class="px-6 py-3 lg:table-cell">
+                    {{ __('Lokasi') }}
+                </th>
+                <th scope="col" class="px-6 py-3 lg:table-cell">
                     {{ __('Tahun') }}
                 </th>
                 <th scope="col" class="px-6 py-3">
@@ -94,7 +97,7 @@
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
-                                {{ $penyaluran->penerimaManfaat->lembaga_count ?? '-' }}
+                                {{ $penyaluran->lembaga_count ?? '-' }}
                             </p>
 
                         </div>
@@ -102,7 +105,7 @@
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
-                                {{ $penyaluran->penerimaManfaat->male_count ?? '-' }}
+                                {{ $penyaluran->male_count ?? '-' }}
                             </p>
 
                         </div>
@@ -110,7 +113,15 @@
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
-                                {{ $penyaluran->penerimaManfaat->female_count ?? '-' }}
+                                {{ $penyaluran->female_count ?? '-' }}
+                            </p>
+
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 lg:table-cell">
+                        <div class="flex">
+                            <p>
+                                {{ $penyaluran->lokasi_id }}
                             </p>
 
                         </div>

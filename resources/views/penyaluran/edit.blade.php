@@ -41,6 +41,20 @@
                         </div>
 
                         <div>
+                            <x-input-label for="lokasi_id" :value="__('Lokasi')" />
+                            <x-select-input id="lokasi" name="lokasi_id" class="block w-full mt-1">
+                                <option value="">{{ __('Select Lokasi') }}</option>
+                                @foreach ($lokasis as $lokasi)
+                                    <option value="{{ $lokasi->id }}"
+                                        {{ request('lokasi_id') == 'lokasi_id' ? 'selected' : '' }}>
+                                        {{ $lokasi->id }}
+                                    </option>
+                                @endforeach
+                            </x-select-input>
+                            <x-input-error class="mt-2" :messages="$errors->get('lokasi_id')" />
+                        </div>
+
+                        <div>
                             <x-input-label for="uraian" :value="__('Uraian')" />
                             <x-textarea-input id="uraian" name="uraian" type="text" class="block w-full mt-1"
                                 required autocomplete="uraian">
@@ -64,45 +78,24 @@
                         </div>
 
                         <div>
-                            <x-input-label for="penerima_manfaat_id" :value="__('Jumlah Lembaga')" />
-                            <x-select-input id="penerima_manfaat" name="penerima_manfaat_id" class="block w-full mt-1">
-                                <option value="">{{ __('Select Jumlah Lembaga') }}</option>
-                                @foreach ($penerimaManfaats as $penerimaManfaat)
-                                    <option value="{{ $penerimaManfaat->id }}"
-                                        {{ $penerimaManfaat->id == $penyaluran->penerima_manfaat_id ? 'selected' : '' }}>
-                                        {{ $penerimaManfaat->lembaga_count }}
-                                    </option>
-                                @endforeach
-                            </x-select-input>
-                            <x-input-error class="mt-2" :messages="$errors->get('penerima_manfaat_id')" />
+                            <x-input-label for="lembaga" :value="__('Lembaga')" />
+                            <x-text-input id="lembaga" name="lembaga" type="number" class="block w-full mt-1"
+                                :value="old('lembaga', $penyaluran->lembaga_count)" required autocomplete="lembaga" />
+                            <x-input-error class="mt-2" :messages="$errors->get('lembaga')" />
                         </div>
 
                         <div>
-                            <x-input-label for="penerima_manfaat_id" :value="__('Jumlah Pria')" />
-                            <x-select-input id="penerima_manfaat" name="penerima_manfaat_id" class="block w-full mt-1">
-                                <option value="">{{ __('Select Jumlah Pria') }}</option>
-                                @foreach ($penerimaManfaats as $penerimaManfaat)
-                                    <option value="{{ $penerimaManfaat->id }}"
-                                        {{ $penerimaManfaat->id == $penyaluran->penerima_manfaat_id ? 'selected' : '' }}>
-                                        {{ $penerimaManfaat->male_count }}
-                                    </option>
-                                @endforeach
-                            </x-select-input>
-                            <x-input-error class="mt-2" :messages="$errors->get('penerima_manfaat_id')" />
+                            <x-input-label for="pria" :value="__('Pria')" />
+                            <x-text-input id="pria" name="pria" type="number" class="block w-full mt-1"
+                                :value="old('pria', $penyaluran->male_count)" required autocomplete="pria" />
+                            <x-input-error class="mt-2" :messages="$errors->get('pria')" />
                         </div>
 
                         <div>
-                            <x-input-label for="penerima_manfaat_id" :value="__('Jumlah Wanita')" />
-                            <x-select-input id="penerima_manfaat" name="penerima_manfaat_id" class="block w-full mt-1">
-                                <option value="">{{ __('Select Jumlah Wanita') }}</option>
-                                @foreach ($penerimaManfaats as $penerimaManfaat)
-                                    <option value="{{ $penerimaManfaat->id }}"
-                                        {{ $penerimaManfaat->id == $penyaluran->penerima_manfaat_id ? 'selected' : '' }}>
-                                        {{ $penerimaManfaat->female_count }}
-                                    </option>
-                                @endforeach
-                            </x-select-input>
-                            <x-input-error class="mt-2" :messages="$errors->get('penerima_manfaat_id')" />
+                            <x-input-label for="wanita" :value="__('Wanita')" />
+                            <x-text-input id="wanita" name="wanita" type="number" class="block w-full mt-1"
+                                :value="old('wanita', $penyaluran->female_count)" required autocomplete="wanita" />
+                            <x-input-error class="mt-2" :messages="$errors->get('wanita')" />
                         </div>
 
                         <div>
