@@ -26,7 +26,7 @@ class PenyaluranFactory extends Factory
             'tanggal' => fake()->dateTime(),
             'uraian' => fake()->word(),
             'nominal' => fake()->randomNumber(5, true),
-            'penerima_manfaat_id' => PenerimaManfaat::factory(),
+            //'penerima_manfaat_id' => PenerimaManfaat::factory(),
             'lembaga_count' => fake()->numerify(),
             'male_count' => fake()->numerify(),
             'female_count' => fake()->numerify(),
