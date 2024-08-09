@@ -170,4 +170,9 @@ class PenghimpunanController extends Controller
             ->route('penghimpunan.index')
             ->with('success', 'Penghimpunan deleted successfully!');
     }
+
+    public function formCSV()
+    {
+        return view('penghimpunan.formcsv');
+    }
 }

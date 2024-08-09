@@ -17,6 +17,17 @@
                             {{ __('Create') }}
                         </x-button.link-primary>
                     </div>
+                    <div class="ml-auto">
+                        <x-button.link-primary href="{{ route('import') }}">
+                            {{ __('Import CSV') }}
+                        </x-button.link-primary>
+                        {{-- <x-modal name="import-csv-penghimpunan">
+
+                        </x-modal> --}}
+
+                    </div>
+
+
                 </div>
                 @if (request('search') || request('sumber_dana'))
                     <x-card.description>

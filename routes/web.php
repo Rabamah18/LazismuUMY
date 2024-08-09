@@ -14,6 +14,7 @@ use App\Http\Controllers\ProgramSumberController;
 use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\SumberDanaController;
 use App\Http\Controllers\TahunController;
+use App\Imports\PenghimpunanImport;
 use App\Models\Kabupaten;
 use App\Models\Lokasi;
 use App\Models\PenerimaManfaat;
@@ -24,6 +25,8 @@ use App\Models\ProgramPilar;
 use App\Models\ProgramSumber;
 use App\Models\Provinsi;
 use App\Models\SumberDana;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,6 +58,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('lokasi', LokasiController::class);
     Route::resource('penerimamanfaat', PenerimaManfaatController::class);
     Route::resource('penghimpunan', PenghimpunanController::class);
+    Route::get('import-csv', [PenghimpunanController::class, 'formCSV'])->name('import');
     Route::resource('penyaluran', PenyaluranController::class);
     Route::resource('pilar', PilarController::class);
     Route::resource('programpilar', ProgramPilarController::class);
@@ -65,6 +69,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('donatur', DonaturController::class);
 
     Route::view('/user', 'user.index')->name('user.index');
+    //Route::get('/penghimpunan/formcsv', [PenghimpunanController::class, 'formcsv'])->name('formcsv');
+    // Route::get('/penghimpunan/formcsv', function () {
+    //     return view('penghimpunan.formcsv');
+    // })->name('formcsv');
     // Route::view('/ashnaf', 'ashnaf.index')->name('ashnaf.index');
     // Route::view('/kabupaten', 'kabupaten.index')->name('kabupaten.index');
     // Route::view('/lokasi', 'lokasi.index')->name('lokasi.index');
@@ -77,9 +85,20 @@ Route::middleware('auth')->group(function () {
     // Route::view('/provinsi', 'provinsi.index')->name('provinsi.index');
     // Route::view('/sumberdana', 'sumberdana.index')->name('sumberdana.index');
     // Route::view('/tahun', 'tahun.index')->name('tahun.index');
+
+    Route::post('/import-penghimpunan', function (Request $request) {
+        $file = $request->file('file');
+        Queue::push(new PenghimpunanImport($file));
+
+        return redirect()->back()->with('success', 'Data imported successfully!');
+    })->name('import.penghimpunan');
 });
 
 Route::view('/', 'public.home')->name('home');
 Route::view('/about', 'public.about')->name('about');
+// Route::view('/penghimpunan/formscsv', 'penghimpunan.formcsv')->name('formcsv');
+// Route::get('penghimpunan/formcsv', function (Request $request) {
+//     return view('penghimpunan.formcsv');
+// })->name('penghimpunan.formcsv');
 
 require __DIR__.'/auth.php';
