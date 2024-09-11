@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PenghimpunansExport;
+use App\Imports\PenghimpunanImport;
 use App\Models\Donatur;
 use App\Models\Penghimpunan;
 use App\Models\ProgramSumber;
 use App\Models\SumberDana;
 use App\Models\Tahun;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PenghimpunanController extends Controller
 {
@@ -170,4 +174,48 @@ class PenghimpunanController extends Controller
             ->route('penghimpunan.index')
             ->with('success', 'Penghimpunan deleted successfully!');
     }
+
+    public function formImport()
+    {
+        return view('penghimpunan.formcsv');
+    }
+
+    public function export()
+    {
+
+        return Excel::download(new PenghimpunansExport, 'Penghimpunan.xlsx');
+    }
+
+    public function import(Request $request)
+    {
+
+        $file = $request->file('doc');
+
+        $filename = $file->getClientOriginalName();
+        $path = 'penghimpunan/'.$filename;
+        Storage::put($path, file_get_contents($file));
+
+        Excel::import(new PenghimpunanImport, $path);
+
+        return redirect()->back()->with('success', 'Data imported successfully!');
+    }
+
+    //     public function import(Request $request)
+    // {
+    //     // Validate the request to ensure a file is uploaded
+    //     $request->validate([
+    //         'doc' => 'required|file|mimes:xlsx,xls,csv',
+    //     ]);
+
+    //     // Get the uploaded file
+    //     $file = $request->file('doc');
+
+    //     // Store the file in the 'penghimpunan' directory
+    //     $path = $file->store('penghimpunan');
+
+    //     // Import the file using the correct path
+    //     Excel::import(new PenghimpunanImport, storage_path('app/' . $path));
+
+    //     return redirect()->back()->with('success', 'Data imported successfully!');
+    // }
 }
