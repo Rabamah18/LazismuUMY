@@ -15,9 +15,10 @@
                     {{ __('Create a new Data Penghimpunan.') }}
                 </x-card.description>
                 <div class="max-w-xl">
-                    <form method="Post" action="{{ route('import.penghimpunan') }}" class="mt-6 space-y-6">
+                    <form method="post" action="{{ route('penghimpunan.import') }}" class="mt-6 space-y-6"
+                        enctype="multipart/form-data">
                         @csrf
-                        @method('post')
+                        @method('patch')
 
                         <div class="messages">
                             @if (session('success'))
@@ -28,12 +29,12 @@
                         </div>
                         <div class="fields">
                             <div class="mb-3 input-group">
-                                <input type="file" class="form-control" id="import_csv" name="import_csv"
-                                    accept=".csv">
+                                <input type="file" class="form-control" id="doc" name="doc"
+                                    accept=".csv, .xlsx">
                                 <label class="input-group-text" for="import_csv">Upload</label>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success">Import CSV</button>
+                        <button type="submit" class="btn btn-success">Import File</button>
                     </form>
                 </div>
             </x-card.app>

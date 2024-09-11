@@ -18,13 +18,19 @@
                         </x-button.link-primary>
                     </div>
                     <div class="ml-auto">
-                        <x-button.link-primary href="{{ route('import') }}">
+                        <x-button.link-primary href="{{ route('penghimpunan.formimport') }}">
                             {{ __('Import CSV') }}
                         </x-button.link-primary>
-                        {{-- <x-modal name="import-csv-penghimpunan">
-
-                        </x-modal> --}}
-
+                    </div>
+                    <div class="ml-auto">
+                        <x-button.link-primary href="{{ route('penghimpunan.export') }}">
+                            {{ __('Export Exel') }}
+                        </x-button.link-primary>
+                    </div>
+                    <div class="ml-auto">
+                        <x-button.link-primary href="{{ route('penghimpunan.import') }}">
+                            {{ __('Import Exel') }}
+                        </x-button.link-primary>
                     </div>
 
 
