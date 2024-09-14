@@ -175,9 +175,9 @@ class PenghimpunanController extends Controller
             ->with('success', 'Penghimpunan deleted successfully!');
     }
 
-    public function formImport()
+    public function importExel()
     {
-        return view('penghimpunan.formcsv');
+        return view('penghimpunan.import-exel');
     }
 
     public function export()
@@ -188,6 +188,9 @@ class PenghimpunanController extends Controller
 
     public function import(Request $request)
     {
+        $request->validate([
+            'doc' => 'file|required'
+        ]);
 
         $file = $request->file('doc');
 
