@@ -189,7 +189,7 @@ class PenghimpunanController extends Controller
     public function import(Request $request)
     {
         $request->validate([
-            'doc' => 'file|required'
+            'doc' => 'required|file|mimes:xlsx,xls,csv|max:2048',
         ]);
 
         $file = $request->file('doc');

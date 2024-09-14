@@ -22,10 +22,13 @@
 
                         <div class="w-full max-w-sm">
                             <x-input-label for="doc" :value="__('Upload File')" />
-                            <x-file-input name="doc"></x-file-input>
+                            <x-file-input name="doc"
+                                accept=".csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                class="mt-1"></x-file-input>
                             <x-input-helper>
                                 Format : csv, xlx, xlxs - Max 2MB
                             </x-input-helper>
+                            <x-input-error class="mt-2" :messages="$errors->get('doc')" />
                         </div>
                         <div class="flex items-center gap-4">
                             <x-primary-button>{{ __('Import') }}</x-primary-button>
