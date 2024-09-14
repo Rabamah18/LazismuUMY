@@ -27,6 +27,16 @@
                             {{ __('Export Exel') }}
                         </x-button.link-primary>
                     </div>
+                    <div class="ml-auto">
+                        <x-button.link-primary href="{{ route('penghimpunan.importcsv') }}">
+                            {{ __('Import CSV') }}
+                        </x-button.link-primary>
+                    </div>
+                    <div class="ml-auto">
+                        <x-button.link-primary href="{{ route('penghimpunan.exportcsv') }}">
+                            {{ __('Export CSV') }}
+                        </x-button.link-primary>
+                    </div>
                     {{-- <div class="ml-auto">
                         <x-button.link-primary href="{{ route('penghimpunan.import') }}">
                             {{ __('Import Exel') }}
