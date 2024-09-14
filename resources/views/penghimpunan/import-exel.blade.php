@@ -20,11 +20,12 @@
                         @csrf
                         @method('patch')
 
-                        <div class="relative flex flex-col w-full max-w-sm gap-1 text-gray-600 dark:text-gray-300">
-                            <label for="fileInput" class="w-fit pl-0.5 text-sm">Upload File</label>
-                            <input id="fileInput" type="file" name="doc"
-                                class="w-full max-w-md text-sm border border-gray-300 rounded-md overflow-clip bg-gray-50/50 file:mr-4 file:cursor-pointer file:border-none file:bg-gray-50 file:px-4 file:py-2 file:font-medium file:text-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-gray-700 dark:bg-gray-900/50 dark:file:bg-gray-900 dark:file:text-white dark:focus-visible:outline-white" />
-                            <small class="pl-0.5">CSV, xlx, xlxs - Max 2MB</small>
+                        <div class="w-full max-w-sm">
+                            <x-input-label for="doc" :value="__('Upload File')" />
+                            <x-file-input name="doc"></x-file-input>
+                            <x-input-helper>
+                                Format : csv, xlx, xlxs - Max 2MB
+                            </x-input-helper>
                         </div>
                         <div class="flex items-center gap-4">
                             <x-primary-button>{{ __('Import') }}</x-primary-button>
