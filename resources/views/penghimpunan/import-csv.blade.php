@@ -15,18 +15,16 @@
                     {{ __('Create a new Data Penghimpunan.') }}
                 </x-card.description>
                 <div class="max-w-xl">
-                    <form method="post" action="{{ route('penghimpunan.importfileexel') }}" class="mt-6 space-y-6"
+                    <form method="post" action="{{ route('penghimpunan.importfilecsv') }}" class="mt-6 space-y-6"
                         enctype="multipart/form-data">
                         @csrf
                         @method('patch')
 
                         <div class="w-full max-w-sm">
                             <x-input-label for="doc" :value="__('Upload File')" />
-                            <x-file-input name="doc"
-                                accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                                class="mt-1"></x-file-input>
+                            <x-file-input name="doc" accept=".csv" class="mt-1"></x-file-input>
                             <x-input-helper>
-                                Format : xlx, xlxs - Max 2MB
+                                Format : csv - Max 2MB
                             </x-input-helper>
                             <x-input-error class="mt-2" :messages="$errors->get('doc')" />
                         </div>

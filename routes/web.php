@@ -15,6 +15,7 @@ use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\SumberDanaController;
 use App\Http\Controllers\TahunController;
 use App\Imports\PenghimpunanImport;
+use App\Imports\PenghimpunanImportExel;
 use App\Models\Kabupaten;
 use App\Models\Lokasi;
 use App\Models\PenerimaManfaat;
@@ -58,8 +59,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('lokasi', LokasiController::class);
     Route::resource('penerimamanfaat', PenerimaManfaatController::class);
     Route::get('penghimpunan/export', [PenghimpunanController::class, 'export'])->name('penghimpunan.export');
+    Route::get('penghimpunan/exportcsv', [PenghimpunanController::class, 'exportCsv'])->name('penghimpunan.exportcsv');
     Route::get('pengimpunan/importexel', [PenghimpunanController::class, 'importExel'])->name('penghimpunan.importexel');
-    Route::patch('pengimpunan/import', [PenghimpunanController::class, 'import'])->name('penghimpunan.import');
+    Route::get('pengimpunan/importcsv', [PenghimpunanController::class, 'importCsv'])->name('penghimpunan.importcsv');
+    Route::patch('pengimpunan/importfileexel', [PenghimpunanController::class, 'importFileExel'])->name('penghimpunan.importfileexel');
+    Route::patch('pengimpunan/importfilecsv', [PenghimpunanController::class, 'importFileCsv'])->name('penghimpunan.importfilecsv');
     Route::resource('penghimpunan', PenghimpunanController::class);
 
     Route::resource('penyaluran', PenyaluranController::class);
@@ -89,12 +93,12 @@ Route::middleware('auth')->group(function () {
     // Route::view('/sumberdana', 'sumberdana.index')->name('sumberdana.index');
     // Route::view('/tahun', 'tahun.index')->name('tahun.index');
 
-    Route::post('/import-penghimpunan', function (Request $request) {
-        $file = $request->file('file');
-        Queue::push(new PenghimpunanImport($file));
+    // Route::post('/import-penghimpunan', function (Request $request) {
+    //     $file = $request->file('file');
+    //     Queue::push(new PenghimpunanImportExel($file));
 
-        return redirect()->back()->with('success', 'Data imported successfully!');
-    })->name('import.penghimpunan');
+    //     return redirect()->back()->with('success', 'Data imported successfully!');
+    // })->name('import.penghimpunan');
 });
 
 Route::view('/', 'public.home')->name('home');

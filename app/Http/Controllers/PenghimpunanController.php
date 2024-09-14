@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Exports\PenghimpunansExport;
 use App\Imports\PenghimpunanImport;
+use App\Imports\PenghimpunanImportCsv;
+use App\Imports\PenghimpunanImportExel;
 use App\Models\Donatur;
 use App\Models\Penghimpunan;
 use App\Models\ProgramSumber;
@@ -180,16 +182,27 @@ class PenghimpunanController extends Controller
         return view('penghimpunan.import-exel');
     }
 
+    public function importCsv()
+    {
+        return view('penghimpunan.import-csv');
+    }
+
     public function export()
     {
 
         return Excel::download(new PenghimpunansExport, 'Penghimpunan.xlsx');
     }
 
-    public function import(Request $request)
+    public function exportCsv()
+    {
+
+        return Excel::download(new PenghimpunansExport, 'Penghimpunan.csv');
+    }
+
+    public function importFileExel(Request $request)
     {
         $request->validate([
-            'doc' => 'required|file|mimes:xlsx,xls,csv|max:2048',
+            'doc' => 'required|file|mimes:xlsx,xls|max:2048',
         ]);
 
         $file = $request->file('doc');
@@ -198,7 +211,24 @@ class PenghimpunanController extends Controller
         $path = 'penghimpunan/'.$filename;
         Storage::put($path, file_get_contents($file));
 
-        Excel::import(new PenghimpunanImport, $path);
+        Excel::import(new PenghimpunanImportExel, $path);
+
+        return redirect()->back()->with('success', 'Data imported successfully!');
+    }
+
+    public function importFileCsv(Request $request)
+    {
+        $request->validate([
+            'doc' => 'required|file|mimes:csv|max:2048',
+        ]);
+
+        $file = $request->file('doc');
+
+        $filename = $file->getClientOriginalName();
+        $path = 'penghimpunan/'.$filename;
+        Storage::put($path, file_get_contents($file));
+
+        Excel::import(new PenghimpunanImportCsv, $path);
 
         return redirect()->back()->with('success', 'Data imported successfully!');
     }
