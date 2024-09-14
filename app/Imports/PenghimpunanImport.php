@@ -23,9 +23,9 @@ class PenghimpunanImport implements ToModel, WithHeadingRow
             'lembaga_count' => $row['jumlah_lembaga'],
             'male_count' => $row['jumlah_pria'],
             'female_count' => $row['jumlah_wanita'],
-            'sumber_dana_id' => SumberDana::find('name', $row['sumber_dana'])->select('id', 'name'),
-            'program_sumber_id' => ProgramSumber::find('name', $row['program_sumber'])->select('id', 'name'),
-            'tahun_id' => Tahun::find('name', $row['tahun'])->select('id', 'name'),
+            'sumber_dana_id' => SumberDana::where('name', $row['sumber_dana'])->first()?->id,
+            'program_sumber_id' => ProgramSumber::where('name', $row['program_sumber'])->first()?->id,
+            'tahun_id' => Tahun::where('name', $row['tahun'])->first()?->id,
         ]);
     }
 }

@@ -58,7 +58,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('lokasi', LokasiController::class);
     Route::resource('penerimamanfaat', PenerimaManfaatController::class);
     Route::get('penghimpunan/export', [PenghimpunanController::class, 'export'])->name('penghimpunan.export');
-    Route::get('pengimpunan/form-import', [PenghimpunanController::class, 'formImport'])->name('penghimpunan.formimport');
+    Route::get('pengimpunan/importexel', [PenghimpunanController::class, 'importExel'])->name('penghimpunan.importexel');
     Route::patch('pengimpunan/import', [PenghimpunanController::class, 'import'])->name('penghimpunan.import');
     Route::resource('penghimpunan', PenghimpunanController::class);
 
