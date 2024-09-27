@@ -59,11 +59,17 @@ Route::middleware('auth')->group(function () {
     Route::resource('lokasi', LokasiController::class);
     Route::resource('penerimamanfaat', PenerimaManfaatController::class);
     Route::get('penghimpunan/export', [PenghimpunanController::class, 'export'])->name('penghimpunan.export');
+    Route::get('penyaluran/export', [PenyaluranController::class, 'export'])->name('penyaluran.export');
     Route::get('penghimpunan/exportcsv', [PenghimpunanController::class, 'exportCsv'])->name('penghimpunan.exportcsv');
+    Route::get('penyaluran/exportcsv', [PenyaluranController::class, 'exportCsv'])->name('penyaluran.exportcsv');
     Route::get('pengimpunan/importexel', [PenghimpunanController::class, 'importExel'])->name('penghimpunan.importexel');
+    Route::get('penyaluran/importexel', [PenyaluranController::class, 'importExel'])->name('penyaluran.importexel');
     Route::get('pengimpunan/importcsv', [PenghimpunanController::class, 'importCsv'])->name('penghimpunan.importcsv');
+    Route::get('penyaluran/importcsv', [PenyaluranController::class, 'importCsv'])->name('penyaluran.importcsv');
     Route::patch('pengimpunan/importfileexel', [PenghimpunanController::class, 'importFileExel'])->name('penghimpunan.importfileexel');
+    Route::patch('penyaluran/importfileexel', action:[PenyaluranController::class, 'importFileExel'])->name('penyaluran.importfileexel');
     Route::patch('pengimpunan/importfilecsv', [PenghimpunanController::class, 'importFileCsv'])->name('penghimpunan.importfilecsv');
+    Route::patch('penyaluran/importfilecsv', [PenyaluranController::class, 'importFileCsv'])->name('penyaluran.importfilecsv');
     Route::resource('penghimpunan', PenghimpunanController::class);
 
     Route::resource('penyaluran', PenyaluranController::class);

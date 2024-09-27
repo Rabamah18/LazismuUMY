@@ -17,6 +17,26 @@
                             {{ __('Create') }}
                         </x-button.link-primary>
                     </div>
+                    <div class="ml-auto">
+                        <x-button.link-primary href="{{ route('penyaluran.importexel') }}">
+                            {{ __('Import Exel') }}
+                        </x-button.link-primary>
+                    </div>
+                    <div class="ml-auto">
+                        <x-button.link-primary href="{{ route('penyaluran.export') }}">
+                            {{ __('Export Exel') }}
+                        </x-button.link-primary>
+                    </div>
+                    <div class="ml-auto">
+                        <x-button.link-primary href="{{ route('penyaluran.importcsv') }}">
+                            {{ __('Import CSV') }}
+                        </x-button.link-primary>
+                    </div>
+                    <div class="ml-auto">
+                        <x-button.link-primary href="{{ route('penyaluran.exportcsv') }}">
+                            {{ __('Export CSV') }}
+                        </x-button.link-primary>
+                    </div>
                 </div>
                 @if (request('search') || request('ashnaf') || request('verified_account'))
                     <x-card.description>
