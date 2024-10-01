@@ -14,7 +14,6 @@ use App\Http\Controllers\ProgramSumberController;
 use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\SumberDanaController;
 use App\Http\Controllers\TahunController;
-use App\Imports\PenghimpunanImport;
 use App\Imports\PenghimpunanImportExel;
 use App\Models\Kabupaten;
 use App\Models\Lokasi;
@@ -103,6 +102,9 @@ Route::middleware('auth')->group(function () {
 
 Route::view('/', 'public.home')->name('home');
 Route::view('/about', 'public.about')->name('about');
+Route::view('/sejarah', 'public.sejarah')->name('sejarah');
+Route::view('/visimisi', 'public.visimisi')->name('visimisi');
+Route::view('/program', 'public.program')->name('program');
 // Route::view('/penghimpunan/formscsv', 'penghimpunan.formcsv')->name('formcsv');
 // Route::get('penghimpunan/formcsv', function (Request $request) {
 //     return view('penghimpunan.formcsv');
