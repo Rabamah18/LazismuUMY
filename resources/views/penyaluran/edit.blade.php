@@ -108,6 +108,9 @@
                                 @foreach ($programPilars as $programPilar)
                                     <option value="{{ $programPilar->id }}"
                                         {{ $programPilar->id == $penyaluran->program_pilar_id ? 'selected' : '' }}>
+                                        {{ __('Pilar') }}
+                                        {{ $programPilar->pilar->name }}
+                                        {{ __('Program') }}
                                         {{ $programPilar->name }}
                                     </option>
                                 @endforeach
