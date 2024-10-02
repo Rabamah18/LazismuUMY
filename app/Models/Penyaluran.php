@@ -46,4 +46,9 @@ class Penyaluran extends Model
     {
         return $this->belongsTo(Tahun::class);
     }
+
+    public function lokasi()
+    {
+        return $this->belongsTo(Lokasi::class);
+    }
 }

@@ -13,6 +13,8 @@ use App\Models\PenerimaManfaat;
 use App\Exports\PenyaluransExport;
 use App\Imports\PenyaluranImportCsv;
 use App\Imports\PenyaluranImportExel;
+use App\Models\Kabupaten;
+use App\Models\Provinsi;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 
@@ -28,6 +30,8 @@ class PenyaluranController extends Controller
         $programPilars = ProgramPilar::query()->get();
         $tahuns = Tahun::query()->get();
         $lokasis = Lokasi::query()->get();
+        $provinsis = Provinsi::query()->get();
+        $kabupatens = Kabupaten::query()->get();
 
         $penyalurans = Penyaluran::orderByDesc('tanggal')
             ->with('ashnaf', 'penerimaManfaat', 'tahun', 'pilar', 'programPilar')
@@ -52,6 +56,12 @@ class PenyaluranController extends Controller
             ->when($request->lokasi, function ($query, $lokasi) {
                 $query->where('lokasi_id', '=', $lokasi);
             })
+            ->when($request->provinsi, function ($query, $provinsi) {
+                $query->where('provinsi_id', '=', $provinsi);
+            })
+            ->when($request->kabupaten, function ($query, $kabupaten) {
+                $query->where('kabupaten_id', '=', $kabupaten);
+            })
             ->when($request->paginate, function ($query, $paginate) {
                 return $query->paginate($paginate);
             }, function ($query) {
@@ -75,8 +85,10 @@ class PenyaluranController extends Controller
         $programPilars = ProgramPilar::query()->get();
         $tahuns = Tahun::query()->get();
         $lokasis = Lokasi::query()->get();
+        $provinsis = Provinsi::query()->get();
+        $kabupatens = Kabupaten::query()->get();
 
-        return view('penyaluran.create', compact('ashnafs', 'penerimaManfaats', 'pilars', 'programPilars', 'tahuns', 'lokasis'));
+        return view('penyaluran.create', compact('ashnafs', 'penerimaManfaats', 'pilars', 'programPilars', 'tahuns', 'lokasis', 'provinsis', 'kabupatens'));
     }
 
     /**
@@ -97,6 +109,8 @@ class PenyaluranController extends Controller
             'program_pilar_id' => 'nullable|exists:program_pilars,id',
             'tahun_id' => 'nullable|exists:tahuns,id',
             'lokasi_id' => 'nullable|exists:lokasis,id',
+            'provinsi_id' => 'nullable|exists:provinsis,id',
+            'kabupaten_id' => 'nullable|exists:kabupaten,id',
 
         ]);
         //dd($request);
@@ -114,6 +128,8 @@ class PenyaluranController extends Controller
             'program_pilar_id' => $request->program_pilar_id,
             'tahun_id' => $request->tahun_id,
             'lokasi_id' => $request->lokasi_id,
+            'provinsi_id' => $request->provinsi_id,
+            'kabupaten_id' => $request->kabupaten_id,
 
             // 'user_id' => auth()->user()->id,
             // 'title' => $request->title,
@@ -143,6 +159,8 @@ class PenyaluranController extends Controller
         $programPilars = ProgramPilar::query()->get();
         $tahuns = Tahun::query()->get();
         $lokasis = Lokasi::query()->get();
+        $provinsis = Provinsi::query()->get();
+        $kabupatens = Kabupaten::query()->get();
 
         //dd($penyaluran);
         return view('penyaluran.edit', compact('penyaluran', 'ashnafs', 'penerimaManfaats', 'pilars', 'programPilars', 'tahuns', 'lokasis'));
@@ -166,6 +184,8 @@ class PenyaluranController extends Controller
             'program_pilar_id' => 'nullable|exists:program_pilars,id',
             'tahun_id' => 'nullable|exists:tahuns,id',
             'lokasi_id' => 'nullable|exists:lokasis,id',
+            'provinsi_id' => 'nullable|exists:provinsis,id',
+            'kabupaten_id' => 'nullable|exists:kabupaten,id',
 
         ]);
         //dd($request);
@@ -183,6 +203,8 @@ class PenyaluranController extends Controller
             'program_pilar_id' => $request->program_pilar_id,
             'tahun_id' => $request->tahun_id,
             'lokasi_id' => $request->lokasi_id,
+            'provinsi_id' => $request->provinsi_id,
+            'kabupaten_id' => $request->kabupaten_id,
 
             // 'user_id' => auth()->user()->id,
             // 'title' => $request->title,

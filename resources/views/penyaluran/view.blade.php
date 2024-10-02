@@ -62,6 +62,18 @@
                             </p>
                         </div>
                         <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
+                            <p class="w-36">{{ __('Provinsi') }}</p>
+                            <p>
+                                {{ $penyaluran->lokasi->provinsi->name ?? '-' }}
+                            </p>
+                        </div>
+                        <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
+                            <p class="w-36">{{ __('Kabupaten') }}</p>
+                            <p>
+                                {{ $penyaluran->lokasi->kabupaten->name ?? '-' }}
+                            </p>
+                        </div>
+                        <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
                             <p class="w-36">{{ __('Pilar') }}</p>
                             <p>{{ $penyaluran->programPilar->pilar->name ?? '-' }}</p>
                         </div>

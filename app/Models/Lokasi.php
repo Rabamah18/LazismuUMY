@@ -13,9 +13,9 @@ class Lokasi extends Model
         'id',
     ];
 
-    public function penerimaManfaats()
+    public function penyalurans()
     {
-        return $this->hasMany(PenerimaManfaat::class);
+        return $this->hasMany(Penyaluran::class);
     }
 
     public function provinsi()

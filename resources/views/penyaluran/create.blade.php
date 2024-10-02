@@ -46,7 +46,10 @@
                                 @foreach ($lokasis as $lokasi)
                                     <option value="{{ $lokasi->id }}"
                                         {{ request('lokasi_id') == 'lokasi_id' ? 'selected' : '' }}>
-                                        {{ $lokasi->id }}
+                                        {{ __('Provinsi') }}
+                                        {{ $lokasi->provinsi->name}}
+                                        {{ __('Kabupaten') }}
+                                        {{ $lokasi->kabupaten->name}}
                                     </option>
                                 @endforeach
                             </x-select-input>
@@ -93,20 +96,6 @@
                             <x-text-input id="wanita" name="wanita" type="number" class="block w-full mt-1"
                                 :value="old('wanita')" required autocomplete="wanita" />
                             <x-input-error class="mt-2" :messages="$errors->get('wanita')" />
-                        </div>
-
-                        <div>
-                            <x-input-label for="pilar_id" :value="__('Pilar')" />
-                            <x-select-input id="pilar" name="pilar_id" class="block w-full mt-1">
-                                <option value="">{{ __('Select Pilar') }}</option>
-                                @foreach ($pilars as $pilar)
-                                    <option value="{{ $pilar->id }}"
-                                        {{ request('pilar_id') == 'pilar_id' ? 'selected' : '' }}>
-                                        {{ $pilar->name }}
-                                    </option>
-                                @endforeach
-                            </x-select-input>
-                            <x-input-error class="mt-2" :messages="$errors->get('pilar_id')" />
                         </div>
 
                         <div>
