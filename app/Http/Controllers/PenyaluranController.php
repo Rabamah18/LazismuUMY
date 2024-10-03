@@ -10,6 +10,11 @@ use App\Models\Penyaluran;
 use App\Models\ProgramPilar;
 use Illuminate\Http\Request;
 use App\Models\PenerimaManfaat;
+use App\Exports\PenyaluransExport;
+use App\Imports\PenyaluranImportCsv;
+use App\Imports\PenyaluranImportExel;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Storage;
 
 class PenyaluranController extends Controller
 {
@@ -196,5 +201,61 @@ class PenyaluranController extends Controller
         return redirect()
             ->route('penyaluran.index')
             ->with('success', 'Penyaluran delete successfully!');
+    }
+
+    public function export()
+    {
+
+        return Excel::download(new PenyaluransExport, 'Penyaluran.xlsx');
+    }
+
+    public function exportCsv()
+    {
+
+        return Excel::download(new PenyaluransExport, 'Penyaluran.csv');
+    }
+
+    public function importExel()
+    {
+        return view('penyaluran.import-exel');
+    }
+
+    public function importCsv()
+    {
+        return view('penyaluran.import-csv');
+    }
+
+    public function importFileExel(Request $request)
+    {
+        $request->validate([
+            'doc' => 'required|file|mimes:xlsx,xls|max:2048',
+        ]);
+
+        $file = $request->file('doc');
+
+        $filename = $file->getClientOriginalName();
+        $path = 'penyaluran/'.$filename;
+        Storage::put($path, file_get_contents($file));
+
+        Excel::import(new PenyaluranImportExel, $path);
+
+        return redirect()->back()->with('success', 'Data imported successfully!');
+    }
+
+    public function importFileCsv(Request $request)
+    {
+        $request->validate([
+            'doc' => 'required|file|mimes:csv|max:2048',
+        ]);
+
+        $file = $request->file('doc');
+
+        $filename = $file->getClientOriginalName();
+        $path = 'penyaluran/'.$filename;
+        Storage::put($path, file_get_contents($file));
+
+        Excel::import(new PenyaluranImportCsv, $path);
+
+        return redirect()->back()->with('success', 'Data imported successfully!');
     }
 }
