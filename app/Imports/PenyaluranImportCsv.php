@@ -27,7 +27,6 @@ class PenyaluranImportCsv implements ToModel, WithCustomCsvSettings, WithHeading
             'lembaga_count' => $row['jumlah_lembaga'],
             'male_count' => $row['jumlah_pria'],
             'female_count' => $row['jumlah_wanita'],
-            'lokasi_id' => $row['lokasi'],
             'provinsi_id' => $row['provinsi'],
             'kabupaten_id' => $row['kabupaten'],
             'tahun_id' => Tahun::where('name', $row['tahun'])->first()?->id,
