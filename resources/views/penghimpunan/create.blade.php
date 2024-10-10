@@ -18,11 +18,12 @@
                     <form method="post" action="{{ route('penghimpunan.store') }}" class="mt-6 space-y-6">
                         @csrf
                         @method('post')
-                        <div>
+                        <div x-data="{ today: new Date().toISOString().split('T')[0] }">
                             <x-input-label for="tanggal" :value="__('Tanggal')" />
                             <x-text-input id="tanggal" name="tanggal" type="date" class="block w-full mt-1"
-                                :value="old('tanggal')" autofocus required autocomplete="tanggal" />
+                                :value="old('tanggal')" autofocus required autocomplete="tanggal" x-model="today" />
                             <x-input-error class="mt-2" :messages="$errors->get('tanggal')" />
+
                         </div>
 
                         <div>
@@ -110,4 +111,8 @@
             </x-card.app>
         </div>
     </div>
+    {{-- <script>
+        const d = new Date();
+        document.getElementById("tanggal").valueAsDate = d;
+    </script> --}}
 </x-app-layout>
