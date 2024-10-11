@@ -125,20 +125,22 @@
                     </form>
                 </div>
                 {{-- @include('admin.users.partials.list') --}}
-                @include('penghimpunan.partials.table')
+                {{-- @include('penghimpunan.partials.table') --}}
+
+                @livewire('penghimpunan.table')
 
                 {{-- Pagination --}}
-                @if ($penghimpunans->hasPages())
+                {{-- @if ($penghimpunans->hasPages())
                     <div class="mt-6">
                         {{-- The default pagination view is pagination.custom-tailwind blade component.
                     You can change the default pagination view using the AppServiceProvider
                     or by passing the pagination view as parameter to the links method. --}}
-                        {{-- {{ $penghimpunans->links() }} --}}
-                        {{-- {{ $users->links('vendor.pagination.tailwind') }} --}}
-                        {{-- {{ $users->links('vendor.pagination.simple-tailwind') }} --}}
-                        {{ $penghimpunans->links('vendor.pagination.custom-tailwind') }}
+                {{-- {{ $penghimpunans->links() }} --}}
+                {{-- {{ $users->links('vendor.pagination.tailwind') }} --}}
+                {{-- {{ $users->links('vendor.pagination.simple-tailwind') }} --}}
+                {{-- {{ $penghimpunans->links('vendor.pagination.custom-tailwind') }}
                     </div>
-                @endif
+                @endif --}}
             </x-card.app>
         </div>
     </div>
