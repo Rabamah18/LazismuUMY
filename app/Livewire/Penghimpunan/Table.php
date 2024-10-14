@@ -6,6 +6,8 @@ use App\Models\Penghimpunan;
 use App\Models\ProgramSumber;
 use App\Models\SumberDana;
 use App\Models\Tahun;
+use Livewire\Attributes\Url;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -25,9 +27,13 @@ class Table extends Component
 
     public $selectedTahun;
 
+    // #[Validate('required')]
+    #[Url(as: 'pencarian', history: true, keep: true)]
     public $search;
 
     public $paginate = 30;
+
+    // public $showClearIcon = false;
 
     public function mount()
     {
@@ -35,6 +41,22 @@ class Table extends Component
         $this->programSumbers = ProgramSumber::query()->get();
         $this->tahuns = Tahun::query()->get();
 
+    }
+
+    // public function updatedSearch()
+    // {
+    //     $this->showClearIcon = $this->search !== '';
+    // }
+
+    // public function clearSearch()
+    // {
+    //     $this->search = '';
+    //     $this->showClearIcon = false;
+    // }
+
+    public function clear()
+    {
+        $this->reset('search');
     }
 
     public function render()
