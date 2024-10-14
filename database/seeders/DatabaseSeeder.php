@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AshnafSeeder::class);
         $this->call(SumberDanaSeeder::class);
         $this->call(ProvinsiSeeder::class);
+        $this->call(TahunSeeder::class);
 
         ProgramPilar::factory(10)->create();
         PenerimaManfaat::factory(10)->create();

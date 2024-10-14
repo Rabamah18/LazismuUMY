@@ -6,15 +6,10 @@ use App\Models\Penghimpunan;
 use App\Models\ProgramSumber;
 use App\Models\SumberDana;
 use App\Models\Tahun;
-use Livewire\Attributes\Url;
-use Livewire\Attributes\Validate;
 use Livewire\Component;
-use Livewire\WithPagination;
 
-class Table extends Component
+class ExportFilter extends Component
 {
-    use WithPagination;
-
     public $sumberDanas;
 
     public $selectedSumberDana;
@@ -23,17 +18,13 @@ class Table extends Component
 
     public $selectedProgramSumber;
 
+    public $bulan;
+
+    public $selectedBulan;
+
     public $tahuns;
 
     public $selectedTahun;
-
-    // #[Validate('required')]
-    #[Url(as: 'pencarian', history: true, keep: true)]
-    public $search;
-
-    public $paginate = 30;
-
-    // public $showClearIcon = false;
 
     public function mount()
     {
@@ -43,14 +34,24 @@ class Table extends Component
 
     }
 
+    public function exportExel()
+    {
+        
+    }
+
+    public function exportCsv()
+    {
+
+    }
+
     public function render()
     {
         $penghimpunans = Penghimpunan::orderByDesc('updated_at')
-            ->when($this->search, function ($query): void {
-                $query->where(function ($query) {
-                    $query->where('uraian', 'like', '%'.$this->search.'%')
-                        ->orWhere('tanggal', 'like', '%'.$this->search.'%');
-                });
+            ->when($this->selectedBulan, function ($query) {
+                $query->whereMonth('tanggal', $this->selectedBulan);
+            })
+            ->when($this->selectedTahun, function ($query) {
+                $query->where('tahun_id', $this->selectedTahun);
             })
             ->when($this->selectedSumberDana, function ($query) {
                 $query->where('sumber_dana_id', $this->selectedSumberDana);
@@ -58,11 +59,8 @@ class Table extends Component
             ->when($this->selectedProgramSumber, function ($query) {
                 $query->where('program_sumber_id', $this->selectedProgramSumber);
             })
-            ->when($this->selectedTahun, function ($query) {
-                $query->where('tahun_id', $this->selectedTahun);
-            })
-            ->paginate($this->paginate);
+            ->get();
 
-        return view('livewire.penghimpunan.table', ['penghimpunans' => $penghimpunans]);
+        return view('livewire.penghimpunan.export-filter', ['penghimpunans' => $penghimpunans]);
     }
 }

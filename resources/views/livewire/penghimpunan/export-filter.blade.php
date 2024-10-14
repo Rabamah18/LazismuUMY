@@ -2,33 +2,75 @@
     <div>
         <div class="w-full mt-6">
             <div class="flex flex-col justify-between gap-2 w-gap-1 xl:flex-row">
-                <div class="flex items-center w-full gap-2 lg:w-1/3" x-data="{ massage: '' }">
-                    {{-- <x-text-input wire:model.live.debounce="search" id="search_id" x-model="massage" type="text"
-                        class="w-full lg:w-1/3" placeholder="{{ __('Search here') }}">
-                    </x-text-input> --}}
-                    <div class="relative flex flex-col w-full max-w-xs gap-1 text-gray-600 dark:text-gray-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                            stroke="currentColor" aria-hidden="true"
-                            class="absolute left-2.5 top-1/2 size-5 -translate-y-1/2 text-gray-600/50 dark:text-gray-300/50">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                        </svg>
-                        <input wire:model.live.debounce="search" id="search_id" type="search"
-                            class="w-full py-2 pl-10 pr-2 text-sm border border-gray-300 rounded-md bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-gray-700 dark:bg-gray-900/50 dark:focus-visible:outline-white"
-                            name="search" placeholder="Search" aria-label="search" />
-                    </div>
-
-                    {{-- <x-secondary-button wire:click="clear()" x-on:clik="massage = ''">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" class="size-4">
-                            <path d="M18 6 6 18"></path>
-                            <path d="m6 6 12 12"></path>
-                        </svg>
-                    </x-secondary-button> --}}
-                </div>
-
                 <div class="flex items-center justify-between gap-2">
+                    <div class="flex">
+                        <x-card.title>
+                            {{ __('Data Penghimpunan') }}
+                        </x-card.title>
+                        <div class="ml-auto">
+                            <x-primary-button wire:click="">
+                                {{ __('Cancel') }}
+                            </x-primary-button>
+                        </div>
+                        <div class="ml-auto">
+                            <x-primary-button >
+                                {{ __('Export Exel') }}
+                            </x-primary-button>
+                        </div>
+                        <div class="ml-auto">
+                            <x-primary-button >
+                                {{ __('Export CSV') }}
+                            </x-primary-button>
+                        </div>
+                    </div>
                     <div class="space-y-1">
+                        <x-select-input id="bulan" wire:model.lazy="selectedBulan" class="">
+                            <option value="">{{ __('Bulan') }}</option>
+                            <option value="1">
+                                Januari
+                            </option>
+                            <option value="2">
+                                Februari
+                            </option>
+                            <option value="3">
+                                Maret
+                            </option>
+                            <option value="4">
+                                April
+                            </option>
+                            <option value="5">
+                                Mei
+                            </option>
+                            <option value="6">
+                                Juni
+                            </option>
+                            <option value="7">
+                                Juli
+                            </option>
+                            <option value="8">
+                                Agustus
+                            </option>
+                            <option value="9">
+                                September
+                            </option>
+                            <option value="10">
+                                Oktober
+                            </option>
+                            <option value="11">
+                                November
+                            </option>
+                            <option value="12">
+                                Desember
+                            </option>
+                        </x-select-input>
+                        <x-select-input id="tahun" wire:model.lazy="selectedTahun" class="">
+                            <option value="">{{ __('Tahun') }}</option>
+                            @foreach ($tahuns as $tahun)
+                                <option value="{{ $tahun->id }}">
+                                    {{ $tahun->name }}
+                                </option>
+                            @endforeach
+                        </x-select-input>
                         <x-select-input wire:model.lazy="selectedSumberDana" id="sumber_dana" class="">
                             <option value="">{{ __('Sumber Dana') }}</option>
                             @foreach ($sumberDanas as $sumberDana)
@@ -45,30 +87,6 @@
                                 </option>
                             @endforeach
                         </x-select-input>
-                        <x-select-input id="tahun" wire:model.lazy="selectedTahun" class="">
-                            <option value="">{{ __('Tahun') }}</option>
-                            @foreach ($tahuns as $tahun)
-                                <option value="{{ $tahun->id }}">
-                                    {{ $tahun->name }}
-                                </option>
-                            @endforeach
-                        </x-select-input>
-                        <x-select-input id="paginate" wire:model.lazy="paginate" class="">
-                            <option value="">{{ __('Per Halaman') }}</option>
-                            <option value="30">
-                                30
-                            </option>
-                            <option value="50">
-                                50
-                            </option>
-                            <option value="70">
-                                70
-                            </option>
-                            <option value="100">
-                                100
-                            </option>
-                        </x-select-input>
-
                     </div>
                 </div>
             </div>
@@ -108,9 +126,6 @@
                     <th scope="col" class="px-6 py-3 lg:table-cell">
                         {{ __('Tahun') }}
                     </th>
-                    <th scope="col" class="py-3 pl-6 pr-2 lg:pr-4">
-                        {{ __('Option') }}
-                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -120,7 +135,7 @@
 
                             <div class="flex">
                                 <div class="hover:underline whitespace-nowrap">
-                                    {{ ($penghimpunans->currentpage() - 1) * $penghimpunans->perpage() + $loop->index + 1 }}
+                                    {{ $penghimpunan->id }}
                                 </div>
 
                             </div>
@@ -199,48 +214,6 @@
 
                             </div>
                         </td>
-                        <td class="py-4 pl-6 pr-2 lg:pr-4">
-                            <div class="flex space-x-2 justify-items-start">
-                                <a href="{{ route('penghimpunan.show', $penghimpunan) }}"
-                                    class="hover:underline">View</a>
-                                <a href="{{ route('penghimpunan.edit', $penghimpunan) }}"
-                                    class="text-indigo-500 hover:underline">Edit</a>
-                                <button x-data="" class="text-red-500 hover:underline"
-                                    x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion{{ $penghimpunan->id }}')">
-                                    Hapus
-                                </button>
-
-                                <x-modal name="confirm-user-deletion{{ $penghimpunan->id }}" :show="$errors->userDeletion->isNotEmpty()"
-                                    focusable>
-                                    <form method="post" action="{{ route('penghimpunan.destroy', $penghimpunan) }}"
-                                        class="p-6">
-                                        @csrf
-                                        @method('delete')
-
-                                        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                                            Apakah anda yakin ingin menghapus data ini?
-                                        </h2>
-
-                                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                                            {{ $penghimpunan->uraian }}
-                                        </p>
-                                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                                            {{ $penghimpunan->tanggal->format('d F Y') }}
-                                        </p>
-
-                                        <div class="flex justify-end mt-6">
-                                            <x-secondary-button x-on:click="$dispatch('close')">
-                                                {{ __('Batal') }}
-                                            </x-secondary-button>
-
-                                            <x-danger-button class="ms-3">
-                                                {{ __('Hapus') }}
-                                            </x-danger-button>
-                                        </div>
-                                    </form>
-                                </x-modal>
-                            </div>
-                        </td>
                     </tr>
                 @empty
                     <tr class="bg-white dark:bg-gray-800">
@@ -251,8 +224,5 @@
                 @endforelse
             </tbody>
         </table>
-        <div class="mt-3">
-            {{ $penghimpunans->Links() }}
-        </div>
     </div>
 </div>
