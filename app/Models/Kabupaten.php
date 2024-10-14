@@ -12,4 +12,14 @@ class Kabupaten extends Model
     protected $guarded = [
         'id',
     ];
+
+    /**
+     * Get the user that owns the Kabupaten
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function provinsi()
+    {
+        return $this->belongsTo(Provinsi::class);
+    }
 }
