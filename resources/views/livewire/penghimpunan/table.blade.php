@@ -1,9 +1,20 @@
 <div>
     <div>
         <div class="w-full mt-6">
-            <div class="flex flex-col justify-between gap-2 xl:flex-row">
-                <x-text-input wire:model.live.debounce="search" id="search" type="text" class="w-full lg:w-1/3"
-                    placeholder="{{ __('Search here') }}" value="{{ request('search') }}" autofocus />
+            <div class="flex flex-col justify-between gap-2 w-gap-1 xl:flex-row">
+                <div class="flex items-center w-full gap-2 lg:w-1/3">
+                    <x-text-input wire:model.live.debounce="search" id="search_id" type="text" class="w-full lg:w-1/3"
+                        placeholder="{{ __('Search here') }}">
+                    </x-text-input>
+                    <x-secondary-button wire:click="clear()">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" class="size-4">
+                            <path d="M18 6 6 18"></path>
+                            <path d="m6 6 12 12"></path>
+                        </svg>
+                    </x-secondary-button>
+                </div>
+
                 <div class="flex items-center justify-between gap-2">
                     <div class="space-y-1">
                         <x-select-input wire:model.lazy="selectedSumberDana" id="sumber_dana" class="">
