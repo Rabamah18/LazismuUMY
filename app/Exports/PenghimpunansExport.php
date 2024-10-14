@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\Penghimpunan;
+use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
@@ -12,6 +13,8 @@ use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
 class PenghimpunansExport implements FromQuery, ShouldAutoSize, WithColumnFormatting, WithHeadings, WithMapping
 {
+    use Exportable;
+
     public function columnFormats(): array
     {
         return [
@@ -23,9 +26,42 @@ class PenghimpunansExport implements FromQuery, ShouldAutoSize, WithColumnFormat
         ];
     }
 
+    public int $month;
+
+    public int $year;
+
+    public string $sumDa;
+
+    public string $proSum;
+
+    public function forMonth(int $month, int $year, string $sumDa, string $proSum)
+    {
+        $this->month = $month;
+        $this->year = $year;
+        $this->sumDa = $sumDa;
+        $this->proSum = $proSum;
+
+        return $this;
+    }
+
     public function query()
     {
-        return Penghimpunan::query()->with('sumberDana', 'programSumber', 'tahun');
+        // return Penghimpunan::query()->with('sumberDana', 'programSumber', 'tahun');
+
+        $penghimpunans = Penghimpunan::orderByDesc('updated_at')
+            ->with('sumberDana', 'programSumber', 'tahun')
+            ->when($this->month, function ($query) {
+                $query->whereMonth('tanggal', $this->month);
+            })
+            ->when($this->year, function ($query) {
+                $query->where('tahun_id', $this->year);
+            })
+            ->when($this->sumDa, function ($query) {
+                $query->where('sumber_dana_id', $this->sumDa);
+            })
+            ->when($this->proSum, function ($query) {
+                $query->where('program_sumber_id', $this->proSum);
+            });
     }
 
     public function headings(): array

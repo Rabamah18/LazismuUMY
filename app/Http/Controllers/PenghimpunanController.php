@@ -190,6 +190,11 @@ class PenghimpunanController extends Controller
     public function export()
     {
 
+        return view('penghimpunan.export');
+    }
+    public function exportExel()
+    {
+
         return Excel::download(new PenghimpunansExport, 'Penghimpunan.xlsx');
     }
 
