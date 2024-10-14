@@ -2,17 +2,29 @@
     <div>
         <div class="w-full mt-6">
             <div class="flex flex-col justify-between gap-2 w-gap-1 xl:flex-row">
-                <div class="flex items-center w-full gap-2 lg:w-1/3">
-                    <x-text-input wire:model.live.debounce="search" id="search_id" type="text" class="w-full lg:w-1/3"
-                        placeholder="{{ __('Search here') }}">
-                    </x-text-input>
-                    <x-secondary-button wire:click="clear()">
+                <div class="flex items-center w-full gap-2 lg:w-1/3" x-data="{ massage: '' }">
+                    {{-- <x-text-input wire:model.live.debounce="search" id="search_id" x-model="massage" type="text"
+                        class="w-full lg:w-1/3" placeholder="{{ __('Search here') }}">
+                    </x-text-input> --}}
+                    <div class="relative flex flex-col w-full max-w-xs gap-1 text-gray-600 dark:text-gray-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" aria-hidden="true"
+                            class="absolute left-2.5 top-1/2 size-5 -translate-y-1/2 text-gray-600/50 dark:text-gray-300/50">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                        </svg>
+                        <input wire:model.live.debounce="search" id="search_id" type="search"
+                            class="w-full py-2 pl-10 pr-2 text-sm border border-gray-300 rounded-md bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-gray-700 dark:bg-gray-900/50 dark:focus-visible:outline-white"
+                            name="search" placeholder="Search" aria-label="search" />
+                    </div>
+
+                    {{-- <x-secondary-button wire:click="clear()" x-on:clik="massage = ''">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" class="size-4">
                             <path d="M18 6 6 18"></path>
                             <path d="m6 6 12 12"></path>
                         </svg>
-                    </x-secondary-button>
+                    </x-secondary-button> --}}
                 </div>
 
                 <div class="flex items-center justify-between gap-2">

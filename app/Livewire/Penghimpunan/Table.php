@@ -54,10 +54,12 @@ class Table extends Component
     //     $this->showClearIcon = false;
     // }
 
-    public function clear()
-    {
-        $this->reset('search');
-    }
+    // public function clear()
+    // {
+    //     $this->search = '';
+    //     $this->reset('search');
+
+    // }
 
     public function render()
     {
