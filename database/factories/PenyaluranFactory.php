@@ -5,9 +5,11 @@ namespace Database\Factories;
 use App\Models\Pilar;
 use App\Models\Tahun;
 use App\Models\Ashnaf;
+use App\Models\Kabupaten;
 use App\Models\Lokasi;
 use App\Models\ProgramPilar;
 use App\Models\PenerimaManfaat;
+use App\Models\Provinsi;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -32,8 +34,8 @@ class PenyaluranFactory extends Factory
             'female_count' => fake()->numerify(),
             'ashnaf_id' => Ashnaf::all()->random()->id,
             // 'pilar_id' => Pilar::factory(),
-            'program_pilar_id' => ProgramPilar::all()->random()->id,
-            'lokasi_id' => Lokasi::factory(),
+            'provinsi_id' => Provinsi::all()->random()->id,
+            'kabupaten_id' => Kabupaten::all()->random()->id,
             'tahun_id' => Tahun::all()->random()->id,
         ];
     }

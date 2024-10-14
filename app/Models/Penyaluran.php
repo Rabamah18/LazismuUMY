@@ -42,6 +42,16 @@ class Penyaluran extends Model
         return $this->belongsTo(ProgramPilar::class);
     }
 
+    public function provinsi()
+    {
+        return $this->belongsTo(Provinsi::class);
+    }
+
+    public function kabupaten()
+    {
+        return $this->belongsTo(Kabupaten::class);
+    }
+
     public function tahun()
     {
         return $this->belongsTo(Tahun::class);

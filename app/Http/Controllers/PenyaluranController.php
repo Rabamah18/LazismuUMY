@@ -84,11 +84,10 @@ class PenyaluranController extends Controller
         $pilars = Pilar::query()->get();
         $programPilars = ProgramPilar::query()->get();
         $tahuns = Tahun::query()->get();
-        $lokasis = Lokasi::query()->get();
         $provinsis = Provinsi::query()->get();
         $kabupatens = Kabupaten::query()->get();
 
-        return view('penyaluran.create', compact('ashnafs', 'penerimaManfaats', 'pilars', 'programPilars', 'tahuns', 'lokasis', 'provinsis', 'kabupatens'));
+        return view('penyaluran.create', compact('ashnafs', 'penerimaManfaats', 'pilars', 'programPilars', 'tahuns', 'provinsis', 'kabupatens'));
     }
 
     /**
@@ -108,9 +107,8 @@ class PenyaluranController extends Controller
             'pilar_id' => 'nullable|exists:pilars,id',
             'program_pilar_id' => 'nullable|exists:program_pilars,id',
             'tahun_id' => 'nullable|exists:tahuns,id',
-            'lokasi_id' => 'nullable|exists:lokasis,id',
             'provinsi_id' => 'nullable|exists:provinsis,id',
-            'kabupaten_id' => 'nullable|exists:kabupaten,id',
+            'kabupaten_id' => 'nullable|exists:kabupatens,id',
 
         ]);
         //dd($request);
@@ -127,7 +125,6 @@ class PenyaluranController extends Controller
             'pilar_id' => $request->pilar_id,
             'program_pilar_id' => $request->program_pilar_id,
             'tahun_id' => $request->tahun_id,
-            'lokasi_id' => $request->lokasi_id,
             'provinsi_id' => $request->provinsi_id,
             'kabupaten_id' => $request->kabupaten_id,
 

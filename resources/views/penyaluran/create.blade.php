@@ -40,20 +40,35 @@
                         </div>
 
                         <div>
-                            <x-input-label for="lokasi_id" :value="__('Lokasi')" />
-                            <x-select-input id="lokasi" name="lokasi_id" class="block w-full mt-1">
-                                <option value="">{{ __('Select Lokasi') }}</option>
-                                @foreach ($lokasis as $lokasi)
-                                    <option value="{{ $lokasi->id }}"
-                                        {{ request('lokasi_id') == 'lokasi_id' ? 'selected' : '' }}>
+                            <x-input-label for="provinsi_id" :value="__('Provinsi')" />
+                            <x-select-input id="provinsi" name="provinsi_id" class="block w-full mt-1">
+                                <option value="">{{ __('Select Provinsi') }}</option>
+                                @foreach ($provinsis as $provinsi)
+                                    <option value="{{ $provinsi->id }}"
+                                        {{ request('provinsi_id') == 'provinsi_id' ? 'selected' : '' }}>
                                         {{ __('Provinsi') }}
-                                        {{ $lokasi->provinsi->name}}
-                                        {{ __('Kabupaten') }}
-                                        {{ $lokasi->kabupaten->name}}
+                                        {{ $provinsi->name}}
                                     </option>
                                 @endforeach
                             </x-select-input>
-                            <x-input-error class="mt-2" :messages="$errors->get('lokasi_id')" />
+                            <x-input-error class="mt-2" :messages="$errors->get('provinsi_id')" />
+                        </div>
+
+                        <div>
+                            <x-input-label for="kabupaten_id" :value="__('Kabupaten')" />
+                            <x-select-input id="kabupaten" name="kabupaten_id" class="block w-full mt-1">
+                                <option value="">{{ __('Select Kabupaten') }}</option>
+                                @foreach ($kabupatens as $kabupaten)
+                                    <option value="{{ $kabupaten->id }}"
+                                        {{ request('kabupaten_id') == 'kabupaten_id' ? 'selected' : '' }}>
+                                        {{ __('Provinsi') }}
+                                        {{ $provinsi->name }} -
+                                        {{ __('Kabupaten') }}
+                                        {{ $kabupaten->name}}
+                                    </option>
+                                @endforeach
+                            </x-select-input>
+                            <x-input-error class="mt-2" :messages="$errors->get('kabupaten_id')" />
                         </div>
 
                         <div>
@@ -106,7 +121,7 @@
                                     <option value="{{ $programPilar->id }}"
                                         {{ request('program_pilar_id') == 'program_pilar_id' ? 'selected' : '' }}>
                                         {{ __('Pilar') }}
-                                        {{ $programPilar->pilar->name }}
+                                        {{ $programPilar->pilar->name }} -
                                         {{ __('Program') }}
                                         {{ $programPilar->name }}
                                     </option>
