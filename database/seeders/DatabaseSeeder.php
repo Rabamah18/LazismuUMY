@@ -10,6 +10,7 @@ use App\Models\PenerimaManfaat;
 use App\Models\Penghimpunan;
 use App\Models\Penyaluran;
 use App\Models\ProgramPilar;
+use App\Models\Provinsi;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -28,13 +29,16 @@ class DatabaseSeeder extends Seeder
         $this->call(ProgramSumberSeeder::class);
         $this->call(AshnafSeeder::class);
         $this->call(SumberDanaSeeder::class);
+        $this->call(ProvinsiSeeder::class);
+        $this->call(KabupatenSeeder::class);
 
         Lokasi::factory(10)->create();
         ProgramPilar::factory(10)->create();
         Donatur::factory(10)->create();
         PenerimaManfaat::factory(10)->create();
         Penghimpunan::factory(100)->create();
-        Penyaluran::factory(10)->create();
+        Penyaluran::factory(100)->create();
+
 
     }
 }

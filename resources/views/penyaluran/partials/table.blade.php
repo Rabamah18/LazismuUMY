@@ -125,7 +125,7 @@
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
-                                {{ $penyaluran->lokasi->provinsi->name ?? '-' }}
+                                {{ $penyaluran->provinsi->name ?? '-' }}
                             </p>
 
                         </div>
@@ -133,7 +133,7 @@
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
-                                {{ $penyaluran->lokasi->kabupaten->name ?? '-' }}
+                                {{ $penyaluran->kabupaten->name ?? '-' }}
                             </p>
 
                         </div>
