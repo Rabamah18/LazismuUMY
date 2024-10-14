@@ -21,7 +21,6 @@ class PenerimaManfaatFactory extends Factory
             'lembaga_count' => fake()->numerify(),
             'male_count' => fake()->numerify(),
             'female_count' => fake()->numerify(),
-            'lokasi_id' => Lokasi::factory(),
         ];
     }
 }
