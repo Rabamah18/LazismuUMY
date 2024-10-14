@@ -34,6 +34,7 @@ class PenyaluranFactory extends Factory
             'female_count' => fake()->numerify(),
             'ashnaf_id' => Ashnaf::all()->random()->id,
             // 'pilar_id' => Pilar::factory(),
+            'program_pilar_id' => ProgramPilar::all()->random()->id,
             'provinsi_id' => Provinsi::all()->random()->id,
             'kabupaten_id' => Kabupaten::all()->random()->id,
             'tahun_id' => Tahun::all()->random()->id,
