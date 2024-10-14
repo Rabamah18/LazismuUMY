@@ -29,7 +29,7 @@
                     </div>
                 </div> --}}
 
-                @livewire('penghimpunan.export-exel')
+                @livewire('penghimpunan.export-filter')
 
             </x-card.app>
         </div>

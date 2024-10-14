@@ -8,19 +8,19 @@
                             {{ __('Data Penghimpunan') }}
                         </x-card.title>
                         <div class="ml-auto">
-                            <x-button.link-primary href="{{ route('penghimpunan.index') }}">
+                            <x-primary-button wire:click="">
                                 {{ __('Cancel') }}
-                            </x-button.link-primary>
+                            </x-primary-button>
                         </div>
                         <div class="ml-auto">
-                            <x-button.link-primary href="{{ route('penghimpunan.export') }}">
+                            <x-primary-button >
                                 {{ __('Export Exel') }}
-                            </x-button.link-primary>
+                            </x-primary-button>
                         </div>
                         <div class="ml-auto">
-                            <x-button.link-primary href="{{ route('penghimpunan.exportcsv') }}">
+                            <x-primary-button >
                                 {{ __('Export CSV') }}
-                            </x-button.link-primary>
+                            </x-primary-button>
                         </div>
                     </div>
                     <div class="space-y-1">

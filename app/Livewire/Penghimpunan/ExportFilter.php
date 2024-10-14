@@ -8,7 +8,7 @@ use App\Models\SumberDana;
 use App\Models\Tahun;
 use Livewire\Component;
 
-class ExportExel extends Component
+class ExportFilter extends Component
 {
     public $sumberDanas;
 
@@ -34,6 +34,16 @@ class ExportExel extends Component
 
     }
 
+    public function exportExel()
+    {
+        
+    }
+
+    public function exportCsv()
+    {
+
+    }
+
     public function render()
     {
         $penghimpunans = Penghimpunan::orderByDesc('updated_at')
@@ -51,6 +61,6 @@ class ExportExel extends Component
             })
             ->get();
 
-        return view('livewire.penghimpunan.export-exel', ['penghimpunans' => $penghimpunans]);
+        return view('livewire.penghimpunan.export-filter', ['penghimpunans' => $penghimpunans]);
     }
 }

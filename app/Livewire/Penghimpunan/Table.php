@@ -43,24 +43,6 @@ class Table extends Component
 
     }
 
-    // public function updatedSearch()
-    // {
-    //     $this->showClearIcon = $this->search !== '';
-    // }
-
-    // public function clearSearch()
-    // {
-    //     $this->search = '';
-    //     $this->showClearIcon = false;
-    // }
-
-    // public function clear()
-    // {
-    //     $this->search = '';
-    //     $this->reset('search');
-
-    // }
-
     public function render()
     {
         $penghimpunans = Penghimpunan::orderByDesc('updated_at')
