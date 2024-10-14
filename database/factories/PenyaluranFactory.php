@@ -34,7 +34,7 @@ class PenyaluranFactory extends Factory
             // 'pilar_id' => Pilar::factory(),
             'program_pilar_id' => ProgramPilar::all()->random()->id,
             'lokasi_id' => Lokasi::factory(),
-            'tahun_id' => Tahun::factory(),
+            'tahun_id' => Tahun::all()->random()->id,
         ];
     }
 }
