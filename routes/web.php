@@ -59,8 +59,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('penerimamanfaat', PenerimaManfaatController::class);
 
     Route::get('penghimpunan/export', [PenghimpunanController::class, 'export'])->name('penghimpunan.export');
-    Route::get('penghimpunan/exportexel', [PenghimpunanController::class, 'exportExel'])->name('penghimpunan.exportexel');
-    Route::get('penghimpunan/exportcsv', [PenghimpunanController::class, 'exportCsv'])->name('penghimpunan.exportcsv');
+    // Route::get('penghimpunan/exportexel', [PenghimpunanController::class, 'exportExel'])->name('penghimpunan.exportexel');
+    // Route::get('penghimpunan/exportcsv', [PenghimpunanController::class, 'exportCsv'])->name('penghimpunan.exportcsv');
     Route::get('penghimpunan/importexel', [PenghimpunanController::class, 'importExel'])->name('penghimpunan.importexel');
     Route::get('penghimpunan/importcsv', [PenghimpunanController::class, 'importCsv'])->name('penghimpunan.importcsv');
     Route::patch('penghimpunan/importfileexel', [PenghimpunanController::class, 'importFileExel'])->name('penghimpunan.importfileexel');

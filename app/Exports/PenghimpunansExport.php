@@ -26,29 +26,28 @@ class PenghimpunansExport implements FromQuery, ShouldAutoSize, WithColumnFormat
         ];
     }
 
-    public int $month;
+    public string $month;
 
-    public int $year;
+    public string $year;
 
     public string $sumDa;
 
     public string $proSum;
 
-    public function forMonth(int $month, int $year, string $sumDa, string $proSum)
+    public function __construct(string $month, string $year, string $sumDa, string $proSum)
     {
         $this->month = $month;
         $this->year = $year;
         $this->sumDa = $sumDa;
         $this->proSum = $proSum;
 
-        return $this;
     }
 
     public function query()
     {
         // return Penghimpunan::query()->with('sumberDana', 'programSumber', 'tahun');
 
-        $penghimpunans = Penghimpunan::orderByDesc('updated_at')
+        return Penghimpunan::orderByDesc('updated_at')
             ->with('sumberDana', 'programSumber', 'tahun')
             ->when($this->month, function ($query) {
                 $query->whereMonth('tanggal', $this->month);

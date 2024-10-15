@@ -8,17 +8,17 @@
                             {{ __('Data Penghimpunan') }}
                         </x-card.title>
                         <div class="ml-auto">
-                            <x-primary-button wire:click="">
+                            <x-button.link-primary href="{{ route('penghimpunan.index') }}">
                                 {{ __('Cancel') }}
-                            </x-primary-button>
+                            </x-button.link-primary>
                         </div>
                         <div class="ml-auto">
-                            <x-primary-button >
+                            <x-primary-button wire:click="exportExel">
                                 {{ __('Export Exel') }}
                             </x-primary-button>
                         </div>
-                        <div class="ml-auto">
-                            <x-primary-button >
+                        <div class="ml-auto" wire:click="exportCsv">
+                            <x-primary-button>
                                 {{ __('Export CSV') }}
                             </x-primary-button>
                         </div>

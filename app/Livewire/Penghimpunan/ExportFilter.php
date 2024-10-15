@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Penghimpunan;
 
+use App\Exports\PenghimpunansExport;
 use App\Models\Penghimpunan;
 use App\Models\ProgramSumber;
 use App\Models\SumberDana;
@@ -12,19 +13,19 @@ class ExportFilter extends Component
 {
     public $sumberDanas;
 
-    public $selectedSumberDana;
+    public $selectedSumberDana = '';
 
     public $programSumbers;
 
-    public $selectedProgramSumber;
+    public $selectedProgramSumber = '';
 
     public $bulan;
 
-    public $selectedBulan;
+    public $selectedBulan = '';
 
     public $tahuns;
 
-    public $selectedTahun;
+    public $selectedTahun = '';
 
     public function mount()
     {
@@ -36,12 +37,12 @@ class ExportFilter extends Component
 
     public function exportExel()
     {
-        
+        return (new PenghimpunansExport(str($this->selectedBulan), str($this->selectedTahun), str($this->selectedSumberDana), str($this->selectedProgramSumber)))->download('Penghimpunan.xlsx');
     }
 
     public function exportCsv()
     {
-
+        return (new PenghimpunansExport(str($this->selectedBulan), str($this->selectedTahun), str($this->selectedSumberDana), str($this->selectedProgramSumber)))->download('Penghimpunan.csv');
     }
 
     public function render()
