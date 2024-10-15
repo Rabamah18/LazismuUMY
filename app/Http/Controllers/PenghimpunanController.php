@@ -192,17 +192,6 @@ class PenghimpunanController extends Controller
 
         return view('penghimpunan.export');
     }
-    public function exportExel()
-    {
-
-        return Excel::download(new PenghimpunansExport, 'Penghimpunan.xlsx');
-    }
-
-    public function exportCsv()
-    {
-
-        return Excel::download(new PenghimpunansExport, 'Penghimpunan.csv');
-    }
 
     public function importFileExel(Request $request)
     {
@@ -237,23 +226,4 @@ class PenghimpunanController extends Controller
 
         return redirect()->back()->with('success', 'Data imported successfully!');
     }
-
-    //     public function import(Request $request)
-    // {
-    //     // Validate the request to ensure a file is uploaded
-    //     $request->validate([
-    //         'doc' => 'required|file|mimes:xlsx,xls,csv',
-    //     ]);
-
-    //     // Get the uploaded file
-    //     $file = $request->file('doc');
-
-    //     // Store the file in the 'penghimpunan' directory
-    //     $path = $file->store('penghimpunan');
-
-    //     // Import the file using the correct path
-    //     Excel::import(new PenghimpunanImport, storage_path('app/' . $path));
-
-    //     return redirect()->back()->with('success', 'Data imported successfully!');
-    // }
 }
