@@ -9,12 +9,12 @@ use App\Models\Pilar;
 use App\Models\ProgramPilar;
 use App\Models\Provinsi;
 use App\Models\Tahun;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class Create extends Component
 {
-
     #[Validate]
     public $tanggal;
 
@@ -26,7 +26,7 @@ class Create extends Component
 
     public $selectedProvinsi;
 
-    public $kabupatens;
+    public Collection $kabupatens;
 
     public $selectedKabupaten;
 
@@ -57,7 +57,7 @@ class Create extends Component
 
         $this->tahuns = Tahun::query()->get();
         $this->provinsis = Provinsi::query()->get();
-        $this->kabupatens = Kabupaten::query()->get();
+        // $this->kabupatens = Kabupaten::query()->get();
         $this->ashnafs = Ashnaf::query()->get();
         $this->pilars = Pilar::query()->get();
         $this->programPilars = ProgramPilar::query()->get();
@@ -81,12 +81,19 @@ class Create extends Component
         ];
     }
 
+    public function updatedSelectedProvinsi()
+    {
+        $this->kabupatens = Kabupaten::query()->where('provinsi_id', $this->selectedProvinsi)->get();
+        $this->reset('selectedKabupaten');
+
+    }
+
     public function createPenyaluran()
     {
         $validated = $this->validate();
 
         Penyaluran::create([
-            $validated
+            $validated,
             // 'tanggal' => $request->tanggal,
             // 'tahun_id' => $request->tahun_id,
             // 'provinsi_id' => $request->provinsi_id,
@@ -100,6 +107,7 @@ class Create extends Component
             // 'program_pilar_id' => $request->program_pilar_id,
             // 'nominal' => $request->nominal,
         ]);
+
         return redirect()->to('/penyaluran');
     }
 
@@ -107,5 +115,4 @@ class Create extends Component
     {
         return view('livewire.penyaluran.create');
     }
-
 }
