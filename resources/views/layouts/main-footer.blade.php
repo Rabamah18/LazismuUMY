@@ -5,7 +5,7 @@
         <div class=" col-span-full lg:col-span-2">
             {{-- <a class="flex-none text-xl font-semibold text-black focus:outline-none focus:opacity-80 dark:text-white"
                 href="#" aria-label="Brand">Brand</a> --}}
-            <x-application-logo class="block w-auto h-20 text-gray-800 fill-current dark:text-gray-200" />
+            <x-application-logo class="block w-auto text-gray-800 fill-current h-28 dark:text-gray-200" />
 
             <p class="mt-3 text-xs text-gray-600 sm:text-sm dark:text-neutral-400">
                 Lazismu UMY merupakan salah satu kantor layanan Lazismu di Daerah Istimewa Yogyakarta. Berada dinaungan
