@@ -46,7 +46,7 @@ class Create extends Component
 
     public $selectedPilar;
 
-    public $programPilars;
+    public Collection $programPilars;
 
     public $selectedProgramPilar;
 
@@ -60,7 +60,7 @@ class Create extends Component
         // $this->kabupatens = Kabupaten::query()->get();
         $this->ashnafs = Ashnaf::query()->get();
         $this->pilars = Pilar::query()->get();
-        $this->programPilars = ProgramPilar::query()->get();
+        // $this->programPilars = ProgramPilar::query()->get();
     }
 
     public function rules()
@@ -76,7 +76,7 @@ class Create extends Component
             'pria' => 'nullable|numeric',
             'wanita' => 'nullable|numeric',
             'selectedPilar' => 'nullable|exists:pilars,id',
-            'selectedProgramPilar' => 'nullable|exists:programPilars,id',
+            'selectedProgramPilar' => 'nullable|exists:program_pilars,id',
 
         ];
     }
@@ -88,27 +88,34 @@ class Create extends Component
 
     }
 
+    public function updatedSelectedPilar()
+    {
+        $this->programPilars = ProgramPilar::query()->where('pilar_id', $this->selectedPilar)->get();
+        $this->reset('selectedProgramPilar');
+    }
+
     public function createPenyaluran()
     {
         $validated = $this->validate();
 
         Penyaluran::create([
-            $validated,
-            // 'tanggal' => $request->tanggal,
-            // 'tahun_id' => $request->tahun_id,
-            // 'provinsi_id' => $request->provinsi_id,
-            // 'kabupaten_id' => $request->kabupaten_id,
-            // 'uraian' => $request->uraian,
-            // 'ashnaf_id' => $request->ashnaf_id,
-            // 'lembaga_count' => $request->lembaga,
-            // 'male_count' => $request->pria,
-            // 'female_count' => $request->wanita,
-            // 'pilar_id' => $request->pilar_id,
-            // 'program_pilar_id' => $request->program_pilar_id,
-            // 'nominal' => $request->nominal,
+            'tanggal' => $this->tanggal,
+            'uraian' => $this->uraian,
+            'nominal' => $this->nominal,
+            'ashnaf_id' => $this->selectedAshnaf,
+            'lembaga_count' => $this->lembaga,
+            'male_count' => $this->pria,
+            'female_count' => $this->wanita,
+            'pilar_id' => $this->selectedPilar,
+            'program_pilar_id' => $this->selectedProgramPilar,
+            'tahun_id' => $this->selectedTahun,
+            'provinsi_id' => $this->selectedProvinsi,
+            'kabupaten_id' => $this->selectedKabupaten,
+
+
         ]);
 
-        return redirect()->to('/penyaluran');
+        return redirect()->route('penyaluran.index');
     }
 
     public function render()
