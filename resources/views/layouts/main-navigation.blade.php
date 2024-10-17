@@ -1,12 +1,12 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100 dark:bg-gray-800 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
     <div class="max-w-full px-4 mx-auto sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
+        <div class="flex justify-between h-24">
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex items-center shrink-0">
                     <a href="{{ route('home') }}">
-                        <x-application-logo class="block w-auto text-gray-800 fill-current h-9 dark:text-gray-200" />
+                        <x-application-logo class="block w-auto h-20 text-gray-800 fill-current dark:text-gray-200" />
                     </a>
                 </div>
 
