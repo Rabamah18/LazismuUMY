@@ -15,15 +15,23 @@
                     {{ __('Create a new Data Penghimpunan.') }}
                 </x-card.description>
                 <div class="max-w-xl">
-                    <form method="post" action="{{ route('penghimpunan.store') }}" class="mt-6 space-y-6">
+                    <form method="post" action="{{ route('penghimpunan.store') }}" class="mt-6 space-y-6"
+                        x-data="{
+                            today: new Date().toISOString().split('T')[0],
+                            selectedYear: '',
+                            updateYear() {
+                                // Extract the year from the 'tanggal' input value
+                                this.selectedYear = new Date(this.today).getFullYear();
+                            }
+                        }" x-init="updateYear()">
                         @csrf
                         @method('post')
-                        <div x-data="{ today: new Date().toISOString().split('T')[0] }">
+                        <div>
                             <x-input-label for="tanggal" :value="__('Tanggal')" />
                             <x-text-input id="tanggal" name="tanggal" type="date" class="block w-full mt-1"
-                                :value="old('tanggal')" autofocus required autocomplete="tanggal" x-model="today" />
+                                :value="old('tanggal')" autofocus required autocomplete="tanggal" x-model="today"
+                                @change="updateYear" />
                             <x-input-error class="mt-2" :messages="$errors->get('tanggal')" />
-
                         </div>
 
                         <div>
@@ -89,13 +97,13 @@
                             <x-input-error class="mt-2" :messages="$errors->get('program_sumber_id')" />
                         </div>
 
-                        <div>
+                        <div class="mt-4">
                             <x-input-label for="tahun_id" :value="__('Tahun')" />
                             <x-select-input id="tahun" name="tahun_id" class="block w-full mt-1">
                                 <option value="">{{ __('Select Tahun') }}</option>
                                 @foreach ($tahuns as $tahun)
-                                    <option value="{{ $tahun->id }}"
-                                        {{ request('tahun_id') == 'tahun_id' ? 'selected' : '' }}>
+                                    <option
+                                        value="{{ $tahun->id }}":selected="selectedYear == {{ $tahun->name }} ? 'selected' : ''">
                                         {{ $tahun->name }}
                                     </option>
                                 @endforeach
