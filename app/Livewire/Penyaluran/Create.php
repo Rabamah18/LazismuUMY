@@ -10,6 +10,7 @@ use App\Models\ProgramPilar;
 use App\Models\Provinsi;
 use App\Models\Tahun;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Carbon;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -18,7 +19,7 @@ class Create extends Component
     #[Validate]
     public $tanggal;
 
-    public $tahuns;
+    public Collection $tahuns;
 
     public $selectedTahun;
 
@@ -55,7 +56,14 @@ class Create extends Component
     public function mount()
     {
 
+        $this->tanggal = Carbon::now()->format('Y-m-d');
         $this->tahuns = Tahun::query()->get();
+
+
+        // query to find the record in Tahun where 'tahun' matches the current year
+        $this->selectedTahun = Tahun::query()
+            ->where('name', Carbon::now()->year)
+            ->first()->id;
         $this->provinsis = Provinsi::query()->get();
         // $this->kabupatens = Kabupaten::query()->get();
         $this->ashnafs = Ashnaf::query()->get();
@@ -111,7 +119,6 @@ class Create extends Component
             'tahun_id' => $this->selectedTahun,
             'provinsi_id' => $this->selectedProvinsi,
             'kabupaten_id' => $this->selectedKabupaten,
-
 
         ]);
 

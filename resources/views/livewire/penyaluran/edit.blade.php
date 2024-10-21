@@ -1,7 +1,6 @@
 <div>
-    <form wire:submit='editPenyaluran' class="mt-6 space-y-6">
+    <form wire:submit='updatePenyaluran' class="mt-6 space-y-6">
         <div>
-            @dump($selectedPilar)
             <x-input-label for="tanggal" :value="__('Tanggal')" />
             <x-text-input wire:model='tanggal' id="tanggal" type='date' class="block w-full mt-1" :value="old('tanggal')" autofocus
                 required autocomplete="tanggal" />
