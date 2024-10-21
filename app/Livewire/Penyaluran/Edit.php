@@ -2,24 +2,26 @@
 
 namespace App\Livewire\Penyaluran;
 
+use App\Models\Pilar;
+use App\Models\Tahun;
 use App\Models\Ashnaf;
+use Livewire\Component;
+use App\Models\Provinsi;
 use App\Models\Kabupaten;
 use App\Models\Penyaluran;
-use App\Models\Pilar;
 use App\Models\ProgramPilar;
-use App\Models\Provinsi;
-use App\Models\Tahun;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Carbon;
 use Livewire\Attributes\Validate;
-use Livewire\Component;
 
-class Create extends Component
+class Edit extends Component
 {
+
     #[Validate]
+    public $penyaluran;
+
     public $tanggal;
 
-    public Collection $tahuns;
+    public $tahuns;
 
     public $selectedTahun;
 
@@ -27,7 +29,7 @@ class Create extends Component
 
     public $selectedProvinsi;
 
-    public Collection $kabupatens;
+    public $kabupatens;
 
     public $selectedKabupaten;
 
@@ -47,28 +49,56 @@ class Create extends Component
 
     public $selectedPilar;
 
-    public Collection $programPilars;
+    public $programPilars;
 
     public $selectedProgramPilar;
 
     public $nominal;
 
-    public function mount()
+
+
+    public function mount(Penyaluran $penyaluran)
     {
 
-        $this->tanggal = Carbon::now()->format('Y-m-d');
+        $this->tanggal = Carbon::parse($this->penyaluran->tanggal)->format('Y-m-d');
         $this->tahuns = Tahun::query()->get();
-
-
-        // query to find the record in Tahun where 'tahun' matches the current year
-        $this->selectedTahun = Tahun::query()
-            ->where('name', Carbon::now()->year)
-            ->first()->id;
+        $this->selectedTahun = $this->penyaluran->tahun_id;
         $this->provinsis = Provinsi::query()->get();
-        // $this->kabupatens = Kabupaten::query()->get();
+        $this->selectedProvinsi = $this->penyaluran->provinsi_id;
+        $this->kabupatens = Kabupaten::query()->get();
+        $this->selectedKabupaten = $this->penyaluran->kabupaten_id;
+        $this->uraian = $this->penyaluran->uraian;
         $this->ashnafs = Ashnaf::query()->get();
+        $this->selectedAshnaf = $this->penyaluran->ashnaf_id;
+        $this->lembaga = $this->penyaluran->lembaga_count;
+        $this->pria = $this->penyaluran->male_count;
+        $this->wanita = $this->penyaluran->female_count;
         $this->pilars = Pilar::query()->get();
-        // $this->programPilars = ProgramPilar::query()->get();
+        $this->selectedPilar = $this->penyaluran->programPilar->pilar_id;
+        $this->programPilars = ProgramPilar::query()->get();
+        $this->selectedProgramPilar = $this->penyaluran->program_pilar_id;
+        $this->nominal = $this->penyaluran->nominal;
+
+
+
+    }
+
+    public function setPenyaluran(Penyaluran $penyaluran)
+    {
+        $this->tanggal = $penyaluran->tanggal;
+        $this->uraian = $penyaluran->uraian;
+        $this->nominal = $penyaluran->nominal;
+        $this->selectedAshnaf = $penyaluran->ashnaf;
+        $this->lembaga = $penyaluran->lembaga_count;
+        $this->pria = $penyaluran->male_count;
+        $this->wanita = $penyaluran->female_count;
+        $this->selectedPilar = $penyaluran->pilar;
+        $this->selectedProgramPilar = $penyaluran->programPilar;
+        $this->selectedTahun = $penyaluran->tahun;
+        $this->selectedProvinsi = $penyaluran->provinsi;
+        $this->selectedKabupaten = $penyaluran->kabupaten;
+
+
     }
 
     public function rules()
@@ -102,11 +132,11 @@ class Create extends Component
         $this->reset('selectedProgramPilar');
     }
 
-    public function createPenyaluran()
+    public function updatePenyaluran()
     {
         $validated = $this->validate();
 
-        Penyaluran::create([
+        $this->penyaluran->update([
             'tanggal' => $this->tanggal,
             'uraian' => $this->uraian,
             'nominal' => $this->nominal,
@@ -119,7 +149,6 @@ class Create extends Component
             'tahun_id' => $this->selectedTahun,
             'provinsi_id' => $this->selectedProvinsi,
             'kabupaten_id' => $this->selectedKabupaten,
-
         ]);
 
         return redirect()->route('penyaluran.index');
@@ -127,6 +156,7 @@ class Create extends Component
 
     public function render()
     {
-        return view('livewire.penyaluran.create');
+        //dd($this->penyaluran);
+        return view('livewire.penyaluran.edit');
     }
 }

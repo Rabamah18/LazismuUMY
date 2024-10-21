@@ -1,5 +1,5 @@
 <div>
-    <form wire:submit='createPenyaluran' class="mt-6 space-y-6">
+    <form wire:submit='updatePenyaluran' class="mt-6 space-y-6">
         <div>
             <x-input-label for="tanggal" :value="__('Tanggal')" />
             <x-text-input wire:model='tanggal' id="tanggal" type='date' class="block w-full mt-1" :value="old('tanggal')" autofocus
@@ -12,9 +12,9 @@
             <x-select-input wire:model.change="selectedTahun" id="tahun" class="block w-full mt-1">
                 <option value="">{{ __('Select Tahun') }}</option>
                 @foreach ($tahuns as $tahun)
-                    <option value="{{ $tahun->id }}" {{ request('tahun_id') == 'tahun_id' ? 'selected' : '' }}>
-                        {{ $tahun->name }}
-                    </option>
+                <option value="{{ $tahun->id }}" {{ request('tahun_id') == 'tahun_id' ? 'selected' : '' }}>
+                    {{ $tahun->name }}
+                </option>
                 @endforeach
             </x-select-input>
             <x-input-error class="mt-2" :messages="$errors->get('tahun_id')" />
@@ -67,9 +67,9 @@
             <x-select-input wire:model.change="selectedAshnaf" id="ashnaf" class="block w-full mt-1">
                 <option value="">{{ __('Select Ashnaf') }}</option>
                 @foreach ($ashnafs as $ashnaf)
-                    <option value="{{ $ashnaf->id }}" {{ request('ashnaf_id') == 'ashnaf_id' ? 'selected' : '' }}>
-                        {{ $ashnaf->name }}
-                    </option>
+                <option value="{{ $ashnaf->id }}" {{ request('ashnaf_id') == 'ashnaf_id' ? 'selected' : '' }}>
+                    {{ $ashnaf->name }}
+                </option>
                 @endforeach
             </x-select-input>
             <x-input-error class="mt-2" :messages="$errors->get('ashnaf_id')" />
@@ -95,7 +95,6 @@
                 required autocomplete="wanita" />
             <x-input-error class="mt-2" :messages="$errors->get('wanita')" />
         </div>
-
 
         <div>
             <x-input-label for="selectedPilar" :value="__('Pilar')" />
