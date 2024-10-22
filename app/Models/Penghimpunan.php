@@ -19,11 +19,6 @@ class Penghimpunan extends Model
     ];
 
 
-    public function donatur(): BelongsTo
-    {
-        return $this->belongsTo(Donatur::class);
-    }
-
     public function sumberDana()
     {
         return $this->belongsTo(SumberDana::class);

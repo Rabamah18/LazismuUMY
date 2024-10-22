@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\PenghimpunansExport;
-use App\Imports\PenghimpunanImport;
 use App\Imports\PenghimpunanImportCsv;
 use App\Imports\PenghimpunanImportExel;
 use App\Models\Donatur;
@@ -28,7 +26,7 @@ class PenghimpunanController extends Controller
         $tahuns = Tahun::query()->get();
 
         $penghimpunans = Penghimpunan::orderByDesc('tanggal')
-            ->with('donatur', 'sumberDana', 'programSumber', 'tahun')
+            ->with('sumberDana', 'programSumber', 'tahun')
             ->when($request->search, function ($query, $search) {
                 $query->where(function ($query) use ($search) {
                     $query->where('uraian', 'like', '%'.$search.'%')

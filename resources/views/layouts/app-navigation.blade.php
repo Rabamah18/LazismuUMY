@@ -177,9 +177,6 @@
             <x-responsive-nav-link :href="route('programsumber.index')" :active="request()->routeIs('programsumber.*')">
                 {{ __('Program Sumber') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('penerimamanfaat.index')" :active="request()->routeIs('penerimamanfaat.*')">
-                {{ __('Penerima Manfaat') }}
-            </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('ashnaf.index')" :active="request()->routeIs('ashnaf.*')">
                 {{ __('Ashnaf') }}
             </x-responsive-nav-link>
