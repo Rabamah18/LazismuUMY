@@ -4,13 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\Donatur;
-use App\Models\Lokasi;
-use App\Models\PenerimaManfaat;
 use App\Models\Penghimpunan;
 use App\Models\Penyaluran;
 use App\Models\ProgramPilar;
-use App\Models\Provinsi;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -33,10 +29,8 @@ class DatabaseSeeder extends Seeder
         $this->call(TahunSeeder::class);
 
         ProgramPilar::factory(10)->create();
-        PenerimaManfaat::factory(10)->create();
         Penghimpunan::factory(100)->create();
         Penyaluran::factory(100)->create();
-
 
     }
 }
