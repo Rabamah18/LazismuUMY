@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pilar;
-use App\Models\Tahun;
-use App\Models\Ashnaf;
-use App\Models\Lokasi;
-use App\Models\Penyaluran;
-use App\Models\ProgramPilar;
-use Illuminate\Http\Request;
-use App\Models\PenerimaManfaat;
 use App\Exports\PenyaluransExport;
 use App\Imports\PenyaluranImportCsv;
 use App\Imports\PenyaluranImportExel;
+use App\Models\Ashnaf;
 use App\Models\Kabupaten;
+use App\Models\Lokasi;
+use App\Models\PenerimaManfaat;
+use App\Models\Penyaluran;
+use App\Models\Pilar;
+use App\Models\ProgramPilar;
 use App\Models\Provinsi;
-use Maatwebsite\Excel\Facades\Excel;
+use App\Models\Tahun;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PenyaluranController extends Controller
 {
@@ -34,7 +34,7 @@ class PenyaluranController extends Controller
         $kabupatens = Kabupaten::query()->get();
 
         $penyalurans = Penyaluran::orderByDesc('tanggal')
-            ->with('ashnaf', 'penerimaManfaat', 'tahun', 'pilar', 'programPilar')
+            ->with('ashnaf', 'tahun', 'pilar', 'programPilar')
             ->when($request->search, function ($query, $search) {
                 $query->where(function ($query) use ($search) {
                     $query->where('uraian', 'like', '%'.$search.'%')
@@ -80,7 +80,7 @@ class PenyaluranController extends Controller
     public function create()
     {
         $ashnafs = Ashnaf::query()->get();
-        $penerimaManfaats = PenerimaManfaat::query()->get();
+        // $penerimaManfaats = PenerimaManfaat::query()->get();
         $pilars = Pilar::query()->get();
         $programPilars = ProgramPilar::query()->get();
         $tahuns = Tahun::query()->get();
@@ -151,7 +151,7 @@ class PenyaluranController extends Controller
     public function edit(Penyaluran $penyaluran)
     {
         $ashnafs = Ashnaf::query()->get();
-        $penerimaManfaats = PenerimaManfaat::query()->get();
+        // $penerimaManfaats = PenerimaManfaat::query()->get();
         $pilars = Pilar::query()->get();
         $programPilars = ProgramPilar::query()->get();
         $tahuns = Tahun::query()->get();

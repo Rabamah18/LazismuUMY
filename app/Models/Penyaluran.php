@@ -22,10 +22,6 @@ class Penyaluran extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function penerimaManfaat()
-    {
-        return $this->belongsTo(PenerimaManfaat::class);
-    }
 
     public function ashnaf()
     {
