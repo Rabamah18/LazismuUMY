@@ -52,12 +52,6 @@
                                 <x-dropdown-link :href="route('programsumber.index')">
                                     {{ __('Program Sumber') }}
                                 </x-dropdown-link>
-                                <x-dropdown-link :href="route('penerimamanfaat.index')">
-                                    {{ __('Penerima Manfaat') }}
-                                </x-dropdown-link>
-                                <x-dropdown-link :href="route('donatur.index')">
-                                    {{ __('Donatur') }}
-                                </x-dropdown-link>
                                 <x-dropdown-link :href="route('ashnaf.index')">
                                     {{ __('Ashnaf') }}
                                 </x-dropdown-link>
