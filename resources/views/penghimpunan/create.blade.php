@@ -36,8 +36,8 @@
 
                         <div>
                             <x-input-label for="uraian" :value="__('Uraian')" />
-                            <x-textarea-input id="uraian" name="uraian" type="text" class="block w-full mt-1"
-                                :value="old('uraian')" required autocomplete="uraian" />
+                            <x-textarea-input x-autosize id="uraian" name="uraian" type="text"
+                                class="block w-full mt-1" :value="old('uraian')" required autocomplete="uraian" />
                             <x-input-error class="mt-2" :messages="$errors->get('uraian')" />
                         </div>
 

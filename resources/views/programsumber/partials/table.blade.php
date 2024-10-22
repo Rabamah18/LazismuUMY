@@ -8,9 +8,6 @@
                 <th scope="col" class="px-6 py-3 lg:table-cell">
                     {{ __('Name') }}
                 </th>
-                <th scope="col" class="px-6 py-3 lg:table-cell">
-                    {{ __('Rekening Prosum') }}
-                </th>
                 <th scope="col" class="py-3 pl-6 pr-2 lg:pr-4">
                     {{ __('Option') }}
                 </th>
@@ -34,14 +31,6 @@
                         <div class="flex">
                             <p>
                                 {{ $programSumber->name }}
-                            </p>
-
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 lg:table-cell">
-                        <div class="flex">
-                            <p>
-                                {{ $programSumber->rekening_prosum }}
                             </p>
 
                         </div>

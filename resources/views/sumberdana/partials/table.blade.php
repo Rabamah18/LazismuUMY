@@ -8,6 +8,9 @@
                 <th scope="col" class="px-6 py-3 lg:table-cell">
                     {{ __('Name') }}
                 </th>
+                <th scope="col" class="px-6 py-3 lg:table-cell">
+                    {{ __('Rekening Sumber Dana') }}
+                </th>
                 <th scope="col" class="py-3 pl-6 pr-2 lg:pr-4">
                     {{ __('Option') }}
                 </th>
@@ -32,7 +35,13 @@
                             <p>
                                 {{ $sumberDana->name }}
                             </p>
-
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 lg:table-cell">
+                        <div class="flex">
+                            <p>
+                                {{ $sumberDana->rekening_sumda ?? '-' }}
+                            </p>
                         </div>
                     </td>
                     <td class="py-4 pl-6 pr-2 lg:pr-4">
