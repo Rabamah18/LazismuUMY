@@ -36,36 +36,36 @@
 
                         <div>
                             <x-input-label for="uraian" :value="__('Uraian')" />
-                            <x-textarea-input id="uraian" name="uraian" type="text" class="block w-full mt-1"
-                                :value="old('uraian')" required autocomplete="uraian" />
+                            <x-textarea-input x-autosize id="uraian" name="uraian" type="text"
+                                class="block w-full mt-1" :value="old('uraian')" required autocomplete="uraian" />
                             <x-input-error class="mt-2" :messages="$errors->get('uraian')" />
                         </div>
 
                         <div>
                             <x-input-label for="nominal" :value="__('Nominal')" />
                             <x-text-input id="nominal" name="nominal" type="number" class="block w-full mt-1"
-                                :value="old('nominal', 0)" required autocomplete="nominal" min="0" />
+                                :value="old('nominal')" required autocomplete="nominal" min="0" />
                             <x-input-error class="mt-2" :messages="$errors->get('nominal')" />
                         </div>
 
                         <div>
                             <x-input-label for="lembaga" :value="__('Lembaga')" />
                             <x-text-input id="lembaga" name="lembaga" type="number" class="block w-full mt-1"
-                                :value="old('lembaga', 0)" required autocomplete="lembaga" min="0" />
+                                :value="old('lembaga')" autocomplete="lembaga" min="0" placeholder="0" />
                             <x-input-error class="mt-2" :messages="$errors->get('lembaga')" />
                         </div>
 
                         <div>
                             <x-input-label for="pria" :value="__('Pria')" />
                             <x-text-input id="pria" name="pria" type="number" class="block w-full mt-1"
-                                :value="old('pria', 0)" required autocomplete="pria" min="0" />
+                                :value="old('pria')" autocomplete="pria" min="0" placeholder="0" />
                             <x-input-error class="mt-2" :messages="$errors->get('pria')" />
                         </div>
 
                         <div>
                             <x-input-label for="wanita" :value="__('Wanita')" />
                             <x-text-input id="wanita" name="wanita" type="number" class="block w-full mt-1"
-                                :value="old('wanita', 0)" required autocomplete="wanita" min="0" />
+                                :value="old('wanita')" autocomplete="wanita" min="0" placeholder="0" />
                             <x-input-error class="mt-2" :messages="$errors->get('wanita')" />
                         </div>
 
