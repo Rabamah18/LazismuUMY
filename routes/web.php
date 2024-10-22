@@ -56,7 +56,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('ashnaf', AshnafController::class);
     Route::resource('kabupaten', KabupatenController::class);
     Route::resource('lokasi', LokasiController::class);
-    //Route::resource('penerimamanfaat', PenerimaManfaatController::class);
 
     Route::get('penghimpunan/export', [PenghimpunanController::class, 'export'])->name('penghimpunan.export');
     // Route::get('penghimpunan/exportexel', [PenghimpunanController::class, 'exportExel'])->name('penghimpunan.exportexel');
@@ -82,7 +81,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('provinsi', ProvinsiController::class);
     Route::resource('sumberdana', SumberDanaController::class);
     Route::resource('tahun', TahunController::class);
-    Route::resource('donatur', DonaturController::class);
 
     Route::view('/user', 'user.index')->name('user.index');
 });
@@ -92,9 +90,5 @@ Route::view('/about', 'public.about')->name('about');
 Route::view('/sejarah', 'public.sejarah')->name('sejarah');
 Route::view('/visimisi', 'public.visimisi')->name('visimisi');
 Route::view('/program', 'public.program')->name('program');
-// Route::view('/penghimpunan/formscsv', 'penghimpunan.formcsv')->name('formcsv');
-// Route::get('penghimpunan/formcsv', function (Request $request) {
-//     return view('penghimpunan.formcsv');
-// })->name('penghimpunan.formcsv');
 
 require __DIR__.'/auth.php';
