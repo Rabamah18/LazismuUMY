@@ -87,7 +87,7 @@ class PenyaluranController extends Controller
         $provinsis = Provinsi::query()->get();
         $kabupatens = Kabupaten::query()->get();
 
-        return view('penyaluran.create', compact('ashnafs', 'penerimaManfaats', 'pilars', 'programPilars', 'tahuns', 'provinsis', 'kabupatens'));
+        return view('penyaluran.create', compact('ashnafs',  'pilars', 'programPilars', 'tahuns', 'provinsis', 'kabupatens'));
     }
 
     /**
@@ -160,7 +160,7 @@ class PenyaluranController extends Controller
         $kabupatens = Kabupaten::query()->get();
 
         //dd($penyaluran);
-        return view('penyaluran.edit', compact('penyaluran', 'ashnafs', 'penerimaManfaats', 'pilars', 'programPilars', 'tahuns', 'lokasis'));
+        return view('penyaluran.edit', compact('penyaluran', 'ashnafs',  'pilars', 'programPilars', 'tahuns', 'lokasis'));
     }
 
     /**

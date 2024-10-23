@@ -117,7 +117,9 @@ class Table extends Component
                 $query->where('tahun_id', $this->selectedTahun);
             })
             ->when($this->selectedProvinsi, function ($query) {
-                $query->where('provinsi_id', $this->selectedProvinsi);
+                $query->whereHas('kabupaten', function ($query) {
+                    $query->where('provinsi_id', $this->selectedProvinsi);
+                });
             })
             ->when($this->selectedKabupaten, function ($query) {
                 $query->where('kabupaten_id', $this->selectedKabupaten);
@@ -126,8 +128,8 @@ class Table extends Component
                 $query->where('ashnaf_id', $this->selectedAshnaf);
             })
             ->when($this->selectedPilar, function ($query) {
-                $query->whereHas('programPilar.pilar', function ($query) {
-                    $query->where('id', $this->selectedPilar);
+                $query->whereHas('programPilar', function ($query) {
+                    $query->where('pilar_id', $this->selectedPilar);
                 });
             })
             ->when($this->selectedProgramPilar, function ($query) {
