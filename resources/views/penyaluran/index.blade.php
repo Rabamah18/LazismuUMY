@@ -19,14 +19,17 @@
                         <x-button.link-primary href="{{ route('penyaluran.importexel') }}">
                             {{ __('Import Exel') }}
                         </x-button.link-primary>
-                        <x-button.link-primary href="{{ route('penyaluran.export') }}">
+                        {{-- <x-button.link-primary href="{{ route('penyaluran.export') }}">
                             {{ __('Export Exel') }}
-                        </x-button.link-primary>
+                        </x-button.link-primary> --}}
                         <x-button.link-primary href="{{ route('penyaluran.importcsv') }}">
                             {{ __('Import CSV') }}
                         </x-button.link-primary>
-                        <x-button.link-primary href="{{ route('penyaluran.exportcsv') }}">
+                        {{-- <x-button.link-primary href="{{ route('penyaluran.exportcsv') }}">
                             {{ __('Export CSV') }}
+                        </x-button.link-primary> --}}
+                        <x-button.link-primary href="{{ route('penyaluran.export') }}">
+                            {{ __('Export') }}
                         </x-button.link-primary>
                     </div>
                 </div>
