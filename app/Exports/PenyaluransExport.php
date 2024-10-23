@@ -3,15 +3,18 @@
 namespace App\Exports;
 
 use App\Models\Penyaluran;
+use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromQuery;
-use Maatwebsite\Excel\Concerns\WithMapping;
-use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
+use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMapping;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
 class PenyaluransExport implements FromQuery, ShouldAutoSize, WithColumnFormatting, WithHeadings, WithMapping
 {
+    use Exportable;
+
     public function columnFormats(): array
     {
         return [
@@ -23,9 +26,63 @@ class PenyaluransExport implements FromQuery, ShouldAutoSize, WithColumnFormatti
         ];
     }
 
+    public string $month;
+
+    public string $year;
+
+    public string $provinsi;
+
+    public string $kabupaten;
+
+    public string $ashnaf;
+
+    public string $pilar;
+
+    public string $proPil;
+
+    public function __construct(string $month, string $year, string $provinsi, string $kabupaten, string $ashnaf, string $pilar, string $proPil)
+    {
+        $this->month = $month;
+        $this->year = $year;
+        $this->ashnaf = $ashnaf;
+        $this->provinsi = $provinsi;
+        $this->kabupaten = $kabupaten;
+        $this->pilar = $pilar;
+        $this->proPil = $proPil;
+
+    }
+
     public function query()
     {
-        return Penyaluran::query()->with('pilar', 'programPilar', 'ashnaf', 'tahun');
+        // return Penyaluran::query()->with('pilar', 'programPilar', 'ashnaf', 'tahun');
+
+        return Penyaluran::orderByDesc('updated_at')
+            ->with('ashnaf', 'tahun', 'pilar', 'programPilar')
+            ->when($this->month, function ($query) {
+                $query->whereMonth('tanggal', $this->month);
+            })
+            ->when($this->year, function ($query) {
+                $query->where('tahun_id', $this->year);
+            })
+            ->when($this->provinsi, function ($query) {
+                $query->whereHas('kabupaten', function ($query) {
+                    $query->where('provinsi_id', $this->provinsi);
+                });
+            })
+            ->when($this->kabupaten, function ($query) {
+                $query->where('kabupaten_id', $this->kabupaten);
+            })
+            ->when($this->ashnaf, function ($query) {
+                $query->where('ashnaf_id', $this->ashnaf);
+            })
+            ->when($this->pilar, function ($query) {
+                $query->whereHas('programPilar', function ($query) {
+                    $query->where('pilar_id', $this->pilar);
+                });
+            })
+            ->when($this->proPil, function ($query) {
+                $query->where('program_pilar_id', $this->proPil);
+            });
     }
 
     public function headings(): array

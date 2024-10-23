@@ -225,13 +225,14 @@ class PenyaluranController extends Controller
     public function export()
     {
 
-        return Excel::download(new PenyaluransExport, 'Penyaluran.xlsx');
+        // return Excel::download(new PenyaluransExport, 'Penyaluran.xlsx');
+        return view('penyaluran.export');
     }
 
     public function exportCsv()
     {
 
-        return Excel::download(new PenyaluransExport, 'Penyaluran.csv');
+        // return Excel::download(new PenyaluransExport, 'Penyaluran.csv');
     }
 
     public function importExel()

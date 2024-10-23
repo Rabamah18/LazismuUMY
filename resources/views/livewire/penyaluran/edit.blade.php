@@ -57,7 +57,7 @@
 
         <div>
             <x-input-label for="uraian" :value="__('Uraian')" />
-            <x-textarea-input wire:model='uraian' id='uraian' type='text' class="block w-full mt-1" :value="old('uraian')"
+            <x-textarea-input x-autosize x-data wire:model='uraian' id='uraian' type='text' class="block w-full mt-1" :value="old('uraian')"
                 required autocomplete="uraian" />
             <x-input-error class="mt-2" :messages="$errors->get('uraian')" />
         </div>
