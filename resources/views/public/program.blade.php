@@ -9,7 +9,7 @@
         autoplayIntervalTime: 7000,
         slides: [{
                 imgSrc: 'image/pilar/ilustrasi_Pilar_Kemanusiaan.JPG',
-                imgAlt: 'Vibrant abstract painting with swirling blue and light pink hues on a canvas.',
+                imgAlt: 'Foto ilustrasi Pilar Kemanusiaan.',
                 title: 'Pilar Kemanusiaan',
                 description: 'Program yang diarahkan untuk penangguulangan bencana dan misi kemanusiaan, baik dalam bentuk kesiapsiagaan bencana, tanggap darurat, rehabilitasi, dan rekonstruksi yang dilakukan secara sistematik dan melibatkan mitra intenal Muhammadiyah dan eksternal. Program-program pada pilar kemanusiaan meliputi : Indonesia Siaga, Sekolah Cerdas, Muhammadiyah Aid.',
                 ctaUrl: 'https://example.com',
@@ -17,7 +17,7 @@
             },
             {
                 imgSrc: 'image/pilar/ilustrasi_Pilar_Sosial_Dakwah.JPG',
-                imgAlt: 'Vibrant abstract painting with swirling red, yellow, and pink hues on a canvas.',
+                imgAlt: 'Foto ilustrasi Pilar Sosial Dakwah.',
                 title: 'Pilar Sosial Dakwah',
                 description: 'Program yang diarahkan untuk meningkatkan layanan sosial Islam untuk menjangkau kelompok masyarakat rentan baik di daerah miskin perkotaan maupun di daerah -daerah terpencil dengan semangat dakwah Islam. Program Sosial Dakwah Lazismu UMY antara lain : 1. Pemberdayaan Disabilitas 2. Sayangi Lansia 3. Pemberdayaan Mualaf 4. Back To Masjid 5. Qurban​',
                 ctaUrl: 'https://example.com',
@@ -25,7 +25,7 @@
             },
             {
                 imgSrc: 'image/pilar/ilustrasi_Pilar_Lingkungan.png',
-                imgAlt: 'Vibrant abstract painting with swirling blue and purple hues on a canvas.',
+                imgAlt: 'Foto ilustrasi Pilar Lingkungan.',
                 title: 'Pilar Lingkungan',
                 description: 'Program yang diarahkan untuk memelihara lingkungan dan sumber daya alam serta pemanfaatannya secara bijaksana dan mendorong keberlanjutan alam sebagai sumber penghidupan masyarakat. Program pada pilar lingkungan meliputi : 1. Peduli Lingkungan 2. Sayangi Daratmu 3. Sayangi Lautmu',
                 ctaUrl: 'https://example.com',
@@ -33,7 +33,7 @@
             },
             {
                 imgSrc: 'image/pilar/ilustrasi_Pilar_Pendidikan.JPG',
-                imgAlt: 'Vibrant abstract painting with swirling blue and purple hues on a canvas.',
+                imgAlt: 'Foto ilustrasi Pilar Pendidikan.',
                 title: 'Pilar Pendidikan',
                 description: 'Pilar Pendidikan adalah pilar Lazismu UMY dalam menjalankan program fundraising dan penyaluran memiliki pilar pendidikan yang didasarkan pada prinsip-prinsip Muhammadiyah, yang mengedepankan pendidikan sebagai sarana pembentukan karakter dan peningkatan kualitas hidup umat. Berikut adalah deskripsi Program Lazismu UMY dalam pilar pendidikan: 1.Beasiswa Sang Surya 2.Beasiswa Mentari 3.Save Our School 4.Peduli Guru 5.Lazismu Goes To Campus 6.Muhammadiyah Scholarship Preparation Program (MSPP)',
                 ctaUrl: 'https://example.com',
@@ -41,7 +41,7 @@
             },
             {
                 imgSrc: 'image/pilar/ilustrasi_Pilar_Kesehatan.JPG',
-                imgAlt: 'Vibrant abstract painting with swirling blue and purple hues on a canvas.',
+                imgAlt: 'Foto ilustrasi Pilar Kesehatan.',
                 title: 'Pilar Kesehatan',
                 description: 'Program yang diarahkan untuk meningkatkan layanan di bidang kesehatan masyarakat, khususnya di kalangan keluarga kurang mampu melalui tindakan kuratif maupun kegiatan preventif (berupa penyuluhan) maupun kampanye. Program Pilar Kesehatan Lazismu UMY antara lain : 1. Peduli Kesehatan 2. Indonesia Mobile Clinic 3. SAUM 4. TIMBANG 5. ENDTB 6. Rumah Singgah Pasien 7. Khitan Gratis',
                 ctaUrl: 'https://example.com',
@@ -49,7 +49,7 @@
             },
             {
                 imgSrc: 'image/pilar/ilustrasi_Pilar_Ekonomi.JPG',
-                imgAlt: 'Vibrant abstract painting with swirling blue and purple hues on a canvas.',
+                imgAlt: 'Foto ilustrasi Pilar Ekonomi.',
                 title: 'Pilar Ekonomi',
                 description: 'Program yang diarahkan untuk mendorong kemandirian dan meningkatkan pendapatan dan kesejahteraan serta semangat kewirausahaan melalui kegiatan ekonomi dna pembentukan usaha yang halal dan memberdayakan. Program pada pilar ekonomi meliputi : 1. Pemberdayaan UMKM 2. Peternakan Masyarakat Mandiri 3. Tani Bangkit 4. Ketahanan Pangan',
                 ctaUrl: 'https://example.com',
@@ -64,14 +64,14 @@
             // Pause autoplay
             clearInterval(this.autoplayInterval);
             clearTimeout(this.pauseTimeout);
-    
+
             if (this.currentSlideIndex > 1) {
                 this.currentSlideIndex = this.currentSlideIndex - 1
             } else {
                 // If it's the first slide, go to the last slide
                 this.currentSlideIndex = this.slides.length
             }
-    
+
             // Resume autoplay after 4000ms
             this.pauseTimeout = setTimeout(() => {
                 this.autoplay();
@@ -81,14 +81,14 @@
             // Pause autoplay
             clearInterval(this.autoplayInterval);
             clearTimeout(this.pauseTimeout);
-    
+
             if (this.currentSlideIndex < this.slides.length) {
                 this.currentSlideIndex = this.currentSlideIndex + 1
             } else {
                 // If it's the last slide, go to the first slide
                 this.currentSlideIndex = 1
             }
-    
+
             // Resume autoplay after 4000ms
             this.pauseTimeout = setTimeout(() => {
                 this.autoplay();
@@ -108,6 +108,7 @@
             this.autoplay()
         },
     }" x-init="autoplay"
+    
         class="relative w-full px-4 pt-4 mx-auto overflow-hidden max-w-7xl sm:px-6 lg:px-8 group">
         <!-- previous button -->
         <button type="button"
