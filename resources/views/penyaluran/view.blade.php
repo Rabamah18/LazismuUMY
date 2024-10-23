@@ -46,31 +46,31 @@
                         <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
                             <p class="w-36">{{ __('Lembaga') }}</p>
                             <p>
-                                {{ $penyaluran->penerimaManfaat->lembaga_count ?? '-' }}
+                                {{ $penyaluran->lembaga_count ?? '-' }}
                             </p>
                         </div>
                         <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
                             <p class="w-36">{{ __('Pria') }}</p>
                             <p>
-                                {{ $penyaluran->penerimaManfaat->male_count ?? '-' }}
+                                {{ $penyaluran->male_count ?? '-' }}
                             </p>
                         </div>
                         <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
                             <p class="w-36">{{ __('Wanita') }}</p>
                             <p>
-                                {{ $penyaluran->penerimaManfaat->female_count ?? '-' }}
+                                {{ $penyaluran->female_count ?? '-' }}
                             </p>
                         </div>
                         <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
                             <p class="w-36">{{ __('Provinsi') }}</p>
                             <p>
-                                {{ $penyaluran->lokasi->provinsi->name ?? '-' }}
+                                {{ $penyaluran->kabupaten->provinsi->name ?? '-' }}
                             </p>
                         </div>
                         <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
                             <p class="w-36">{{ __('Kabupaten') }}</p>
                             <p>
-                                {{ $penyaluran->lokasi->kabupaten->name ?? '-' }}
+                                {{ $penyaluran->kabupaten->name ?? '-' }}
                             </p>
                         </div>
                         <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
