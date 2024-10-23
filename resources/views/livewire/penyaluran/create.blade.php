@@ -9,7 +9,7 @@
 
         <div>
             <x-input-label for="tahun_id" :value="__('Tahun')" />
-            <x-select-input wire:model.change="selectedTahun" id="tahun" class="block w-full mt-1">
+            <x-select-input wire:model.change="selectedTahun" id="tahun" class="block w-full mt-1" placeholder="Select Tahun">
                 <option value="">{{ __('Select Tahun') }}</option>
                 @foreach ($tahuns as $tahun)
                     <option value="{{ $tahun->id }}" {{ request('tahun_id') == 'tahun_id' ? 'selected' : '' }}>
@@ -78,21 +78,21 @@
         <div>
             <x-input-label for="lembaga" :value="__('Lembaga')" />
             <x-text-input wire:model='lembaga' id="lembaga" type="number" class="block w-full mt-1" :value="old('lembaga')"
-                required autocomplete="lembaga" />
+                required autocomplete="lembaga" placeholder="Jumlah Lembaga"/>
             <x-input-error class="mt-2" :messages="$errors->get('lembaga')" />
         </div>
 
         <div>
             <x-input-label for="pria" :value="__('Pria')" />
             <x-text-input wire:model='pria' id="pria" type="number" class="block w-full mt-1" :value="old('pria')"
-                required autocomplete="pria" />
+                required autocomplete="pria" placeholder="Jumlah Pria"/>
             <x-input-error class="mt-2" :messages="$errors->get('pria')" />
         </div>
 
         <div>
             <x-input-label for="wanita" :value="__('Wanita')" />
             <x-text-input wire:model='wanita' id="wanita" type="number" class="block w-full mt-1" :value="old('wanita')"
-                required autocomplete="wanita" />
+                required autocomplete="wanita" placeholder="Jumlah Wanita"/>
             <x-input-error class="mt-2" :messages="$errors->get('wanita')" />
         </div>
 
@@ -135,7 +135,7 @@
         <div>
             <x-input-label for="nominal" :value="__('Nominal')" />
             <x-text-input wire:model='nominal' id='nominal' type="number" class="block w-full mt-1" :value="old('nominal')"
-                required autocomplete="nominal" />
+                required autocomplete="nominal" placeholder="Jumlah Nominal"/>
             <x-input-error class="mt-2" :messages="$errors->get('nominal')" />
         </div>
 
