@@ -6,22 +6,22 @@
                     <x-card.title>
                         {{ __('Export Data Penyaluran') }}
                     </x-card.title>
-                    <div class="flex items-center justify-end gap-4">
-                        <div class="ml-auto">
-                            <x-button.link-primary href="{{ route('penyaluran.index') }}">
-                                {{ __('Cancel') }}
-                            </x-button.link-primary>
-                        </div>
-                        <div class="ml-auto">
-                            <x-primary-button wire:click="exportExel">
-                                {{ __('Export Exel') }}
-                            </x-primary-button>
-                        </div>
-                        <div class="ml-auto" wire:click="exportCsv">
-                            <x-primary-button>
-                                {{ __('Export CSV') }}
-                            </x-primary-button>
-                        </div>
+                </div>
+                <div class="flex items-center justify-end gap-4">
+                    <div class="ml-auto">
+                        <x-button.link-primary href="{{ route('penyaluran.index') }}">
+                            {{ __('Cancel') }}
+                        </x-button.link-primary>
+                    </div>
+                    <div class="ml-auto">
+                        <x-primary-button wire:click="exportExel">
+                            {{ __('Export Exel') }}
+                        </x-primary-button>
+                    </div>
+                    <div class="ml-auto" wire:click="exportCsv">
+                        <x-primary-button>
+                            {{ __('Export CSV') }}
+                        </x-primary-button>
                     </div>
                 </div>
             </div>
