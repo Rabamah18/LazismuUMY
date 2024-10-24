@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AshnafController;
 use App\Http\Controllers\DonaturController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KabupatenController;
 use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\PenerimaManfaatController;
@@ -68,7 +69,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::patch('penyaluran/importfilecsv', [PenyaluranController::class, 'importFileCsv'])->name('penyaluran.importfilecsv');
-    Route::patch('penyaluran/importfileexel', action: [PenyaluranController::class, 'importFileExel'])->name('penyaluran.importfileexel');
+    Route::patch('penyaluran/importfileexel', [PenyaluranController::class, 'importFileExel'])->name('penyaluran.importfileexel');
     Route::get('penyaluran/importcsv', [PenyaluranController::class, 'importCsv'])->name('penyaluran.importcsv');
     Route::get('penyaluran/importexel', [PenyaluranController::class, 'importExel'])->name('penyaluran.importexel');
     Route::get('penyaluran/exportcsv', [PenyaluranController::class, 'exportCsv'])->name('penyaluran.exportcsv');
@@ -85,7 +86,8 @@ Route::middleware('auth')->group(function () {
     Route::view('/user', 'user.index')->name('user.index');
 });
 
-Route::view('/', 'public.home')->name('home');
+// Route::view('/', 'public.home')->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::view('/about', 'public.about')->name('about');
 Route::view('/sejarah', 'public.sejarah')->name('sejarah');
 Route::view('/visimisi', 'public.visimisi')->name('visimisi');
