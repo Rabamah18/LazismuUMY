@@ -1,4 +1,5 @@
 <div>
+
     <div class="w-full mt-6">
         <div class="flex flex-col justify-between gap-2 xl:flex-row">
             <div class="flex items-center w-full gap-2 lg:w-1/3" x-data="{ massage: '' }">
@@ -14,8 +15,7 @@
                         name="search" placeholder="Search" aria-label="search" />
                 </div>
             </div>
-
-            <div class="flex flex-wrap gap-2">
+            <div class="flex flex-wrap items-center justify-end gap-2">
                 <x-select-input wire:model.lazy="selectedSumberDana" id="sumber_dana" class="">
                     <option value="">{{ __('Sumber Dana') }}</option>
                     @foreach ($sumberDanas as $sumberDana)

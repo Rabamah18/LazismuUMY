@@ -22,7 +22,7 @@
 
                         <div class="w-full max-w-sm">
                             <x-input-label for="doc" :value="__('Upload File')" />
-                            <x-file-input name="doc" accept=".csv" class="mt-1"></x-file-input>
+                            <x-file-input name="doc" accept=".csv" class="mt-1 dark:text-gray-400"></x-file-input>
                             <x-input-helper>
                                 Format : csv - Max 2MB
                             </x-input-helper>

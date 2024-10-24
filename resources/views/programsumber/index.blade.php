@@ -10,7 +10,7 @@
             <x-card.app>
                 <div class="flex">
                     <x-card.title>
-                        {{ __('All Users') }}
+                        {{ __('All Data Program Sumber') }}
                     </x-card.title>
                     <div class="ml-auto">
                         <x-button.link-primary href="{{ route('programsumber.create') }}">
@@ -20,9 +20,9 @@
                 </div>
 
                 <x-card.description>
-                    {{ __('Manage all user, search by name or email.') }}
+                    {{ __('Manage all Program Sumber.') }}
                 </x-card.description>
-                
+
                 @include('programsumber.partials.table')
 
             </x-card.app>
