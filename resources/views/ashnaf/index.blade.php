@@ -10,7 +10,7 @@
             <x-card.app>
                 <div class="flex">
                     <x-card.title>
-                        {{ __('All Users') }}
+                        {{ __('Semua daftar Ashnaf') }}
                     </x-card.title>
                     <div class="ml-auto">
                         <x-button.link-primary href="{{ route('ashnaf.create') }}">
@@ -39,7 +39,7 @@
                     </x-card.description>
                 @else
                     <x-card.description>
-                        {{ __('Manage all user, search by name or email.') }}
+                        {{ __('Mengatur Seluruh Daftar Ashnaf.') }}
                     </x-card.description>
                 @endif
                 @if ($errors->any())
@@ -51,41 +51,7 @@
                         </ul>
                     </div>
                 @endif
-                <div class="w-full mt-6">
-                    <form class="flex flex-col justify-between gap-2 lg:flex-row">
-                        <x-text-input id="search" name="search" type="text" class="w-full lg:w-1/3"
-                            placeholder="{{ __('Search here') }}" value="{{ request('search') }}" autofocus />
-                        <div class="flex items-center justify-between gap-2">
-                            <div class="">
-                                <x-select-input id="role" name="role" class="">
-                                    <option value="">{{ __('Select Role') }}</option>
-                                    <option value="admin" {{ request('role') == 'admin' ? 'selected' : '' }}>
-                                        {{ __('Admin') }}
-                                    </option>
-                                    <option value="user" {{ request('role') == 'user' ? 'selected' : '' }}>
-                                        {{ __('User') }}
-                                    </option>
-                                </x-select-input>
-                                <x-select-input id="verified_account" name="verified_account" class="">
-                                    <option value="">{{ __('Select Status') }}</option>
-                                    <option value="true"
-                                        {{ request('verified_account') == 'true' ? 'selected' : '' }}>
-                                        {{ __('Verified') }}
-                                    </option>
-                                    <option value="false"
-                                        {{ request('verified_account') == 'false' ? 'selected' : '' }}>
-                                        {{ __('Not Verified') }}
-                                    </option>
-                                </x-select-input>
-                            </div>
-                            <div class="">
-                                <x-button.secondary type="submit">
-                                    {{ __('Apply') }}
-                                </x-button.secondary>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+
                 {{-- @include('admin.users.partials.list') --}}
                 @include('ashnaf.partials.table')
 
