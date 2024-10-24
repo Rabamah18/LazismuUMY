@@ -6,9 +6,7 @@ use App\Models\Pilar;
 use App\Models\Tahun;
 use App\Models\Ashnaf;
 use App\Models\Kabupaten;
-use App\Models\Lokasi;
 use App\Models\ProgramPilar;
-use App\Models\PenerimaManfaat;
 use App\Models\Provinsi;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

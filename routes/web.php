@@ -1,11 +1,8 @@
 <?php
 
 use App\Http\Controllers\AshnafController;
-use App\Http\Controllers\DonaturController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KabupatenController;
-use App\Http\Controllers\LokasiController;
-use App\Http\Controllers\PenerimaManfaatController;
 use App\Http\Controllers\PenghimpunanController;
 use App\Http\Controllers\PenyaluranController;
 use App\Http\Controllers\PilarController;
@@ -17,8 +14,6 @@ use App\Http\Controllers\SumberDanaController;
 use App\Http\Controllers\TahunController;
 use App\Imports\PenghimpunanImportExel;
 use App\Models\Kabupaten;
-use App\Models\Lokasi;
-use App\Models\PenerimaManfaat;
 use App\Models\Penghimpunan;
 use App\Models\Penyaluran;
 use App\Models\Pilar;
@@ -56,7 +51,6 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('ashnaf', AshnafController::class);
     Route::resource('kabupaten', KabupatenController::class);
-    Route::resource('lokasi', LokasiController::class);
 
     Route::get('penghimpunan/export', [PenghimpunanController::class, 'export'])->name('penghimpunan.export');
     // Route::get('penghimpunan/exportexel', [PenghimpunanController::class, 'exportExel'])->name('penghimpunan.exportexel');
