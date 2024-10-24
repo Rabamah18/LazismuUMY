@@ -61,6 +61,45 @@ class ExportFilter extends Component
 
     }
 
+    public function updatedSelectedBulan()
+    {
+        // $this->resetPage();
+    }
+
+    public function updatedSelectedTahun()
+    {
+        // $this->resetPage();
+    }
+
+    public function updatedSelectedProvinsi()
+    {
+        $this->kabupatens = Kabupaten::query()->where('provinsi_id', $this->selectedProvinsi)->get();
+        // $this->resetPage();
+        $this->reset('selectedKabupaten');
+    }
+
+    public function updatedSelectedKabupaten()
+    {
+        // $this->resetPage();
+    }
+
+    public function updatedSelectedAshnaf()
+    {
+        // $this->resetPage();
+    }
+
+    public function updatedSelectedPilar()
+    {
+        $this->programPilars = ProgramPilar::query()->where('pilar_id', $this->selectedPilar)->get();
+        $this->reset('selectedProgramPilar');
+        // $this->resetPage();
+    }
+
+    public function updatedSelectedProgramPilar()
+    {
+        // $this->resetPage();
+    }
+
     public function exportExel()
     {
         return (new PenyaluransExport(str($this->selectedBulan), str($this->selectedTahun), str($this->selectedProvinsi), str($this->selectedKabupaten), str($this->selectedAshnaf), str($this->selectedPilar), str($this->selectedProgramPilar)))->download('Penyaluran.xlsx');
