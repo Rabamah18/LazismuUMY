@@ -24,7 +24,7 @@
                             <x-input-label for="doc" :value="__('Upload File')" />
                             <x-file-input name="doc"
                                 accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                                class="mt-1"></x-file-input>
+                                class="mt-1 dark:text-gray-400"></x-file-input>
                             <x-input-helper>
                                 Format : xlx, xlxs - Max 2MB
                             </x-input-helper>

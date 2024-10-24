@@ -3,9 +3,6 @@
         <div class="w-full mt-6">
             <div class="flex flex-col justify-between gap-2 w-gap-1 xl:flex-row">
                 <div class="flex items-center w-full gap-2 lg:w-1/3" x-data="{ massage: '' }">
-                    {{-- <x-text-input wire:model.live.debounce="search" id="search_id" x-model="massage" type="text"
-                        class="w-full lg:w-1/3" placeholder="{{ __('Search here') }}">
-                    </x-text-input> --}}
                     <div class="relative flex flex-col w-full max-w-xs gap-1 text-gray-600 dark:text-gray-300">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                             stroke="currentColor" aria-hidden="true"
@@ -17,59 +14,48 @@
                             class="w-full py-2 pl-10 pr-2 text-sm border border-gray-300 rounded-md bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-gray-700 dark:bg-gray-900/50 dark:focus-visible:outline-white"
                             name="search" placeholder="Search" aria-label="search" />
                     </div>
-
-                    {{-- <x-secondary-button wire:click="clear()" x-on:clik="massage = ''">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" class="size-4">
-                            <path d="M18 6 6 18"></path>
-                            <path d="m6 6 12 12"></path>
-                        </svg>
-                    </x-secondary-button> --}}
                 </div>
 
-                <div class="flex items-center justify-between gap-2">
-                    <div class="space-y-1">
-                        <x-select-input wire:model.lazy="selectedSumberDana" id="sumber_dana" class="">
-                            <option value="">{{ __('Sumber Dana') }}</option>
-                            @foreach ($sumberDanas as $sumberDana)
-                                <option value="{{ $sumberDana->id }}">
-                                    {{ $sumberDana->name }}
-                                </option>
-                            @endforeach
-                        </x-select-input>
-                        <x-select-input id="program_sumber" wire:model.lazy="selectedProgramSumber" class="">
-                            <option value="">{{ __('Program Sumber') }}</option>
-                            @foreach ($programSumbers as $programSumber)
-                                <option value="{{ $programSumber->id }}">
-                                    {{ $programSumber->name }}
-                                </option>
-                            @endforeach
-                        </x-select-input>
-                        <x-select-input id="tahun" wire:model.lazy="selectedTahun" class="">
-                            <option value="">{{ __('Tahun') }}</option>
-                            @foreach ($tahuns as $tahun)
-                                <option value="{{ $tahun->id }}">
-                                    {{ $tahun->name }}
-                                </option>
-                            @endforeach
-                        </x-select-input>
-                        <x-select-input id="paginate" wire:model.lazy="paginate" class="">
-                            <option value="">{{ __('Per Halaman') }}</option>
-                            <option value="30">
-                                30
+                <div class="flex flex-wrap items-center justify-end gap-2">
+                    <x-select-input wire:model.lazy="selectedSumberDana" id="sumber_dana" class="">
+                        <option value="">{{ __('Sumber Dana') }}</option>
+                        @foreach ($sumberDanas as $sumberDana)
+                            <option value="{{ $sumberDana->id }}">
+                                {{ $sumberDana->name }}
                             </option>
-                            <option value="50">
-                                50
+                        @endforeach
+                    </x-select-input>
+                    <x-select-input id="program_sumber" wire:model.lazy="selectedProgramSumber" class="">
+                        <option value="">{{ __('Program Sumber') }}</option>
+                        @foreach ($programSumbers as $programSumber)
+                            <option value="{{ $programSumber->id }}">
+                                {{ $programSumber->name }}
                             </option>
-                            <option value="70">
-                                70
+                        @endforeach
+                    </x-select-input>
+                    <x-select-input id="tahun" wire:model.lazy="selectedTahun" class="">
+                        <option value="">{{ __('Tahun') }}</option>
+                        @foreach ($tahuns as $tahun)
+                            <option value="{{ $tahun->id }}">
+                                {{ $tahun->name }}
                             </option>
-                            <option value="100">
-                                100
-                            </option>
-                        </x-select-input>
-
-                    </div>
+                        @endforeach
+                    </x-select-input>
+                    <x-select-input id="paginate" wire:model.lazy="paginate" class="">
+                        <option value="">{{ __('Per Halaman') }}</option>
+                        <option value="30">
+                            30
+                        </option>
+                        <option value="50">
+                            50
+                        </option>
+                        <option value="70">
+                            70
+                        </option>
+                        <option value="100">
+                            100
+                        </option>
+                    </x-select-input>
                 </div>
             </div>
         </div>

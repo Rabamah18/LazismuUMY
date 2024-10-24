@@ -25,7 +25,7 @@
                     </div>
                 </div>
             </div>
-            <div class="space-y-1">
+            <div class="flex flex-wrap items-center justify-end gap-2 mt-2 sm:mt-4">
                 <x-select-input id="bulan" wire:model.lazy="selectedBulan" class="">
                     <option value="">{{ __('Bulan') }}</option>
                     <option value="1">
