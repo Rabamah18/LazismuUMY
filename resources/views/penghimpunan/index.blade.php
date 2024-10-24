@@ -8,27 +8,21 @@
     <div class="sm:py-7">
         <div class="max-w-full mx-auto sm:px-6 sm:space-y-6">
             <x-card.app>
-                <div class="justify-between w-full md:flex md:self-center">
+                <div class="justify-between w-full md:flex">
                     <x-card.title>
                         {{ __('Data Penghimpunan') }}
                     </x-card.title>
-                    <div class="flex gap-4">
-                        <div class="ml-auto">
+                    <div>
+                        <div class="flex flex-wrap gap-2">
                             <x-button.link-primary href="{{ route('penghimpunan.create') }}">
                                 {{ __('Create') }}
                             </x-button.link-primary>
-                        </div>
-                        <div class="ml-auto">
                             <x-button.link-primary href="{{ route('penghimpunan.importexel') }}">
                                 {{ __('Import Exel') }}
                             </x-button.link-primary>
-                        </div>
-                        <div class="ml-auto">
                             <x-button.link-primary href="{{ route('penghimpunan.importcsv') }}">
                                 {{ __('Import CSV') }}
                             </x-button.link-primary>
-                        </div>
-                        <div class="ml-auto">
                             <x-button.link-primary href="{{ route('penghimpunan.export') }}">
                                 {{ __('Export') }}
                             </x-button.link-primary>
