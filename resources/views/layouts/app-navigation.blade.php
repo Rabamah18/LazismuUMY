@@ -55,9 +55,6 @@
                                 <x-dropdown-link :href="route('ashnaf.index')">
                                     {{ __('Ashnaf') }}
                                 </x-dropdown-link>
-                                <x-dropdown-link :href="route('lokasi.index')">
-                                    {{ __('Lokasi') }}
-                                </x-dropdown-link>
                                 <x-dropdown-link :href="route('provinsi.index')">
                                     {{ __('Provinsi') }}
                                 </x-dropdown-link>
@@ -179,9 +176,6 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('ashnaf.index')" :active="request()->routeIs('ashnaf.*')">
                 {{ __('Ashnaf') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('lokasi.index')" :active="request()->routeIs('lokasi.*')">
-                {{ __('Lokasi') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('provinsi.index')" :active="request()->routeIs('provinsi.*')">
                 {{ __('Provinsi') }}

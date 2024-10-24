@@ -29,7 +29,7 @@ class PenyaluranController extends Controller
         $pilars = Pilar::query()->get();
         $programPilars = ProgramPilar::query()->get();
         $tahuns = Tahun::query()->get();
-        $lokasis = Lokasi::query()->get();
+        // $lokasis = Lokasi::query()->get();
         $provinsis = Provinsi::query()->get();
         $kabupatens = Kabupaten::query()->get();
 
@@ -53,9 +53,9 @@ class PenyaluranController extends Controller
             ->when($request->tahun, function ($query, $tahun) {
                 $query->where('tahun_id', '=', $tahun);
             })
-            ->when($request->lokasi, function ($query, $lokasi) {
-                $query->where('lokasi_id', '=', $lokasi);
-            })
+            // ->when($request->lokasi, function ($query, $lokasi) {
+            //     $query->where('lokasi_id', '=', $lokasi);
+            // })
             ->when($request->provinsi, function ($query, $provinsi) {
                 $query->where('provinsi_id', '=', $provinsi);
             })
@@ -71,7 +71,7 @@ class PenyaluranController extends Controller
             //->paginate(10)
             ->withQueryString();
 
-        return view('penyaluran.index', compact('penyalurans', 'ashnafs', 'pilars', 'programPilars', 'tahuns', 'lokasis'));
+        return view('penyaluran.index', compact('penyalurans', 'ashnafs', 'pilars', 'programPilars', 'tahuns'));
     }
 
     /**
@@ -155,12 +155,12 @@ class PenyaluranController extends Controller
         $pilars = Pilar::query()->get();
         $programPilars = ProgramPilar::query()->get();
         $tahuns = Tahun::query()->get();
-        $lokasis = Lokasi::query()->get();
+        // $lokasis = Lokasi::query()->get;
         $provinsis = Provinsi::query()->get();
         $kabupatens = Kabupaten::query()->get();
 
         //dd($penyaluran);
-        return view('penyaluran.edit', compact('penyaluran', 'ashnafs',  'pilars', 'programPilars', 'tahuns', 'lokasis'));
+        return view('penyaluran.edit', compact('penyaluran', 'ashnafs',  'pilars', 'programPilars', 'tahuns'));
     }
 
     /**
@@ -180,7 +180,7 @@ class PenyaluranController extends Controller
             'pilar_id' => 'nullable|exists:pilars,id',
             'program_pilar_id' => 'nullable|exists:program_pilars,id',
             'tahun_id' => 'nullable|exists:tahuns,id',
-            'lokasi_id' => 'nullable|exists:lokasis,id',
+            // 'lokasi_id' => 'nullable|exists:lokasis,id',
             'provinsi_id' => 'nullable|exists:provinsis,id',
             'kabupaten_id' => 'nullable|exists:kabupaten,id',
 
@@ -199,7 +199,7 @@ class PenyaluranController extends Controller
             'pilar_id' => $request->pilar_id,
             'program_pilar_id' => $request->program_pilar_id,
             'tahun_id' => $request->tahun_id,
-            'lokasi_id' => $request->lokasi_id,
+            // 'lokasi_id' => $request->lokasi_id,
             'provinsi_id' => $request->provinsi_id,
             'kabupaten_id' => $request->kabupaten_id,
 
