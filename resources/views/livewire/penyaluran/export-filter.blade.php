@@ -8,7 +8,7 @@
                     </x-card.title>
                     <div class="flex items-center justify-end gap-4">
                         <div class="ml-auto">
-                            <x-button.link-primary href="{{ route('penghimpunan.index') }}">
+                            <x-button.link-primary href="{{ route('penyaluran.index') }}">
                                 {{ __('Cancel') }}
                             </x-button.link-primary>
                         </div>
