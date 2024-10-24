@@ -28,8 +28,8 @@
 
                         <div>
                             <x-input-label for="uraian" :value="__('Uraian')" />
-                            <x-textarea-input x-data x-autosize id="uraian" name="uraian" type="text" class="block w-full mt-1"
-                                required autocomplete="uraian">
+                            <x-textarea-input x-data x-autosize id="uraian" name="uraian" type="text"
+                                class="block w-full mt-1" required autocomplete="uraian">
                                 {{ old('uraian', $penghimpunan->uraian) }}
                             </x-textarea-input>
                             <x-input-error class="mt-2" :messages="$errors->get('uraian')" />
@@ -45,21 +45,21 @@
                         <div>
                             <x-input-label for="lembaga" :value="__('Jumlah Lembaga')" />
                             <x-text-input id="lembaga" name="lembaga" type="number" class="block w-full mt-1"
-                                :value="old('lembaga', $penghimpunan->lembaga_count)" required autocomplete="lembaga" />
+                                :value="old('lembaga', $penghimpunan->lembaga_count)" autocomplete="lembaga" min="0" placeholder="0" />
                             <x-input-error class="mt-2" :messages="$errors->get('lembaga')" />
                         </div>
 
                         <div>
                             <x-input-label for="pria" :value="__('Jumlah Pria')" />
                             <x-text-input id="pria" name="pria" type="number" class="block w-full mt-1"
-                                :value="old('pria', $penghimpunan->male_count)" required autocomplete="pria" />
+                                :value="old('pria', $penghimpunan->male_count)" autocomplete="pria" min="0" placeholder="0" />
                             <x-input-error class="mt-2" :messages="$errors->get('pria')" />
                         </div>
 
                         <div>
                             <x-input-label for="wanita" :value="__('jumlah Wanita')" />
                             <x-text-input id="wanita" name="wanita" type="number" class="block w-full mt-1"
-                                :value="old('wanita', $penghimpunan->female_count)" required autocomplete="wanita" />
+                                :value="old('wanita', $penghimpunan->female_count)" autocomplete="wanita" min="0" placeholder="0" />
                             <x-input-error class="mt-2" :messages="$errors->get('wanita')" />
                         </div>
 

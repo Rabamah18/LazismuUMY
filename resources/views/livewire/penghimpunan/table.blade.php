@@ -1,5 +1,4 @@
 <div>
-
     <div class="w-full mt-6">
         <div class="flex flex-col justify-between gap-2 xl:flex-row">
             <div class="flex items-center w-full gap-2 lg:w-1/3" x-data="{ massage: '' }">

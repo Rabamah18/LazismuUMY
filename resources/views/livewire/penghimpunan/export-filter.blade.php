@@ -1,95 +1,93 @@
 <div>
-    <div>
-        <div class="w-full mt-6">
-            <div class="flex flex-col justify-between gap-2 w-gap-1 xl:flex-row">
-                <div class="items-center ">
-                    <x-card.title>
-                        {{ __('Export Data Penghimpunan') }}
-                    </x-card.title>
+    <div class="w-full mt-6">
+        <div class="flex flex-col justify-between gap-2 w-gap-1 xl:flex-row">
+            <div class="items-center ">
+                <x-card.title>
+                    {{ __('Export Data Penghimpunan') }}
+                </x-card.title>
+            </div>
+            <div class="flex items-center justify-end gap-4">
+                <div class="ml-auto">
+                    <x-button.link-primary href="{{ route('penghimpunan.index') }}">
+                        {{ __('Cancel') }}
+                    </x-button.link-primary>
                 </div>
-                <div class="flex items-center justify-end gap-4">
-                    <div class="ml-auto">
-                        <x-button.link-primary href="{{ route('penghimpunan.index') }}">
-                            {{ __('Cancel') }}
-                        </x-button.link-primary>
-                    </div>
-                    <div class="ml-auto">
-                        <x-primary-button wire:click="exportExel">
-                            {{ __('Export Exel') }}
-                        </x-primary-button>
-                    </div>
-                    <div class="ml-auto" wire:click="exportCsv">
-                        <x-primary-button>
-                            {{ __('Export CSV') }}
-                        </x-primary-button>
-                    </div>
+                <div class="ml-auto">
+                    <x-primary-button wire:click="exportExel">
+                        {{ __('Export Exel') }}
+                    </x-primary-button>
+                </div>
+                <div class="ml-auto" wire:click="exportCsv">
+                    <x-primary-button>
+                        {{ __('Export CSV') }}
+                    </x-primary-button>
                 </div>
             </div>
-            <div class="flex flex-wrap items-center justify-end gap-2 mt-2 sm:mt-4">
-                <x-select-input id="bulan" wire:model.lazy="selectedBulan" class="">
-                    <option value="">{{ __('Bulan') }}</option>
-                    <option value="1">
-                        Januari
+        </div>
+        <div class="flex flex-wrap items-center justify-end gap-2 mt-2 sm:mt-4">
+            <x-select-input id="bulan" wire:model.lazy="selectedBulan" class="">
+                <option value="">{{ __('Bulan') }}</option>
+                <option value="1">
+                    Januari
+                </option>
+                <option value="2">
+                    Februari
+                </option>
+                <option value="3">
+                    Maret
+                </option>
+                <option value="4">
+                    April
+                </option>
+                <option value="5">
+                    Mei
+                </option>
+                <option value="6">
+                    Juni
+                </option>
+                <option value="7">
+                    Juli
+                </option>
+                <option value="8">
+                    Agustus
+                </option>
+                <option value="9">
+                    September
+                </option>
+                <option value="10">
+                    Oktober
+                </option>
+                <option value="11">
+                    November
+                </option>
+                <option value="12">
+                    Desember
+                </option>
+            </x-select-input>
+            <x-select-input id="tahun" wire:model.lazy="selectedTahun" class="">
+                <option value="">{{ __('Tahun') }}</option>
+                @foreach ($tahuns as $tahun)
+                    <option value="{{ $tahun->id }}">
+                        {{ $tahun->name }}
                     </option>
-                    <option value="2">
-                        Februari
+                @endforeach
+            </x-select-input>
+            <x-select-input wire:model.lazy="selectedSumberDana" id="sumber_dana" class="">
+                <option value="">{{ __('Sumber Dana') }}</option>
+                @foreach ($sumberDanas as $sumberDana)
+                    <option value="{{ $sumberDana->id }}">
+                        {{ $sumberDana->name }}
                     </option>
-                    <option value="3">
-                        Maret
+                @endforeach
+            </x-select-input>
+            <x-select-input id="program_sumber" wire:model.lazy="selectedProgramSumber" class="">
+                <option value="">{{ __('Program Sumber') }}</option>
+                @foreach ($programSumbers as $programSumber)
+                    <option value="{{ $programSumber->id }}">
+                        {{ $programSumber->name }}
                     </option>
-                    <option value="4">
-                        April
-                    </option>
-                    <option value="5">
-                        Mei
-                    </option>
-                    <option value="6">
-                        Juni
-                    </option>
-                    <option value="7">
-                        Juli
-                    </option>
-                    <option value="8">
-                        Agustus
-                    </option>
-                    <option value="9">
-                        September
-                    </option>
-                    <option value="10">
-                        Oktober
-                    </option>
-                    <option value="11">
-                        November
-                    </option>
-                    <option value="12">
-                        Desember
-                    </option>
-                </x-select-input>
-                <x-select-input id="tahun" wire:model.lazy="selectedTahun" class="">
-                    <option value="">{{ __('Tahun') }}</option>
-                    @foreach ($tahuns as $tahun)
-                        <option value="{{ $tahun->id }}">
-                            {{ $tahun->name }}
-                        </option>
-                    @endforeach
-                </x-select-input>
-                <x-select-input wire:model.lazy="selectedSumberDana" id="sumber_dana" class="">
-                    <option value="">{{ __('Sumber Dana') }}</option>
-                    @foreach ($sumberDanas as $sumberDana)
-                        <option value="{{ $sumberDana->id }}">
-                            {{ $sumberDana->name }}
-                        </option>
-                    @endforeach
-                </x-select-input>
-                <x-select-input id="program_sumber" wire:model.lazy="selectedProgramSumber" class="">
-                    <option value="">{{ __('Program Sumber') }}</option>
-                    @foreach ($programSumbers as $programSumber)
-                        <option value="{{ $programSumber->id }}">
-                            {{ $programSumber->name }}
-                        </option>
-                    @endforeach
-                </x-select-input>
-            </div>
+                @endforeach
+            </x-select-input>
         </div>
     </div>
     <div class="relative mt-6 overflow-auto rounded-md">
