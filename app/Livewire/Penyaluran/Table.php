@@ -22,6 +22,10 @@ class Table extends Component
 
     public $selectedTahun;
 
+    public $bulan;
+
+    public $selectedBulan;
+
     public $provinsis;
 
     public $selectedProvinsi;
@@ -76,6 +80,11 @@ class Table extends Component
         $this->resetPage();
     }
 
+    public function updatedSelectedBulan()
+    {
+        $this->resetPage();
+    }
+
     public function updatedSelectedProvinsi()
     {
         $this->kabupatens = Kabupaten::query()->where('provinsi_id', $this->selectedProvinsi)->get();
@@ -109,9 +118,11 @@ class Table extends Component
         $penyalurans = Penyaluran::orderByDesc('updated_at')
             ->when($this->search, function ($query): void {
                 $query->where(function ($query) {
-                    $query->where('uraian', 'like', '%'.$this->search.'%')
-                        ->orWhere('tanggal', 'like', '%'.$this->search.'%');
+                    $query->where('uraian', 'like', '%'.$this->search.'%');
                 });
+            })
+            ->when($this->selectedBulan, function ($query) {
+                $query->whereMonth('tanggal', $this->selectedBulan);
             })
             ->when($this->selectedTahun, function ($query) {
                 $query->where('tahun_id', $this->selectedTahun);

@@ -25,53 +25,9 @@ class PenyaluranController extends Controller
      */
     public function index(Request $request)
     {
-        $ashnafs = Ashnaf::query()->get();
-        $pilars = Pilar::query()->get();
-        $programPilars = ProgramPilar::query()->get();
-        $tahuns = Tahun::query()->get();
-        // $lokasis = Lokasi::query()->get();
-        $provinsis = Provinsi::query()->get();
-        $kabupatens = Kabupaten::query()->get();
+        
 
-        $penyalurans = Penyaluran::orderByDesc('tanggal')
-            ->with('ashnaf', 'tahun', 'pilar', 'programPilar')
-            ->when($request->search, function ($query, $search) {
-                $query->where(function ($query) use ($search) {
-                    $query->where('uraian', 'like', '%'.$search.'%')
-                        ->orWhere('tanggal', 'like', '%'.$search.'%');
-                });
-            })
-            ->when($request->ashnaf, function ($query, $ashnaf) {
-                $query->where('ashnaf_id', '=', $ashnaf);
-            })
-            ->when($request->pilar, function ($query, $pilar) {
-                $query->where('pilar_id', '=', $pilar);
-            })
-            ->when($request->program_pilar, function ($query, $program_pilar) {
-                $query->where('program_pilar_id', '=', $program_pilar);
-            })
-            ->when($request->tahun, function ($query, $tahun) {
-                $query->where('tahun_id', '=', $tahun);
-            })
-            // ->when($request->lokasi, function ($query, $lokasi) {
-            //     $query->where('lokasi_id', '=', $lokasi);
-            // })
-            ->when($request->provinsi, function ($query, $provinsi) {
-                $query->where('provinsi_id', '=', $provinsi);
-            })
-            ->when($request->kabupaten, function ($query, $kabupaten) {
-                $query->where('kabupaten_id', '=', $kabupaten);
-            })
-            ->when($request->paginate, function ($query, $paginate) {
-                return $query->paginate($paginate);
-            }, function ($query) {
-                return $query->paginate();
-            })
-
-            //->paginate(10)
-            ->withQueryString();
-
-        return view('penyaluran.index', compact('penyalurans', 'ashnafs', 'pilars', 'programPilars', 'tahuns'));
+        return view('penyaluran.index');
     }
 
     /**

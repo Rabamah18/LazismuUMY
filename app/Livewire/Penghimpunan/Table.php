@@ -23,6 +23,10 @@ class Table extends Component
 
     public $selectedProgramSumber;
 
+    public $bulan;
+
+    public $selectedBulan;
+
     public $tahuns;
 
     public $selectedTahun;
@@ -43,13 +47,17 @@ class Table extends Component
 
     }
 
+    public function updatedSelectedBulan()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
         $penghimpunans = Penghimpunan::orderByDesc('updated_at')
             ->when($this->search, function ($query): void {
                 $query->where(function ($query) {
-                    $query->where('uraian', 'like', '%'.$this->search.'%')
-                        ->orWhere('tanggal', 'like', '%'.$this->search.'%');
+                    $query->where('uraian', 'like', '%'.$this->search.'%');
                 });
             })
             ->when($this->selectedSumberDana, function ($query) {
@@ -57,6 +65,9 @@ class Table extends Component
             })
             ->when($this->selectedProgramSumber, function ($query) {
                 $query->where('program_sumber_id', $this->selectedProgramSumber);
+            })
+            ->when($this->selectedBulan, function ($query) {
+                $query->whereMonth('tanggal', $this->selectedBulan);
             })
             ->when($this->selectedTahun, function ($query) {
                 $query->where('tahun_id', $this->selectedTahun);
