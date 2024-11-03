@@ -6,6 +6,7 @@ use App\Models\Penghimpunan;
 use App\Models\ProgramSumber;
 use App\Models\SumberDana;
 use App\Models\Tahun;
+use Carbon\Carbon;
 use Livewire\Attributes\Url;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -22,6 +23,10 @@ class Table extends Component
     public $programSumbers;
 
     public $selectedProgramSumber;
+
+    public $dateStart;
+
+    public $dateEnd;
 
     public $bulan;
 
@@ -41,10 +46,21 @@ class Table extends Component
 
     public function mount()
     {
+        $this->dateEnd = Carbon::now()->format('Y-m-d');
         $this->sumberDanas = SumberDana::query()->get();
         $this->programSumbers = ProgramSumber::query()->get();
         $this->tahuns = Tahun::query()->get();
 
+    }
+
+    public function updatedDateStart()
+    {
+        $this->resetPage();
+    }
+
+    public function updatedDateEnd()
+    {
+        $this->resetPage();
     }
 
     public function updatedSelectedBulan()
@@ -59,6 +75,10 @@ class Table extends Component
                 $query->where(function ($query) {
                     $query->where('uraian', 'like', '%'.$this->search.'%');
                 });
+            })
+            ->when($this->dateStart && $this->dateEnd, function ($query) {
+                $query->whereBetween('tanggal', [Carbon::parse($this->dateStart)->startOfDay(),
+                Carbon::parse($this->dateEnd)->endOfDay()]);
             })
             ->when($this->selectedSumberDana, function ($query) {
                 $query->where('sumber_dana_id', $this->selectedSumberDana);

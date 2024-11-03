@@ -10,6 +10,7 @@ use App\Models\ProgramPilar;
 use App\Models\Tahun;
 use Livewire\Component;
 use App\Models\Provinsi;
+use Carbon\Carbon;
 use Livewire\Attributes\Url;
 use Livewire\WithPagination;
 use Illuminate\Database\Eloquent\Collection;
@@ -25,6 +26,10 @@ class Table extends Component
     public $bulan;
 
     public $selectedBulan;
+
+    public $dateStart;
+
+    public $dateEnd;
 
     public $provinsis;
 
@@ -66,6 +71,7 @@ class Table extends Component
 
     public function mount()
     {
+        $this->dateEnd = Carbon::now()->format('Y-m-d');
         $this->tahuns = Tahun::query()->get();
         $this->provinsis = Provinsi::query()->get();
         $this->kabupatens = Kabupaten::query()->get();
@@ -75,6 +81,16 @@ class Table extends Component
 
     }
 
+    public function updatedDateStart()
+    {
+        $this->resetPage();
+    }
+
+    public function updatedDateEnd()
+    {
+        $this->resetPage();
+    }
+    
     public function updatedSelectedTahun()
     {
         $this->resetPage();
@@ -120,6 +136,10 @@ class Table extends Component
                 $query->where(function ($query) {
                     $query->where('uraian', 'like', '%'.$this->search.'%');
                 });
+            })
+            ->when($this->dateStart && $this->dateEnd, function ($query) {
+                $query->whereBetween('tanggal', [Carbon::parse($this->dateStart)->startOfDay(),
+                Carbon::parse($this->dateEnd)->endOfDay()]);
             })
             ->when($this->selectedBulan, function ($query) {
                 $query->whereMonth('tanggal', $this->selectedBulan);

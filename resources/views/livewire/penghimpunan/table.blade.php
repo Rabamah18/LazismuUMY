@@ -17,11 +17,11 @@
             <div class="flex flex-wrap items-center justify-end gap-2">
                 <div class="flex items-center">
                     <x-input-label for="tanggal" :value="__('Tanggal Awal')" />
-                    <x-text-input wire:model='tanggal' id="tanggal" type='date' class="block w-full mt-1" :value="old('tanggal')"/>
+                    <x-text-input wire:model.lazy='dateStart' id="tanggal" type='date' class="block w-full mt-1" :value="old('tanggal')"/>
                 </div>
                 <div class="flex items-center">
                     <x-input-label for="tanggal" :value="__('Tanggal Akhir')" />
-                    <x-text-input wire:model='tanggal' id="tanggal" type='date' class="block w-full mt-1" :value="old('tanggal')"/>
+                    <x-text-input wire:model.lazy='dateEnd' id="tanggal" type='date' class="block w-full mt-1" :value="old('tanggal')"/>
                 </div>
                 <x-select-input wire:model.lazy="selectedSumberDana" id="sumber_dana" class="">
                     <option value="">{{ __('Sumber Dana') }}</option>

@@ -18,12 +18,12 @@
             <div class="flex flex-wrap gap-2">
                 <div class="flex items-center gap-2">
                     <x-input-label for="tanggal" :value="__('Tanggal Awal')" />
-                    <x-text-input wire:model='tanggal' id="tanggal" type='date' class="block w-full mt-1" :value="old('tanggal')"/>
+                    <x-text-input wire:model.lazy='dateStart' id="tanggal" type='date' class="block w-full mt-1" :value="old('tanggal')"/>
                 </div>
 
                 <div class=" flex items-center gap-2">
                     <x-input-label for="tanggal" :value="__('Tanggal Akhir')" />
-                    <x-text-input wire:model='tanggal' id="tanggal" type='date' class="block w-full mt-1" :value="old('tanggal')"/>
+                    <x-text-input wire:model.lazy='dateEnd' id="tanggal" type='date' class="block w-full mt-1" :value="old('tanggal')"/>
                 </div>
 
                 <x-select-input id="bulan" wire:model.lazy="selectedBulan" class="">
