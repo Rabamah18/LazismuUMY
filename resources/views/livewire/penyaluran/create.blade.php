@@ -21,12 +21,11 @@
         </div>
 
         <div>
-            <x-input-label for="selectedProvinsi" :value="__('Provinsi')" />
+            <x-input-label for="selectedProvinsi" :value="__('Provinsi/Luar Negeri')" />
             <x-select-input wire:model.change="selectedProvinsi" id="provinsi" class="block w-full mt-1">
-                <option value="">{{ __('Select Provinsi') }}</option>
+                <option value="">{{ __('Select Provinsi/Luar Negeri') }}</option>
                 @foreach ($provinsis as $provinsi)
                     <option value="{{ $provinsi->id }}">
-                        {{ __('Provinsi') }}
                         {{ $provinsi->name }}
                     </option>
                 @endforeach
@@ -35,18 +34,18 @@
         </div>
 
         <div>
-            <x-input-label for="selectedKabupaten" :value="__('Kabupaten')" />
+            <x-input-label for="selectedKabupaten" :value="__('Kabupaten/Negara')" />
             <x-select-input wire:model.change="selectedKabupaten" id="kabupaten" class="block w-full mt-1"
                 disabled="{{ $selectedProvinsi == null ? 'disabled' : '' }}">
                 @if ($selectedProvinsi == null)
-                    <option value="">{{ ('Please Select Provinsi') }}</option>
+                    <option value="">{{ ('Please Select Provinsi/Luar Negeri') }}</option>
                 @else
                     <option value="" @if ($selectedKabupaten == null) selected @endif>
                         {{ ('Select Kabupaten') }}
                     </option>
                     @foreach ($kabupatens as $kabupaten)
                         <option value="{{ $kabupaten->id }}">
-                            {{ __('Kabupaten') }} {{ $kabupaten->name }}
+                            {{ $kabupaten->name }}
                         </option>
                     @endforeach
                 @endif

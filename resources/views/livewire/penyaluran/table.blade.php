@@ -74,7 +74,7 @@
                     @endforeach
                 </x-select-input>
                 <x-select-input wire:model.lazy="selectedProvinsi" id="provinsi" class="">
-                    <option value="">{{ __('Provinsi') }}</option>
+                    <option value="">{{ __('Provinsi/Luar Negeri') }}</option>
                     @foreach ($provinsis as $provinsi)
                         <option value="{{ $provinsi->id }}">
                             {{ $provinsi->name }}
@@ -82,7 +82,7 @@
                     @endforeach
                 </x-select-input>
                 <x-select-input wire:model.lazy="selectedKabupaten" id="kabupaten" class="">
-                    <option value="">{{ __('Kabupaten') }}</option>
+                    <option value="">{{ __('Kabupaten/Negara') }}</option>
                     @foreach ($kabupatens as $kabupaten)
                         <option value="{{ $kabupaten->id }}">
                             {{ $kabupaten->name }}
@@ -164,10 +164,10 @@
                     </th>
                     </th>
                     <th scope="col" class="px-6 py-3 lg:table-cell">
-                        {{ __('Provinsi') }}
+                        {{ __('Provinsi/Luar Negeri') }}
                     </th>
                     <th scope="col" class="px-6 py-3 lg:table-cell">
-                        {{ __('Kabupaten') }}
+                        {{ __('Kabupaten/Negara') }}
                     </th>
                     <th scope="col" class="px-6 py-3 lg:table-cell">
                         {{ __('Tahun') }}
