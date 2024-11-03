@@ -73,7 +73,7 @@ class PenghimpunanController extends Controller
     {
         $request->validate([
             'tanggal' => 'required|date',
-            'uraian' => 'required|max:255',
+            'uraian' => 'required|max:65535',
             'nominal' => 'required|numeric',
             'lembaga' => 'nullable|numeric',
             'pria' => 'nullable|numeric',
@@ -133,7 +133,7 @@ class PenghimpunanController extends Controller
     {
         $request->validate([
             'tanggal' => 'required|date',
-            'uraian' => 'required|max:255',
+            'uraian' => 'required|max:65535',
             'nominal' => 'required|numeric',
             'lembaga' => 'nullable|numeric',
             'pria' => 'nullable|numeric',
