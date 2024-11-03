@@ -4,8 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\Penghimpunan;
+use App\Enums\Role;
 use App\Models\Penyaluran;
+use App\Models\Penghimpunan;
 use App\Models\ProgramPilar;
 use Illuminate\Database\Seeder;
 
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@admin.com',
+            'role' => 'admin',
         ]);
 
         $this->call(PilarSeeder::class);
