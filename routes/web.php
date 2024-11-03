@@ -12,6 +12,7 @@ use App\Http\Controllers\ProgramSumberController;
 use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\SumberDanaController;
 use App\Http\Controllers\TahunController;
+use App\Http\Controllers\UserController;
 use App\Imports\PenghimpunanImportExel;
 use App\Models\Kabupaten;
 use App\Models\Penghimpunan;
@@ -76,8 +77,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('provinsi', ProvinsiController::class);
     Route::resource('sumberdana', SumberDanaController::class);
     Route::resource('tahun', TahunController::class);
+    Route::resource('user',  UserController::class);
 
-    Route::view('/user', 'user.index')->name('user.index');
+    // Route::view('/user', 'user.index')->name('user.index');
 });
 
 // Route::view('/', 'public.home')->name('home');
