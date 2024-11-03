@@ -16,6 +16,55 @@
             </div>
 
             <div class="flex flex-wrap gap-2">
+                <div class="flex items-center gap-2">
+                    <x-input-label for="tanggal" :value="__('Tanggal Awal')" />
+                    <x-text-input wire:model.lazy='dateStart' id="tanggal" type='date' class="block w-full mt-1" :value="old('tanggal')"/>
+                </div>
+
+                <div class=" flex items-center gap-2">
+                    <x-input-label for="tanggal" :value="__('Tanggal Akhir')" />
+                    <x-text-input wire:model.lazy='dateEnd' id="tanggal" type='date' class="block w-full mt-1" :value="old('tanggal')"/>
+                </div>
+
+                <x-select-input id="bulan" wire:model.lazy="selectedBulan" class="">
+                    <option value="">{{ __('Bulan') }}</option>
+                    <option value="1">
+                        Januari
+                    </option>
+                    <option value="2">
+                        Februari
+                    </option>
+                    <option value="3">
+                        Maret
+                    </option>
+                    <option value="4">
+                        April
+                    </option>
+                    <option value="5">
+                        Mei
+                    </option>
+                    <option value="6">
+                        Juni
+                    </option>
+                    <option value="7">
+                        Juli
+                    </option>
+                    <option value="8">
+                        Agustus
+                    </option>
+                    <option value="9">
+                        September
+                    </option>
+                    <option value="10">
+                        Oktober
+                    </option>
+                    <option value="11">
+                        November
+                    </option>
+                    <option value="12">
+                        Desember
+                    </option>
+                </x-select-input>
                 <x-select-input id="tahun" wire:model.lazy="selectedTahun" class="">
                     <option value="">{{ __('Tahun') }}</option>
                     @foreach ($tahuns as $tahun)
@@ -25,7 +74,7 @@
                     @endforeach
                 </x-select-input>
                 <x-select-input wire:model.lazy="selectedProvinsi" id="provinsi" class="">
-                    <option value="">{{ __('Provinsi') }}</option>
+                    <option value="">{{ __('Provinsi/Luar Negeri') }}</option>
                     @foreach ($provinsis as $provinsi)
                         <option value="{{ $provinsi->id }}">
                             {{ $provinsi->name }}
@@ -33,7 +82,7 @@
                     @endforeach
                 </x-select-input>
                 <x-select-input wire:model.lazy="selectedKabupaten" id="kabupaten" class="">
-                    <option value="">{{ __('Kabupaten') }}</option>
+                    <option value="">{{ __('Kabupaten/Negara') }}</option>
                     @foreach ($kabupatens as $kabupaten)
                         <option value="{{ $kabupaten->id }}">
                             {{ $kabupaten->name }}
@@ -57,7 +106,7 @@
                     @endforeach
                 </x-select-input>
                 <x-select-input wire:model.lazy="selectedProgramPilar" id="program_pilar" class="">
-                    <option value="">{{ __('Program Pilar') }}</option>
+                    <option value="">{{ __('Program') }}</option>
                     @foreach ($programPilars as $programPilar)
                         <option value="{{ $programPilar->id }}">
                             {{ $programPilar->name }}
@@ -115,10 +164,10 @@
                     </th>
                     </th>
                     <th scope="col" class="px-6 py-3 lg:table-cell">
-                        {{ __('Provinsi') }}
+                        {{ __('Provinsi/Luar Negeri') }}
                     </th>
                     <th scope="col" class="px-6 py-3 lg:table-cell">
-                        {{ __('Kabupaten') }}
+                        {{ __('Kabupaten/Negara') }}
                     </th>
                     <th scope="col" class="px-6 py-3 lg:table-cell">
                         {{ __('Tahun') }}

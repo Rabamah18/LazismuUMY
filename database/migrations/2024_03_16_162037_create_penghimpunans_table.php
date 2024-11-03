@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('penghimpunans', function (Blueprint $table) {
             $table->id();
             $table->datetime('tanggal');
-            $table->string('uraian');
+            $table->text('uraian');
             $table->integer('nominal');
             $table->integer('lembaga_count')->nullable();
             $table->integer('male_count')->nullable();

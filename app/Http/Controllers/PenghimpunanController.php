@@ -20,38 +20,9 @@ class PenghimpunanController extends Controller
      */
     public function index(Request $request)
     {
-        // $donatur = Donatur::query()->get();
-        $sumberDanas = SumberDana::query()->get();
-        $programSumbers = ProgramSumber::query()->get();
-        $tahuns = Tahun::query()->get();
+        
 
-        $penghimpunans = Penghimpunan::orderByDesc('tanggal')
-            ->with('sumberDana', 'programSumber', 'tahun')
-            ->when($request->search, function ($query, $search) {
-                $query->where(function ($query) use ($search) {
-                    $query->where('uraian', 'like', '%'.$search.'%')
-                        ->orWhere('tanggal', 'like', '%'.$search.'%');
-                });
-            })
-            ->when($request->sumber_dana, function ($query, $sumber_dana) {
-                $query->where('sumber_dana_id', '=', $sumber_dana);
-            })
-            ->when($request->program_sumber, function ($query, $program_sumber) {
-                $query->where('program_sumber_id', '=', $program_sumber);
-            })
-            ->when($request->tahun, function ($query, $tahun) {
-                $query->where('tahun_id', '=', $tahun);
-            })
-            ->when($request->paginate, function ($query, $paginate) {
-                return $query->paginate($paginate);
-            }, function ($query) {
-                return $query->paginate();
-            })
-
-            // ->paginate(10)
-            ->withQueryString();
-
-        return view('penghimpunan.index', compact('penghimpunans', 'sumberDanas', 'programSumbers', 'tahuns'));
+        return view('penghimpunan.index');
     }
 
     /**
@@ -73,7 +44,7 @@ class PenghimpunanController extends Controller
     {
         $request->validate([
             'tanggal' => 'required|date',
-            'uraian' => 'required|max:255',
+            'uraian' => 'required|max:65535',
             'nominal' => 'required|numeric',
             'lembaga' => 'nullable|numeric',
             'pria' => 'nullable|numeric',
@@ -133,7 +104,7 @@ class PenghimpunanController extends Controller
     {
         $request->validate([
             'tanggal' => 'required|date',
-            'uraian' => 'required|max:255',
+            'uraian' => 'required|max:65535',
             'nominal' => 'required|numeric',
             'lembaga' => 'nullable|numeric',
             'pria' => 'nullable|numeric',

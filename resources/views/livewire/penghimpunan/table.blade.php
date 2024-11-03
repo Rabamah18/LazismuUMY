@@ -15,6 +15,14 @@
                 </div>
             </div>
             <div class="flex flex-wrap items-center justify-end gap-2">
+                <div class="flex items-center">
+                    <x-input-label for="tanggal" :value="__('Tanggal Awal')" />
+                    <x-text-input wire:model.lazy='dateStart' id="tanggal" type='date' class="block w-full mt-1" :value="old('tanggal')"/>
+                </div>
+                <div class="flex items-center">
+                    <x-input-label for="tanggal" :value="__('Tanggal Akhir')" />
+                    <x-text-input wire:model.lazy='dateEnd' id="tanggal" type='date' class="block w-full mt-1" :value="old('tanggal')"/>
+                </div>
                 <x-select-input wire:model.lazy="selectedSumberDana" id="sumber_dana" class="">
                     <option value="">{{ __('Sumber Dana') }}</option>
                     @foreach ($sumberDanas as $sumberDana)
@@ -30,6 +38,46 @@
                             {{ $programSumber->name }}
                         </option>
                     @endforeach
+                </x-select-input>
+
+                <x-select-input id="bulan" wire:model.lazy="selectedBulan" class="">
+                    <option value="">{{ __('Bulan') }}</option>
+                    <option value="1">
+                        Januari
+                    </option>
+                    <option value="2">
+                        Februari
+                    </option>
+                    <option value="3">
+                        Maret
+                    </option>
+                    <option value="4">
+                        April
+                    </option>
+                    <option value="5">
+                        Mei
+                    </option>
+                    <option value="6">
+                        Juni
+                    </option>
+                    <option value="7">
+                        Juli
+                    </option>
+                    <option value="8">
+                        Agustus
+                    </option>
+                    <option value="9">
+                        September
+                    </option>
+                    <option value="10">
+                        Oktober
+                    </option>
+                    <option value="11">
+                        November
+                    </option>
+                    <option value="12">
+                        Desember
+                    </option>
                 </x-select-input>
                 <x-select-input id="tahun" wire:model.lazy="selectedTahun" class="">
                     <option value="">{{ __('Tahun') }}</option>

@@ -21,12 +21,11 @@
         </div>
 
         <div>
-            <x-input-label for="selectedProvinsi" :value="__('Provinsi')" />
+            <x-input-label for="selectedProvinsi" :value="__('Provinsi/Luar Negeri')" />
             <x-select-input wire:model.change="selectedProvinsi" id="provinsi" class="block w-full mt-1">
-                <option value="">{{ __('Select Provinsi') }}</option>
+                <option value="">{{ __('Select Provinsi/Luar Negeri') }}</option>
                 @foreach ($provinsis as $provinsi)
                     <option value="{{ $provinsi->id }}">
-                        {{ __('Provinsi') }}
                         {{ $provinsi->name }}
                     </option>
                 @endforeach
@@ -35,18 +34,18 @@
         </div>
 
         <div>
-            <x-input-label for="selectedKabupaten" :value="__('Kabupaten')" />
+            <x-input-label for="selectedKabupaten" :value="__('Kabupaten/Negara')" />
             <x-select-input wire:model.change="selectedKabupaten" id="kabupaten" class="block w-full mt-1"
                 disabled="{{ $selectedProvinsi == null ? 'disabled' : '' }}">
                 @if ($selectedProvinsi == null)
-                    <option value="">{{ ('Please Select Provinsi') }}</option>
+                    <option value="">{{ ('Please Select Provinsi/Luar Negeri') }}</option>
                 @else
                     <option value="" @if ($selectedKabupaten == null) selected @endif>
                         {{ ('Select Kabupaten') }}
                     </option>
                     @foreach ($kabupatens as $kabupaten)
                         <option value="{{ $kabupaten->id }}">
-                            {{ __('Kabupaten') }} {{ $kabupaten->name }}
+                            {{ $kabupaten->name }}
                         </option>
                     @endforeach
                 @endif
@@ -112,18 +111,18 @@
         </div>
 
         <div>
-            <x-input-label for="selectedProgramPilar" :value="__('Program Pilar')" />
+            <x-input-label for="selectedProgramPilar" :value="__('Program')" />
             <x-select-input wire:model.change="selectedProgramPilar" id="programPilar" class="block w-full mt-1"
                 disabled="{{ $selectedPilar == null ? 'disabled' : '' }}">
                 @if ($selectedPilar == null)
                     <option value="">{{ ('Please Select Pilar') }}</option>
                 @else
                     <option value="" @if ($selectedProgramPilar == null) selected @endif>
-                        {{ ('Select Program Pilar') }}
+                        {{ ('Select Program') }}
                     </option>
                     @foreach ($programPilars as $programPilar)
                         <option value="{{ $programPilar->id }}">
-                            {{ __('Program Pilar') }} {{ $programPilar->name }}
+                            {{ __('Program') }} {{ $programPilar->name }}
                         </option>
                     @endforeach
                 @endif

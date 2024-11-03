@@ -108,7 +108,7 @@ class Edit extends Component
             'selectedTahun' => 'nullable|exists:tahuns,id',
             'selectedProvinsi' => 'nullable|exists:provinsis,id',
             'selectedKabupaten' => 'nullable|exists:kabupatens,id',
-            'uraian' => 'required|max:255',
+            'uraian' => 'required|max:65535',
             'selectedAshnaf' => 'nullable|exists:ashnafs,id',
             'lembaga' => 'nullable|numeric',
             'pria' => 'nullable|numeric',
