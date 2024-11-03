@@ -57,7 +57,7 @@
                     @endforeach
                 </x-select-input>
                 <x-select-input wire:model.lazy="selectedProgramPilar" id="program_pilar" class="">
-                    <option value="">{{ __('Program Pilar') }}</option>
+                    <option value="">{{ __('Program') }}</option>
                     @foreach ($programPilars as $programPilar)
                         <option value="{{ $programPilar->id }}">
                             {{ $programPilar->name }}
