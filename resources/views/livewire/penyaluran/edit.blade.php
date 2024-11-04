@@ -130,10 +130,27 @@
             <x-input-error class="mt-2" :messages="$errors->get('selectedProgramPilar')" />
         </div>
 
-        <div>
+        <div x-data="{
+            nominal: '{{ $penyaluran->nominal }}',
+            formattedNominal: ''
+        }" x-init="// Format the initial value of nominal on page load
+        formattedNominal = 'Rp. ' + (nominal || '').replace(/[^,\d]/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.');">
             <x-input-label for="nominal" :value="__('Nominal')" />
-            <x-text-input wire:model='nominal' id='nominal' type="number" class="block w-full mt-1" :value="old('nominal')"
-                required autocomplete="nominal" />
+
+            <x-text-input id="formatted_nominal" wire:model="nominal" type="text"
+                class="block w-full mt-1" x-model="formattedNominal"
+                x-on:input="
+                // Format the displayed nominal with 'Rp.' and thousands separators
+                formattedNominal = 'Rp. ' + $event.target.value.replace(/[^,\d]/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+                // Update the hidden nominal field with an integer-only value
+                nominal = $event.target.value.replace(/[^0-9]/g, '');
+            "
+                placeholder="Rp." autocomplete="off" />
+
+            <!-- Hidden input to send the integer value -->
+            <input type="hidden" wire:model="nominal" :value="nominal">
+
             <x-input-error class="mt-2" :messages="$errors->get('nominal')" />
         </div>
 
