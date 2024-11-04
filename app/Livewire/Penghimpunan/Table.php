@@ -68,6 +68,11 @@ class Table extends Component
         $this->resetPage();
     }
 
+    public function formatRupiah($value)
+    {
+        return 'Rp. '.number_format($value, 0, ',', '.');
+    }
+
     public function render()
     {
         $penghimpunans = Penghimpunan::orderByDesc('updated_at')
@@ -78,7 +83,7 @@ class Table extends Component
             })
             ->when($this->dateStart && $this->dateEnd, function ($query) {
                 $query->whereBetween('tanggal', [Carbon::parse($this->dateStart)->startOfDay(),
-                Carbon::parse($this->dateEnd)->endOfDay()]);
+                    Carbon::parse($this->dateEnd)->endOfDay()]);
             })
             ->when($this->selectedSumberDana, function ($query) {
                 $query->where('sumber_dana_id', $this->selectedSumberDana);
@@ -93,6 +98,7 @@ class Table extends Component
                 $query->where('tahun_id', $this->selectedTahun);
             })
             ->paginate($this->paginate);
+
 
         return view('livewire.penghimpunan.table', ['penghimpunans' => $penghimpunans]);
     }

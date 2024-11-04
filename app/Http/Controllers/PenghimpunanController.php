@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Imports\PenghimpunanImportCsv;
 use App\Imports\PenghimpunanImportExel;
-use App\Models\Donatur;
 use App\Models\Penghimpunan;
 use App\Models\ProgramSumber;
 use App\Models\SumberDana;
@@ -20,7 +19,6 @@ class PenghimpunanController extends Controller
      */
     public function index(Request $request)
     {
-        
 
         return view('penghimpunan.index');
     }
@@ -45,7 +43,7 @@ class PenghimpunanController extends Controller
         $request->validate([
             'tanggal' => 'required|date',
             'uraian' => 'required|max:65535',
-            'nominal' => 'required|numeric',
+            'nominal' => 'required',
             'lembaga' => 'nullable|numeric',
             'pria' => 'nullable|numeric',
             'wanita' => 'nullable|numeric',
@@ -56,10 +54,13 @@ class PenghimpunanController extends Controller
         ]);
         //dd($request);
 
+        // Remove any non-numeric characters for safe storage as integer
+        $nominal = $this->parseRupiah($request->input('nominal'));
+
         Penghimpunan::create([
             'tanggal' => $request->tanggal,
             'uraian' => $request->uraian,
-            'nominal' => $request->nominal,
+            'nominal' => $nominal,
             'lembaga_count' => $request->lembaga,
             'male_count' => $request->pria,
             'female_count' => $request->wanita,
@@ -72,6 +73,15 @@ class PenghimpunanController extends Controller
         ]);
 
         return redirect()->route('penghimpunan.index')->with('success', 'Penghimpunan created successfully!');
+    }
+
+    public function parseRupiah($value)
+    {
+        // Remove "Rp.", commas, and dots from the nominal input
+        $numericValue = preg_replace('/[Rp.\s]/', '', $value);
+
+        // Convert the resulting string to an integer
+        return (int) str_replace('.', '', $numericValue);
     }
 
     /**
@@ -105,7 +115,7 @@ class PenghimpunanController extends Controller
         $request->validate([
             'tanggal' => 'required|date',
             'uraian' => 'required|max:65535',
-            'nominal' => 'required|numeric',
+            'nominal' => 'required',
             'lembaga' => 'nullable|numeric',
             'pria' => 'nullable|numeric',
             'wanita' => 'nullable|numeric',
@@ -115,11 +125,12 @@ class PenghimpunanController extends Controller
 
         ]);
         //dd($request);
+        $nominal = $this->parseRupiah($request->input('nominal'));
 
         $penghimpunan->update([
             'tanggal' => $request->tanggal,
             'uraian' => $request->uraian,
-            'nominal' => $request->nominal,
+            'nominal' => $nominal,
             'lembaga_count' => $request->lembaga,
             'male_count' => $request->pria,
             'female_count' => $request->wanita,
