@@ -17,4 +17,9 @@ class SumberDana extends Model
     {
         return $this->hasMany(Penghimpunan::class);
     }
+
+    public function penyalurans()
+    {
+        return $this->hasMany(related: Penyaluran::class);
+    }
 }

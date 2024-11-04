@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('lembaga_count')->nullable();
             $table->integer('male_count')->nullable();
             $table->integer('female_count')->nullable();
+            $table->integer('no_name_count')->nullable();
             $table->timestamps();
         });
     }

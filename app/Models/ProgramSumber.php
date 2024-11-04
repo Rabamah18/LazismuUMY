@@ -17,4 +17,9 @@ class ProgramSumber extends Model
     {
         return $this->hasMany(Penghimpunan::class);
     }
+
+    public function penyalurans()
+    {
+        return $this->hasMany(Penyaluran::class);
+    }
 }

@@ -26,6 +26,7 @@ class PenghimpunanFactory extends Factory
             'lembaga_count' => fake()->numerify(),
             'male_count' => fake()->numerify(),
             'female_count' => fake()->numerify(),
+            'no_name_count' => fake()->numerify(),
             'sumber_dana_id' => SumberDana::all()->random()->id,
             'program_sumber_id' => ProgramSumber::all()->random()->id,
             'tahun_id' => Tahun::all()->random()->id,
