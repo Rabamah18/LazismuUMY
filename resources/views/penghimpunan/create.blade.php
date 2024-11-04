@@ -41,12 +41,17 @@
                             <x-input-error class="mt-2" :messages="$errors->get('uraian')" />
                         </div>
 
-                        <div>
+                        <div x-data="{ nominal: '' }">
                             <x-input-label for="nominal" :value="__('Nominal')" />
-                            <x-text-input id="nominal" name="nominal" type="number" class="block w-full mt-1"
-                                :value="old('nominal')" required autocomplete="nominal" min="0" />
+
+                            <x-text-input id="nominal" name="nominal" type="text" class="block w-full mt-1"
+                                x-model="nominal"
+                                x-on:input="nominal = 'Rp. ' + $event.target.value.replace(/[^,\d]/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.')"
+                                placeholder="Rp." autocomplete="off" />
+
                             <x-input-error class="mt-2" :messages="$errors->get('nominal')" />
                         </div>
+
 
                         <div>
                             <x-input-label for="lembaga" :value="__('Jumlah Lembaga')" />
