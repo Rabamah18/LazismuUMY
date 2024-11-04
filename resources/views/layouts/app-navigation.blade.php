@@ -44,7 +44,7 @@
                                     {{ __('Pilar') }}
                                 </x-dropdown-link>
                                 <x-dropdown-link :href="route('programpilar.index')">
-                                    {{ __('Program Pilar') }}
+                                    {{ __('Program') }}
                                 </x-dropdown-link>
                                 <x-dropdown-link :href="route('sumberdana.index')">
                                     {{ __('Sumber Dana') }}
@@ -56,10 +56,10 @@
                                     {{ __('Ashnaf') }}
                                 </x-dropdown-link>
                                 <x-dropdown-link :href="route('provinsi.index')">
-                                    {{ __('Provinsi') }}
+                                    {{ __('Provinsi/Luar Negeri') }}
                                 </x-dropdown-link>
                                 <x-dropdown-link :href="route('kabupaten.index')">
-                                    {{ __('Kabupaten') }}
+                                    {{ __('Kabupaten/Negara') }}
                                 </x-dropdown-link>
                                 <x-dropdown-link :href="route('tahun.index')">
                                     {{ __('Tahun') }}
