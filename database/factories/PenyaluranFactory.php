@@ -5,9 +5,11 @@ namespace Database\Factories;
 use App\Models\Pilar;
 use App\Models\Tahun;
 use App\Models\Ashnaf;
-use App\Models\Kabupaten;
-use App\Models\ProgramPilar;
 use App\Models\Provinsi;
+use App\Models\Kabupaten;
+use App\Models\SumberDana;
+use App\Models\ProgramPilar;
+use App\Models\ProgramSumber;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -35,6 +37,8 @@ class PenyaluranFactory extends Factory
             'program_pilar_id' => ProgramPilar::all()->random()->id,
             // 'provinsi_id' => Provinsi::all()->random()->id,
             'kabupaten_id' => Kabupaten::all()->random()->id,
+            'sumber_dana_id' => SumberDana::all()->random()->id,
+            'program_sumber_id' => ProgramSumber::all()->random()->id,
             'tahun_id' => Tahun::all()->random()->id,
         ];
     }
