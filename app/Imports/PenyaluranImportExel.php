@@ -3,9 +3,11 @@
 namespace App\Imports;
 
 use App\Models\Ashnaf;
+use App\Models\Kabupaten;
 use App\Models\Penyaluran;
 use App\Models\Pilar;
 use App\Models\ProgramPilar;
+use App\Models\Provinsi;
 use App\Models\Tahun;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -25,8 +27,8 @@ class PenyaluranImportExel implements ToModel, WithHeadingRow
             'male_count' => $row['jumlah_pria'],
             'female_count' => $row['jumlah_wanita'],
             // 'lokasi_id' => $row['lokasi'],
-            'provinsi_id' => $row['provinsi'],
-            'kabupaten_id' => $row['kabupaten'],
+            'provinsi_id' => Provinsi::where('name', $row['provinsi'])->first()?->id,
+            'kabupaten_id' => Kabupaten::where('name', $row['kabupaten'])->first()?->id,
             'tahun_id' => Tahun::where('name', $row['tahun'])->first()?->id,
             'uraian' => $row['uraian'],
         ]);

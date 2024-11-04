@@ -5,8 +5,10 @@ namespace App\Imports;
 use App\Models\Pilar;
 use App\Models\Tahun;
 use App\Models\Ashnaf;
+use App\Models\Kabupaten;
 use App\Models\Penyaluran;
 use App\Models\ProgramPilar;
+use App\Models\Provinsi;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithCustomCsvSettings;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -27,8 +29,8 @@ class PenyaluranImportCsv implements ToModel, WithCustomCsvSettings, WithHeading
             'lembaga_count' => $row['jumlah_lembaga'],
             'male_count' => $row['jumlah_pria'],
             'female_count' => $row['jumlah_wanita'],
-            'provinsi_id' => $row['provinsi'],
-            'kabupaten_id' => $row['kabupaten'],
+            'provinsi_id' => Provinsi::where('name', $row['provinsi'])->first()?->id,
+            'kabupaten_id' => Kabupaten::where('name', $row['kabupaten'])->first()?->id,
             'tahun_id' => Tahun::where('name', $row['tahun'])->first()?->id,
             'uraian' => $row['uraian'],
         ]);
