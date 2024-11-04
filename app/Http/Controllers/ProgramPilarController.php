@@ -46,7 +46,7 @@ class ProgramPilarController extends Controller
 
         ProgramPilar::create([
             'name' => $request->name,
-            'pilar_id' =>$request->pilar_id,
+            'pilar_id' => $request->pilar_id,
         ]);
 
         return redirect()->route('programpilar.index')->with('success', 'Program pilar created successfully!');
