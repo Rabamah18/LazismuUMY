@@ -132,14 +132,26 @@ class Edit extends Component
         $this->reset('selectedProgramPilar');
     }
 
+    public function parseRupiah($value)
+    {
+        // Remove "Rp.", commas, and dots from the nominal input
+        $numericValue = preg_replace('/[Rp.\s]/', '', $value);
+
+        // Convert the resulting string to an integer
+        return (int) str_replace('.', '', $numericValue);
+    }
+
     public function updatePenyaluran()
     {
         $validated = $this->validate();
+        // Remove any non-numeric characters for safe storage as integer
+        $nominal = $this->parseRupiah($this->nominal);
+        // dd($this->nominal);
 
         $this->penyaluran->update([
             'tanggal' => $this->tanggal,
             'uraian' => $this->uraian,
-            'nominal' => $this->nominal,
+            'nominal' => $nominal,
             'ashnaf_id' => $this->selectedAshnaf,
             'lembaga_count' => $this->lembaga,
             'male_count' => $this->pria,

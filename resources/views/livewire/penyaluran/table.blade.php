@@ -200,11 +200,9 @@
                             </div>
                         </td>
 
-                        <td class="px-6 py-4 lg:table-cell">
+                        <td x-data="{ nominal: {{ $penyaluran->nominal }} }" class="px-6 py-4 lg:table-cell">
                             <div class="flex">
-                                <p>
-                                    {{ $penyaluran->nominal }}
-                                </p>
+                                <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
                             </div>
                         </td>
                         <td class="px-6 py-4 lg:table-cell">
