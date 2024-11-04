@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Provinsi') }}
+            {{ __('Provinsi/Luar Negeri') }}
         </h2>
     </x-slot>
 
@@ -10,7 +10,7 @@
             <x-card.app>
                 <div class="flex">
                     <x-card.title>
-                        {{ __('Semua daftar Provinsi') }}
+                        {{ __('Semua daftar Provinsi/Luar Negeri') }}
                     </x-card.title>
                     <div class="ml-auto">
                         <x-button.link-primary href="{{ route('provinsi.create') }}">
@@ -39,7 +39,7 @@
                     </x-card.description>
                 @else
                     <x-card.description>
-                        {{ __('Mengatur Seluruh Daftar Provinsi.') }}
+                        {{ __('Mengatur Seluruh Daftar Provinsi/Luar Negeri.') }}
                     </x-card.description>
                 @endif
                 @if ($errors->any())

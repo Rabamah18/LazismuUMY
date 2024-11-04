@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kabupaten;
+use App\Models\Provinsi;
 use Illuminate\Http\Request;
 
 class KabupatenController extends Controller
@@ -10,12 +11,16 @@ class KabupatenController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $provinsis = Provinsi::query()->get();
         $kabupatens = Kabupaten::query()
+            ->when($request->provinsi, function ($query, $provinsi) {
+                $query->where('provinsi_id', '=', $provinsi);
+            })
             ->paginate(10);
 
-        return view('kabupaten.index', compact('kabupatens'));
+        return view('kabupaten.index', compact('kabupatens', 'provinsis'));
     }
 
     /**
@@ -23,9 +28,10 @@ class KabupatenController extends Controller
      */
     public function create()
     {
+        $provinsis = Provinsi::query()->get();
         $kabupaten = Kabupaten::query()->get();
 
-        return view('kabupaten.create');
+        return view('kabupaten.create', compact('provinsis'));
     }
 
     /**
@@ -34,12 +40,14 @@ class KabupatenController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'provinsi_id' => 'required|max:40',
             'name' => 'required|max:40',
 
         ]);
         //dd($request);
 
         Kabupaten::create([
+            'provinsi_id' => $request->provinsi_id,
             'name' => $request->name,
         ]);
 
@@ -59,8 +67,10 @@ class KabupatenController extends Controller
      */
     public function edit(Kabupaten $kabupaten)
     {
+        $provinsis = Provinsi::query()->get();
+
         //dd($kabupaten);
-        return view('kabupaten.edit', compact('kabupaten'));
+        return view('kabupaten.edit', compact('kabupaten', 'provinsis'));
     }
 
     /**
@@ -69,12 +79,14 @@ class KabupatenController extends Controller
     public function update(Request $request, Kabupaten $kabupaten)
     {
         $request->validate([
+            'provinsi_id' => 'required|max:40',
             'name' => 'required|max:40'
 
         ]);
         //dd($request);
 
         $kabupaten->update([
+            'provinsi_id' => $request->provinsi_id,
             'name' =>$request->name,
 
         ]);
