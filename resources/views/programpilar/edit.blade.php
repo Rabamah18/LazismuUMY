@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-            {{ __('Edit Data Program Pilar') }}
+            {{ __('Edit Data Program') }}
         </h2>
     </x-slot>
 
@@ -9,10 +9,10 @@
         <div class="max-w-full mx-auto sm:px-6 sm:space-y-6">
             <x-card.app>
                 <x-card.title>
-                    {{ __('Edit Data Program Pilar') }}
+                    {{ __('Edit Data Program') }}
                 </x-card.title>
                 <x-card.description>
-                    {{ __('Edit Data Program Pilar yang sudah ada.') }}
+                    {{ __('Edit Data Program yang sudah ada.') }}
                 </x-card.description>
                 <div class="max-w-xl">
                     {{-- @dump($programPilar) --}}

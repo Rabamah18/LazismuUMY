@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-            {{ __('Program Pilar') }}
+            {{ __('Program') }}
         </h2>
     </x-slot>
 
@@ -10,7 +10,7 @@
             <x-card.app>
                 <div class="flex">
                     <x-card.title>
-                        {{ __('Semua daftar Program Pilar') }}
+                        {{ __('Semua daftar Program') }}
                     </x-card.title>
                     <div class="ml-auto">
                         <x-button.link-primary href="{{ route('programpilar.create') }}">
@@ -39,7 +39,7 @@
                     </x-card.description>
                 @else
                     <x-card.description>
-                        {{ __('Mengatur Seluruh Daftar Program Pilar.') }}
+                        {{ __('Mengatur Seluruh Daftar Program.') }}
                     </x-card.description>
                 @endif
                 @if ($errors->any())
