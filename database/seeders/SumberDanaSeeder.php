@@ -14,10 +14,18 @@ class SumberDanaSeeder extends Seeder
     {
         //SumberDana::factory(5)->create();
 
-        SumberDana::factory()->count(3)->sequence(
+        SumberDana::factory()->count(11)->sequence(
+            ['name' => 'Tunai'],
             ['name' => 'BSI Zakat'],
+            ['name' => 'BPDDIY Zakat'],
             ['name' => 'BSI Infaq'],
-            ['name' => 'BPDDIY Infaq']
+            ['name' => 'BPDDIY Infaq'],
+            ['name' => 'Muamalat Infaq'],
+            ['name' => 'Madina Infaq'],
+            ['name' => 'Amil Bank'],
+            ['name' => 'Amil Besar'],
+            ['name' => 'Amil Kecil'],
+            ['name' => 'Amil Bank Madina'],
         )->create();
     }
 }

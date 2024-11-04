@@ -12,10 +12,11 @@ class ProgramSumberSeeder extends Seeder
      */
     public function run(): void
     {
-        ProgramSumber::factory()->count(3)->sequence(
+        ProgramSumber::factory()->count(4)->sequence(
             ['name' => 'Zakat Maal'],
             ['name' => 'Zakat Fitrah'],
-            ['name' => 'Infaq']
+            ['name' => 'Infaq'],
+            ['name' => 'Amil'],
         )->create();
     }
 }
