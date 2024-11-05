@@ -35,6 +35,7 @@
                 </x-select-input>
                 <x-select-input id="program_sumber" wire:model.lazy="selectedProgramSumber" class="">
                     <option value="">{{ __('Program Sumber') }}</option>
+                    <option value="zakat">Zakat</option>
                     @foreach ($programSumbers as $programSumber)
                         <option value="{{ $programSumber->id }}">
                             {{ $programSumber->name }}
@@ -132,6 +133,9 @@
                     <th scope="col" class="px-6 py-3">
                         {{ __('Wanita') }}
                     </th>
+                    <th scope="col" class="px-6 py-3">
+                        {{ __('No Name') }}
+                    </th>
                     <th scope="col" class="px-6 py-3 lg:table-cell">
                         {{ __('Sumber Dana') }}
                     </th>
@@ -209,6 +213,14 @@
                         <td class="px-6 py-4 lg:table-cell">
                             <div class="flex">
                                 <p>
+                                    {{ $penghimpunan->no_name_count ?? '-' }}
+                                </p>
+
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 lg:table-cell">
+                            <div class="flex">
+                                <p>
                                     {{ $penghimpunan->sumberDana->name ?? '-' }}
                                 </p>
 
@@ -233,7 +245,7 @@
                         <td class="py-4 pl-6 pr-2 lg:pr-4">
                             <div class="flex space-x-2 justify-items-start">
                                 <a href="{{ route('penghimpunan.show', $penghimpunan) }}"
-                                    class="hover:underline">View</a>
+                                    class="hover:underline">Detail</a>
                                 <a href="{{ route('penghimpunan.edit', $penghimpunan) }}"
                                     class="text-indigo-500 hover:underline">Edit</a>
                                 <button x-data="" class="text-red-500 hover:underline"
