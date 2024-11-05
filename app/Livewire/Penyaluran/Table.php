@@ -2,17 +2,18 @@
 
 namespace App\Livewire\Penyaluran;
 
-use App\Models\Ashnaf;
-use App\Models\Kabupaten;
-use App\Models\Penyaluran;
+use Carbon\Carbon;
 use App\Models\Pilar;
-use App\Models\ProgramPilar;
 use App\Models\Tahun;
+use App\Models\Ashnaf;
 use Livewire\Component;
 use App\Models\Provinsi;
-use Carbon\Carbon;
+use App\Models\Kabupaten;
+use App\Models\Penyaluran;
+use App\Models\ProgramPilar;
 use Livewire\Attributes\Url;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Collection;
 
 class Table extends Component
@@ -61,6 +62,8 @@ class Table extends Component
 
     public $nominal;
 
+    public $total;
+
     // #[Validate('required')]
     #[Url(as: 'pencarian', history: true, keep: true)]
     public $search;
@@ -90,7 +93,7 @@ class Table extends Component
     {
         $this->resetPage();
     }
-    
+
     public function updatedSelectedTahun()
     {
         $this->resetPage();
@@ -128,6 +131,11 @@ class Table extends Component
     public function updatedSelectedProgramPilar()
     {
         $this->resetPage();
+    }
+
+    public function updatedTotal()
+    {
+
     }
     public function render()
     {
@@ -168,6 +176,54 @@ class Table extends Component
             })
             ->paginate($this->paginate);
 
-        return view('livewire.penyaluran.table', ['penyalurans' => $penyalurans]);
+            $penyaluransQuery = Penyaluran::orderByDesc('updated_at')
+    ->when($this->search, function ($query) {
+        $query->where('uraian', 'like', '%' . $this->search . '%');
+    })
+    ->when($this->dateStart && $this->dateEnd, function ($query) {
+        $query->whereBetween('tanggal', [
+            Carbon::parse($this->dateStart)->startOfDay(),
+            Carbon::parse($this->dateEnd)->endOfDay()
+        ]);
+    })
+    ->when($this->selectedBulan, function ($query) {
+        $query->whereMonth('tanggal', $this->selectedBulan);
+    })
+    ->when($this->selectedTahun, function ($query) {
+        $query->where('tahun_id', $this->selectedTahun);
+    })
+    ->when($this->selectedProvinsi, function ($query) {
+        $query->whereHas('kabupaten', function ($query) {
+            $query->where('provinsi_id', $this->selectedProvinsi);
+        });
+    })
+    ->when($this->selectedKabupaten, function ($query) {
+        $query->where('kabupaten_id', $this->selectedKabupaten);
+    })
+    ->when($this->selectedAshnaf, function ($query) {
+        $query->where('ashnaf_id', $this->selectedAshnaf);
+    })
+    ->when($this->selectedPilar, function ($query) {
+        $query->whereHas('programPilar', function ($query) {
+            $query->where('pilar_id', $this->selectedPilar);
+        });
+    })
+    ->when($this->selectedProgramPilar, function ($query) {
+        $query->where('program_pilar_id', $this->selectedProgramPilar);
+    });
+
+// Get all results without pagination
+// $penyalurans = $penyaluransQuery->get();
+
+// Calculate totals
+$totals = $penyaluransQuery->select([
+    DB::raw('SUM(nominal) as total_nominal'),
+    DB::raw('SUM(lembaga_count) as total_lembaga'),
+    DB::raw('SUM(male_count) as total_pria'),
+    DB::raw('SUM(female_count) as total_wanita'),
+    DB::raw('COUNT(DISTINCT ashnaf_id) as total_ashnaf')
+])->first();
+
+        return view('livewire.penyaluran.table', ['penyalurans' => $penyalurans, 'totals' => $totals]);
     }
 }

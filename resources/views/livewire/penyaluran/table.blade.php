@@ -334,6 +334,55 @@
                         </td>
                     </tr>
                 @endforelse
+                <tr>
+                   <td>
+
+                   </td>
+                   <td>
+
+                   </td>
+                   <td x-data="{ nominal: {{ $totals->total_nominal }} }" class="px-6 py-4 lg:table-cell">
+                    <div class="flex">
+                        <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                    </div>
+                   </td>
+                   <td>
+
+                   </td>
+                   <td>
+
+                   </td>
+                   <td>
+
+                   </td>
+                   <td>
+                    <div class="flex">
+                        <p>{{ $totals->total_lembaga }}</p>
+                    </div>
+                   </td>
+                   <td>
+                    <div class="flex">
+                        {{ $totals->total_pria }}
+                    </div>
+                   </td>
+                   <td>
+                    <div class="flex">
+                        {{ $totals->total_wanita }}
+                    </div>
+                   </td>
+                   <td>
+
+                   </td>
+                   <td>
+
+                   </td>
+                   <td>
+
+                   </td>
+                   <td>
+
+                   </td>
+                </tr>
             </tbody>
         </table>
         <div class="mt-3">
