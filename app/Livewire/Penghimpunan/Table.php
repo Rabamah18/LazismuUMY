@@ -89,7 +89,15 @@ class Table extends Component
                 $query->where('sumber_dana_id', $this->selectedSumberDana);
             })
             ->when($this->selectedProgramSumber, function ($query) {
-                $query->where('program_sumber_id', $this->selectedProgramSumber);
+                if ($this->selectedProgramSumber === 'zakat') {
+                    // Filter by related `ProgramSumber` where name contains "zakat"
+                    $query->whereHas('programSumber', function ($subQuery) {
+                        $subQuery->where('name', 'like', '%zakat%');
+                    });
+                } else {
+                    // Otherwise, filter by specific `program_sumber_id`
+                    $query->where('program_sumber_id', $this->selectedProgramSumber);
+                }
             })
             ->when($this->selectedBulan, function ($query) {
                 $query->whereMonth('tanggal', $this->selectedBulan);

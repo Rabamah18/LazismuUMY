@@ -35,6 +35,7 @@
                 </x-select-input>
                 <x-select-input id="program_sumber" wire:model.lazy="selectedProgramSumber" class="">
                     <option value="">{{ __('Program Sumber') }}</option>
+                    <option value="zakat">Zakat</option>
                     @foreach ($programSumbers as $programSumber)
                         <option value="{{ $programSumber->id }}">
                             {{ $programSumber->name }}
