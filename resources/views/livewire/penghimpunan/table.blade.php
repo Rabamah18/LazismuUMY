@@ -180,9 +180,18 @@
                             </div>
                         </td>
 
-                        <td x-data="{ nominal: {{ $penghimpunan->nominal }} }" class="px-6 py-4 lg:table-cell">
+                        {{-- <td x-data="{ nominal: {{ $penghimpunan->nominal }} }" class="px-6 py-4 lg:table-cell">
                             <div class="flex">
                                 <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                            </div>
+                        </td> --}}
+
+                        <td class="px-6 py-4 lg:table-cell">
+                            <div class="flex">
+                                <p>
+                                    {{ $penghimpunan->nominal ?? '-' }}
+                                </p>
+
                             </div>
                         </td>
 
@@ -194,6 +203,7 @@
 
                             </div>
                         </td>
+
                         <td class="px-6 py-4 lg:table-cell">
                             <div class="flex">
                                 <p>
@@ -202,6 +212,7 @@
 
                             </div>
                         </td>
+
                         <td class="px-6 py-4 lg:table-cell">
                             <div class="flex">
                                 <p>
@@ -210,6 +221,7 @@
 
                             </div>
                         </td>
+
                         <td class="px-6 py-4 lg:table-cell">
                             <div class="flex">
                                 <p>
@@ -218,6 +230,7 @@
 
                             </div>
                         </td>
+
                         <td class="px-6 py-4 lg:table-cell">
                             <div class="flex">
                                 <p>
@@ -292,6 +305,66 @@
                         </td>
                     </tr>
                 @endforelse
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    {{-- @dump($totalNominal)
+                    <td x-data="{ nominal: {{ $totalNominal }} }" class="px-6 py-4 lg:table-cell">
+                        <div class="flex">
+                            <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                        </div>
+                    </td> --}}
+
+                    <td class="px-6 py-4 lg:table-cell">
+                        <div class="flex">
+                            <p>
+                                {{ $totalNominal ?? '-' }}
+                            </p>
+
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 lg:table-cell">
+                        <div class="flex">
+                            <p>
+                                {{ $lembagaCount ?? '-' }}
+                            </p>
+
+                        </div>
+                    </td>
+
+                    <td class="px-6 py-4 lg:table-cell">
+                        <div class="flex">
+                            <p>
+                                {{ $maleCount ?? '-' }}
+                            </p>
+
+                        </div>
+                    </td>
+
+                    <td class="px-6 py-4 lg:table-cell">
+                        <div class="flex">
+                            <p>
+                                {{ $femaleCount ?? '-' }}
+                            </p>
+
+                        </div>
+                    </td>
+
+                    <td class="px-6 py-4 lg:table-cell">
+                        <div class="flex">
+                            <p>
+                                {{ $noNameCount ?? '-' }}
+                            </p>
+
+                        </div>
+                    </td>
+
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
             </tbody>
         </table>
         <div class="mt-3">

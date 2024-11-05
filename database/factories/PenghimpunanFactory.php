@@ -22,7 +22,7 @@ class PenghimpunanFactory extends Factory
         return [
             'tanggal' => fake()->dateTime(),
             'uraian' => fake()->word(),
-            'nominal' => fake()->randomDigit(),
+            'nominal' => fake()->numerify(),
             'lembaga_count' => fake()->numerify(),
             'male_count' => fake()->numerify(),
             'female_count' => fake()->numerify(),
