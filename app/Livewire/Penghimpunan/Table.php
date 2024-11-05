@@ -107,7 +107,43 @@ class Table extends Component
             })
             ->paginate($this->paginate);
 
+        // Get the filtered data
+        $penghimpunansQuery = Penghimpunan::orderByDesc('updated_at')
+            ->when($this->search, function ($query) {
+                $query->where('uraian', 'like', '%'.$this->search.'%');
+            })
+            ->when($this->dateStart && $this->dateEnd, function ($query) {
+                $query->whereBetween('tanggal', [
+                    Carbon::parse($this->dateStart)->startOfDay(),
+                    Carbon::parse($this->dateEnd)->endOfDay(),
+                ]);
+            })
+            ->when($this->selectedSumberDana, function ($query) {
+                $query->where('sumber_dana_id', $this->selectedSumberDana);
+            })
+            ->when($this->selectedProgramSumber, function ($query) {
+                if ($this->selectedProgramSumber === 'zakat') {
+                    $query->whereHas('programSumber', function ($subQuery) {
+                        $subQuery->where('name', 'like', '%zakat%');
+                    });
+                } else {
+                    $query->where('program_sumber_id', $this->selectedProgramSumber);
+                }
+            })
+            ->when($this->selectedBulan, function ($query) {
+                $query->whereMonth('tanggal', $this->selectedBulan);
+            })
+            ->when($this->selectedTahun, function ($query) {
+                $query->where('tahun_id', $this->selectedTahun);
+            })
+            ->get();
 
-        return view('livewire.penghimpunan.table', ['penghimpunans' => $penghimpunans]);
+        $totalNominal = $penghimpunansQuery->sum('nominal');
+        $lembagaCount = $penghimpunansQuery->sum('lembaga_count');
+        $maleCount = $penghimpunansQuery->sum('male_count');
+        $femaleCount = $penghimpunansQuery->sum('female_count');
+        $noNameCount = $penghimpunansQuery->sum('no_name_count');
+
+        return view('livewire.penghimpunan.table', ['penghimpunans' => $penghimpunans, 'totalNominal' => $totalNominal, 'lembagaCount' => $lembagaCount, 'maleCount' => $maleCount, 'femaleCount' => $femaleCount, 'noNameCount' => $noNameCount]);
     }
 }
