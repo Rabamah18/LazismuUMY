@@ -25,24 +25,14 @@
                     <x-text-input wire:model.lazy='dateEnd' id="tanggal" type='date' class="block w-full mt-1"
                         :value="old('tanggal')" />
                 </div>
-                <x-select-input wire:model.lazy="selectedSumberDana" id="sumber_dana" class="">
-                    <option value="">{{ __('Sumber Dana') }}</option>
-                    @foreach ($sumberDanas as $sumberDana)
-                        <option value="{{ $sumberDana->id }}">
-                            {{ $sumberDana->name }}
+                <x-select-input id="tahun" wire:model.lazy="selectedTahun" class="">
+                    <option value="">{{ __('Tahun') }}</option>
+                    @foreach ($tahuns as $tahun)
+                        <option value="{{ $tahun->id }}">
+                            {{ $tahun->name }}
                         </option>
                     @endforeach
                 </x-select-input>
-                <x-select-input id="program_sumber" wire:model.lazy="selectedProgramSumber" class="">
-                    <option value="">{{ __('Program Sumber') }}</option>
-                    <option value="zakat">Zakat</option>
-                    @foreach ($programSumbers as $programSumber)
-                        <option value="{{ $programSumber->id }}">
-                            {{ $programSumber->name }}
-                        </option>
-                    @endforeach
-                </x-select-input>
-
                 <x-select-input id="bulan" wire:model.lazy="selectedBulan" class="">
                     <option value="">{{ __('Bulan') }}</option>
                     <option value="1">
@@ -82,11 +72,20 @@
                         Desember
                     </option>
                 </x-select-input>
-                <x-select-input id="tahun" wire:model.lazy="selectedTahun" class="">
-                    <option value="">{{ __('Tahun') }}</option>
-                    @foreach ($tahuns as $tahun)
-                        <option value="{{ $tahun->id }}">
-                            {{ $tahun->name }}
+                <x-select-input wire:model.lazy="selectedSumberDana" id="sumber_dana" class="">
+                    <option value="">{{ __('Sumber Dana') }}</option>
+                    @foreach ($sumberDanas as $sumberDana)
+                        <option value="{{ $sumberDana->id }}">
+                            {{ $sumberDana->name }}
+                        </option>
+                    @endforeach
+                </x-select-input>
+                <x-select-input id="program_sumber" wire:model.lazy="selectedProgramSumber" class="">
+                    <option value="">{{ __('Program Sumber') }}</option>
+                    <option value="zakat">Zakat</option>
+                    @foreach ($programSumbers as $programSumber)
+                        <option value="{{ $programSumber->id }}">
+                            {{ $programSumber->name }}
                         </option>
                     @endforeach
                 </x-select-input>
@@ -180,18 +179,21 @@
                             </div>
                         </td>
 
-                        {{-- <td x-data="{ nominal: {{ $penghimpunan->nominal }} }" class="px-6 py-4 lg:table-cell">
+                        <td wire:key="nominal-{{ $penghimpunan->id }}"
+                            x-data="{
+                                nominal: {{ $penghimpunan->nominal }},
+                                updateNominal() {
+                                    this.nominal = {{ $penghimpunan->nominal }}
+                                }
+                            }"
+                            x-init="
+                                Livewire.on('dataUpdated', () => {
+                                    updateNominal()
+                                })
+                            "
+                            class="px-6 py-4 lg:table-cell">
                             <div class="flex">
                                 <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
-                            </div>
-                        </td> --}}
-
-                        <td class="px-6 py-4 lg:table-cell">
-                            <div class="flex">
-                                <p>
-                                    {{ $penghimpunan->nominal ?? '-' }}
-                                </p>
-
                             </div>
                         </td>
 
@@ -309,21 +311,25 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    {{-- @dump($totalNominal)
-                    <td x-data="{ nominal: {{ $totalNominal }} }" class="px-6 py-4 lg:table-cell">
+
+                    <td wire:key="nominal-{{ $totalNominal }}"
+                        x-data="{
+                            nominal: {{ $totalNominal }},
+                            updateNominal() {
+                                this.nominal = {{ $totalNominal }}
+                            }
+                        }"
+                        x-init="
+                            Livewire.on('dataUpdated', () => {
+                                updateNominal()
+                            })
+                        "
+                        class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
                         </div>
-                    </td> --}}
-
-                    <td class="px-6 py-4 lg:table-cell">
-                        <div class="flex">
-                            <p>
-                                {{ $totalNominal ?? '-' }}
-                            </p>
-
-                        </div>
                     </td>
+
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
@@ -360,7 +366,7 @@
                         </div>
                     </td>
 
-                    <td></td>
+                    {{-- <td></td> --}}
                     <td></td>
                     <td></td>
                     <td></td>
