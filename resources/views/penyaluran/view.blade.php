@@ -35,9 +35,9 @@
                             <p class="w-36">{{ __('Tanggal') }}</p>
                             <p>{{ $penyaluran->tanggal->format('d F Y') }}</p>
                         </div>
-                        <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
+                        <div x-data="{nominal: {{ $penyaluran->nominal }}}" class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
                             <p class="w-36">{{ __('Nominal') }}</p>
-                            <p>{{ $penyaluran->nominal }}</p>
+                            <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
                         </div>
                         <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
                             <p class="w-36">{{ __('Ashnaf') }}</p>
