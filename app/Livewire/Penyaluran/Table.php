@@ -84,24 +84,34 @@ class Table extends Component
 
     }
 
+    public function updatedSearch()
+    {
+        $this->resetPage();
+        $this->dispatch('dataUpdated');
+    }
+
     public function updatedDateStart()
     {
         $this->resetPage();
+        $this->dispatch('dataUpdated');
     }
 
     public function updatedDateEnd()
     {
         $this->resetPage();
+        $this->dispatch('dataUpdated');
     }
 
     public function updatedSelectedTahun()
     {
         $this->resetPage();
+        $this->dispatch('dataUpdated');
     }
 
     public function updatedSelectedBulan()
     {
         $this->resetPage();
+        $this->dispatch('dataUpdated');
     }
 
     public function updatedSelectedProvinsi()
@@ -109,16 +119,19 @@ class Table extends Component
         $this->kabupatens = Kabupaten::query()->where('provinsi_id', $this->selectedProvinsi)->get();
         $this->resetPage();
         $this->reset('selectedKabupaten');
+        $this->dispatch('dataUpdated');
     }
 
     public function updatedSelectedKabupaten()
     {
         $this->resetPage();
+        $this->dispatch('dataUpdated');
     }
 
     public function updatedSelectedAshnaf()
     {
         $this->resetPage();
+        $this->dispatch('dataUpdated');
     }
 
     public function updatedSelectedPilar()
@@ -126,17 +139,22 @@ class Table extends Component
         $this->programPilars = ProgramPilar::query()->where('pilar_id', $this->selectedPilar)->get();
         $this->reset('selectedProgramPilar');
         $this->resetPage();
+        $this->dispatch('dataUpdated');
     }
 
     public function updatedSelectedProgramPilar()
     {
         $this->resetPage();
+        $this->dispatch('dataUpdated');
     }
+
+
 
     public function updatedTotal()
     {
 
     }
+    
     public function render()
     {
         $penyalurans = Penyaluran::orderByDesc('updated_at')
@@ -176,22 +194,23 @@ class Table extends Component
             })
             ->paginate($this->paginate);
 
-            $penyaluransQuery = Penyaluran::orderByDesc('updated_at')
-    ->when($this->search, function ($query) {
-        $query->where('uraian', 'like', '%' . $this->search . '%');
-    })
-    ->when($this->dateStart && $this->dateEnd, function ($query) {
-        $query->whereBetween('tanggal', [
-            Carbon::parse($this->dateStart)->startOfDay(),
-            Carbon::parse($this->dateEnd)->endOfDay()
-        ]);
-    })
-    ->when($this->selectedBulan, function ($query) {
-        $query->whereMonth('tanggal', $this->selectedBulan);
-    })
-    ->when($this->selectedTahun, function ($query) {
-        $query->where('tahun_id', $this->selectedTahun);
-    })
+        //Get the Filter Data
+        $penyaluransQuery = Penyaluran::orderByDesc('updated_at')
+            ->when($this->search, function ($query) {
+                $query->where('uraian', 'like', '%' . $this->search . '%');
+            })
+            ->when($this->dateStart && $this->dateEnd, function ($query) {
+                $query->whereBetween('tanggal', [
+                    Carbon::parse($this->dateStart)->startOfDay(),
+                    Carbon::parse($this->dateEnd)->endOfDay()
+            ]);
+        })
+            ->when($this->selectedBulan, function ($query) {
+                $query->whereMonth('tanggal', $this->selectedBulan);
+            })
+            ->when($this->selectedTahun, function ($query) {
+                $query->where('tahun_id', $this->selectedTahun);
+            })
     ->when($this->selectedProvinsi, function ($query) {
         $query->whereHas('kabupaten', function ($query) {
             $query->where('provinsi_id', $this->selectedProvinsi);
@@ -210,20 +229,25 @@ class Table extends Component
     })
     ->when($this->selectedProgramPilar, function ($query) {
         $query->where('program_pilar_id', $this->selectedProgramPilar);
-    });
+    })->get();
+
+    $totalNominal = $penyaluransQuery->sum('nominal');
+    $lembagaCount = $penyaluransQuery->sum('lembaga_count');
+    $maleCount = $penyaluransQuery->sum('male_count');
+    $femaleCount = $penyaluransQuery->sum('female_count');
 
 // Get all results without pagination
 // $penyalurans = $penyaluransQuery->get();
 
 // Calculate totals
-$totals = $penyaluransQuery->select([
-    DB::raw('SUM(nominal) as total_nominal'),
-    DB::raw('SUM(lembaga_count) as total_lembaga'),
-    DB::raw('SUM(male_count) as total_pria'),
-    DB::raw('SUM(female_count) as total_wanita'),
-    DB::raw('COUNT(DISTINCT ashnaf_id) as total_ashnaf')
-])->first();
+// $totals = $penyaluransQuery->select([
+//     DB::raw('SUM(nominal) as total_nominal'),
+//     DB::raw('SUM(lembaga_count) as total_lembaga'),
+//     DB::raw('SUM(male_count) as total_pria'),
+//     DB::raw('SUM(female_count) as total_wanita'),
+//     // DB::raw('COUNT(DISTINCT ashnaf_id) as total_ashnaf')
+//     ])->first();
 
-        return view('livewire.penyaluran.table', ['penyalurans' => $penyalurans, 'totals' => $totals]);
+        return view('livewire.penyaluran.table', ['penyalurans' => $penyalurans, 'totalNominal' => $totalNominal, 'lembagaCount' => $lembagaCount, 'maleCount' => $maleCount, 'femaleCount' => $femaleCount]);
     }
 }
