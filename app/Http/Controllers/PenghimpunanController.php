@@ -125,7 +125,7 @@ class PenghimpunanController extends Controller
 
         ]);
         //dd($request);
-        $nominal = $this->parseRupiah($request->input('nominal'));
+        $nominal = $this->parseRupiah($request->nominal);
 
         $penghimpunan->update([
             'tanggal' => $request->tanggal,

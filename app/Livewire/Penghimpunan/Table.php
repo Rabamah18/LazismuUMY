@@ -7,6 +7,7 @@ use App\Models\ProgramSumber;
 use App\Models\SumberDana;
 use App\Models\Tahun;
 use Carbon\Carbon;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -53,19 +54,46 @@ class Table extends Component
 
     }
 
+    public function updatedSearch()
+    {
+        $this->resetPage();
+        $this->dispatch('dataUpdated');
+    }
+
     public function updatedDateStart()
     {
         $this->resetPage();
+        $this->dispatch('dataUpdated');
     }
 
     public function updatedDateEnd()
     {
         $this->resetPage();
+        $this->dispatch('dataUpdated');
+    }
+
+    public function updatedSelectedTahun()
+    {
+        $this->resetPage();
+        $this->dispatch('dataUpdated');
     }
 
     public function updatedSelectedBulan()
     {
         $this->resetPage();
+        $this->dispatch('dataUpdated');
+    }
+
+    public function updatedSelectedSumberDana()
+    {
+        $this->resetPage();
+        $this->dispatch('dataUpdated');
+    }
+
+    public function updatedSelectedProgramSumber()
+    {
+        $this->resetPage();
+        $this->dispatch('dataUpdated');
     }
 
     public function formatRupiah($value)
