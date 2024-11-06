@@ -20,16 +20,20 @@ class PilarSeeder extends Seeder
             'Peduli Guru',
             'Lazismu Goes To Campus',
             'Muhammadiyah Scholarship Preparation Program (MSPP)',
+            'Edutab-mu',
+            'Perpus Keliling',
         ],
 
         'Kesehatan' => [
             'Peduli Kesehatan',
             'Indonesia Mobile Clinic',
             'SAUM',
-            'TIMBANG',
-            'ENDTB',
+            'Timbang',
+            'END-TB',
             'Rumah Singgah Pasien',
-            'Khitan Gratis',
+            'Khitan',
+            'Bebas Covid-19',
+            'Bedah Klinik',
         ],
 
         'Ekonomi' => [
@@ -37,26 +41,44 @@ class PilarSeeder extends Seeder
             'Peternakan Masyarakat Mandiri',
             'Tani Bangkit',
             'Ketahanan Pangan',
+            'Keuangan Mikro',
         ],
 
         'Kemanusiaan' => [
-            'Indonesia Siaga',
+            'Siaga Bencana',
             'Sekolah Cerdas',
-            'Muhammadiyah Aid',
+            'Muhammadiyah AID',
+            'Gudang Kemanusiaan Lazismu',
+            'Pensiunan',
+            'Bantuan Tenaga Tendik',
         ],
 
         'Sosial Dakwah' => [
             'Pemberdayaan Disabilitas',
             'Sayangi lansia',
-            'Pembedayaan Mualaf',
+            'Pemberdayaan Mualaf',
+            'Bedah Rumah',
             'Back to Masjid',
+            'Rumah Tahfidz',
+            'Indonesia Terang',
+            'Takjil',
+            'Jumat Berkah',
+            'Program Ramadhan',
+            'Dai Mandiri',
             'Qurban',
+            'Zakat Fitrah',
+            'Fidyah',
+            'Tali Asih',
         ],
 
         'Lingkungan' => [
-            'Peduli Lingkungan',
+            'Penanaman Pohon',
             'Sayangi Daratmu',
             'Sayangi Lautmu',
+        ],
+
+        'Operasional' => [
+            'Gaji Pegawai'
         ],
        ];
 
