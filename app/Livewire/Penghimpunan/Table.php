@@ -11,6 +11,7 @@ use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Livewire\Livewire;
 use Livewire\WithPagination;
 
 class Table extends Component
@@ -101,6 +102,7 @@ class Table extends Component
         return 'Rp. '.number_format($value, 0, ',', '.');
     }
 
+    #[On('dataUpdated')]
     public function render()
     {
         $penghimpunans = Penghimpunan::orderByDesc('updated_at')

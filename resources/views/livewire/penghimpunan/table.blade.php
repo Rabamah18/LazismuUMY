@@ -182,15 +182,10 @@
                         <td wire:key="nominal-{{ $penghimpunan->id }}"
                             x-data="{
                                 nominal: {{ $penghimpunan->nominal }},
-                                updateNominal() {
-                                    this.nominal = {{ $penghimpunan->nominal }}
-                                }
+                                // updateNominal() {
+                                //     this.nominal = {{ $penghimpunan->nominal }}
+                                // }
                             }"
-                            x-init="
-                                Livewire.on('dataUpdated', () => {
-                                    updateNominal()
-                                })
-                            "
                             class="px-6 py-4 lg:table-cell">
                             <div class="flex">
                                 <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
@@ -311,19 +306,14 @@
                     <td></td>
                     <td></td>
                     <td></td>
-
+                    @dump($totalNominal)
                     <td wire:key="nominal-{{ $totalNominal }}"
                         x-data="{
                             nominal: {{ $totalNominal }},
-                            updateNominal() {
-                                this.nominal = {{ $totalNominal }}
-                            }
+                            // updateNominal() {
+                            //     this.nominal = {{ $totalNominal }}
+                            // }
                         }"
-                        x-init="
-                            Livewire.on('dataUpdated', () => {
-                                updateNominal()
-                            })
-                        "
                         class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
