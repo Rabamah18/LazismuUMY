@@ -384,8 +384,10 @@
                     </tr>
                 @endforelse
                 <tr>
-                   <td>
-
+                   <td class="px-6 py-4 lg:table-cell">
+                    <div class="flex">
+                        {{ __('Jumlah') }}
+                    </div>
                    </td>
                    <td>
 
