@@ -75,6 +75,13 @@
                         </div>
 
                         <div>
+                            <x-input-label for="noname" :value="__('Jumlah No Name')" />
+                            <x-text-input id="noname" name="noname" type="number" class="block w-full mt-1"
+                                :value="old('noname')" autocomplete="noname" min="0" placeholder="0" />
+                            <x-input-error class="mt-2" :messages="$errors->get('noname')" />
+                        </div>
+
+                        <div>
                             <x-input-label for="sumber_dana_id" :value="__('Sumber Dana')" />
                             <x-select-input id="sumber_dana" name="sumber_dana_id" class="block w-full mt-1">
                                 <option value="">{{ __('Select Sumber Dana') }}</option>
