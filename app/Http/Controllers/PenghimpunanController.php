@@ -47,12 +47,12 @@ class PenghimpunanController extends Controller
             'lembaga' => 'nullable|numeric',
             'pria' => 'nullable|numeric',
             'wanita' => 'nullable|numeric',
+            'noname' => 'nullable|numeric',
             'sumber_dana_id' => 'nullable|exists:sumber_danas,id',
             'program_sumber_id' => 'nullable|exists:program_sumbers,id',
             'tahun_id' => 'nullable|exists:tahuns,id',
 
         ]);
-        //dd($request);
 
         // Remove any non-numeric characters for safe storage as integer
         $nominal = $this->parseRupiah($request->input('nominal'));
@@ -64,6 +64,7 @@ class PenghimpunanController extends Controller
             'lembaga_count' => $request->lembaga,
             'male_count' => $request->pria,
             'female_count' => $request->wanita,
+            'no_name_count' => $request->noname,
             'sumber_dana_id' => $request->sumber_dana_id,
             'program_sumber_id' => $request->program_sumber_id,
             'tahun_id' => $request->tahun_id,
@@ -119,12 +120,13 @@ class PenghimpunanController extends Controller
             'lembaga' => 'nullable|numeric',
             'pria' => 'nullable|numeric',
             'wanita' => 'nullable|numeric',
+            'noname' => 'nullable|numeric',
             'sumber_dana_id' => 'nullable|exists:sumber_danas,id',
             'program_sumber_id' => 'nullable|exists:program_sumbers,id',
             'tahun_id' => 'nullable|exists:tahuns,id',
 
         ]);
-        //dd($request);
+
         $nominal = $this->parseRupiah($request->nominal);
 
         $penghimpunan->update([
@@ -134,6 +136,7 @@ class PenghimpunanController extends Controller
             'lembaga_count' => $request->lembaga,
             'male_count' => $request->pria,
             'female_count' => $request->wanita,
+            'no_name_count' => $request->noname,
             'sumber_dana_id' => $request->sumber_dana_id,
             'program_sumber_id' => $request->program_sumber_id,
             'tahun_id' => $request->tahun_id,

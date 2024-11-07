@@ -11,7 +11,6 @@ use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
-use Livewire\Livewire;
 use Livewire\WithPagination;
 
 class Table extends Component
@@ -105,38 +104,6 @@ class Table extends Component
     #[On('dataUpdated')]
     public function render()
     {
-        $penghimpunans = Penghimpunan::orderByDesc('updated_at')
-            ->when($this->search, function ($query): void {
-                $query->where(function ($query) {
-                    $query->where('uraian', 'like', '%'.$this->search.'%');
-                });
-            })
-            ->when($this->dateStart && $this->dateEnd, function ($query) {
-                $query->whereBetween('tanggal', [Carbon::parse($this->dateStart)->startOfDay(),
-                    Carbon::parse($this->dateEnd)->endOfDay()]);
-            })
-            ->when($this->selectedSumberDana, function ($query) {
-                $query->where('sumber_dana_id', $this->selectedSumberDana);
-            })
-            ->when($this->selectedProgramSumber, function ($query) {
-                if ($this->selectedProgramSumber === 'zakat') {
-                    // Filter by related `ProgramSumber` where name contains "zakat"
-                    $query->whereHas('programSumber', function ($subQuery) {
-                        $subQuery->where('name', 'like', '%zakat%');
-                    });
-                } else {
-                    // Otherwise, filter by specific `program_sumber_id`
-                    $query->where('program_sumber_id', $this->selectedProgramSumber);
-                }
-            })
-            ->when($this->selectedBulan, function ($query) {
-                $query->whereMonth('tanggal', $this->selectedBulan);
-            })
-            ->when($this->selectedTahun, function ($query) {
-                $query->where('tahun_id', $this->selectedTahun);
-            })
-            ->paginate($this->paginate);
-
         // Get the filtered data
         $penghimpunansQuery = Penghimpunan::orderByDesc('updated_at')
             ->when($this->search, function ($query) {
@@ -165,8 +132,9 @@ class Table extends Component
             })
             ->when($this->selectedTahun, function ($query) {
                 $query->where('tahun_id', $this->selectedTahun);
-            })
-            ->get();
+            });
+
+        $penghimpunans = $penghimpunansQuery->paginate($this->paginate);
 
         $totalNominal = $penghimpunansQuery->sum('nominal');
         $lembagaCount = $penghimpunansQuery->sum('lembaga_count');
