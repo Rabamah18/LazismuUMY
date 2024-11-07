@@ -226,13 +226,23 @@
                                 </div>
                             </td>
 
-                            <td class="px-6 py-4 lg:table-cell">
+                            <td wire:key="nominal-{{ $penyaluran->id }}"
+                                x-data="{
+                                    nominal: {{ $penyaluran->nominal }},
+                                    updateNominal() {
+                                        this.nominal = {{ $penyaluran->nominal }}
+                                    }
+                                }"
+                                x-init="
+                                    Livewire.on('dataUpdated', () => {
+                                        updateNominal()
+                                    })
+                                "
+                                class="px-6 py-4 lg:table-cell">
                                 <div class="flex">
-                                    <p>
-                                        {{ $penyaluran->nominal }}
-                                    </p>
+                                    <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
                                 </div>
-                            </td>
+                                </td>
                             <td class="px-6 py-4 lg:table-cell">
                                 <div class="flex">
                                     <p>
