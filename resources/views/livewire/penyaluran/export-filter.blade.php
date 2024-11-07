@@ -131,7 +131,7 @@
                                     </option>
                                 @endforeach
                             </x-select-input>
-                            <x-select-input id="paginate" wire:model.lazy="paginate" class="">
+                            {{-- <x-select-input id="paginate" wire:model.lazy="paginate" class="">
                                 <option value="">{{ __('Per Halaman') }}</option>
                                 <option value="30">
                                     30
@@ -145,7 +145,7 @@
                                 <option value="100">
                                     100
                                 </option>
-                            </x-select-input>
+                            </x-select-input> --}}
 
                         </div>
                     </div>
