@@ -115,6 +115,22 @@
                                     </option>
                                 @endforeach
                             </x-select-input>
+                            <x-select-input wire:model.lazy="selectedSumberDana" id="sumber_dana" class="">
+                                <option value="">{{ __('Sumber Dana') }}</option>
+                                @foreach ($sumberDanas as $sumberDana)
+                                    <option value="{{ $sumberDana->id }}">
+                                        {{ $sumberDana->name }}
+                                    </option>
+                                @endforeach
+                            </x-select-input>
+                            <x-select-input id="program_sumber" wire:model.lazy="selectedProgramSumber" class="">
+                                <option value="">{{ __('Program Sumber') }}</option>
+                                @foreach ($programSumbers as $programSumber)
+                                    <option value="{{ $programSumber->id }}">
+                                        {{ $programSumber->name }}
+                                    </option>
+                                @endforeach
+                            </x-select-input>
                             <x-select-input id="paginate" wire:model.lazy="paginate" class="">
                                 <option value="">{{ __('Per Halaman') }}</option>
                                 <option value="30">
@@ -147,6 +163,12 @@
                         </th>
                         <th scope="col" class="px-6 py-3 lg:table-cell">
                             {{ __('Nominal') }}
+                        </th>
+                        <th scope="col" class="px-6 py-3 lg:table-cell">
+                            {{ __('Sumber Dana') }}
+                        </th>
+                        <th scope="col" class="px-6 py-3 lg:table-cell">
+                            {{ __('Program Sumber') }}
                         </th>
                         <th scope="col" class="px-6 py-3 lg:table-cell">
                             {{ __('Pilar') }}
@@ -209,6 +231,22 @@
                                     <p>
                                         {{ $penyaluran->nominal }}
                                     </p>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 lg:table-cell">
+                                <div class="flex">
+                                    <p>
+                                        {{ $penyaluran->sumberDana->name ?? '-' }}
+                                    </p>
+
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 lg:table-cell">
+                                <div class="flex">
+                                    <p>
+                                        {{ $penyaluran->programSumber->name ?? '-' }}
+                                    </p>
+
                                 </div>
                             </td>
                             <td class="px-6 py-4 lg:table-cell">

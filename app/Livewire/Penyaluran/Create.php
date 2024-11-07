@@ -2,17 +2,19 @@
 
 namespace App\Livewire\Penyaluran;
 
+use App\Models\Pilar;
+use App\Models\Tahun;
 use App\Models\Ashnaf;
+use Livewire\Component;
+use App\Models\Provinsi;
 use App\Models\Kabupaten;
 use App\Models\Penyaluran;
-use App\Models\Pilar;
+use App\Models\SumberDana;
 use App\Models\ProgramPilar;
-use App\Models\Provinsi;
-use App\Models\Tahun;
-use Illuminate\Database\Eloquent\Collection;
+use App\Models\ProgramSumber;
 use Illuminate\Support\Carbon;
 use Livewire\Attributes\Validate;
-use Livewire\Component;
+use Illuminate\Database\Eloquent\Collection;
 
 class Create extends Component
 {
@@ -51,6 +53,14 @@ class Create extends Component
 
     public $selectedProgramPilar;
 
+    public $sumberDanas;
+
+    public $selectedSumberDana;
+
+    public $programSumbers;
+
+    public $selectedProgramSumber;
+
     public $nominal;
 
     public function mount()
@@ -69,6 +79,8 @@ class Create extends Component
         $this->ashnafs = Ashnaf::query()->get();
         $this->pilars = Pilar::query()->get();
         // $this->programPilars = ProgramPilar::query()->get();
+        $this->sumberDanas = SumberDana::query()->get();
+        $this->programSumbers = ProgramSumber::query()->get();
     }
 
     public function rules()
@@ -85,6 +97,9 @@ class Create extends Component
             'wanita' => 'nullable|numeric',
             'selectedPilar' => 'nullable|exists:pilars,id',
             'selectedProgramPilar' => 'nullable|exists:program_pilars,id',
+            'selectedSumberDana' => 'nullable|exists:sumber_danas,id',
+            'selectedProgramSumber' => 'nullable|exists:program_sumbers,id',
+
 
         ];
     }
@@ -129,6 +144,8 @@ class Create extends Component
             'female_count' => $this->wanita,
             'pilar_id' => $this->selectedPilar,
             'program_pilar_id' => $this->selectedProgramPilar,
+            'sumber_dana_id' => $this->selectedSumberDana,
+            'program_sumber_id' => $this->selectedProgramSumber,
             'tahun_id' => $this->selectedTahun,
             'provinsi_id' => $this->selectedProvinsi,
             'kabupaten_id' => $this->selectedKabupaten,

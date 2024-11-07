@@ -10,9 +10,11 @@ use Livewire\Component;
 use App\Models\Provinsi;
 use App\Models\Kabupaten;
 use App\Models\Penyaluran;
+use App\Models\SumberDana;
 use App\Models\ProgramPilar;
 use Livewire\Attributes\Url;
 use Livewire\WithPagination;
+use App\Models\ProgramSumber;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -60,6 +62,14 @@ class Table extends Component
 
     public $selectedProgramPilar;
 
+    public $sumberDanas;
+
+    public $selectedSumberDana;
+
+    public $programSumbers;
+
+    public $selectedProgramSumber;
+
     public $nominal;
 
     public $total;
@@ -81,6 +91,8 @@ class Table extends Component
         $this->ashnafs = Ashnaf::query()->get();
         $this->pilars = Pilar::query()->get();
         $this->programPilars = ProgramPilar::query()->get();
+        $this->sumberDanas = SumberDana::query()->get();
+        $this->programSumbers = ProgramSumber::query()->get();
 
     }
 
@@ -148,13 +160,23 @@ class Table extends Component
         $this->dispatch('dataUpdated');
     }
 
+    public function updatedSelectedSumberDana()
+    {
+        $this->resetPage();
+        $this->dispatch('dataUpdated');
+    }
 
+    public function updatedSelectedProgramSumber()
+    {
+        $this->resetPage();
+        $this->dispatch('dataUpdated');
+    }
 
     public function updatedTotal()
     {
 
     }
-    
+
     public function render()
     {
         $penyalurans = Penyaluran::orderByDesc('updated_at')
@@ -191,6 +213,20 @@ class Table extends Component
             })
             ->when($this->selectedProgramPilar, function ($query) {
                 $query->where('program_pilar_id', $this->selectedProgramPilar);
+            })
+            ->when($this->selectedSumberDana, function ($query) {
+                $query->where('sumber_dana_id', $this->selectedSumberDana);
+            })
+            ->when($this->selectedProgramSumber, function ($query) {
+                if ($this->selectedProgramSumber === 'zakat') {
+                    // Filter by related `ProgramSumber` where name contains "zakat"
+                    $query->whereHas('programSumber', function ($subQuery) {
+                        $subQuery->where('name', 'like', '%zakat%');
+                    });
+                } else {
+                    // Otherwise, filter by specific `program_sumber_id`
+                    $query->where('program_sumber_id', $this->selectedProgramSumber);
+                }
             })
             ->paginate($this->paginate);
 
@@ -229,7 +265,20 @@ class Table extends Component
     })
     ->when($this->selectedProgramPilar, function ($query) {
         $query->where('program_pilar_id', $this->selectedProgramPilar);
-    })->get();
+    })
+    ->when($this->selectedSumberDana, function ($query) {
+        $query->where('sumber_dana_id', $this->selectedSumberDana);
+    })
+    ->when($this->selectedProgramSumber, function ($query) {
+        if ($this->selectedProgramSumber === 'zakat') {
+            $query->whereHas('programSumber', function ($subQuery) {
+                $subQuery->where('name', 'like', '%zakat%');
+            });
+        } else {
+            $query->where('program_sumber_id', $this->selectedProgramSumber);
+        }
+    })
+    ->get();
 
     $totalNominal = $penyaluransQuery->sum('nominal');
     $lembagaCount = $penyaluransQuery->sum('lembaga_count');
