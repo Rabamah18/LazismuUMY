@@ -82,6 +82,14 @@
                             <p>{{ $penyaluran->programPilar->name ?? '-' }}</p>
                         </div>
                         <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
+                            <p class="w-36">{{ __('Sumber Dana') }}</p>
+                            <p>{{ $penyaluran->sumberDana->name ?? '-' }}</p>
+                        </div>
+                        <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
+                            <p class="w-36">{{ __('Program Sumber') }}</p>
+                            <p>{{ $penyaluran->programSumber->name ?? '-' }}</p>
+                        </div>
+                        <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
                             <p class="w-36">{{ __('Tahun') }}</p>
                             <p>{{ $penyaluran->tahun->name }}</p>
                         </div>

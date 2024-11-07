@@ -9,7 +9,9 @@ use Livewire\Component;
 use App\Models\Provinsi;
 use App\Models\Kabupaten;
 use App\Models\Penyaluran;
+use App\Models\SumberDana;
 use App\Models\ProgramPilar;
+use App\Models\ProgramSumber;
 use App\Exports\PenyaluransExport;
 
 class ExportFilter extends Component
@@ -48,6 +50,14 @@ class ExportFilter extends Component
 
     public $selectedProgramPilar = '';
 
+    public $sumberDanas;
+
+    public $selectedSumberDana = '';
+
+    public $programSumbers;
+
+    public $selectedProgramSumber = '';
+
     public $nominal;
 
     public function mount()
@@ -58,6 +68,8 @@ class ExportFilter extends Component
         $this->ashnafs = Ashnaf::query()->get();
         $this->pilars = Pilar::query()->get();
         $this->programPilars = ProgramPilar::query()->get();
+        $this->sumberDanas = SumberDana::query()->get();
+        $this->programSumbers = ProgramSumber::query()->get();
 
     }
 
@@ -102,12 +114,12 @@ class ExportFilter extends Component
 
     public function exportExel()
     {
-        return (new PenyaluransExport(str($this->selectedBulan), str($this->selectedTahun), str($this->selectedProvinsi), str($this->selectedKabupaten), str($this->selectedAshnaf), str($this->selectedPilar), str($this->selectedProgramPilar)))->download('Penyaluran.xlsx');
+        return (new PenyaluransExport(str($this->selectedBulan), str($this->selectedTahun), str($this->selectedProvinsi), str($this->selectedKabupaten), str($this->selectedAshnaf), str($this->selectedPilar), str($this->selectedProgramPilar), str($this->selectedSumberDana), str($this->selectedProgramSumber)))->download('Penyaluran.xlsx');
     }
 
     public function exportCsv()
     {
-        return (new PenyaluransExport(str($this->selectedBulan), str($this->selectedTahun), str($this->selectedProvinsi), str($this->selectedKabupaten), str($this->selectedAshnaf), str($this->selectedPilar), str($this->selectedProgramPilar)))->download('Penyaluran.csv');
+        return (new PenyaluransExport(str($this->selectedBulan), str($this->selectedTahun), str($this->selectedProvinsi), str($this->selectedKabupaten), str($this->selectedAshnaf), str($this->selectedPilar), str($this->selectedProgramPilar), str($this->selectedSumberDana), str($this->selectedProgramSumber)))->download('Penyaluran.csv');
     }
 
     public function render()
@@ -137,6 +149,12 @@ class ExportFilter extends Component
             })
             ->when($this->selectedProgramPilar, function ($query) {
                 $query->where('program_pilar_id', $this->selectedProgramPilar);
+            })
+            ->when($this->selectedSumberDana, function ($query) {
+                $query->where('sumber_dana_id', $this->selectedSumberDana);
+            })
+            ->when($this->selectedProgramSumber, function ($query) {
+                $query->where('program_sumber_id', $this->selectedProgramSumber);
             })
             ->get();
 

@@ -40,7 +40,11 @@ class PenyaluransExport implements FromQuery, ShouldAutoSize, WithColumnFormatti
 
     public string $proPil;
 
-    public function __construct(string $month, string $year, string $provinsi, string $kabupaten, string $ashnaf, string $pilar, string $proPil)
+    public string $sumDa;
+
+    public string $proSum;
+
+    public function __construct(string $month, string $year, string $provinsi, string $kabupaten, string $ashnaf, string $pilar, string $proPil, string $sumDa, string $proSum)
     {
         $this->month = $month;
         $this->year = $year;
@@ -49,6 +53,8 @@ class PenyaluransExport implements FromQuery, ShouldAutoSize, WithColumnFormatti
         $this->kabupaten = $kabupaten;
         $this->pilar = $pilar;
         $this->proPil = $proPil;
+        $this->sumDa = $sumDa;
+        $this->proSum = $proSum;
 
     }
 
@@ -82,6 +88,12 @@ class PenyaluransExport implements FromQuery, ShouldAutoSize, WithColumnFormatti
             })
             ->when($this->proPil, function ($query) {
                 $query->where('program_pilar_id', $this->proPil);
+            })
+            ->when($this->sumDa, function ($query) {
+                $query->where('sumber_dana_id', $this->sumDa);
+            })
+            ->when($this->proSum, function ($query) {
+                $query->where('program_sumber_id', $this->proSum);
             });
     }
 
@@ -91,6 +103,8 @@ class PenyaluransExport implements FromQuery, ShouldAutoSize, WithColumnFormatti
             'Id',
             'Tanggal',
             'Nominal',
+            'Sumber Dana',
+            'Program Sumber',
             'Pilar',
             'Program Pilar',
             'Ashnaf',
@@ -112,6 +126,8 @@ class PenyaluransExport implements FromQuery, ShouldAutoSize, WithColumnFormatti
             $penyaluran->id,
             $penyaluran->tanggal, //->isoFormat('LL'),
             $penyaluran->nominal,
+            $penyaluran->sumberDana->name ?? null,
+            $penyaluran->programSumber->name ?? null,
             $penyaluran->programPilar->pilar->name ?? null,
             $penyaluran->programPilar->name ?? null,
             $penyaluran->ashnaf->name ?? null,

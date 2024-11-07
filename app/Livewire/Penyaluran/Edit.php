@@ -10,6 +10,8 @@ use App\Models\Provinsi;
 use App\Models\Kabupaten;
 use App\Models\Penyaluran;
 use App\Models\ProgramPilar;
+use App\Models\ProgramSumber;
+use App\Models\SumberDana;
 use Illuminate\Support\Carbon;
 use Livewire\Attributes\Validate;
 
@@ -53,6 +55,14 @@ class Edit extends Component
 
     public $selectedProgramPilar;
 
+    public $sumberDanas;
+
+    public $selectedSumberDana;
+
+    public $programSumbers;
+
+    public $selectedProgramSumber;
+
     public $nominal;
 
 
@@ -77,6 +87,10 @@ class Edit extends Component
         $this->selectedPilar = $this->penyaluran->programPilar->pilar_id;
         $this->programPilars = ProgramPilar::query()->get();
         $this->selectedProgramPilar = $this->penyaluran->program_pilar_id;
+        $this->sumberDanas = SumberDana::query()->get();
+        $this->selectedSumberDana = $this->penyaluran->sumber_dana_id;
+        $this->programSumbers = ProgramSumber::query()->get();
+        $this->selectedProgramSumber = $this->penyaluran->program_sumber_id;
         $this->nominal = $this->penyaluran->nominal;
 
 
@@ -94,6 +108,8 @@ class Edit extends Component
         $this->wanita = $penyaluran->female_count;
         $this->selectedPilar = $penyaluran->pilar;
         $this->selectedProgramPilar = $penyaluran->programPilar;
+        $this->selectedSumberDana = $penyaluran->sumberDana;
+        $this->selectedProgramSumber = $penyaluran->programSumber;
         $this->selectedTahun = $penyaluran->tahun;
         $this->selectedProvinsi = $penyaluran->provinsi;
         $this->selectedKabupaten = $penyaluran->kabupaten;
@@ -115,6 +131,8 @@ class Edit extends Component
             'wanita' => 'nullable|numeric',
             'selectedPilar' => 'nullable|exists:pilars,id',
             'selectedProgramPilar' => 'nullable|exists:program_pilars,id',
+            'selectedSumberDana' => 'nullable|exists:sumber_danas,id',
+            'selectedProgramSumber' => 'nullable|exists:program_sumbers,id',
 
         ];
     }
@@ -158,6 +176,8 @@ class Edit extends Component
             'female_count' => $this->wanita,
             'pilar_id' => $this->selectedPilar,
             'program_pilar_id' => $this->selectedProgramPilar,
+            'sumber_dana_id' => $this->selectedSumberDana,
+            'program_sumber_id' => $this->selectedProgramSumber,
             'tahun_id' => $this->selectedTahun,
             'provinsi_id' => $this->selectedProvinsi,
             'kabupaten_id' => $this->selectedKabupaten,

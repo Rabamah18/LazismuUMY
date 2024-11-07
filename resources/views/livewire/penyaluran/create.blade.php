@@ -131,6 +131,32 @@
             <x-input-error class="mt-2" :messages="$errors->get('selectedProgramPilar')" />
         </div>
 
+        <div>
+            <x-input-label for="sumber_dana_id" :value="__('Sumber Dana')" />
+            <x-select-input wire:model.change="selectedSumberDana" id="sumber_dana" class="block w-full mt-1">
+                <option value="">{{ __('Select Sumber Dana') }}</option>
+                @foreach ($sumberDanas as $sumberDana)
+                    <option value="{{ $sumberDana->id }}" {{ request('sumber_dana_id') == 'sumber_dana_id' ? 'selected' : '' }}>
+                        {{ $sumberDana->name }}
+                    </option>
+                @endforeach
+            </x-select-input>
+            <x-input-error class="mt-2" :messages="$errors->get('sumber_dana_id')" />
+        </div>
+
+        <div>
+            <x-input-label for="program_sumber_id" :value="__('Program Sumber')" />
+            <x-select-input wire:model.change="selectedProgramSumber" id="program_sumber" class="block w-full mt-1">
+                <option value="">{{ __('Select Program Sumber') }}</option>
+                @foreach ($programSumbers as $programSumber)
+                    <option value="{{ $programSumber->id }}" {{ request('program_sumber_id') == 'program_sumber_id' ? 'selected' : '' }}>
+                        {{ $programSumber->name }}
+                    </option>
+                @endforeach
+            </x-select-input>
+            <x-input-error class="mt-2" :messages="$errors->get('program_sumber_id')" />
+        </div>
+
         <div x-data="{ nominal: '' }">
             <x-input-label for="nominal" :value="__('Nominal')" />
 
