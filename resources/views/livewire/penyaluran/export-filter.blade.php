@@ -26,8 +26,16 @@
                 </div>
             </div>
             <div>
-                <div class="flex items-center justify-between gap-2">
-                        <div class="flex-nowrap">
+                <div class="flex flex-wrap gap-2 mt-2">
+                            <div class="flex items-center gap-2">
+                                <x-input-label for="tanggal" :value="__('Tanggal Awal')" />
+                                <x-text-input wire:model.lazy='dateStart' id="tanggal" type='date' class="block w-full mt-1" :value="old('tanggal')"/>
+                            </div>
+
+                            <div class=" flex items-center gap-2">
+                                <x-input-label for="tanggal" :value="__('Tanggal Akhir')" />
+                                <x-text-input wire:model.lazy='dateEnd' id="tanggal" type='date' class="block w-full mt-1" :value="old('tanggal')"/>
+                            </div>
                             <x-select-input id="bulan" wire:model.lazy="selectedBulan" class="">
                                 <option value="">{{ __('Bulan') }}</option>
                                 <option value="1">
@@ -340,7 +348,7 @@
 
                                 </div>
                             </td>
-                            
+
                             <td class="py-4 pl-6 pr-2 lg:pr-4">
                                 <div class="flex space-x-2 justify-items-start">
                                     <a href="{{ route('penyaluran.show', $penyaluran) }}" class="hover:underline">Lihat</a>

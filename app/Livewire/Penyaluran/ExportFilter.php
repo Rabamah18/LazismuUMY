@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Penyaluran;
 
+use Carbon\Carbon;
 use App\Models\Pilar;
 use App\Models\Tahun;
 use App\Models\Ashnaf;
@@ -23,6 +24,10 @@ class ExportFilter extends Component
     public $bulan;
 
     public $selectedBulan = '';
+
+    public $dateStart;
+
+    public $dateEnd;
 
     public $provinsis;
 
@@ -62,6 +67,7 @@ class ExportFilter extends Component
 
     public function mount()
     {
+        $this->dateEnd = Carbon::now()->format('Y-m-d');
         $this->tahuns = Tahun::query()->get();
         $this->provinsis = Provinsi::query()->get();
         $this->kabupatens = Kabupaten::query()->get();
@@ -71,6 +77,18 @@ class ExportFilter extends Component
         $this->sumberDanas = SumberDana::query()->get();
         $this->programSumbers = ProgramSumber::query()->get();
 
+    }
+
+    public function updatedDateStart()
+    {
+        // $this->resetPage();
+        // $this->dispatch('dataUpdated');
+    }
+
+    public function updatedDateEnd()
+    {
+        // $this->resetPage();
+        // $this->dispatch('dataUpdated');
     }
 
     public function updatedSelectedBulan()
@@ -125,6 +143,10 @@ class ExportFilter extends Component
     public function render()
     {
         $penyalurans = Penyaluran::orderByDesc('updated_at')
+            ->when($this->dateStart && $this->dateEnd, function ($query) {
+                $query->whereBetween('tanggal', [Carbon::parse($this->dateStart)->startOfDay(),
+                Carbon::parse($this->dateEnd)->endOfDay()]);
+            })
             ->when($this->selectedBulan, function ($query) {
                 $query->whereMonth('tanggal', $this->selectedBulan);
             })
