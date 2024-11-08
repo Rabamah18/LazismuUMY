@@ -102,9 +102,10 @@ class PenyaluransExport implements FromQuery, ShouldAutoSize, WithColumnFormatti
         return [
             'Id',
             'Tanggal',
-            'Nominal',
+            'Uraian',
             'Sumber Dana',
             'Program Sumber',
+            'Nominal',
             'Pilar',
             'Program Pilar',
             'Ashnaf',
@@ -114,7 +115,6 @@ class PenyaluransExport implements FromQuery, ShouldAutoSize, WithColumnFormatti
             'Provinsi',
             'Kabupaten',
             'Tahun',
-            'Uraian',
 
         ];
     }
@@ -125,9 +125,10 @@ class PenyaluransExport implements FromQuery, ShouldAutoSize, WithColumnFormatti
         return [
             $penyaluran->id,
             $penyaluran->tanggal, //->isoFormat('LL'),
-            $penyaluran->nominal,
+            $penyaluran->uraian,
             $penyaluran->sumberDana->name ?? null,
             $penyaluran->programSumber->name ?? null,
+            $penyaluran->nominal,
             $penyaluran->programPilar->pilar->name ?? null,
             $penyaluran->programPilar->name ?? null,
             $penyaluran->ashnaf->name ?? null,
@@ -137,7 +138,6 @@ class PenyaluransExport implements FromQuery, ShouldAutoSize, WithColumnFormatti
             $penyaluran->kabupaten->provinsi->name ?? null,
             $penyaluran->kabupaten->name ?? null,
             $penyaluran->tahun->name ?? null,
-            $penyaluran->uraian,
         ];
     }
 }
