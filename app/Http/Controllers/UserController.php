@@ -13,6 +13,8 @@ class UserController extends Controller
 
     public function __construct()
     {
+        $this->authorizeResource(User::class, 'user');
+
         // Define $roles as a collection of objects
         $this->roles = collect([
             (object) ['name' => 'Admin', 'value' => 'admin'],
