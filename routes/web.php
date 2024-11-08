@@ -52,29 +52,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('penghimpunan/importfilecsv', [PenghimpunanController::class, 'importFileCsv'])->name('penghimpunan.importfilecsv');
     Route::resource('penghimpunan', PenghimpunanController::class);
 
-    // Define `Penghimpunan` resource routes individually with middleware
-    // Route::get('penghimpunan', [PenghimpunanController::class, 'index'])
-    //     ->middleware('can:viewAny,App\Models\Penghimpunan')
-    //     ->name('penghimpunan.index');
-    // Route::get('penghimpunan/create', [PenghimpunanController::class, 'create'])
-    //     ->middleware('can:create,App\Models\Penghimpunan')
-    //     ->name('penghimpunan.create');
-    // Route::post('penghimpunan', [PenghimpunanController::class, 'store'])
-    //     ->middleware('can:create,App\Models\Penghimpunan')
-    //     ->name('penghimpunan.store');
-    // Route::get('penghimpunan/{penghimpunan}', [PenghimpunanController::class, 'show'])
-    //     ->middleware('can:view,App\Models\Penghimpunan')
-    //     ->name('penghimpunan.show');
-    // Route::get('penghimpunan/{penghimpunan}/edit', [PenghimpunanController::class, 'edit'])
-    //     ->middleware('can:update,App\Models\Penghimpunan')
-    //     ->name('penghimpunan.edit');
-    // Route::patch('penghimpunan/{penghimpunan}', [PenghimpunanController::class, 'update'])
-    //     ->middleware('can:update,App\Models\Penghimpunan')
-    //     ->name('penghimpunan.update');
-    // Route::delete('penghimpunan/{penghimpunan}', [PenghimpunanController::class, 'destroy'])
-    //     ->middleware('can:delete,App\Models\Penghimpunan')
-    //     ->name('penghimpunan.destroy');
-
     Route::patch('penyaluran/importfilecsv', [PenyaluranController::class, 'importFileCsv'])->name('penyaluran.importfilecsv');
     Route::patch('penyaluran/importfileexel', [PenyaluranController::class, 'importFileExel'])->name('penyaluran.importfileexel');
     Route::get('penyaluran/importcsv', [PenyaluranController::class, 'importCsv'])->name('penyaluran.importcsv');
@@ -91,7 +68,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('tahun', TahunController::class);
     Route::resource('user', UserController::class);
 
-    // Route::view('/user', 'user.index')->name('user.index');
 });
 
 // Route::view('/', 'public.home')->name('home');

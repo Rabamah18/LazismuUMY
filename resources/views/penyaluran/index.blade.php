@@ -13,26 +13,28 @@
                         {{ __('Data Penyaluran') }}
                     </x-card.title>
                     <div>
-                        <div class="flex flex-wrap gap-2">
-                            <x-button.link-primary href="{{ route('penyaluran.create') }}">
-                                {{ __('Create') }}
-                            </x-button.link-primary>
-                            <x-button.link-primary href="{{ route('penyaluran.importexel') }}">
-                                {{ __('Import Exel') }}
-                            </x-button.link-primary>
-                            {{-- <x-button.link-primary href="{{ route('penyaluran.export') }}">
+                        @can('create', App\Models\Penyaluran::class)
+                            <div class="flex flex-wrap gap-2">
+                                <x-button.link-primary href="{{ route('penyaluran.create') }}">
+                                    {{ __('Create') }}
+                                </x-button.link-primary>
+                                <x-button.link-primary href="{{ route('penyaluran.importexel') }}">
+                                    {{ __('Import Exel') }}
+                                </x-button.link-primary>
+                                {{-- <x-button.link-primary href="{{ route('penyaluran.export') }}">
                                 {{ __('Export Exel') }}
                             </x-button.link-primary> --}}
-                            <x-button.link-primary href="{{ route('penyaluran.importcsv') }}">
-                                {{ __('Import CSV') }}
-                            </x-button.link-primary>
-                            {{-- <x-button.link-primary href="{{ route('penyaluran.exportcsv') }}">
+                                <x-button.link-primary href="{{ route('penyaluran.importcsv') }}">
+                                    {{ __('Import CSV') }}
+                                </x-button.link-primary>
+                                {{-- <x-button.link-primary href="{{ route('penyaluran.exportcsv') }}">
                                 {{ __('Export CSV') }}
                             </x-button.link-primary> --}}
-                            <x-button.link-primary href="{{ route('penyaluran.export') }}">
-                                {{ __('Export') }}
-                            </x-button.link-primary>
-                        </div>
+                                <x-button.link-primary href="{{ route('penyaluran.export') }}">
+                                    {{ __('Export') }}
+                                </x-button.link-primary>
+                            </div>
+                        @endcan
                     </div>
                 </div>
 
