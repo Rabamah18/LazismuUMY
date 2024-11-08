@@ -5,11 +5,12 @@ namespace App\Providers;
 // use Illuminate\Support\Facades\Gate;
 
 use App\Models\Penghimpunan;
+use App\Models\Penyaluran;
 use App\Models\User;
 use App\Policies\PenghimpunanPolicy;
+use App\Policies\PenyaluranPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Route;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -20,6 +21,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Penghimpunan::class => PenghimpunanPolicy::class,
+        Penyaluran::class => PenyaluranPolicy::class,
     ];
 
     /**
@@ -27,6 +29,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->registerPolicies();
+
         Gate::define('admin', function (User $user) {
             $user->hasRole('admin');
         });

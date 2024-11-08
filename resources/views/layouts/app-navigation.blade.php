@@ -22,9 +22,12 @@
                         </x-nav-link>
                     @endcan
 
+                    @can('viewAny', App\Models\Penyaluran::class)
                     <x-nav-link :href="route('penyaluran.index')" :active="request()->routeIs('penyaluran.*')">
                         {{ __('Penyaluran') }}
                     </x-nav-link>
+                    @endcan
+
                     <div class="items-center hidden border-t-2 border-transparent sm:flex">
                         <x-dropdown align="left" width="48">
                             <x-slot name="trigger">
