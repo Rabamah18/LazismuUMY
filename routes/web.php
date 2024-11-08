@@ -13,17 +13,7 @@ use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\SumberDanaController;
 use App\Http\Controllers\TahunController;
 use App\Http\Controllers\UserController;
-use App\Imports\PenghimpunanImportExel;
-use App\Models\Kabupaten;
 use App\Models\Penghimpunan;
-use App\Models\Penyaluran;
-use App\Models\Pilar;
-use App\Models\ProgramPilar;
-use App\Models\ProgramSumber;
-use App\Models\Provinsi;
-use App\Models\SumberDana;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -62,6 +52,28 @@ Route::middleware('auth')->group(function () {
     Route::patch('penghimpunan/importfilecsv', [PenghimpunanController::class, 'importFileCsv'])->name('penghimpunan.importfilecsv');
     Route::resource('penghimpunan', PenghimpunanController::class);
 
+    // Define `Penghimpunan` resource routes individually with middleware
+    // Route::get('penghimpunan', [PenghimpunanController::class, 'index'])
+    //     ->middleware('can:viewAny,App\Models\Penghimpunan')
+    //     ->name('penghimpunan.index');
+    // Route::get('penghimpunan/create', [PenghimpunanController::class, 'create'])
+    //     ->middleware('can:create,App\Models\Penghimpunan')
+    //     ->name('penghimpunan.create');
+    // Route::post('penghimpunan', [PenghimpunanController::class, 'store'])
+    //     ->middleware('can:create,App\Models\Penghimpunan')
+    //     ->name('penghimpunan.store');
+    // Route::get('penghimpunan/{penghimpunan}', [PenghimpunanController::class, 'show'])
+    //     ->middleware('can:view,App\Models\Penghimpunan')
+    //     ->name('penghimpunan.show');
+    // Route::get('penghimpunan/{penghimpunan}/edit', [PenghimpunanController::class, 'edit'])
+    //     ->middleware('can:update,App\Models\Penghimpunan')
+    //     ->name('penghimpunan.edit');
+    // Route::patch('penghimpunan/{penghimpunan}', [PenghimpunanController::class, 'update'])
+    //     ->middleware('can:update,App\Models\Penghimpunan')
+    //     ->name('penghimpunan.update');
+    // Route::delete('penghimpunan/{penghimpunan}', [PenghimpunanController::class, 'destroy'])
+    //     ->middleware('can:delete,App\Models\Penghimpunan')
+    //     ->name('penghimpunan.destroy');
 
     Route::patch('penyaluran/importfilecsv', [PenyaluranController::class, 'importFileCsv'])->name('penyaluran.importfilecsv');
     Route::patch('penyaluran/importfileexel', [PenyaluranController::class, 'importFileExel'])->name('penyaluran.importfileexel');
@@ -77,7 +89,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('provinsi', ProvinsiController::class);
     Route::resource('sumberdana', SumberDanaController::class);
     Route::resource('tahun', TahunController::class);
-    Route::resource('user',  UserController::class);
+    Route::resource('user', UserController::class);
 
     // Route::view('/user', 'user.index')->name('user.index');
 });

@@ -14,6 +14,11 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class PenghimpunanController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Penghimpunan::class, 'penghimpunan');
+    }
+
     /**
      * Display a listing of the resource.
      */
