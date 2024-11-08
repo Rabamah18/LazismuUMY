@@ -20,12 +20,16 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class PenyaluranController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Penyaluran::class, 'penyaluran');
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        
 
         return view('penyaluran.index');
     }
@@ -43,7 +47,7 @@ class PenyaluranController extends Controller
         $provinsis = Provinsi::query()->get();
         $kabupatens = Kabupaten::query()->get();
 
-        return view('penyaluran.create', compact('ashnafs',  'pilars', 'programPilars', 'tahuns', 'provinsis', 'kabupatens'));
+        return view('penyaluran.create', compact('ashnafs', 'pilars', 'programPilars', 'tahuns', 'provinsis', 'kabupatens'));
     }
 
     /**
@@ -116,7 +120,7 @@ class PenyaluranController extends Controller
         $kabupatens = Kabupaten::query()->get();
 
         //dd($penyaluran);
-        return view('penyaluran.edit', compact('penyaluran', 'ashnafs',  'pilars', 'programPilars', 'tahuns'));
+        return view('penyaluran.edit', compact('penyaluran', 'ashnafs', 'pilars', 'programPilars', 'tahuns'));
     }
 
     /**

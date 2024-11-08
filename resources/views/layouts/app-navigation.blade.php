@@ -15,12 +15,19 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dasbor') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('penghimpunan.index')" :active="request()->routeIs('penghimpunan.*')">
-                        {{ __('Penghimpunan') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('penyaluran.index')" :active="request()->routeIs('penyaluran.*')">
-                        {{ __('Penyaluran') }}
-                    </x-nav-link>
+
+                    @can('viewAny', App\Models\Penghimpunan::class)
+                        <x-nav-link :href="route('penghimpunan.index')" :active="request()->routeIs('penghimpunan.*')">
+                            {{ __('Penghimpunan') }}
+                        </x-nav-link>
+                    @endcan
+
+                    @can('viewAny', App\Models\Penyaluran::class)
+                        <x-nav-link :href="route('penyaluran.index')" :active="request()->routeIs('penyaluran.*')">
+                            {{ __('Penyaluran') }}
+                        </x-nav-link>
+                    @endcan
+
                     <div class="items-center hidden border-t-2 border-transparent sm:flex">
                         <x-dropdown align="left" width="48">
                             <x-slot name="trigger">
@@ -116,6 +123,11 @@
                         <x-dropdown-link :href="route('home')">
                             {{ __('Beranda') }}
                         </x-dropdown-link>
+                        @can('viewAny', App\Models\User::class)
+                            <x-dropdown-link :href="route('user.index')">
+                                {{ __('Users') }}
+                            </x-dropdown-link>
+                        @endcan
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profil') }}
                         </x-dropdown-link>

@@ -13,20 +13,22 @@
                         {{ __('Data Penghimpunan') }}
                     </x-card.title>
                     <div>
-                        <div class="flex flex-wrap gap-2">
-                            <x-button.link-primary href="{{ route('penghimpunan.create') }}">
-                                {{ __('Create') }}
-                            </x-button.link-primary>
-                            <x-button.link-primary href="{{ route('penghimpunan.importexel') }}">
-                                {{ __('Import Exel') }}
-                            </x-button.link-primary>
-                            <x-button.link-primary href="{{ route('penghimpunan.importcsv') }}">
-                                {{ __('Import CSV') }}
-                            </x-button.link-primary>
-                            <x-button.link-primary href="{{ route('penghimpunan.export') }}">
-                                {{ __('Export') }}
-                            </x-button.link-primary>
-                        </div>
+                        @can('create', App\Models\Penghimpunan::class)
+                            <div class="flex flex-wrap gap-2">
+                                <x-button.link-primary href="{{ route('penghimpunan.create') }}">
+                                    {{ __('Create') }}
+                                </x-button.link-primary>
+                                <x-button.link-primary href="{{ route('penghimpunan.importexel') }}">
+                                    {{ __('Import Exel') }}
+                                </x-button.link-primary>
+                                <x-button.link-primary href="{{ route('penghimpunan.importcsv') }}">
+                                    {{ __('Import CSV') }}
+                                </x-button.link-primary>
+                                <x-button.link-primary href="{{ route('penghimpunan.export') }}">
+                                    {{ __('Export') }}
+                                </x-button.link-primary>
+                            </div>
+                        @endcan
                     </div>
                 </div>
 

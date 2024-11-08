@@ -13,17 +13,7 @@ use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\SumberDanaController;
 use App\Http\Controllers\TahunController;
 use App\Http\Controllers\UserController;
-use App\Imports\PenghimpunanImportExel;
-use App\Models\Kabupaten;
 use App\Models\Penghimpunan;
-use App\Models\Penyaluran;
-use App\Models\Pilar;
-use App\Models\ProgramPilar;
-use App\Models\ProgramSumber;
-use App\Models\Provinsi;
-use App\Models\SumberDana;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -62,7 +52,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('penghimpunan/importfilecsv', [PenghimpunanController::class, 'importFileCsv'])->name('penghimpunan.importfilecsv');
     Route::resource('penghimpunan', PenghimpunanController::class);
 
-
     Route::patch('penyaluran/importfilecsv', [PenyaluranController::class, 'importFileCsv'])->name('penyaluran.importfilecsv');
     Route::patch('penyaluran/importfileexel', [PenyaluranController::class, 'importFileExel'])->name('penyaluran.importfileexel');
     Route::get('penyaluran/importcsv', [PenyaluranController::class, 'importCsv'])->name('penyaluran.importcsv');
@@ -77,9 +66,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('provinsi', ProvinsiController::class);
     Route::resource('sumberdana', SumberDanaController::class);
     Route::resource('tahun', TahunController::class);
-    Route::resource('user',  UserController::class);
+    Route::resource('user', UserController::class);
 
-    // Route::view('/user', 'user.index')->name('user.index');
 });
 
 // Route::view('/', 'public.home')->name('home');
