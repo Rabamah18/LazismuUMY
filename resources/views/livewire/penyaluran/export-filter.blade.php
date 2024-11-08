@@ -161,14 +161,17 @@
                         <th scope="col" class="px-6 py-3 xl:table-cell">
                             {{ __('Tanggal') }}
                         </th>
-                        <th scope="col" class="px-6 py-3 lg:table-cell">
-                            {{ __('Nominal') }}
+                        <th scope="col" class="px-6 py-3">
+                            {{ __('Uraian') }}
                         </th>
                         <th scope="col" class="px-6 py-3 lg:table-cell">
                             {{ __('Sumber Dana') }}
                         </th>
                         <th scope="col" class="px-6 py-3 lg:table-cell">
                             {{ __('Program Sumber') }}
+                        </th>
+                        <th scope="col" class="px-6 py-3 lg:table-cell">
+                            {{ __('Nominal') }}
                         </th>
                         <th scope="col" class="px-6 py-3 lg:table-cell">
                             {{ __('Pilar') }}
@@ -190,16 +193,13 @@
                         </th>
                         </th>
                         <th scope="col" class="px-6 py-3 lg:table-cell">
-                            {{ __('Provinsi') }}
+                            {{ __('Provinsi/Luar Negeri') }}
                         </th>
                         <th scope="col" class="px-6 py-3 lg:table-cell">
-                            {{ __('Kabupaten') }}
+                            {{ __('Kabupaten/Negara') }}
                         </th>
                         <th scope="col" class="px-6 py-3 lg:table-cell">
                             {{ __('Tahun') }}
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            {{ __('Uraian') }}
                         </th>
                         <th scope="col" class="py-3 pl-6 pr-2 lg:pr-4">
                             {{ __('Option') }}
@@ -226,6 +226,33 @@
                                 </div>
                             </td>
 
+                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-gray-200">
+
+                                <div class="flex">
+                                    <a href="{{ route('penyaluran.show', $penyaluran) }}"
+                                        class="hover:underline whitespace-nowrap">
+                                        {{ Str::limit($penyaluran->uraian, 10, '...') }}
+                                    </a>
+
+                                </div>
+                            </td>
+
+                            <td class="px-6 py-4 lg:table-cell">
+                                <div class="flex">
+                                    <p>
+                                        {{ $penyaluran->sumberDana->name ?? '-' }}
+                                    </p>
+                                </div>
+                            </td>
+
+                            <td class="px-6 py-4 lg:table-cell">
+                                <div class="flex">
+                                    <p>
+                                        {{ $penyaluran->programSumber->name ?? '-' }}
+                                    </p>
+                                </div>
+                            </td>
+
                             <td wire:key="nominal-{{ $penyaluran->id }}"
                                 x-data="{
                                     nominal: {{ $penyaluran->nominal }},
@@ -242,34 +269,19 @@
                                 <div class="flex">
                                     <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
                                 </div>
-                                </td>
-                            <td class="px-6 py-4 lg:table-cell">
-                                <div class="flex">
-                                    <p>
-                                        {{ $penyaluran->sumberDana->name ?? '-' }}
-                                    </p>
+                            </td>
 
-                                </div>
-                            </td>
                             <td class="px-6 py-4 lg:table-cell">
                                 <div class="flex">
                                     <p>
-                                        {{ $penyaluran->programSumber->name ?? '-' }}
-                                    </p>
-
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 lg:table-cell">
-                                <div class="flex">
-                                    <p>
-                                        {{ $penyaluran->programPilar->pilar->name ?? '-'}}
+                                        {{ $penyaluran->programPilar->pilar->name ?? '-' }}
                                     </p>
                                 </div>
                             </td>
                             <td class="px-6 py-4 lg:table-cell">
                                 <div class="flex">
                                     <p>
-                                        {{ $penyaluran->programPilar->name ?? '-'}}
+                                        {{ $penyaluran->programPilar->name ?? '-' }}
                                     </p>
                                 </div>
                             </td>
@@ -328,16 +340,7 @@
 
                                 </div>
                             </td>
-                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-gray-200">
-
-                                <div class="flex">
-                                    <a href="{{ route('penyaluran.show', $penyaluran) }}"
-                                        class="hover:underline whitespace-nowrap">
-                                        {{ Str::limit($penyaluran->uraian, 10, '...') }}
-                                    </a>
-
-                                </div>
-                            </td>
+                            
                             <td class="py-4 pl-6 pr-2 lg:pr-4">
                                 <div class="flex space-x-2 justify-items-start">
                                     <a href="{{ route('penyaluran.show', $penyaluran) }}" class="hover:underline">Lihat</a>

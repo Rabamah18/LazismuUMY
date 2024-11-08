@@ -24,9 +24,10 @@ class PenyaluranImportCsv implements ToModel, WithCustomCsvSettings, WithHeading
     {
         return new Penyaluran([
             'tanggal' => $row['tanggal'],
-            'nominal' => $row['nominal'],
+            'uraian' => $row['uraian'],
             'sumber_dana_id' => SumberDana::where('name', $row['sumber_dana'])->first()?->id,
             'program_sumber_id' => ProgramSumber::where('name', $row['program_sumber'])->first()?->id,
+            'nominal' => $row['nominal'],
             'pilar_id' => Pilar::where('name', $row['pilar'])->first()?->id,
             'program_pilar_id' => ProgramPilar::where('name', $row['program_pilar'])->first()?->id,
             'ashnaf_id' => Ashnaf::where('name', $row['ashnaf'])->first()?->id,
@@ -36,7 +37,6 @@ class PenyaluranImportCsv implements ToModel, WithCustomCsvSettings, WithHeading
             'provinsi_id' => Provinsi::where('name', $row['provinsi'])->first()?->id,
             'kabupaten_id' => Kabupaten::where('name', $row['kabupaten'])->first()?->id,
             'tahun_id' => Tahun::where('name', $row['tahun'])->first()?->id,
-            'uraian' => $row['uraian'],
         ]);
     }
 

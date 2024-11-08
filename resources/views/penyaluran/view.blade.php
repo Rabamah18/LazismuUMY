@@ -28,16 +28,32 @@
                             <p>{{ $penyaluran->id }}</p>
                         </div>
                         <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
+                            <p class="w-36">{{ __('Tanggal') }}</p>
+                            <p>{{ $penyaluran->tanggal->format('d F Y') }}</p>
+                        </div>
+                        <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
                             <p class="w-36">{{ __('Uraian') }}</p>
                             <p class="break-normal truncate hover:break-all">{{ $penyaluran->uraian }}</p>
                         </div>
                         <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
-                            <p class="w-36">{{ __('Tanggal') }}</p>
-                            <p>{{ $penyaluran->tanggal->format('d F Y') }}</p>
+                            <p class="w-36">{{ __('Sumber Dana') }}</p>
+                            <p>{{ $penyaluran->sumberDana->name ?? '-' }}</p>
+                        </div>
+                        <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
+                            <p class="w-36">{{ __('Program Sumber') }}</p>
+                            <p>{{ $penyaluran->programSumber->name ?? '-' }}</p>
                         </div>
                         <div x-data="{nominal: {{ $penyaluran->nominal }}}" class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
                             <p class="w-36">{{ __('Nominal') }}</p>
                             <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                        </div>
+                        <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
+                            <p class="w-36">{{ __('Pilar') }}</p>
+                            <p>{{ $penyaluran->programPilar->pilar->name ?? '-' }}</p>
+                        </div>
+                        <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
+                            <p class="w-36">{{ __('Program') }}</p>
+                            <p>{{ $penyaluran->programPilar->name ?? '-' }}</p>
                         </div>
                         <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
                             <p class="w-36">{{ __('Ashnaf') }}</p>
@@ -72,22 +88,6 @@
                             <p>
                                 {{ $penyaluran->kabupaten->name ?? '-' }}
                             </p>
-                        </div>
-                        <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
-                            <p class="w-36">{{ __('Pilar') }}</p>
-                            <p>{{ $penyaluran->programPilar->pilar->name ?? '-' }}</p>
-                        </div>
-                        <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
-                            <p class="w-36">{{ __('Program Pilar') }}</p>
-                            <p>{{ $penyaluran->programPilar->name ?? '-' }}</p>
-                        </div>
-                        <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
-                            <p class="w-36">{{ __('Sumber Dana') }}</p>
-                            <p>{{ $penyaluran->sumberDana->name ?? '-' }}</p>
-                        </div>
-                        <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
-                            <p class="w-36">{{ __('Program Sumber') }}</p>
-                            <p>{{ $penyaluran->programSumber->name ?? '-' }}</p>
                         </div>
                         <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
                             <p class="w-36">{{ __('Tahun') }}</p>
