@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Kabupaten extends Model
+class TargetTahunan extends Model
 {
     use HasFactory;
 
@@ -13,13 +13,8 @@ class Kabupaten extends Model
         'id',
     ];
 
-    public function penyalurans()
+    public function tahun()
     {
-        return $this->hasMany(Penyaluran::class);
-    }
-
-    public function provinsi()
-    {
-        return $this->belongsTo(Provinsi::class);
+        return $this->belongsTo(Tahun::class);
     }
 }

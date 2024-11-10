@@ -22,4 +22,14 @@ class ProgramSumber extends Model
     {
         return $this->hasMany(Penyaluran::class);
     }
+
+    public function targetProgramSumbers()
+    {
+        return $this->hasMany(TargetProgramSumber::class);
+    }
+
+    public function sumberDonasi()
+    {
+        return $this->belongsTo(SumberDonasi::class);
+    }
 }

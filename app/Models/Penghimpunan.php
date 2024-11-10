@@ -33,4 +33,9 @@ class Penghimpunan extends Model
     {
         return $this->belongsTo(Tahun::class);
     }
+
+    public function editedBy()
+    {
+        return $this->belongsTo( User::class, 'user_id');
+    }
 }
