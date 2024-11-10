@@ -7,6 +7,7 @@ use App\Models\ProgramSumber;
 use App\Models\SumberDana;
 use App\Models\Tahun;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithCustomCsvSettings;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -27,6 +28,7 @@ class PenghimpunanImportExel implements ToModel, WithHeadingRow
             'program_sumber_id' => ProgramSumber::where('name', $row['program_sumber'])->first()?->id,
             'sumber_dana_id' => SumberDana::where('name', $row['sumber_dana'])->first()?->id,
             'tahun_id' => Tahun::where('name', $row['tahun'])->first()?->id,
+            'user_id' => Auth()->user()->id
         ]);
     }
 }

@@ -73,7 +73,7 @@ class PenghimpunanController extends Controller
             'sumber_dana_id' => $request->sumber_dana_id,
             'program_sumber_id' => $request->program_sumber_id,
             'tahun_id' => $request->tahun_id,
-            'edited_by' => auth()->user()->id,
+            'user_id' => auth()->user()->id,
 
             // 'title' => $request->title,
         ]);
@@ -145,7 +145,7 @@ class PenghimpunanController extends Controller
             'sumber_dana_id' => $request->sumber_dana_id,
             'program_sumber_id' => $request->program_sumber_id,
             'tahun_id' => $request->tahun_id,
-            'edited_by' => auth()->user()->id,
+            'user_id' => auth()->user()->id,
 
             // 'title' => $request->title,
         ]);

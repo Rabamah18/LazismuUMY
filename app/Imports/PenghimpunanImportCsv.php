@@ -28,6 +28,7 @@ class PenghimpunanImportCsv implements ToModel, WithCustomCsvSettings, WithHeadi
             'program_sumber_id' => ProgramSumber::where('name', $row['program_sumber'])->first()?->id,
             'sumber_dana_id' => SumberDana::where('name', $row['sumber_dana'])->first()?->id,
             'tahun_id' => Tahun::where('name', $row['tahun'])->first()?->id,
+            'user_id' => Auth()->user()->id
         ]);
     }
 
