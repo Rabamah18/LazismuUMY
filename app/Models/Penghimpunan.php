@@ -28,6 +28,10 @@ class Penghimpunan extends Model
     {
         return $this->belongsTo(ProgramSumber::class);
     }
+    public function sumberDonasi()
+    {
+        return $this->belongsTo(SumberDonasi::class);
+    }
 
     public function tahun()
     {

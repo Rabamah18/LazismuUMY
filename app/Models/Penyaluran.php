@@ -52,7 +52,7 @@ class Penyaluran extends Model
     {
         return $this->belongsTo(Tahun::class);
     }
-    
+
     public function sumberDana()
     {
         return $this->belongsTo(SumberDana::class);
@@ -61,5 +61,9 @@ class Penyaluran extends Model
     public function programSumber()
     {
         return $this->belongsTo(ProgramSumber::class);
+    }
+    public function sumberDonasi()
+    {
+        return $this->belongsTo(SumberDonasi::class);
     }
 }
