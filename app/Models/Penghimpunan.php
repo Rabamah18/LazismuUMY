@@ -28,13 +28,14 @@ class Penghimpunan extends Model
     {
         return $this->belongsTo(ProgramSumber::class);
     }
-    public function sumberDonasi()
-    {
-        return $this->belongsTo(SumberDonasi::class);
-    }
 
     public function tahun()
     {
         return $this->belongsTo(Tahun::class);
+    }
+
+    public function editedBy()
+    {
+        return $this->belongsTo( User::class, 'user_id');
     }
 }

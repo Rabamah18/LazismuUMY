@@ -13,11 +13,6 @@ class Pilar extends Model
         'id',
     ];
 
-    public function penyalurans()
-    {
-        return $this->hasMany(Penyaluran::class);
-    }
-
     public function programPilars()
     {
         return $this->hasMany(ProgramPilar::class);

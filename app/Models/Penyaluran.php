@@ -28,19 +28,9 @@ class Penyaluran extends Model
         return $this->belongsTo(Ashnaf::class);
     }
 
-    public function pilar()
-    {
-        return $this->belongsTo(Pilar::class);
-    }
-
     public function programPilar()
     {
         return $this->belongsTo(ProgramPilar::class);
-    }
-
-    public function provinsi()
-    {
-        return $this->belongsTo(Provinsi::class);
     }
 
     public function kabupaten()
@@ -62,8 +52,10 @@ class Penyaluran extends Model
     {
         return $this->belongsTo(ProgramSumber::class);
     }
-    public function sumberDonasi()
+
+    public function editedBy()
     {
-        return $this->belongsTo(SumberDonasi::class);
+        return $this->belongsTo( User::class, 'user_id');
     }
+
 }
