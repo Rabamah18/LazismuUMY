@@ -198,6 +198,9 @@
                     <th scope="col" class="px-6 py-3 lg:table-cell">
                         {{ __('Tahun') }}
                     </th>
+                    <th scope="col" class="px-6 py-3 lg:table-cell">
+                        {{ __('Edit By') }}
+                    </th>
                     <th scope="col" class="py-3 pl-6 pr-2 lg:pr-4">
                         {{ __('Option') }}
                     </th>
@@ -332,7 +335,16 @@
                         <td class="px-6 py-4 lg:table-cell">
                             <div class="flex">
                                 <p>
-                                    {{ $penyaluran->tahun->name }}
+                                    {{ $penyaluran->tahun->name ?? '-'}}
+                                </p>
+
+                            </div>
+                        </td>
+
+                        <td class="px-6 py-4 lg:table-cell">
+                            <div class="flex">
+                                <p>
+                                    {{ $penyaluran->editedBy->name  ?? '-'}}
                                 </p>
 
                             </div>
