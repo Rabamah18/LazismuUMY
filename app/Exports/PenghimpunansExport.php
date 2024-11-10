@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\Penghimpunan;
+use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
@@ -26,20 +27,29 @@ class PenghimpunansExport implements FromQuery, ShouldAutoSize, WithColumnFormat
         ];
     }
 
+    public string $dateStart;
+
+    public string $dateEnd;
+
     public string $month;
 
     public string $year;
 
-    public string $sumDa;
+    public string $sumDon;
 
     public string $proSum;
 
-    public function __construct(string $month, string $year, string $sumDa, string $proSum)
+    public string $sumDa;
+
+    public function __construct(string $dateStart, string $dateEnd, string $month, string $year, string $sumDon, string $proSum, string $sumDa)
     {
+        $this->dateStart = $dateStart;
+        $this->dateEnd = $dateEnd;
         $this->month = $month;
         $this->year = $year;
-        $this->sumDa = $sumDa;
+        $this->sumDon = $sumDon;
         $this->proSum = $proSum;
+        $this->sumDa = $sumDa;
 
     }
 
@@ -48,18 +58,28 @@ class PenghimpunansExport implements FromQuery, ShouldAutoSize, WithColumnFormat
         // return Penghimpunan::query()->with('sumberDana', 'programSumber', 'tahun');
 
         return Penghimpunan::orderByDesc('updated_at')
-            ->with('sumberDana', 'programSumber', 'tahun')
+            ->when($this->dateStart && $this->dateEnd, function ($query) {
+                $query->whereBetween('tanggal', [
+                    Carbon::parse($this->dateStart)->startOfDay(),
+                    Carbon::parse($this->dateEnd)->endOfDay(),
+                ]);
+            })
             ->when($this->month, function ($query) {
                 $query->whereMonth('tanggal', $this->month);
             })
             ->when($this->year, function ($query) {
                 $query->where('tahun_id', $this->year);
             })
-            ->when($this->sumDa, function ($query) {
-                $query->where('sumber_dana_id', $this->sumDa);
+            ->when($this->sumDon, function ($query) {
+                $query->whereHas('programSumber', function ($query) {
+                    $query->where('sumber_donasi_id', $this->sumDon);
+                });
             })
             ->when($this->proSum, function ($query) {
                 $query->where('program_sumber_id', $this->proSum);
+            })
+            ->when($this->sumDa, function ($query) {
+                $query->where('sumber_dana_id', $this->sumDa);
             });
     }
 
@@ -73,8 +93,10 @@ class PenghimpunansExport implements FromQuery, ShouldAutoSize, WithColumnFormat
             'Jumlah Lembaga',
             'Jumlah Pria',
             'Jumlah Wanita',
-            'Sumber Dana',
+            'Jumlah No Name',
+            'Sumber Donasi',
             'Program Sumber',
+            'Sumber Dana',
             'Tahun',
         ];
     }
@@ -90,8 +112,10 @@ class PenghimpunansExport implements FromQuery, ShouldAutoSize, WithColumnFormat
             $penghimpunan->lembaga_count,
             $penghimpunan->male_count,
             $penghimpunan->female_count,
-            $penghimpunan->sumberDana->name ?? null,
+            $penghimpunan->no_name_count,
+            $penghimpunan->programSumber->sumberDonasi->name ?? null,
             $penghimpunan->programSumber->name ?? null,
+            $penghimpunan->sumberDana->name ?? null,
             $penghimpunan->tahun->name ?? null,
         ];
     }
