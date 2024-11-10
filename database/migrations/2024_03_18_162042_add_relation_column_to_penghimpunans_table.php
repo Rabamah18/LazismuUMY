@@ -15,7 +15,7 @@ return new class extends Migration
             $table->foreignId('sumber_dana_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('program_sumber_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('tahun_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId(column: 'user_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId( 'user_id')->nullable()->constrained()->nullOnDelete();
 
         });
     }

@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Penghimpunan extends Model
 {
@@ -17,7 +16,6 @@ class Penghimpunan extends Model
     protected $casts = [
         'tanggal' => 'datetime',
     ];
-
 
     public function sumberDana()
     {
@@ -36,6 +34,6 @@ class Penghimpunan extends Model
 
     public function editedBy()
     {
-        return $this->belongsTo( User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id','id');
     }
 }

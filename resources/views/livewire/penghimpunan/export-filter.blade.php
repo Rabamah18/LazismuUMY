@@ -18,6 +18,24 @@
         </div>
     </div>
     <div class="flex flex-wrap items-center justify-end gap-2 mt-2 sm:mt-4">
+        <div class="flex items-center">
+            <x-input-label for="tanggal" :value="__('Tanggal Awal')" />
+            <x-text-input wire:model.lazy='dateStart' id="tanggal" type='date' class="block w-full mt-1"
+                :value="old('tanggal')" />
+        </div>
+        <div class="flex items-center">
+            <x-input-label for="tanggal" :value="__('Tanggal Akhir')" />
+            <x-text-input wire:model.lazy='dateEnd' id="tanggal" type='date' class="block w-full mt-1"
+                :value="old('tanggal')" />
+        </div>
+        <x-select-input id="tahun" wire:model.lazy="selectedTahun" class="">
+            <option value="">{{ __('Tahun') }}</option>
+            @foreach ($tahuns as $tahun)
+                <option value="{{ $tahun->id }}">
+                    {{ $tahun->name }}
+                </option>
+            @endforeach
+        </x-select-input>
         <x-select-input id="bulan" wire:model.lazy="selectedBulan" class="">
             <option value="">{{ __('Bulan') }}</option>
             <option value="1">
@@ -57,19 +75,11 @@
                 Desember
             </option>
         </x-select-input>
-        <x-select-input id="tahun" wire:model.lazy="selectedTahun" class="">
-            <option value="">{{ __('Tahun') }}</option>
-            @foreach ($tahuns as $tahun)
-                <option value="{{ $tahun->id }}">
-                    {{ $tahun->name }}
-                </option>
-            @endforeach
-        </x-select-input>
-        <x-select-input wire:model.lazy="selectedSumberDana" id="sumber_dana" class="">
-            <option value="">{{ __('Sumber Dana') }}</option>
-            @foreach ($sumberDanas as $sumberDana)
-                <option value="{{ $sumberDana->id }}">
-                    {{ $sumberDana->name }}
+        <x-select-input id="sumber_donasi" wire:model.lazy="selectedSumberDonasi" class="">
+            <option value="">{{ __('Sumber Donasi') }}</option>
+            @foreach ($sumberDonasis as $sumberDonasi)
+                <option value="{{ $sumberDonasi->id }}">
+                    {{ $sumberDonasi->name }}
                 </option>
             @endforeach
         </x-select-input>
@@ -78,6 +88,14 @@
             @foreach ($programSumbers as $programSumber)
                 <option value="{{ $programSumber->id }}">
                     {{ $programSumber->name }}
+                </option>
+            @endforeach
+        </x-select-input>
+        <x-select-input wire:model.lazy="selectedSumberDana" id="sumber_dana" class="">
+            <option value="">{{ __('Sumber Dana') }}</option>
+            @foreach ($sumberDanas as $sumberDana)
+                <option value="{{ $sumberDana->id }}">
+                    {{ $sumberDana->name }}
                 </option>
             @endforeach
         </x-select-input>
@@ -107,14 +125,23 @@
                     <th scope="col" class="px-6 py-3">
                         {{ __('Wanita') }}
                     </th>
+                    <th scope="col" class="px-6 py-3">
+                        {{ __('No Name') }}
+                    </th>
                     <th scope="col" class="px-6 py-3 lg:table-cell">
-                        {{ __('Sumber Dana') }}
+                        {{ __('Sumber Donasi') }}
                     </th>
                     <th scope="col" class="px-6 py-3 lg:table-cell">
                         {{ __('Program Sumber') }}
                     </th>
                     <th scope="col" class="px-6 py-3 lg:table-cell">
+                        {{ __('Sumber Dana') }}
+                    </th>
+                    <th scope="col" class="px-6 py-3 lg:table-cell">
                         {{ __('Tahun') }}
+                    </th>
+                    <th scope="col" class="px-6 py-3 lg:table-cell">
+                        {{ __('Edited by') }}
                     </th>
                 </tr>
             </thead>
@@ -183,9 +210,17 @@
                         <td class="px-6 py-4 lg:table-cell">
                             <div class="flex">
                                 <p>
-                                    {{ $penghimpunan->sumberDana->name ?? '-' }}
+                                    {{ $penghimpunan->no_name_count ?? '-' }}
                                 </p>
 
+                            </div>
+                        </td>
+
+                        <td class="px-6 py-4 lg:table-cell">
+                            <div class="flex">
+                                <p>
+                                    {{ $penghimpunan->programSumber->sumberDonasi->name ?? '-' }}
+                                </p>
                             </div>
                         </td>
                         <td class="px-6 py-4 lg:table-cell">
@@ -193,7 +228,13 @@
                                 <p>
                                     {{ $penghimpunan->programSumber->name ?? '-' }}
                                 </p>
-
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 lg:table-cell">
+                            <div class="flex">
+                                <p>
+                                    {{ $penghimpunan->sumberDana->name ?? '-' }}
+                                </p>
                             </div>
                         </td>
                         <td class="px-6 py-4 lg:table-cell">
@@ -202,6 +243,13 @@
                                     {{ $penghimpunan->tahun->name ?? '-' }}
                                 </p>
 
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 lg:table-cell">
+                            <div class="flex">
+                                <p>
+                                    {{ $penghimpunan->editedBy->name ?? '-' }}
+                                </p>
                             </div>
                         </td>
                     </tr>
