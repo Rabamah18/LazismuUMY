@@ -13,6 +13,11 @@ class ProgramPilar extends Model
         'id',
     ];
 
+    public function penyalurans()
+    {
+        return $this->hasMany(Penyaluran::class);
+    }
+
     public function pilar()
     {
         return $this->belongsTo(Pilar::class);

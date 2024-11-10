@@ -13,11 +13,11 @@ class Kabupaten extends Model
         'id',
     ];
 
-    /**
-     * Get the user that owns the Kabupaten
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
+    public function penyalurans()
+    {
+        return $this->hasMany(Penyaluran::class);
+    }
+
     public function provinsi()
     {
         return $this->belongsTo(Provinsi::class);

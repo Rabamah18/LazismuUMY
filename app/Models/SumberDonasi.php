@@ -13,13 +13,8 @@ class SumberDonasi extends Model
         'id',
     ];
 
-    public function penghimpunans()
+    public function programSumbers()
     {
-        return $this->hasMany(Penghimpunan::class);
-    }
-
-    public function penyalurans()
-    {
-        return $this->hasMany(Penyaluran::class);
+        return $this->hasMany(ProgramSumber::class);
     }
 }
