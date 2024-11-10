@@ -72,6 +72,22 @@
                         Desember
                     </option>
                 </x-select-input>
+                <x-select-input id="sumber_donasi" wire:model.lazy="selectedSumberDonasi" class="">
+                    <option value="">{{ __('Sumber Donasi') }}</option>
+                    @foreach ($sumberDonasis as $sumberDonasi)
+                        <option value="{{ $sumberDonasi->id }}">
+                            {{ $sumberDonasi->name }}
+                        </option>
+                    @endforeach
+                </x-select-input>
+                <x-select-input id="program_sumber" wire:model.lazy="selectedProgramSumber" class="">
+                    <option value="">{{ __('Program Sumber') }}</option>
+                    @foreach ($programSumbers as $programSumber)
+                        <option value="{{ $programSumber->id }}">
+                            {{ $programSumber->name }}
+                        </option>
+                    @endforeach
+                </x-select-input>
                 <x-select-input wire:model.lazy="selectedSumberDana" id="sumber_dana" class="">
                     <option value="">{{ __('Sumber Dana') }}</option>
                     @foreach ($sumberDanas as $sumberDana)
@@ -80,15 +96,7 @@
                         </option>
                     @endforeach
                 </x-select-input>
-                <x-select-input id="program_sumber" wire:model.lazy="selectedProgramSumber" class="">
-                    <option value="">{{ __('Program Sumber') }}</option>
-                    <option value="zakat">Zakat</option>
-                    @foreach ($programSumbers as $programSumber)
-                        <option value="{{ $programSumber->id }}">
-                            {{ $programSumber->name }}
-                        </option>
-                    @endforeach
-                </x-select-input>
+
                 <x-select-input id="paginate" wire:model.lazy="paginate" class="">
                     <option value="">{{ __('Per Halaman') }}</option>
                     <option value="30">
@@ -136,23 +144,32 @@
                         {{ __('No Name') }}
                     </th>
                     <th scope="col" class="px-6 py-3 lg:table-cell">
-                        {{ __('Sumber Dana') }}
+                        {{ __('Sumber Donasi') }}
                     </th>
                     <th scope="col" class="px-6 py-3 lg:table-cell">
                         {{ __('Program Sumber') }}
                     </th>
                     <th scope="col" class="px-6 py-3 lg:table-cell">
+                        {{ __('Sumber Dana') }}
+                    </th>
+                    <th scope="col" class="px-6 py-3 lg:table-cell">
                         {{ __('Tahun') }}
                     </th>
-                    <th scope="col" class="w-24 py-3 pl-6 pr-2 text-center lg:pr-4">
-                        {{ __('Option') }}
+                    <th scope="col" class="px-6 py-3 lg:table-cell">
+                        {{ __('Edited by') }}
                     </th>
+                    @can('update', App\Models\Penghimpunan::class)
+                        <th scope="col" class="w-24 py-3 pl-6 pr-2 text-center lg:pr-4">
+                            {{ __('Option') }}
+                        </th>
+                    @endcan
                 </tr>
             </thead>
             <tbody>
                 @forelse ($penghimpunans as $penghimpunan)
                     <tr class="odd:bg-white odd:dark:bg-gray-800 even:bg-gray-100 even:dark:bg-gray-700">
-                        <td scope="row" class="justify-center w-2 py-4 pl-6 font-medium text-gray-900 dark:text-gray-200">
+                        <td scope="row"
+                            class="justify-center w-2 py-4 pl-6 font-medium text-gray-900 dark:text-gray-200">
                             <div class="flex">
                                 <div class="hover:underline whitespace-nowrap">
                                     {{ ($penghimpunans->currentpage() - 1) * $penghimpunans->perpage() + $loop->index + 1 }}
@@ -160,7 +177,8 @@
 
                             </div>
                         </td>
-                        <td scope="row" class="w-full px-6 py-4 text-gray-500 font-base dark:text-gray-400 xl:table-cell min-w-48">
+                        <td scope="row"
+                            class="w-full px-6 py-4 text-gray-500 font-base dark:text-gray-400 xl:table-cell min-w-48">
                             <div class="flex">
                                 <p>
                                     {{ $penghimpunan->tanggal->isoFormat('LL') }}
@@ -178,10 +196,9 @@
                             </div>
                         </td>
 
-                        <td wire:key="nominal-{{ $penghimpunan->id }}"
-                            x-data="{
-                                nominal: {{ $penghimpunan->nominal }},
-                            }"
+                        <td wire:key="nominal-{{ $penghimpunan->id }}" x-data="{
+                            nominal: {{ $penghimpunan->nominal }},
+                        }"
                             class="w-full px-6 py-4 lg:table-cell min-w-44">
                             <div class="flex">
                                 <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
@@ -227,9 +244,8 @@
                         <td class="px-6 py-4 lg:table-cell">
                             <div class="flex">
                                 <p>
-                                    {{ $penghimpunan->sumberDana->name ?? '-' }}
+                                    {{ $penghimpunan->programSumber->sumberDonasi->name ?? '-' }}
                                 </p>
-
                             </div>
                         </td>
                         <td class="px-6 py-4 lg:table-cell">
@@ -237,7 +253,13 @@
                                 <p>
                                     {{ $penghimpunan->programSumber->name ?? '-' }}
                                 </p>
-
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 lg:table-cell">
+                            <div class="flex">
+                                <p>
+                                    {{ $penghimpunan->sumberDana->name ?? '-' }}
+                                </p>
                             </div>
                         </td>
                         <td class="px-6 py-4 lg:table-cell">
@@ -248,48 +270,57 @@
 
                             </div>
                         </td>
-                        <td class="w-24 py-4 pl-6 pr-2 text-center lg:pr-4">
-                            <div class="flex space-x-2 justify-items-start">
-                                <a href="{{ route('penghimpunan.show', $penghimpunan) }}"
-                                    class="hover:underline">Detail</a>
-                                <a href="{{ route('penghimpunan.edit', $penghimpunan) }}"
-                                    class="text-indigo-500 hover:underline">Edit</a>
-                                <button x-data="" class="text-red-500 hover:underline"
-                                    x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion{{ $penghimpunan->id }}')">
-                                    Hapus
-                                </button>
-
-                                <x-modal name="confirm-user-deletion{{ $penghimpunan->id }}" :show="$errors->userDeletion->isNotEmpty()"
-                                    focusable>
-                                    <form method="post" action="{{ route('penghimpunan.destroy', $penghimpunan) }}"
-                                        class="p-6">
-                                        @csrf
-                                        @method('delete')
-
-                                        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                                            Apakah anda yakin ingin menghapus data ini?
-                                        </h2>
-
-                                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                                            {{ $penghimpunan->uraian }}
-                                        </p>
-                                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                                            {{ $penghimpunan->tanggal->format('d F Y') }}
-                                        </p>
-
-                                        <div class="flex justify-end mt-6">
-                                            <x-secondary-button x-on:click="$dispatch('close')">
-                                                {{ __('Batal') }}
-                                            </x-secondary-button>
-
-                                            <x-danger-button class="ms-3">
-                                                {{ __('Hapus') }}
-                                            </x-danger-button>
-                                        </div>
-                                    </form>
-                                </x-modal>
+                        <td class="px-6 py-4 lg:table-cell">
+                            <div class="flex">
+                                <p>
+                                    {{ $penghimpunan->editedBy->name ?? '-' }}
+                                </p>
                             </div>
                         </td>
+                        @can('update', App\Models\Penghimpunan::class)
+                            <td class="w-24 py-4 pl-6 pr-2 text-center lg:pr-4">
+                                <div class="flex space-x-2 justify-items-start">
+                                    <a href="{{ route('penghimpunan.show', $penghimpunan) }}"
+                                        class="hover:underline">Detail</a>
+                                    <a href="{{ route('penghimpunan.edit', $penghimpunan) }}"
+                                        class="text-indigo-500 hover:underline">Edit</a>
+                                    <button x-data="" class="text-red-500 hover:underline"
+                                        x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion{{ $penghimpunan->id }}')">
+                                        Hapus
+                                    </button>
+
+                                    <x-modal name="confirm-user-deletion{{ $penghimpunan->id }}" :show="$errors->userDeletion->isNotEmpty()"
+                                        focusable>
+                                        <form method="post" action="{{ route('penghimpunan.destroy', $penghimpunan) }}"
+                                            class="p-6">
+                                            @csrf
+                                            @method('delete')
+
+                                            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                                                Apakah anda yakin ingin menghapus data ini?
+                                            </h2>
+
+                                            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                                {{ $penghimpunan->uraian }}
+                                            </p>
+                                            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                                {{ $penghimpunan->tanggal->format('d F Y') }}
+                                            </p>
+
+                                            <div class="flex justify-end mt-6">
+                                                <x-secondary-button x-on:click="$dispatch('close')">
+                                                    {{ __('Batal') }}
+                                                </x-secondary-button>
+
+                                                <x-danger-button class="ms-3">
+                                                    {{ __('Hapus') }}
+                                                </x-danger-button>
+                                            </div>
+                                        </form>
+                                    </x-modal>
+                                </div>
+                            </td>
+                        @endcan
                     </tr>
                 @empty
                     <tr class="bg-white dark:bg-gray-800">
@@ -302,10 +333,9 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td wire:key="nominal-{{ $totalNominal }}"
-                        x-data="{
-                            nominal: {{ $totalNominal }},
-                        }"
+                    <td wire:key="nominal-{{ $totalNominal }}" x-data="{
+                        nominal: {{ $totalNominal }},
+                    }"
                         class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>

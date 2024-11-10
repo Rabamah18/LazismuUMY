@@ -5,6 +5,7 @@ namespace App\Livewire\Penghimpunan;
 use App\Models\Penghimpunan;
 use App\Models\ProgramSumber;
 use App\Models\SumberDana;
+use App\Models\SumberDonasi;
 use App\Models\Tahun;
 use Carbon\Carbon;
 use Livewire\Attributes\On;
@@ -20,6 +21,10 @@ class Table extends Component
     public $sumberDanas;
 
     public $selectedSumberDana;
+
+    public $sumberDonasis;
+
+    public $selectedSumberDonasi;
 
     public $programSumbers;
 
@@ -47,6 +52,7 @@ class Table extends Component
 
     public function mount()
     {
+        $this->sumberDonasis = SumberDonasi::query()->get();
         $this->dateEnd = Carbon::now()->format('Y-m-d');
         $this->sumberDanas = SumberDana::query()->get();
         $this->programSumbers = ProgramSumber::query()->get();
@@ -84,6 +90,14 @@ class Table extends Component
         $this->dispatch('dataUpdated');
     }
 
+    public function updatedSelectedSumberDonasi()
+    {
+        $this->programSumbers = ProgramSumber::query()->where('sumber_donasi_id', $this->selectedSumberDonasi)->get();
+        $this->reset('selectedProgramSumber');
+        $this->resetPage();
+        $this->dispatch('dataUpdated');
+    }
+
     public function updatedSelectedSumberDana()
     {
         $this->resetPage();
@@ -115,17 +129,16 @@ class Table extends Component
                     Carbon::parse($this->dateEnd)->endOfDay(),
                 ]);
             })
-            ->when($this->selectedSumberDana, function ($query) {
-                $query->where('sumber_dana_id', $this->selectedSumberDana);
+            ->when($this->selectedSumberDonasi, function ($query) {
+                $query->whereHas('programSumber', function ($query) {
+                    $query->where('sumber_donasi_id', $this->selectedSumberDonasi);
+                });
             })
             ->when($this->selectedProgramSumber, function ($query) {
-                if ($this->selectedProgramSumber === 'zakat') {
-                    $query->whereHas('programSumber', function ($subQuery) {
-                        $subQuery->where('name', 'like', '%zakat%');
-                    });
-                } else {
-                    $query->where('program_sumber_id', $this->selectedProgramSumber);
-                }
+                $query->where('program_sumber_id', $this->selectedProgramSumber);
+            })
+            ->when($this->selectedSumberDana, function ($query) {
+                $query->where('sumber_dana_id', $this->selectedSumberDana);
             })
             ->when($this->selectedBulan, function ($query) {
                 $query->whereMonth('tanggal', $this->selectedBulan);

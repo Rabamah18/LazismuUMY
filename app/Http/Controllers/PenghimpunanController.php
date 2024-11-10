@@ -73,8 +73,8 @@ class PenghimpunanController extends Controller
             'sumber_dana_id' => $request->sumber_dana_id,
             'program_sumber_id' => $request->program_sumber_id,
             'tahun_id' => $request->tahun_id,
+            'edited_by' => auth()->user()->id,
 
-            // 'user_id' => auth()->user()->id,
             // 'title' => $request->title,
         ]);
 
@@ -145,8 +145,8 @@ class PenghimpunanController extends Controller
             'sumber_dana_id' => $request->sumber_dana_id,
             'program_sumber_id' => $request->program_sumber_id,
             'tahun_id' => $request->tahun_id,
+            'edited_by' => auth()->user()->id,
 
-            // 'user_id' => auth()->user()->id,
             // 'title' => $request->title,
         ]);
 
@@ -167,22 +167,29 @@ class PenghimpunanController extends Controller
 
     public function importExel()
     {
+        $this->authorize('create', Penghimpunan::class);
+
         return view('penghimpunan.import-exel');
     }
 
     public function importCsv()
     {
+        $this->authorize('create', Penghimpunan::class);
+
         return view('penghimpunan.import-csv');
     }
 
     public function export()
     {
+        $this->authorize('create', Penghimpunan::class);
 
         return view('penghimpunan.export');
     }
 
     public function importFileExel(Request $request)
     {
+        $this->authorize('create', Penghimpunan::class);
+
         $request->validate([
             'doc' => 'required|file|mimes:xlsx,xls|max:2048',
         ]);
@@ -200,6 +207,8 @@ class PenghimpunanController extends Controller
 
     public function importFileCsv(Request $request)
     {
+        $this->authorize('create', Penghimpunan::class);
+
         $request->validate([
             'doc' => 'required|file|mimes:csv|max:2048',
         ]);
