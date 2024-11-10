@@ -8,23 +8,13 @@ use Livewire\Component;
 
 class InfoStatistic extends Component
 {
-    public $financialValue = 'Rp 370.110.000';
-
-    public $percentage = '15%';
-
-    public $chosenPeriodData = [
-        23000, 44000, 55000, 57000, 56000, 61000, 58000, 63000, 60000, 66000, 34000, 78000,
-    ];
-
-    public $lastPeriodData = [
-        17000, 76000, 85000, 101000, 98000, 87000, 105000, 91000, 114000, 94000, 67000, 66000,
-    ];
-
     public function render()
     {
         $tunaiZakatPenghimpunan = Penghimpunan::query()
             ->whereHas('programSumber', function ($query) {
-                $query->where('name', 'like', '%zakat%');
+                $query->whereHas('sumberDonasi', function ($query) {
+                    $query->where('name', 'Zakat');
+                });
             })
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'Tunai');
@@ -32,7 +22,9 @@ class InfoStatistic extends Component
             ->sum('nominal');
         $tunaiZakatPenyaluran = Penyaluran::query()
             ->whereHas('programSumber', function ($query) {
-                $query->where('name', 'like', '%zakat%');
+                $query->whereHas('sumberDonasi', function ($query) {
+                    $query->where('name', 'Zakat');
+                });
             })
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'Tunai');
@@ -42,7 +34,9 @@ class InfoStatistic extends Component
 
         $bsiZakatPenghimpunan = Penghimpunan::query()
             ->whereHas('programSumber', function ($query) {
-                $query->where('name', 'like', '%zakat%');
+                $query->whereHas('sumberDonasi', function ($query) {
+                    $query->where('name', 'Zakat');
+                });
             })
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'BSI Zakat');
@@ -50,7 +44,9 @@ class InfoStatistic extends Component
             ->sum('nominal');
         $bsiZakatPenyaluran = Penyaluran::query()
             ->whereHas('programSumber', function ($query) {
-                $query->where('name', 'like', '%zakat%');
+                $query->whereHas('sumberDonasi', function ($query) {
+                    $query->where('name', 'Zakat');
+                });
             })
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'BSI Zakat');
@@ -60,7 +56,9 @@ class InfoStatistic extends Component
 
         $bpddiyZakatPenghimpunan = Penghimpunan::query()
             ->whereHas('programSumber', function ($query) {
-                $query->where('name', 'like', '%zakat%');
+                $query->whereHas('sumberDonasi', function ($query) {
+                    $query->where('name', 'Zakat');
+                });
             })
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'BPDDIY Zakat');
@@ -68,7 +66,9 @@ class InfoStatistic extends Component
             ->sum('nominal');
         $bpddiyZakatPenyaluran = Penyaluran::query()
             ->whereHas('programSumber', function ($query) {
-                $query->where('name', 'like', '%zakat%');
+                $query->whereHas('sumberDonasi', function ($query) {
+                    $query->where('name', 'Zakat');
+                });
             })
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'BPDDIY Zakat');
@@ -78,7 +78,9 @@ class InfoStatistic extends Component
 
         $tunaiInfaqPenghimpunan = Penghimpunan::query()
             ->whereHas('programSumber', function ($query) {
-                $query->where('name', 'Infaq');
+                $query->whereHas('sumberDonasi', function ($query) {
+                    $query->where('name', 'Infaq');
+                });
             })
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'Tunai');
@@ -86,7 +88,9 @@ class InfoStatistic extends Component
             ->sum('nominal');
         $tunaiInfaqPenyaluran = Penyaluran::query()
             ->whereHas('programSumber', function ($query) {
-                $query->where('name', 'Infaq');
+                $query->whereHas('sumberDonasi', function ($query) {
+                    $query->where('name', 'Infaq');
+                });
             })
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'Tunai');
@@ -96,7 +100,9 @@ class InfoStatistic extends Component
 
         $bsiInfaqPenghimpunan = Penghimpunan::query()
             ->whereHas('programSumber', function ($query) {
-                $query->where('name', 'Infaq');
+                $query->whereHas('sumberDonasi', function ($query) {
+                    $query->where('name', 'Infaq');
+                });
             })
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'BSI Infaq');
@@ -104,7 +110,9 @@ class InfoStatistic extends Component
             ->sum('nominal');
         $bsiInfaqPenyaluran = Penyaluran::query()
             ->whereHas('programSumber', function ($query) {
-                $query->where('name', 'Infaq');
+                $query->whereHas('sumberDonasi', function ($query) {
+                    $query->where('name', 'Infaq');
+                });
             })
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'BSI Infaq');
@@ -114,7 +122,9 @@ class InfoStatistic extends Component
 
         $bpddiyInfaqPenghimpunan = Penghimpunan::query()
             ->whereHas('programSumber', function ($query) {
-                $query->where('name', 'Infaq');
+                $query->whereHas('sumberDonasi', function ($query) {
+                    $query->where('name', 'Infaq');
+                });
             })
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'BPDDIY Infaq');
@@ -122,7 +132,9 @@ class InfoStatistic extends Component
             ->sum('nominal');
         $bpddiyInfaqPenyaluran = Penyaluran::query()
             ->whereHas('programSumber', function ($query) {
-                $query->where('name', 'Infaq');
+                $query->whereHas('sumberDonasi', function ($query) {
+                    $query->where('name', 'Infaq');
+                });
             })
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'BPDDIY Infaq');
@@ -132,7 +144,9 @@ class InfoStatistic extends Component
 
         $muamalatInfaqPenghimpunan = Penghimpunan::query()
             ->whereHas('programSumber', function ($query) {
-                $query->where('name', 'Infaq');
+                $query->whereHas('sumberDonasi', function ($query) {
+                    $query->where('name', 'Infaq');
+                });
             })
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'Muamalat Infaq');
@@ -140,7 +154,9 @@ class InfoStatistic extends Component
             ->sum('nominal');
         $muamalatInfaqPenyaluran = Penyaluran::query()
             ->whereHas('programSumber', function ($query) {
-                $query->where('name', 'Infaq');
+                $query->whereHas('sumberDonasi', function ($query) {
+                    $query->where('name', 'Infaq');
+                });
             })
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'Muamalat Infaq');
@@ -150,7 +166,9 @@ class InfoStatistic extends Component
 
         $madinaInfaqPenghimpunan = Penghimpunan::query()
             ->whereHas('programSumber', function ($query) {
-                $query->where('name', 'Infaq');
+                $query->whereHas('sumberDonasi', function ($query) {
+                    $query->where('name', 'Infaq');
+                });
             })
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'Madina Infaq');
@@ -158,7 +176,9 @@ class InfoStatistic extends Component
             ->sum('nominal');
         $madinaInfaqPenyaluran = Penyaluran::query()
             ->whereHas('programSumber', function ($query) {
-                $query->where('name', 'Infaq');
+                $query->whereHas('sumberDonasi', function ($query) {
+                    $query->where('name', 'Infaq');
+                });
             })
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'Madina Infaq');
@@ -168,7 +188,9 @@ class InfoStatistic extends Component
 
         $bankAmilPenghimpunan = Penghimpunan::query()
             ->whereHas('programSumber', function ($query) {
-                $query->where('name', 'Amil');
+                $query->whereHas('sumberDonasi', function ($query) {
+                    $query->where('name', 'Amil');
+                });
             })
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'Amil Bank');
@@ -176,7 +198,9 @@ class InfoStatistic extends Component
             ->sum('nominal');
         $bankAmilPenyaluran = Penyaluran::query()
             ->whereHas('programSumber', function ($query) {
-                $query->where('name', 'Amil');
+                $query->whereHas('sumberDonasi', function ($query) {
+                    $query->where('name', 'Amil');
+                });
             })
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'Amil Bank');
@@ -186,7 +210,9 @@ class InfoStatistic extends Component
 
         $besarAmilPenghimpunan = Penghimpunan::query()
             ->whereHas('programSumber', function ($query) {
-                $query->where('name', 'Amil');
+                $query->whereHas('sumberDonasi', function ($query) {
+                    $query->where('name', 'Amil');
+                });
             })
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'Amil Besar');
@@ -194,7 +220,9 @@ class InfoStatistic extends Component
             ->sum('nominal');
         $besarAmilPenyaluran = Penyaluran::query()
             ->whereHas('programSumber', function ($query) {
-                $query->where('name', 'Amil');
+                $query->whereHas('sumberDonasi', function ($query) {
+                    $query->where('name', 'Amil');
+                });
             })
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'Amil Besar');
@@ -204,7 +232,9 @@ class InfoStatistic extends Component
 
         $kecilAmilPenghimpunan = Penghimpunan::query()
             ->whereHas('programSumber', function ($query) {
-                $query->where('name', 'Amil');
+                $query->whereHas('sumberDonasi', function ($query) {
+                    $query->where('name', 'Amil');
+                });
             })
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'Amil Kecil');
@@ -212,7 +242,9 @@ class InfoStatistic extends Component
             ->sum('nominal');
         $kecilAmilPenyaluran = Penyaluran::query()
             ->whereHas('programSumber', function ($query) {
-                $query->where('name', 'Amil');
+                $query->whereHas('sumberDonasi', function ($query) {
+                    $query->where('name', 'Amil');
+                });
             })
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'Amil Kecil');
@@ -222,18 +254,22 @@ class InfoStatistic extends Component
 
         $madinaAmilPenghimpunan = Penghimpunan::query()
             ->whereHas('programSumber', function ($query) {
-                $query->where('name', 'Amil');
+                $query->whereHas('sumberDonasi', function ($query) {
+                    $query->where('name', 'Amil');
+                });
             })
             ->whereHas('sumberDana', function ($query) {
-                $query->where('name', 'Amil Madina');
+                $query->where('name', 'Amil Bank Madina');
             })
             ->sum('nominal');
         $madinaAmilPenyaluran = Penyaluran::query()
             ->whereHas('programSumber', function ($query) {
-                $query->where('name', 'Amil');
+                $query->whereHas('sumberDonasi', function ($query) {
+                    $query->where('name', 'Amil');
+                });
             })
             ->whereHas('sumberDana', function ($query) {
-                $query->where('name', 'Amil Madina');
+                $query->where('name', 'Amil Bank Madina');
             })
             ->sum('nominal');
         $saldoMadinaAmil = $madinaAmilPenghimpunan - $madinaAmilPenyaluran;
