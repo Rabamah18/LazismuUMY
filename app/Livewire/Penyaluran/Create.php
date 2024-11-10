@@ -149,6 +149,7 @@ class Create extends Component
             'tahun_id' => $this->selectedTahun,
             'provinsi_id' => $this->selectedProvinsi,
             'kabupaten_id' => $this->selectedKabupaten,
+            'user_id' => auth()->user()->id,
 
         ]);
 
