@@ -17,4 +17,9 @@ class Pilar extends Model
     {
         return $this->hasMany(ProgramPilar::class);
     }
+
+    public function targetPilars()
+    {
+        return $this->hasMany(TargetPilar::class);
+    }
 }

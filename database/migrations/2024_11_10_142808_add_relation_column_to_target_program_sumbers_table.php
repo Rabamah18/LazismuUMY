@@ -3,9 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use League\CommonMark\Extension\Table\TableExtension;
-
-use function Laravel\Prompts\table;
 
 return new class extends Migration
 {
@@ -14,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('program_sumber', function (Blueprint $table) {
-            $table->foreignId('sumber_donasi_id')->nullable()->constrained()->nullOnDelete();
+        Schema::table('target_program_sumbers', function (Blueprint $table) {
+            $table->foreignId('program_sumber_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('tahun_id')->nullable()->constrained()->nullOnDelete();
         });
     }
 
@@ -24,8 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('program_sumber', function (Blueprint $table) {
-            $table->dropForeign('sumber_donasi_id');
+        Schema::table('target_program_sumbers', function (Blueprint $table) {
+            //
         });
     }
 };

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SumberDonasi extends Model
+class TargetProgramSumber extends Model
 {
     use HasFactory;
 
@@ -13,13 +13,13 @@ class SumberDonasi extends Model
         'id',
     ];
 
-    public function programSumbers()
+    public function tahun()
     {
-        return $this->hasMany(ProgramSumber::class);
+        return $this->belongsTo(Tahun::class);
     }
 
-    public function targetSumberDonasis()
+    public function programSumber()
     {
-        return $this->hasMany(TargetSumberDonasi::class);
+        return $this->belongsTo(ProgramSumber::class);
     }
 }
