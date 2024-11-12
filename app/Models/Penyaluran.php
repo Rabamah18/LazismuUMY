@@ -15,6 +15,7 @@ class Penyaluran extends Model
 
     protected $casts = [
         'tanggal' => 'datetime',
+        'pindahdana' => 'boolean',
     ];
 
     /**
@@ -22,7 +23,6 @@ class Penyaluran extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-
     public function ashnaf()
     {
         return $this->belongsTo(Ashnaf::class);
@@ -55,7 +55,6 @@ class Penyaluran extends Model
 
     public function editedBy()
     {
-        return $this->belongsTo( User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
-
 }

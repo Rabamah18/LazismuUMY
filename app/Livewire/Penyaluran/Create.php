@@ -63,6 +63,8 @@ class Create extends Component
 
     public $nominal;
 
+    public $isPindahDana;
+
     public function mount()
     {
 
@@ -99,6 +101,7 @@ class Create extends Component
             'selectedProgramPilar' => 'nullable|exists:program_pilars,id',
             'selectedSumberDana' => 'nullable|exists:sumber_danas,id',
             'selectedProgramSumber' => 'nullable|exists:program_sumbers,id',
+            'isPindahDana' => 'nullable|boolean'
 
 
         ];
@@ -149,6 +152,7 @@ class Create extends Component
             'tahun_id' => $this->selectedTahun,
             'provinsi_id' => $this->selectedProvinsi,
             'kabupaten_id' => $this->selectedKabupaten,
+            'pindahdana' => $this->isPindahDana,
             'user_id' => auth()->user()->id,
 
         ]);
