@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProgramSumber;
+use App\Models\SumberDonasi;
 use Illuminate\Http\Request;
 
 class ProgramSumberController extends Controller
@@ -12,9 +13,7 @@ class ProgramSumberController extends Controller
      */
     public function index()
     {
-        $programSumbers = ProgramSumber::query()
-
-            ->paginate(10);
+        $programSumbers = ProgramSumber::query()->get();
 
         return view('programsumber.index', compact('programSumbers'));
     }
@@ -24,7 +23,9 @@ class ProgramSumberController extends Controller
      */
     public function create()
     {
-        return view('programsumber.create');
+        $sumberDonasis = SumberDonasi::query()->get();
+
+        return view('programsumber.create', compact('sumberDonasis'));
     }
 
     /**
@@ -34,10 +35,12 @@ class ProgramSumberController extends Controller
     {
         $request->validate([
             'name' => 'required|max:35',
+            'sumber_donasi_id' => 'required|exists:sumber_donasis,id',
         ]);
 
         ProgramSumber::create([
             'name' => $request->name,
+            'sumber_donasi_id' => $request->sumber_donasi_id,
         ]);
 
         return redirect()->route('programsumber.index')->with('success', 'Program sumber created successfully!');
@@ -56,7 +59,9 @@ class ProgramSumberController extends Controller
      */
     public function edit(ProgramSumber $programsumber)
     {
-        return view('programsumber.edit', compact('programsumber'));
+        $sumberDonasis = SumberDonasi::query()->get();
+
+        return view('programsumber.edit', compact('programsumber', 'sumberDonasis'));
     }
 
     /**
@@ -66,10 +71,12 @@ class ProgramSumberController extends Controller
     {
         $request->validate([
             'name' => 'required|max:35',
+            'sumber_donasi_id' => 'required|exists:sumber_donasis,id',
         ]);
 
         $programsumber->update([
             'name' => $request->name,
+            'sumber_donasi_id' => $request->sumber_donasi_id,
         ]);
 
         return redirect()->route('programsumber.index')->with('success', 'Program sumber edited successfully!');

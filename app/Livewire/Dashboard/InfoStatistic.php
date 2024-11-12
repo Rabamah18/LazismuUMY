@@ -29,6 +29,7 @@ class InfoStatistic extends Component
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'Tunai');
             })
+            ->where('pindahdana', false)
             ->sum('nominal');
         $saldoTunaiZakat = $tunaiZakatPenghimpunan - $tunaiZakatPenyaluran;
 
@@ -51,6 +52,7 @@ class InfoStatistic extends Component
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'BSI Zakat');
             })
+            ->where('pindahdana', false)
             ->sum('nominal');
         $saldoBsiZakat = $bsiZakatPenghimpunan - $bsiZakatPenyaluran;
 
@@ -73,6 +75,7 @@ class InfoStatistic extends Component
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'BPDDIY Zakat');
             })
+            ->where('pindahdana', false)
             ->sum('nominal');
         $saldoBpddiyZakat = $bpddiyZakatPenghimpunan - $bpddiyZakatPenyaluran;
 
@@ -95,6 +98,7 @@ class InfoStatistic extends Component
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'Tunai');
             })
+            ->where('pindahdana', false)
             ->sum('nominal');
         $saldoTunaiInfaq = $tunaiInfaqPenghimpunan - $tunaiInfaqPenyaluran;
 
@@ -117,6 +121,7 @@ class InfoStatistic extends Component
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'BSI Infaq');
             })
+            ->where('pindahdana', false)
             ->sum('nominal');
         $saldoBsiInfaq = $bsiInfaqPenghimpunan - $bsiInfaqPenyaluran;
 
@@ -139,6 +144,7 @@ class InfoStatistic extends Component
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'BPDDIY Infaq');
             })
+            ->where('pindahdana', false)
             ->sum('nominal');
         $saldoBpddiyInfaq = $bpddiyInfaqPenghimpunan - $bpddiyInfaqPenyaluran;
 
@@ -161,6 +167,7 @@ class InfoStatistic extends Component
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'Muamalat Infaq');
             })
+            ->where('pindahdana', false)
             ->sum('nominal');
         $saldoMuamalatInfaq = $muamalatInfaqPenghimpunan - $muamalatInfaqPenyaluran;
 
@@ -183,6 +190,7 @@ class InfoStatistic extends Component
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'Madina Infaq');
             })
+            ->where('pindahdana', false)
             ->sum('nominal');
         $saldoMadinaInfaq = $madinaInfaqPenghimpunan - $madinaInfaqPenyaluran;
 
@@ -205,6 +213,7 @@ class InfoStatistic extends Component
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'Amil Bank');
             })
+            ->where('pindahdana', false)
             ->sum('nominal');
         $saldoBankAmil = $bankAmilPenghimpunan - $bankAmilPenyaluran;
 
@@ -227,6 +236,7 @@ class InfoStatistic extends Component
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'Amil Besar');
             })
+            ->where('pindahdana', false)
             ->sum('nominal');
         $saldoBesarAmil = $besarAmilPenghimpunan - $besarAmilPenyaluran;
 
@@ -249,6 +259,7 @@ class InfoStatistic extends Component
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'Amil Kecil');
             })
+            ->where('pindahdana', false)
             ->sum('nominal');
         $saldoKecilAmil = $kecilAmilPenghimpunan - $kecilAmilPenyaluran;
 
@@ -271,6 +282,7 @@ class InfoStatistic extends Component
             ->whereHas('sumberDana', function ($query) {
                 $query->where('name', 'Amil Bank Madina');
             })
+            ->where('pindahdana', false)
             ->sum('nominal');
         $saldoMadinaAmil = $madinaAmilPenghimpunan - $madinaAmilPenyaluran;
 

@@ -23,7 +23,8 @@
                         {{-- loop --}}
                         <div class="flex">
                             <div class="hover:underline whitespace-nowrap">
-                                {{ ($sumberDanas->currentpage() - 1) * $sumberDanas->perpage() + $loop->index + 1 }}
+                                {{-- {{ ($sumberDanas->currentpage() - 1) * $sumberDanas->perpage() + $loop->index + 1 }} --}}
+                                {{ $sumberDana->id }}
                             </div>
 
                         </div>
@@ -46,7 +47,6 @@
                     </td>
                     <td class="py-4 pl-6 pr-2 lg:pr-4">
                         <div class="flex space-x-2 justify-items-start">
-                            <a href="{{ route('sumberdana.edit', $sumberDana) }}" class="hover:underline">View</a>
                             <a href="{{ route('sumberdana.edit', $sumberDana) }}"
                                 class="text-indigo-500 hover:underline">Edit</a>
                             <button x-data="" class="text-red-500 hover:underline"
