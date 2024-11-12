@@ -16,7 +16,7 @@ class TargetPilarController extends Controller
     {
         $targetpilars = TargetPilar::query()->get();
 
-        return view('targetPilar.index', compact('targetpilars'));
+        return view('targetpilar.index', compact('targetpilars'));
     }
 
     /**
@@ -27,7 +27,7 @@ class TargetPilarController extends Controller
         $pilars = Pilar::query()->get();
         $tahuns = Tahun::query()->get();
 
-        return view('targetPilar.create', compact('pilars', 'tahuns'));
+        return view('targetpilar.create', compact('pilars', 'tahuns'));
     }
 
     /**
@@ -68,7 +68,7 @@ class TargetPilarController extends Controller
         $pilars = Pilar::query()->get();
         $tahuns = Tahun::query()->get();
 
-        return view('targetPilar.edit', compact('targetpilar', 'pilars', 'tahuns'));
+        return view('targetpilar.edit', compact('targetpilar', 'pilars', 'tahuns'));
     }
 
     /**
