@@ -23,20 +23,13 @@
                         {{-- loop --}}
                         <div class="flex">
                             <div class="hover:underline whitespace-nowrap">
-                                {{ ($targetTahunans->currentpage() - 1) * $targetTahunans->perpage() + $loop->index + 1 }}
+                                {{-- {{ ($targetTahunans->currentpage() - 1) * $targetTahunans->perpage() + $loop->index + 1 }} --}}
+                                {{ $targetTahunan->id }}
                             </div>
 
                         </div>
                     </td>
 
-                    </td>
-                    <td class="px-6 py-4 lg:table-cell">
-                        <div class="flex">
-                            <p>
-                                {{ $targetTahunan->nominal }}
-                            </p>
-                        </div>
-                    </td>
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
@@ -44,9 +37,17 @@
                             </p>
                         </div>
                     </td>
+
+                    <td class="px-6 py-4 lg:table-cell">
+                        <div class="flex">
+                            <p>
+                                {{ $targetTahunan->nominal }}
+                            </p>
+                        </div>
+                    </td>
                     <td class="py-4 pl-6 pr-2 lg:pr-4">
                         <div class="flex space-x-2 justify-items-start">
-                            <a href="{{ route('targettahunan.edit', $targetTahunan) }}"
+                            <a href="{{ route('targettahunan.edit', ['targettahunan'=>$targetTahunan]) }}"
                                 class="text-indigo-500 hover:underline">Edit</a>
                             <button x-data="" class="text-red-500 hover:underline"
                                 x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion{{ $targetTahunan->id }}')">

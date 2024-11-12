@@ -34,19 +34,16 @@ class TargetTahunanController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $request->validate([
             'jenis' => 'required',
             'nominal' => 'required',
-            'tahun' => 'required|exists:tahuns,id',
+            'tahun_id' => 'required|exists:tahuns,id',
         ]);
-        // Remove any non-numeric characters for safe storage as integer
-        // $nominal = $this->ubahRupiah($request->nominal);
 
         TargetTahunan::create([
             'nominal' => $request->nominal,
             'jenis' => $request->jenis,
-            'tahun_id' => $request->tahun,
+            'tahun_id' => $request->tahun_id,
         ]);
 
         return redirect()
@@ -66,32 +63,31 @@ class TargetTahunanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(TargetTahunan $targetTahunan)
+    public function edit(TargetTahunan $targettahunan)
     {
         $tahuns = Tahun::query()->get();
 
-        return view('targettahunan.edit', compact('tahuns', 'targetTahunan'));
+        return view('targettahunan.edit', compact('tahuns', 'targettahunan'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, TargetTahunan $targetTahunan)
+    public function update(Request $request, TargetTahunan $targettahunan)
     {
         $request->validate([
             'jenis' => 'required',
-            'nominal' => 'required|',
-            'tahun' => 'required|exists:tahuns,id',
-
+            'nominal' => 'required',
+            'tahun_id' => 'required|exists:tahuns,id',
         ]);
 
         // Remove any non-numeric characters for safe storage as integer
-        $nominal = $this->ubahRupiah($request->input('nominal'));
+        // $nominal = $this->ubahRupiah($request->input('nominal'));
 
-        $targetTahunan->update([
+        $targettahunan->update([
             'jenis' => $request->jenis,
-            'nominal' => $nominal,
-            'tahun_id' => $request->tahun,
+            'nominal' => $request->nominal,
+            'tahun_id' => $request->tahun_id,
         ]);
 
         return redirect()->route('targettahunan.index')
@@ -101,9 +97,9 @@ class TargetTahunanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TargetTahunan $targetTahunan)
+    public function destroy(TargetTahunan $targettahunan)
     {
-        $targetTahunan->delete();
+        $targettahunan->delete();
 
         return redirect()
             ->route('targettahunan.index')
