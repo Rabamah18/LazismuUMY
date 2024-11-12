@@ -25,6 +25,14 @@
                             <x-input-error class="mt-2" :messages="$errors->get('name')" />
                         </div>
 
+                        <div x-data="{ norek: '{{ $sumberdana->rekening_sumda }}' }">
+                            <x-input-label for="norek" :value="__('Nomor Rekening')" />
+                            <x-text-input id="norek" name="norek" type="text" class="block w-full mt-1"
+                                x-bind:value="norek" required autocomplete="norek"
+                                x-on:input="norek = $event.target.value.replace(/[^0-9]/g, '')" />
+                            <x-input-error class="mt-2" :messages="$errors->get('norek')" />
+                        </div>
+
                         <div class="flex items-center gap-4">
                             <x-button.primary>{{ __('Save') }}</x-button.primary>
                         </div>
