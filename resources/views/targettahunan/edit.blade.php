@@ -15,13 +15,14 @@
                     {{ __('Create a new Data Target Tahunan.') }}
                 </x-card.description>
                 <div class="max-w-xl">
-                    <form method="post" action="{{ route('targettahunan.update') }}" class="mt-6 space-y-6">
+                    <form method="post" action="{{ route('targettahunan.update', $targettahunan) }}"
+                        class="mt-6 space-y-6">
                         @csrf
                         @method('patch')
                         <div>
                             <x-input-label for="jenis" :value="__('Jenis Target')" />
                             <x-select-input id="jenis" name="jenis" class="block w-full mt-1">
-                                <option value="">{{ __('Pilih Target', $targetTahunan->jenis) }}</option>
+                                <option value="">{{ __('Pilih Target') }}</option>
                                 <option value="penghimpunan">
                                     Penghimpunan
                                 </option>
@@ -46,7 +47,7 @@
                         <div>
                             <x-input-label for="nominal" :value="__('Jumlah nominal')" />
                             <x-text-input id="nominal" name="nominal" type="number" class="block w-full mt-1"
-                                :value="old('nominal', $targetTahunan->nominal)" autocomplete="nominal" min="0" placeholder="0" />
+                                :value="old('nominal', $targettahunan->nominal)" autocomplete="nominal" min="0" placeholder="0" />
                             <x-input-error class="mt-2" :messages="$errors->get('nominal')" />
                         </div>
 
@@ -56,7 +57,8 @@
                                 <option value="">{{ __('Select Tahun') }}</option>
                                 @foreach ($tahuns as $tahun)
                                     <option value="{{ $tahun->id }}"
-                                        {{ request('tahun_id') == $targetTahunan->tahun ? 'selected' : '' }}> {{ $tahun->name }}
+                                        {{ $tahun->id == $targettahunan->tahun->id ? 'selected' : '' }}>
+                                        {{ $tahun->name }}
                                     </option>
                                 @endforeach
                             </x-select-input>
