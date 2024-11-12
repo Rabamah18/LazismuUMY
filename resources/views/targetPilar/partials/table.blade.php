@@ -1,5 +1,4 @@
 <div class="relative mt-6 overflow-x-visible overflow-y-visible rounded-md md:block">
-    {{-- "@dump($pilars)" --}}
     <table class="w-full text-base text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -7,24 +6,28 @@
                     {{ __('No.') }}
                 </th>
                 <th scope="col" class="px-6 py-3 lg:table-cell">
-                    {{ __('Name') }}
+                    {{ __('Pilar') }}
                 </th>
                 <th scope="col" class="px-6 py-3 lg:table-cell">
-                    {{ __('Program') }}
+                    {{ __('Nominal') }}
                 </th>
-                <th scope="col" class="py-3 pl-6 pr-2 lg:pr-4">
+                <th scope="col" class="px-6 py-3 lg:table-cell">
+                    {{ __('Tahun') }}
+                </th>
+                <th scope="col" class="px-6 py-3 lg:table-cell">
                     {{ __('Option') }}
                 </th>
             </tr>
         </thead>
         <tbody>
-            @forelse ($pilars as $pilar)
+            @forelse ($targetpilars as $targetpilar)
                 <tr class="odd:bg-white odd:dark:bg-gray-800 even:bg-gray-100 even:dark:bg-gray-700">
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-gray-200">
                         {{-- loop --}}
                         <div class="flex">
                             <div class="hover:underline whitespace-nowrap">
-                                {{ ($pilars->currentpage() - 1) * $pilars->perpage() + $loop->index + 1 }}
+                                {{-- {{ ($targetSumberDonasis->currentpage() - 1) * $targetSumberDonasis->perpage() + $loop->index + 1 }} --}}
+                                {{ $targetpilar->id }}
                             </div>
                         </div>
                     </td>
@@ -32,31 +35,40 @@
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
-                                <a href="{{ route('pilar.show', $pilar) }}"
-                                    class="hover:underline whitespace-nowrap">
-                                    {{ $pilar->name }}
-                                </a>
+                                {{ __($targetpilar->pilar->name) }}
                             </p>
                         </div>
                     </td>
+
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
-                            <a href="{{ route('programpilar.index', ['pilar' => $pilar->id]) }}">
-                                {{ $pilar->program_pilars_count }}
-                            </a>
+                            <p>
+                                {{ __($targetpilar->nominal) }}
+                            </p>
                         </div>
                     </td>
+
+                    <td class="px-6 py-4 lg:table-cell">
+                        <div class="flex">
+                            <p>
+                                {{ __($targetpilar->tahun->name) }}
+                            </p>
+                        </div>
+                    </td>
+
                     <td class="py-4 pl-6 pr-2 lg:pr-4">
                         <div class="flex space-x-2 justify-items-start">
-                            <a href="{{ route('pilar.show', $pilar) }}" class="hover:underline">Lihat</a>
-                            <a href="{{ route('pilar.edit', $pilar) }}" class="text-indigo-500 hover:underline">Ubah</a>
+                            <a href="{{ route('targetpilar.edit', ['targetpilar' => $targetpilar]) }}"
+                                class="text-indigo-500 hover:underline">Ubah</a>
                             <button x-data="" class="text-red-500 hover:underline"
-                                x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion{{ $pilar->id }}')">
+                                x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion{{ $targetpilar->id }}')">
                                 Hapus
                             </button>
 
-                            <x-modal name="confirm-user-deletion{{ $pilar->id }}" :show="$errors->userDeletion->isNotEmpty()" focusable>
-                                <form method="post" action="{{ route('pilar.destroy', $pilar) }}"
+                            <x-modal name="confirm-user-deletion{{ $targetpilar->id }}" :show="$errors->userDeletion->isNotEmpty()"
+                                focusable>
+                                <form method="post"
+                                    action="{{ route('targetpilar.destroy', $targetpilar) }}"
                                     class="p-6">
                                     @csrf
                                     @method('delete')
@@ -66,7 +78,10 @@
                                     </h2>
 
                                     <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                                        {{ $pilar->name }}
+                                        {{ $targetpilar->pilar->name }}
+                                    </p>
+                                    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                        {{ $targetpilar->tahun->name }}
                                     </p>
 
                                     <div class="flex justify-end mt-6">
