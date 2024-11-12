@@ -6,7 +6,7 @@
                     {{ __('No.') }}
                 </th>
                 <th scope="col" class="px-6 py-3 lg:table-cell">
-                    {{ __('Pilar') }}
+                    {{ __('Program') }}
                 </th>
                 <th scope="col" class="px-6 py-3 lg:table-cell">
                     {{ __('Nominal') }}
@@ -20,14 +20,14 @@
             </tr>
         </thead>
         <tbody>
-            @forelse ($targetpilars as $targetpilar)
+            @forelse ($targetProgramPilars as $targetProgramPilar)
                 <tr class="odd:bg-white odd:dark:bg-gray-800 even:bg-gray-100 even:dark:bg-gray-700">
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-gray-200">
                         {{-- loop --}}
                         <div class="flex">
                             <div class="hover:underline whitespace-nowrap">
-                                {{-- {{ ($targetPilars->currentpage() - 1) * $targetPilars->perpage() + $loop->index + 1 }} --}}
-                                {{ $targetpilar->id }}
+                                {{-- {{ ($targetProgramPilars->currentpage() - 1) * $targetProgramPilars->perpage() + $loop->index + 1 }} --}}
+                                {{ $targetProgramPilar->id }}
                             </div>
                         </div>
                     </td>
@@ -35,40 +35,36 @@
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
-                                {{ __($targetpilar->pilar->name) }}
+                                {{ $targetProgramPilar->programPilar->name ?? '-' }}
                             </p>
                         </div>
                     </td>
 
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
-                            <p>
-                                {{ __($targetpilar->nominal) }}
-                            </p>
+                            {{ $targetProgramPilar->nominal }}
                         </div>
                     </td>
 
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
-                            <p>
-                                {{ __($targetpilar->tahun->name) }}
-                            </p>
+                            {{ $targetProgramPilar->tahun->name ?? '-' }}
                         </div>
                     </td>
 
                     <td class="py-4 pl-6 pr-2 lg:pr-4">
                         <div class="flex space-x-2 justify-items-start">
-                            <a href="{{ route('targetpilar.edit', ['targetpilar' => $targetpilar]) }}"
+                            <a href="{{ route('targetprogrampilar.edit', ['targetprogrampilar' => $targetProgramPilar]) }}"
                                 class="text-indigo-500 hover:underline">Ubah</a>
                             <button x-data="" class="text-red-500 hover:underline"
-                                x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion{{ $targetpilar->id }}')">
+                                x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion{{ $targetProgramPilar->id }}')">
                                 Hapus
                             </button>
 
-                            <x-modal name="confirm-user-deletion{{ $targetpilar->id }}" :show="$errors->userDeletion->isNotEmpty()"
+                            <x-modal name="confirm-user-deletion{{ $targetProgramPilar->id }}" :show="$errors->userDeletion->isNotEmpty()"
                                 focusable>
                                 <form method="post"
-                                    action="{{ route('targetpilar.destroy', $targetpilar) }}"
+                                    action="{{ route('targetprogrampilar.destroy', $targetProgramPilar) }}"
                                     class="p-6">
                                     @csrf
                                     @method('delete')
@@ -78,10 +74,10 @@
                                     </h2>
 
                                     <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                                        {{ $targetpilar->pilar->name }}
+                                        {{ $targetProgramPilar->ProgramPilar->name ?? '-' }}
                                     </p>
                                     <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                                        {{ $targetpilar->tahun->name }}
+                                        {{ $targetProgramPilar->tahun->name ?? '-' }}
                                     </p>
 
                                     <div class="flex justify-end mt-6">
@@ -103,7 +99,7 @@
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-gray-200">
                         Empty
                     </td>
-                </tr>
+            </tr>
             @endforelse
         </tbody>
     </table>

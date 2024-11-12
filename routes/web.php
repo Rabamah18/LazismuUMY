@@ -13,9 +13,11 @@ use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\SumberDanaController;
 use App\Http\Controllers\TahunController;
 use App\Http\Controllers\TargetPilarController;
+use App\Http\Controllers\TargetProgramPilarController;
 use App\Http\Controllers\UserController;
 use App\Models\Penghimpunan;
 use App\Models\TargetPilar;
+use App\Models\TargetProgramPilar;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -71,6 +73,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('user', UserController::class);
 
     Route::resource('targetpilar', TargetPilarController::class);
+    Route::resource('targetprogrampilar', TargetProgramPilarController::class);
 
 });
 
