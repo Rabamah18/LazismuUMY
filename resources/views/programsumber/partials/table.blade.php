@@ -8,6 +8,9 @@
                 <th scope="col" class="px-6 py-3 lg:table-cell">
                     {{ __('Name') }}
                 </th>
+                <th scope="col" class="px-6 py-3 lg:table-cell">
+                    {{ __('Sumber Donasifff') }}
+                </th>
                 <th scope="col" class="py-3 pl-6 pr-2 lg:pr-4">
                     {{ __('Option') }}
                 </th>
@@ -20,7 +23,8 @@
                         {{-- loop --}}
                         <div class="flex">
                             <div class="hover:underline whitespace-nowrap">
-                                {{ ($programSumbers->currentpage() - 1) * $programSumbers->perpage() + $loop->index + 1 }}
+                                {{-- {{ ($programSumbers->currentpage() - 1) * $programSumbers->perpage() + $loop->index + 1 }} --}}
+                                {{ $programSumber->id }}
                             </div>
 
                         </div>
@@ -31,6 +35,14 @@
                         <div class="flex">
                             <p>
                                 {{ $programSumber->name }}
+                            </p>
+
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 lg:table-cell">
+                        <div class="flex">
+                            <p>
+                                {{ $programSumber->sumberDonasi->name ?? '-' }}
                             </p>
 
                         </div>
