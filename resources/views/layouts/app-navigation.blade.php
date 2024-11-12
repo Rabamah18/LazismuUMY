@@ -28,6 +28,40 @@
                         </x-nav-link>
                     @endcan
 
+                        <x-nav-link :href="route('pilar.index')" :active="request()->routeIs('pilar.*')" class="hidden lg:inline-flex">
+                            {{ __('Pilar') }}
+                        </x-nav-link>
+
+                        <x-nav-link :href="route('programpilar.index')" :active="request()->routeIs('programpilar.*')" class="hidden lg:inline-flex">
+                            {{ __('Program') }}
+                        </x-nav-link>
+
+                        <x-nav-link :href="route('sumberdana.index')" :active="request()->routeIs('sumberdana.*')" class="hidden xl:inline-flex">
+                            {{ __('Sumber Dana') }}
+                        </x-nav-link>
+
+                        <x-nav-link :href="route('programsumber.index')" :active="request()->routeIs('programsumber.*')" class="hidden xl:inline-flex">
+                            {{ __('Program Sumber') }}
+                        </x-nav-link>
+
+                        <x-nav-link :href="route('ashnaf.index')" :active="request()->routeIs('ashnaf.*')" class="hidden 2xl:inline-flex">
+                            {{ __('Ashnaf') }}
+                        </x-nav-link>
+
+                        <x-nav-link :href="route('provinsi.index')" :active="request()->routeIs('provinsi.*')" class="hidden 2xl:inline-flex">
+                            {{ __('Provinsi/Luar Negeri') }}
+                        </x-nav-link>
+
+                        <x-nav-link :href="route('kabupaten.index')" :active="request()->routeIs('kabupaten.*')" class="hidden 2xl:inline-flex">
+                            {{ __('Kabupaten/Negara') }}
+                        </x-nav-link>
+
+                        <x-nav-link :href="route('tahun.index')" :active="request()->routeIs('tahun.*')" class="hidden 2xl:inline-flex">
+                            {{ __('Tahun') }}
+                        </x-nav-link>
+
+
+
                     <div class="items-center hidden border-t-2 border-transparent sm:flex">
                         <x-dropdown align="left" width="48">
                             <x-slot name="trigger">
@@ -47,28 +81,28 @@
                             </x-slot>
 
                             <x-slot name="content">
-                                <x-dropdown-link :href="route('pilar.index')">
+                                <x-dropdown-link :href="route('pilar.index')" class="lg:hidden">
                                     {{ __('Pilar') }}
                                 </x-dropdown-link>
-                                <x-dropdown-link :href="route('programpilar.index')">
+                                <x-dropdown-link :href="route('programpilar.index')" class="lg:hidden">
                                     {{ __('Program') }}
                                 </x-dropdown-link>
-                                <x-dropdown-link :href="route('sumberdana.index')">
+                                <x-dropdown-link :href="route('sumberdana.index')" class="xl:hidden">
                                     {{ __('Sumber Dana') }}
                                 </x-dropdown-link>
-                                <x-dropdown-link :href="route('programsumber.index')">
+                                <x-dropdown-link :href="route('programsumber.index')" class="xl:hidden">
                                     {{ __('Program Sumber') }}
                                 </x-dropdown-link>
-                                <x-dropdown-link :href="route('ashnaf.index')">
+                                <x-dropdown-link :href="route('ashnaf.index')" class="2xl:hidden">
                                     {{ __('Ashnaf') }}
                                 </x-dropdown-link>
-                                <x-dropdown-link :href="route('provinsi.index')">
+                                <x-dropdown-link :href="route('provinsi.index')" class="2xl:hidden">
                                     {{ __('Provinsi/Luar Negeri') }}
                                 </x-dropdown-link>
-                                <x-dropdown-link :href="route('kabupaten.index')">
+                                <x-dropdown-link :href="route('kabupaten.index')" class="2xl:hidden">
                                     {{ __('Kabupaten/Negara') }}
                                 </x-dropdown-link>
-                                <x-dropdown-link :href="route('tahun.index')">
+                                <x-dropdown-link :href="route('tahun.index')" class="2xl:hidden">
                                     {{ __('Tahun') }}
                                 </x-dropdown-link>
                             </x-slot>
@@ -130,6 +164,12 @@
                         @endcan
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profil') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link :href="route('targetpilar.index')">
+                            {{ __('Target Pilar') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link :href="route('targetprogrampilar.index')">
+                            {{ __('Target Program') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
