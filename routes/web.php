@@ -12,6 +12,7 @@ use App\Http\Controllers\ProgramSumberController;
 use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\SumberDanaController;
 use App\Http\Controllers\TahunController;
+use App\Http\Controllers\TargetProgramSumberController;
 use App\Http\Controllers\TargetSumberDonasiController;
 use App\Http\Controllers\TargetTahunanController;
 use App\Http\Controllers\UserController;
@@ -72,6 +73,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('targettahunan', TargetTahunanController::class);
     Route::resource('targetsumberdonasi', TargetSumberDonasiController::class);
+    Route::resource('targetprogramsumber', TargetProgramSumberController::class);
 
 });
 
