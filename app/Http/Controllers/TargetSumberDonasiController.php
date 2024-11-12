@@ -16,7 +16,7 @@ class TargetSumberDonasiController extends Controller
     {
         $targetSumberDonasis = TargetSumberDonasi::query()->get();
 
-        return view('targetsumberDonasi.index', compact('targetSumberDonasis'));
+        return view('targetsumberdonasi.index', compact('targetSumberDonasis'));
     }
 
     /**
@@ -27,7 +27,7 @@ class TargetSumberDonasiController extends Controller
         $sumberDonasis = SumberDonasi::query()->get();
         $tahuns = Tahun::query()->get();
 
-        return view('targetsumberDonasi.create', compact('sumberDonasis', 'tahuns'));
+        return view('targetsumberdonasi.create', compact('sumberDonasis', 'tahuns'));
     }
 
     /**
@@ -68,7 +68,7 @@ class TargetSumberDonasiController extends Controller
         $sumberDonasis = SumberDonasi::query()->get();
         $tahuns = Tahun::query()->get();
 
-        return view('targetsumberDonasi.edit', compact('sumberDonasis', 'tahuns', 'targetsumberdonasi'));
+        return view('targetsumberdonasi.edit', compact('sumberDonasis', 'tahuns', 'targetsumberdonasi'));
     }
 
     /**
