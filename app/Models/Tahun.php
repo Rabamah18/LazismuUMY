@@ -22,4 +22,9 @@ class Tahun extends Model
     {
         return $this->hasMany(Penyaluran::class);
     }
+
+    public function targetTahunans()
+    {
+        return $this->hasMany(TargetTahunan::class);
+    }
 }
