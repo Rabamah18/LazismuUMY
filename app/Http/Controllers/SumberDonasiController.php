@@ -12,7 +12,9 @@ class SumberDonasiController extends Controller
      */
     public function index()
     {
-        //
+        $sumberdonasis = SumberDonasi::query()->get();
+
+        return view('sumberdonasi.index', compact('sumberdonasis'));
     }
 
     /**
@@ -20,7 +22,7 @@ class SumberDonasiController extends Controller
      */
     public function create()
     {
-        //
+        return view('sumberdonasi.create');
     }
 
     /**
@@ -28,38 +30,63 @@ class SumberDonasiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'sumberdonasi' => 'required',
+        ]);
+
+        SumberDonasi::create([
+            'name' => $request->sumberdonasi,
+        ]);
+
+        return redirect()
+            ->route('sumberdonasi.index')
+            ->with('success', 'Sumber Donasi Berhasil dibuat');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(SumberDonasi $sumberDonasi)
+    public function show(SumberDonasi $sumberdonasi)
     {
-        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SumberDonasi $sumberDonasi)
+    public function edit(SumberDonasi $sumberdonasi)
     {
-        //
+        return view('sumberdonasi.edit', compact('sumberdonasi'));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SumberDonasi $sumberDonasi)
+    public function update(Request $request, SumberDonasi $sumberdonasi)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $sumberdonasi->update([
+            'name' => $request->name,
+        ]);
+
+        return redirect()
+            ->route('sumberdonasi.index')
+            ->with('success', 'Sumber Donasi Berhasil diperbaharui');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SumberDonasi $sumberDonasi)
+    public function destroy(SumberDonasi $sumberdonasi)
     {
-        //
+        $sumberdonasi->delete();
+
+        return redirect()
+            ->route('sumberdonasi.index')
+            ->with('success', 'Sumber Donasi Berhasil dihapus');
     }
 }

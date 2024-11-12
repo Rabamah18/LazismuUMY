@@ -12,7 +12,7 @@ class SumberDanaController extends Controller
      */
     public function index()
     {
-        $sumberDanas = SumberDana::query()->paginate(10);
+        $sumberDanas = SumberDana::query()->get();
 
         return view('sumberdana.index', compact('sumberDanas'));
     }
@@ -32,10 +32,12 @@ class SumberDanaController extends Controller
     {
         $request->validate([
             'name' => 'required|max:35',
+            'norek' => 'nullable',
         ]);
 
         SumberDana::create([
             'name' => $request->name,
+            'rekening_sumda' => $request->norek,
         ]);
 
         return redirect()->route('sumberdana.index')->with('success', 'Sumber dana created successfully!');
@@ -64,10 +66,12 @@ class SumberDanaController extends Controller
     {
         $request->validate([
             'name' => 'required|max:35',
+            'norek' => 'nullable',
         ]);
 
         $sumberdana->update([
             'name' => $request->name,
+            'rekening_sumda' => $request->norek,
         ]);
 
         return redirect()->route('sumberdana.index')->with('success', 'Sumber dana edited successfully!');
@@ -76,9 +80,9 @@ class SumberDanaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SumberDana $sumberDana)
+    public function destroy(SumberDana $sumberdana)
     {
-        $sumberDana->delete();
+        $sumberdana->delete();
 
         return redirect()->route('sumberdana.index')->with('success', 'Sumber dana deleted successfully!');
     }

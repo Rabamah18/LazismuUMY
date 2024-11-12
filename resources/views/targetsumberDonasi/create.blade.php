@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-            {{ __('Program Sumber') }}
+            {{ __('Create Data Pilar') }}
         </h2>
     </x-slot>
 
@@ -9,22 +9,15 @@
         <div class="max-w-full mx-auto sm:px-6 sm:space-y-6">
             <x-card.app>
                 <x-card.title>
-                    {{ __('Create Program Sumber Dana') }}
+                    {{ __('Create Data Pilar') }}
                 </x-card.title>
                 <x-card.description>
-                    {{ __('Create a new Program Sumber Dana.') }}
+                    {{ __('Create a new Data Pilar.') }}
                 </x-card.description>
                 <div class="max-w-xl">
-                    <form method="post" action="{{ route('programsumber.store') }}" class="mt-6 space-y-6">
+                    <form method="post" action="{{ route('targetsumberdonasi.store') }}" class="mt-6 space-y-6">
                         @csrf
                         @method('post')
-                        <div>
-                            <x-input-label for="name" :value="__('Name')" />
-                            <x-text-input id="name" name="name" type="text" class="block w-full mt-1"
-                                :value="old('name')" required autocomplete="name" />
-                            <x-input-error class="mt-2" :messages="$errors->get('name')" />
-                        </div>
-
                         <div>
                             <x-input-label for="sumber_donasi_id" :value="__('Sumber Donasi')" />
                             <x-select-input id="sumber_donasi" name="sumber_donasi_id" class="block w-full mt-1">
@@ -37,6 +30,26 @@
                                 @endforeach
                             </x-select-input>
                             <x-input-error class="mt-2" :messages="$errors->get('sumber_donasi_id')" />
+                        </div>
+
+                        <div>
+                            <x-input-label for="nominal" :value="__('Jumlah nominal')" />
+                            <x-text-input id="nominal" name="nominal" type="number" class="block w-full mt-1"
+                                :value="old('nominal')" autocomplete="nominal" min="0" placeholder="0" />
+                            <x-input-error class="mt-2" :messages="$errors->get('nominal')" />
+                        </div>
+
+                        <div class="mt-4">
+                            <x-input-label for="tahun_id" :value="__('Tahun')" />
+                            <x-select-input id="tahun" name="tahun_id" class="block w-full mt-1">
+                                <option value="">{{ __('Select Tahun') }}</option>
+                                @foreach ($tahuns as $tahun)
+                                    <option value="{{ $tahun->id }}"
+                                        {{ request('tahun_id') == 'tahun_id' ? 'selected' : '' }}> {{ $tahun->name }}
+                                    </option>
+                                @endforeach
+                            </x-select-input>
+                            <x-input-error class="mt-2" :messages="$errors->get('tahun_id')" />
                         </div>
 
                         <div class="flex items-center gap-4">

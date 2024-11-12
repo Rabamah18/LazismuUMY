@@ -6,10 +6,10 @@
                     {{ __('No.') }}
                 </th>
                 <th scope="col" class="px-6 py-3 lg:table-cell">
-                    {{ __('Name') }}
+                    {{ __('Jenis Target') }}
                 </th>
                 <th scope="col" class="px-6 py-3 lg:table-cell">
-                    {{ __('Sumber Donasifff') }}
+                    {{ __('Nominal') }}
                 </th>
                 <th scope="col" class="py-3 pl-6 pr-2 lg:pr-4">
                     {{ __('Option') }}
@@ -17,48 +17,45 @@
             </tr>
         </thead>
         <tbody>
-            @forelse ($programSumbers as $programSumber)
+            @forelse ($targetTahunans as $targetTahunan)
                 <tr class="odd:bg-white odd:dark:bg-gray-800 even:bg-gray-100 even:dark:bg-gray-700">
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-gray-200">
                         {{-- loop --}}
                         <div class="flex">
                             <div class="hover:underline whitespace-nowrap">
-                                {{-- {{ ($programSumbers->currentpage() - 1) * $programSumbers->perpage() + $loop->index + 1 }} --}}
-                                {{ $programSumber->id }}
+                                {{-- {{ ($targetTahunans->currentpage() - 1) * $targetTahunans->perpage() + $loop->index + 1 }} --}}
+                                {{ $targetTahunan->id }}
                             </div>
 
                         </div>
                     </td>
 
-                    </td>
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
-                                {{ $programSumber->name }}
+                                {{ $targetTahunan->jenis ?? '-' }}
                             </p>
-
                         </div>
                     </td>
+
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
-                                {{ $programSumber->sumberDonasi->name ?? '-' }}
+                                {{ $targetTahunan->nominal }}
                             </p>
-
                         </div>
                     </td>
                     <td class="py-4 pl-6 pr-2 lg:pr-4">
                         <div class="flex space-x-2 justify-items-start">
-                            <a href="{{ route('programsumber.edit', $programSumber) }}"
+                            <a href="{{ route('targettahunan.edit', ['targettahunan'=>$targetTahunan]) }}"
                                 class="text-indigo-500 hover:underline">Edit</a>
                             <button x-data="" class="text-red-500 hover:underline"
-                                x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion{{ $programSumber->id }}')">
+                                x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion{{ $targetTahunan->id }}')">
                                 Hapus
                             </button>
 
-                            <x-modal name="confirm-user-deletion{{ $programSumber->id }}" :show="$errors->userDeletion->isNotEmpty()" focusable>
-                                <form method="post"
-                                    action="{{ route('programsumber.destroy', $programsumber = $programSumber) }}"
+                            <x-modal name="confirm-user-deletion{{ $targetTahunan->id }}" :show="$errors->userDeletion->isNotEmpty()" focusable>
+                                <form method="post" action="{{ route('targettahunan.destroy', $targetTahunan) }}"
                                     class="p-6">
                                     @csrf
                                     @method('delete')
@@ -68,7 +65,7 @@
                                     </h2>
 
                                     <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                                        {{ $programSumber->name }}
+                                        {{ $targetTahunan->name }}
                                     </p>
 
                                     <div class="flex justify-end mt-6">
