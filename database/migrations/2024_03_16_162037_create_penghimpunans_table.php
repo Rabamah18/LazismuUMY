@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('female_count')->nullable();
             $table->integer('no_name_count')->nullable();
             $table->string('lampiran')->nullable();
+            $table->boolean('pindahdana')->nullable()->default(false);
             $table->timestamps();
         });
     }

@@ -15,6 +15,7 @@ class Penghimpunan extends Model
 
     protected $casts = [
         'tanggal' => 'datetime',
+        'pindahdana' => 'boolean'
     ];
 
     public function sumberDana()

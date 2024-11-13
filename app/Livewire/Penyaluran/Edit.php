@@ -2,22 +2,21 @@
 
 namespace App\Livewire\Penyaluran;
 
-use App\Models\Pilar;
-use App\Models\Tahun;
 use App\Models\Ashnaf;
-use Livewire\Component;
-use App\Models\Provinsi;
 use App\Models\Kabupaten;
 use App\Models\Penyaluran;
+use App\Models\Pilar;
 use App\Models\ProgramPilar;
 use App\Models\ProgramSumber;
+use App\Models\Provinsi;
 use App\Models\SumberDana;
+use App\Models\Tahun;
 use Illuminate\Support\Carbon;
 use Livewire\Attributes\Validate;
+use Livewire\Component;
 
 class Edit extends Component
 {
-
     #[Validate]
     public $penyaluran;
 
@@ -65,7 +64,7 @@ class Edit extends Component
 
     public $nominal;
 
-
+    public $isPindahDana = true;
 
     public function mount(Penyaluran $penyaluran)
     {
@@ -84,7 +83,7 @@ class Edit extends Component
         $this->pria = $this->penyaluran->male_count;
         $this->wanita = $this->penyaluran->female_count;
         $this->pilars = Pilar::query()->get();
-        $this->selectedPilar = $this->penyaluran->programPilar->pilar_id;
+        $this->selectedPilar = $this->penyaluran->programPilar->pilar_id ?? '';
         $this->programPilars = ProgramPilar::query()->get();
         $this->selectedProgramPilar = $this->penyaluran->program_pilar_id;
         $this->sumberDanas = SumberDana::query()->get();
@@ -92,8 +91,7 @@ class Edit extends Component
         $this->programSumbers = ProgramSumber::query()->get();
         $this->selectedProgramSumber = $this->penyaluran->program_sumber_id;
         $this->nominal = $this->penyaluran->nominal;
-
-
+        $this->isPindahDana = $penyaluran->pindahdana;
 
     }
 
@@ -113,7 +111,7 @@ class Edit extends Component
         $this->selectedTahun = $penyaluran->tahun;
         $this->selectedProvinsi = $penyaluran->provinsi;
         $this->selectedKabupaten = $penyaluran->kabupaten;
-
+        $this->isPindahDana = $penyaluran->pindahdana;
 
     }
 
