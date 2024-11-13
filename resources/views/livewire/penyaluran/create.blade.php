@@ -101,21 +101,21 @@
         <div>
             <x-input-label for="lembaga" :value="__('Lembaga')" />
             <x-text-input wire:model='lembaga' id="lembaga" type="number" class="block w-full mt-1" :value="old('lembaga')"
-                required autocomplete="lembaga" placeholder="Jumlah Lembaga"/>
+                required autocomplete="lembaga" min="0" placeholder="0"/>
             <x-input-error class="mt-2" :messages="$errors->get('lembaga')" />
         </div>
 
         <div>
             <x-input-label for="pria" :value="__('Pria')" />
             <x-text-input wire:model='pria' id="pria" type="number" class="block w-full mt-1" :value="old('pria')"
-                required autocomplete="pria" placeholder="Jumlah Pria"/>
+                required autocomplete="pria" min="0" placeholder="0"/>
             <x-input-error class="mt-2" :messages="$errors->get('pria')" />
         </div>
 
         <div>
             <x-input-label for="wanita" :value="__('Wanita')" />
             <x-text-input wire:model='wanita' id="wanita" type="number" class="block w-full mt-1" :value="old('wanita')"
-                required autocomplete="wanita" placeholder="Jumlah Wanita"/>
+                required autocomplete="wanita" min="0" placeholder="0"/>
             <x-input-error class="mt-2" :messages="$errors->get('wanita')" />
         </div>
 
