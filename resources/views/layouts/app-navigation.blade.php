@@ -177,6 +177,9 @@
                         <x-dropdown-link :href="route('targetprogrampilar.index')">
                             {{ __('Target Program') }}
                         </x-dropdown-link>
+                        <x-dropdown-link :href="route('targettahunan.index')">
+                            {{ __('Target Tahunan') }}
+                        </x-dropdown-link>
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">

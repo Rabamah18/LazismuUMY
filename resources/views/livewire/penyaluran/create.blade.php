@@ -101,22 +101,22 @@
 
         <div>
             <x-input-label for="lembaga" :value="__('Lembaga')" />
-            <x-text-input wire:model='lembaga' id="lembaga" type="number" class="block w-full mt-1"
-                :value="old('lembaga')" autocomplete="lembaga" placeholder="Jumlah Lembaga" />
+            <x-text-input wire:model='lembaga' id="lembaga" type="number" class="block w-full mt-1" :value="old('lembaga')"
+                autocomplete="lembaga" min="0" placeholder="0"/>
             <x-input-error class="mt-2" :messages="$errors->get('lembaga')" />
         </div>
 
         <div>
             <x-input-label for="pria" :value="__('Pria')" />
             <x-text-input wire:model='pria' id="pria" type="number" class="block w-full mt-1" :value="old('pria')"
-                autocomplete="pria" placeholder="Jumlah Pria" />
+                autocomplete="pria" min="0" placeholder="0"/>
             <x-input-error class="mt-2" :messages="$errors->get('pria')" />
         </div>
 
         <div>
             <x-input-label for="wanita" :value="__('Wanita')" />
             <x-text-input wire:model='wanita' id="wanita" type="number" class="block w-full mt-1" :value="old('wanita')"
-                autocomplete="wanita" placeholder="Jumlah Wanita" />
+                autocomplete="wanita" min="0" placeholder="0"/>
             <x-input-error class="mt-2" :messages="$errors->get('wanita')" />
         </div>
 
