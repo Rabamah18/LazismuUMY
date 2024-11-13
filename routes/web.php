@@ -16,6 +16,7 @@ use App\Http\Controllers\TahunController;
 use App\Http\Controllers\TargetPilarController;
 use App\Http\Controllers\TargetProgramPilarController;
 use App\Http\Controllers\TargetProgramSumberController;
+use App\Http\Controllers\TargetSubInfaqController;
 use App\Http\Controllers\TargetSumberDonasiController;
 use App\Http\Controllers\TargetTahunanController;
 use App\Http\Controllers\UserController;
@@ -77,6 +78,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('targettahunan', TargetTahunanController::class);
     Route::resource('targetsumberdonasi', TargetSumberDonasiController::class);
     Route::resource('targetprogramsumber', TargetProgramSumberController::class);
+    Route::resource('targetsubinfaq', TargetSubInfaqController::class);
 
     Route::resource('targetpilar', TargetPilarController::class);
     Route::resource('targetprogrampilar', TargetProgramPilarController::class);
