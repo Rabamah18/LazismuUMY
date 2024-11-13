@@ -33,11 +33,7 @@ class PenghimpunanController extends Controller
      */
     public function create()
     {
-        $sumberDanas = SumberDana::query()->get();
-        $programSumbers = ProgramSumber::query()->get();
-        $tahuns = Tahun::query()->get();
-
-        return view('penghimpunan.create', compact('sumberDanas', 'programSumbers', 'tahuns'));
+        return view('penghimpunan.create');
     }
 
     /**
@@ -45,40 +41,7 @@ class PenghimpunanController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'tanggal' => 'required|date',
-            'uraian' => 'required|max:65535',
-            'nominal' => 'required',
-            'lembaga' => 'nullable|numeric|min:0',
-            'pria' => 'nullable|numeric|min:0',
-            'wanita' => 'nullable|numeric|min:0',
-            'noname' => 'nullable|numeric|min:0',
-            'sumber_dana_id' => 'required|exists:sumber_danas,id',
-            'program_sumber_id' => 'required|exists:program_sumbers,id',
-            'tahun_id' => 'required|exists:tahuns,id',
-
-        ]);
-
-        // Remove any non-numeric characters for safe storage as integer
-        $nominal = $this->parseRupiah($request->input('nominal'));
-
-        Penghimpunan::create([
-            'tanggal' => $request->tanggal,
-            'uraian' => $request->uraian,
-            'nominal' => $nominal,
-            'lembaga_count' => $request->lembaga ?? 0,
-            'male_count' => $request->pria ?? 0,
-            'female_count' => $request->wanita ?? 0,
-            'no_name_count' => $request->noname ?? 0,
-            'sumber_dana_id' => $request->sumber_dana_id,
-            'program_sumber_id' => $request->program_sumber_id,
-            'tahun_id' => $request->tahun_id,
-            'user_id' => auth()->user()->id,
-
-            // 'title' => $request->title,
-        ]);
-
-        return redirect()->route('penghimpunan.index')->with('success', 'Penghimpunan created successfully!');
+        //
     }
 
     public function parseRupiah($value)
