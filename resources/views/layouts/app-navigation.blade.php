@@ -180,6 +180,9 @@
                         <x-dropdown-link :href="route('targettahunan.index')">
                             {{ __('Target Tahunan') }}
                         </x-dropdown-link>
+                        <x-dropdown-link :href="route('target.index')">
+                            {{ __('Manage Target') }}
+                        </x-dropdown-link>
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">

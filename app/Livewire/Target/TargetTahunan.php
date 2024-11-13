@@ -3,11 +3,13 @@
 namespace App\Livewire\Target;
 
 use Livewire\Component;
+use App\Models\TargetTahunan as ModelTargetTahunan;
 
 class TargetTahunan extends Component
 {
     public function render()
     {
-        return view('livewire.target.target-tahunan');
+        $targetTahunans = ModelTargetTahunan::query()->get();
+        return view('livewire.target.target-tahunan', compact('targetTahunans'));
     }
 }

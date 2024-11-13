@@ -4,9 +4,9 @@
             {{ __('Target Tahunan') }}
         </x-card.title>
         <div class="flex flex-wrap gap-2">
-            <x-button.link-primary href="">
-                {{ __('Create') }}
-            </x-button.link-primary>
+            <x-button.link-secondary href="{{ route('targettahunan.index') }}">
+                {{ __('Manage Target Tahunan') }}
+            </x-button.link-secondary>
         </div>
     </div>
     <div class="relative mt-6 overflow-x-visible overflow-y-visible rounded-md md:block">
@@ -22,13 +22,45 @@
                     <th scope="col" class="px-6 py-3 lg:table-cell">
                         {{ __('Nominal') }}
                     </th>
-                    <th scope="col" class="px-6 py-3 lg:table-cell">
-                        {{ __('Option') }}
-                    </th>
                 </tr>
             </thead>
             <tbody>
+                @forelse ($targetTahunans as $targetTahunan)
+                <tr class="odd:bg-white odd:dark:bg-gray-800 even:bg-gray-100 even:dark:bg-gray-700">
+                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-gray-200">
+                        {{-- loop --}}
+                        <div class="flex">
+                            <div class="hover:underline whitespace-nowrap">
+                                {{-- {{ ($targetTahunans->currentpage() - 1) * $targetTahunans->perpage() + $loop->index + 1 }} --}}
+                                {{ $targetTahunan->id }}
+                            </div>
 
+                        </div>
+                    </td>
+
+                    <td class="px-6 py-4 lg:table-cell">
+                        <div class="flex">
+                            <p>
+                                {{ $targetTahunan->jenis ?? '-' }}
+                            </p>
+                        </div>
+                    </td>
+
+                    <td class="px-6 py-4 lg:table-cell">
+                        <div class="flex">
+                            <p>
+                                {{ $targetTahunan->nominal }}
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+            @empty
+                <tr class="bg-white dark:bg-gray-800">
+                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-gray-200">
+                        Empty
+                    </td>
+                </tr>
+            @endforelse
             </tbody>
         </table>
     </div>

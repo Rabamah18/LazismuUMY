@@ -4,9 +4,9 @@
             {{ __('Target Program') }}
         </x-card.title>
         <div class="flex flex-wrap gap-2">
-            <x-button.link-primary href="">
-                {{ __('Create') }}
-            </x-button.link-primary>
+            <x-button.link-secondary href="{{ route('targetprogrampilar.index') }}">
+                {{ __('Manage Target Program') }}
+            </x-button.link-secondary>
         </div>
     </div>
     <div class="relative mt-6 overflow-x-visible overflow-y-visible rounded-md md:block">
@@ -25,13 +25,48 @@
                     <th scope="col" class="px-6 py-3 lg:table-cell">
                         {{ __('Tahun') }}
                     </th>
-                    <th scope="col" class="px-6 py-3 lg:table-cell">
-                        {{ __('Option') }}
-                    </th>
                 </tr>
             </thead>
             <tbody>
+                @forelse ($targetProgramPilars as $targetProgramPilar)
+                <tr class="odd:bg-white odd:dark:bg-gray-800 even:bg-gray-100 even:dark:bg-gray-700">
+                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-gray-200">
+                        {{-- loop --}}
+                        <div class="flex">
+                            <div class="hover:underline whitespace-nowrap">
+                                {{-- {{ ($targetProgramPilars->currentpage() - 1) * $targetProgramPilars->perpage() + $loop->index + 1 }} --}}
+                                {{ $targetProgramPilar->id }}
+                            </div>
+                        </div>
+                    </td>
 
+                    <td class="px-6 py-4 lg:table-cell">
+                        <div class="flex">
+                            <p>
+                                {{ $targetProgramPilar->programPilar->name ?? '-' }}
+                            </p>
+                        </div>
+                    </td>
+
+                    <td class="px-6 py-4 lg:table-cell">
+                        <div class="flex">
+                            {{ $targetProgramPilar->nominal }}
+                        </div>
+                    </td>
+
+                    <td class="px-6 py-4 lg:table-cell">
+                        <div class="flex">
+                            {{ $targetProgramPilar->tahun->name ?? '-' }}
+                        </div>
+                    </td>
+                </tr>
+            @empty
+                <tr class="bg-white dark:bg-gray-800">
+                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-gray-200">
+                        Empty
+                    </td>
+            </tr>
+            @endforelse
             </tbody>
         </table>
     </div>
