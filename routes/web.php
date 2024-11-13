@@ -81,6 +81,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('targetpilar', TargetPilarController::class);
     Route::resource('targetprogrampilar', TargetProgramPilarController::class);
 
+    Route::view('/target', 'target.index')->name('target.index');
+
+
 });
 
 // Route::view('/', 'public.home')->name('home');
