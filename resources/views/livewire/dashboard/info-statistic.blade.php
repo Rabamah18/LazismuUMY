@@ -160,28 +160,53 @@
             <table class="w-full text-base text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                        <th rowspan="2">
+                        <th rowspan="3">
                             No.
                         </th>
-                        <th rowspan="2">
-                            Nama sumber Saldo
+                        <th>
+                            Nama Akun
                         </th>
-                        <th colspan="3" class="">
-                            saldo
+                        <th>
+                            Target
+                        </th>
+                        <th>
+                            Realisasi
+                        </th>
+                        <th>
+                            Realisasi sub Pilar
                         </th>
                     </tr>
                     <tr>
-                        <th>
+                        <th rowspan="2">
                             Zakat
                         </th>
-                        <th>
-                            Infaq
+                        <th rowspan="2">
+                            360
+                        </th>
+                        <th rowspan="2">
+                            persen%
                         </th>
                         <th>
-                            Amil
+
                         </th>
                     </tr>
                 </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Zakat Maal
+                        </td>
+                        <td>
+
+                        </td>
+                        <td>
+                            
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </x-card.app>

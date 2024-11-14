@@ -35,7 +35,8 @@
                         <div>
                             <x-input-label for="nominal" :value="__('Jumlah nominal')" />
                             <x-text-input id="nominal" name="nominal" type="number" class="block w-full mt-1"
-                                :value="old('nominal')" autocomplete="nominal" min="0" placeholder="0" />
+                                :value="old('nominal')" autocomplete="nominal" min="0" step="0.01"
+                                placeholder="0.00" />
                             <x-input-error class="mt-2" :messages="$errors->get('nominal')" />
                         </div>
 
