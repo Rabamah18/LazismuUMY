@@ -13,9 +13,10 @@
         </div>
     </div>
 
-    @livewire('target.target-tahunan')
-    @livewire('target.target-sumber-donasi')
-    @livewire('target.target-program-sumber')
-    @livewire('target.target-pilar')
-    @livewire('target.target-program-pilar')
+    {{-- Include child components with selectedTahun as parameter --}}
+    <livewire:target.target-tahunan :tahun="$selectedTahun">
+    <livewire:target.target-pilar :tahun="$selectedTahun" />
+    <livewire:target.target-program-pilar :tahun="$selectedTahun" />
+    <livewire:target.target-sumber-donasi :tahun="$selectedTahun" />
+    <livewire:target.target-program-sumber :tahun="$selectedTahun" />
 </div>

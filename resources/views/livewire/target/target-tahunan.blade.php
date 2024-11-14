@@ -22,6 +22,9 @@
                     <th scope="col" class="px-6 py-3 lg:table-cell">
                         {{ __('Nominal') }}
                     </th>
+                    <th scope="col" class="px-6 py-3 lg:table-cell">
+                        {{ __('Tahun') }}
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -50,6 +53,14 @@
                         <div class="flex">
                             <p>
                                 {{ $targetTahunan->nominal }}
+                            </p>
+                        </div>
+                    </td>
+
+                    <td class="px-6 py-4 lg:table-cell">
+                        <div class="flex">
+                            <p>
+                                {{ __($targetTahunan->tahun->name) }}
                             </p>
                         </div>
                     </td>
