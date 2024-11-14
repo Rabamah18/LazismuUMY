@@ -1,7 +1,18 @@
 <div class="space-y-4">
-    <div class="max-w-full mx-auto sm:px-6 sm:space-y-6">
-       {{-- Filter Tahunan --}}
+    {{-- Filter Tahunan --}}
+    <div class="flex justify-end w-full flex-wrap gap-2">
+        <div class="flex items-center gap-2">
+            <x-select-input id="tahun" wire:model.lazy="selectedTahun" class="">
+                <option value="">{{ __('Tahun') }}</option>
+                @foreach ($tahuns as $tahun)
+                    <option value="{{ $tahun->id }}">
+                        {{ $tahun->name }}
+                    </option>
+                @endforeach
+            </x-select-input>
+        </div>
     </div>
+
     @livewire('target.target-tahunan')
     @livewire('target.target-sumber-donasi')
     @livewire('target.target-program-sumber')
