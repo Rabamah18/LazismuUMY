@@ -6,7 +6,7 @@ use App\Models\Penghimpunan;
 use App\Models\Penyaluran;
 use Livewire\Component;
 
-class InfoStatistic extends Component
+class TableSaldo extends Component
 {
     public function render()
     {
@@ -284,7 +284,7 @@ class InfoStatistic extends Component
 
         $totalSemua = $totalZakatInfaq + $totalAmil;
 
-        return view('livewire.dashboard.info-statistic', compact(
+        return view('livewire.dashboard.table-saldo', compact(
             'saldoTunaiZakat',
             'saldoBsiZakat',
             'saldoBpddiyZakat',
@@ -302,6 +302,7 @@ class InfoStatistic extends Component
             'totalAmil',
             'totalZakatInfaq',
             'totalSemua',
+
         ));
     }
 }

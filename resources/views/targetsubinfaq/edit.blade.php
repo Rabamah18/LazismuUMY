@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-            {{ __('Create Data Pilar') }}
+            {{ __('Create Data Target Tahunan') }}
         </h2>
     </x-slot>
 
@@ -9,34 +9,34 @@
         <div class="max-w-full mx-auto sm:px-6 sm:space-y-6">
             <x-card.app>
                 <x-card.title>
-                    {{ __('Create Data Pilar') }}
+                    {{ __('Create Data Target Tahunan') }}
                 </x-card.title>
                 <x-card.description>
-                    {{ __('Create a new Data Pilar.') }}
+                    {{ __('Create a new Data Target Tahunan.') }}
                 </x-card.description>
                 <div class="max-w-xl">
-                    <form method="post" action="{{ route('targetprogramsumber.store') }}" class="mt-6 space-y-6">
+                    <form method="post" action="{{ route('targetsubinfaq.update', $targetsubinfaq) }}"
+                        class="mt-6 space-y-6">
                         @csrf
-                        @method('post')
+                        @method('patch')
                         <div>
-                            <x-input-label for="program_sumber_id" :value="__('Program Sumber')" />
-                            <x-select-input id="program_sumber" name="program_sumber_id" class="block w-full mt-1">
-                                <option value="">{{ __('Select Program Sumber') }}</option>
-                                @foreach ($programSumbers as $programSumber)
-                                    <option value="{{ $programSumber->id }}"
-                                        {{ request('program_sumber_id') == 'program_sumber_id' ? 'selected' : '' }}>
-                                        {{ $programSumber->name }}
-                                    </option>
-                                @endforeach
+                            <x-input-label for="jenis" :value="__('Jenis Target')" />
+                            <x-select-input id="jenis" name="jenis" class="block w-full mt-1">
+                                <option value="">{{ __('Pilih Target') }}</option>
+                                <option value="penghimpunan">
+                                    Penghimpunan
+                                </option>
+                                <option value="penyaluran">
+                                    Penyaluran
+                                </option>
                             </x-select-input>
-                            <x-input-error class="mt-2" :messages="$errors->get('program_sumber_id')" />
+                            <x-input-error class="mt-2" :messages="$errors->get('jenis')" />
                         </div>
 
                         <div>
                             <x-input-label for="nominal" :value="__('Jumlah nominal')" />
                             <x-text-input id="nominal" name="nominal" type="number" class="block w-full mt-1"
-                                :value="old('nominal')" autocomplete="nominal" min="0" step="0.01"
-                                placeholder="0.00" />
+                                :value="old('nominal', $targetsubinfaq->nominal)" autocomplete="nominal" min="0" placeholder="0" />
                             <x-input-error class="mt-2" :messages="$errors->get('nominal')" />
                         </div>
 
@@ -46,7 +46,8 @@
                                 <option value="">{{ __('Select Tahun') }}</option>
                                 @foreach ($tahuns as $tahun)
                                     <option value="{{ $tahun->id }}"
-                                        {{ request('tahun_id') == 'tahun_id' ? 'selected' : '' }}> {{ $tahun->name }}
+                                        {{ $tahun->id == $targetsubinfaq->tahun->id ? 'selected' : '' }}>
+                                        {{ $tahun->name }}
                                     </option>
                                 @endforeach
                             </x-select-input>

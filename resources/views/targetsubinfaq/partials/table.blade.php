@@ -20,22 +20,23 @@
             </tr>
         </thead>
         <tbody>
-            @forelse ($targetTahunans as $targetTahunan)
+            @forelse ($targetsubinfaqs as $targetsubinfaq)
                 <tr class="odd:bg-white odd:dark:bg-gray-800 even:bg-gray-100 even:dark:bg-gray-700">
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-gray-200">
                         {{-- loop --}}
                         <div class="flex">
                             <div class="hover:underline whitespace-nowrap">
-                                {{-- {{ ($targetTahunans->currentpage() - 1) * $targetTahunans->perpage() + $loop->index + 1 }} --}}
-                                {{ $targetTahunan->id }}
+                                {{-- {{ ($targetsubinfaqs->currentpage() - 1) * $targetsubinfaqs->perpage() + $loop->index + 1 }} --}}
+                                {{ $targetsubinfaq->id }}
                             </div>
+
                         </div>
                     </td>
 
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
-                                {{ $targetTahunan->jenis ?? '-' }}
+                                {{ $targetsubinfaq->jenis ?? '-' }}
                             </p>
                         </div>
                     </td>
@@ -43,28 +44,28 @@
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
-                                {{ $targetTahunan->nominal }}
+                                {{ $targetsubinfaq->nominal }}
                             </p>
                         </div>
                     </td>
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
-                                {{ $targetTahunan->tahun->name }}
+                                {{ $targetsubinfaq->tahun->name }}
                             </p>
                         </div>
                     </td>
                     <td class="py-4 pl-6 pr-2 lg:pr-4">
                         <div class="flex space-x-2 justify-items-start">
-                            <a href="{{ route('targettahunan.edit', ['targettahunan'=>$targetTahunan]) }}"
+                            <a href="{{ route('targettahunan.edit', $targetsubinfaq) }}"
                                 class="text-indigo-500 hover:underline">Edit</a>
                             <button x-data="" class="text-red-500 hover:underline"
-                                x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion{{ $targetTahunan->id }}')">
+                                x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion{{ $targetsubinfaq->id }}')">
                                 Hapus
                             </button>
 
-                            <x-modal name="confirm-user-deletion{{ $targetTahunan->id }}" :show="$errors->userDeletion->isNotEmpty()" focusable>
-                                <form method="post" action="{{ route('targettahunan.destroy', $targetTahunan) }}"
+                            <x-modal name="confirm-user-deletion{{ $targetsubinfaq->id }}" :show="$errors->userDeletion->isNotEmpty()" focusable>
+                                <form method="post" action="{{ route('targettahunan.destroy', $targetsubinfaq) }}"
                                     class="p-6">
                                     @csrf
                                     @method('delete')
@@ -74,7 +75,7 @@
                                     </h2>
 
                                     <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                                        {{ $targetTahunan->name }}
+                                        {{ $targetsubinfaq->name }}
                                     </p>
 
                                     <div class="flex justify-end mt-6">
