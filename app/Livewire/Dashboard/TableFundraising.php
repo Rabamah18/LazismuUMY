@@ -111,7 +111,7 @@ class TableFundraising extends Component
 
         $targetPersenPotInfaqHrkbk = $this->getPersenProSum($this->tahunx, 'Pot Infaq HR KBK');
 
-        $targetPersenPotInfaqkaryawan = $this->getPersenProSum($this->tahunx, 'Pot Infaq Karyawan Lazismu');
+        $targetPersenPotInfaqKaryawan = $this->getPersenProSum($this->tahunx, 'Pot Infaq Karyawan Lazismu');
 
         $nominalTargetZakat = ($targetTahunx * $targetPersenZakat) / 100;
         $nominalTargetZakatMaal = ($nominalTargetZakat * $targetPersenZakatMaal) / 100;
@@ -124,7 +124,7 @@ class TableFundraising extends Component
         $nominalTargetInfaqRutin = ($nominalTargetInfaq * $targetPersenInfaqR) / 100;
         $nominalTargetInfaqBsi = ($nominalTargetInfaqNonRutin * $targetPersenInfaqBSi) / 100;
         $nominalTargetQrisBsi = ($nominalTargetInfaqNonRutin * $targetPersenInfaqQrisBsi) / 100;
-        $nominalTargeInfaqBpd = ($nominalTargetInfaqNonRutin * $targetPersenInfaqBpd) / 100;
+        $nominalTargetInfaqBpd = ($nominalTargetInfaqNonRutin * $targetPersenInfaqBpd) / 100;
         $nominalTargetQrisBpd = ($nominalTargetInfaqNonRutin * $targetPersenInfaqQrisBpd) / 100;
         $nominalTargetKencleng = ($nominalTargetInfaqNonRutin * $targetPersenInfaqKencleng) / 100;
         $nominalTargetProgramEskternal = ($nominalTargetInfaqNonRutin * $targetPersenProgramEskternal) / 100;
@@ -140,7 +140,7 @@ class TableFundraising extends Component
         $nominalTargetInfaqStandAcara = ($nominalTargetInfaqNonRutin * $targetPersenInfaqStandAcara) / 100;
         $nominalTargetPotInfaqGajiDosen = ($nominalTargetInfaqRutin * $targetPersenPotInfaqGaji) / 100;
         $nominalTargetPotInfaqHrkbk = ($nominalTargetInfaqRutin * $targetPersenPotInfaqHrkbk) / 100;
-        $nominalTargetPotInfaqKaryawan = ($nominalTargetInfaqRutin * $targetPersenPotInfaqkaryawan) / 100;
+        $nominalTargetPotInfaqKaryawan = ($nominalTargetInfaqRutin * $targetPersenPotInfaqKaryawan) / 100;
 
         $realisasiZakatMaal = $this->getRealisasiProsum($this->tahunx, 'Zakat Maal');
 
@@ -188,7 +188,21 @@ class TableFundraising extends Component
 
         $realisasiPotInfaqHrkbk = $this->getRealisasiProsum($this->tahunx, 'Pot Infaq HR KBK');
 
-        $realisasiPotInfaqkaryawan = $this->getRealisasiProsum($this->tahunx, 'Pot Infaq Karyawan Lazismu');
+        $realisasiPotInfaqKaryawan = $this->getRealisasiProsum($this->tahunx, 'Pot Infaq Karyawan Lazismu');
+
+        $totalRealisasiZakat = $realisasiZakatMaal + $realisasiZakatFitrah + $realisasiZakatProfesi + $realisasiZakatMuzaki;
+
+        $totalRealisasiInfaqNonRutin = $realisasiDanaTitipan + $realisasiInfaqBSi + $realisasiInfaqQrisBsi + $realisasiInfaqBpd + $realisasiInfaqQrisBpd + $realisasiInfaqKencleng + $realisasiProgramEskternal + $realisasiProgramInternal + $realisasiBagiHasilBpd + $realisasiQurban + $realisasiInfaqRefund + $realisasiDonasi + $realisasiTakjil + $realisasiFidyah + $realisasiJumatBerkah + $realisasiInfaqTakmirKampus + $realisasiInfaqStandAcara;
+
+        $totalRealisasiInfaqRutin = $realisasiPotInfaqGaji + $realisasiPotInfaqHrkbk + $realisasiPotInfaqKaryawan;
+
+        $totalRealisasiInfaq = $totalRealisasiInfaqNonRutin + $totalRealisasiInfaqRutin;
+
+        $totalRealisasiZakatInfaq = $totalRealisasiZakat + $totalRealisasiInfaq;
+
+        $persenRealisasiZakat = ($totalRealisasiZakat / $nominalTargetZakat) / 100;
+        $persenRealisasiInfaqNonRutin = ($totalRealisasiInfaqNonRutin / $nominalTargetInfaqNonRutin) / 100;
+        $persenRealisasiInfaqRutin = ($totalRealisasiInfaqRutin / $nominalTargetInfaqRutin) / 100;
 
         return view('livewire.dashboard.table-fundraising', compact(
             'targetTahunx',
@@ -218,12 +232,34 @@ class TableFundraising extends Component
             'targetPersenInfaqStandAcara',
             'targetPersenPotInfaqGaji',
             'targetPersenPotInfaqHrkbk',
-            'targetPersenPotInfaqkaryawan',
+            'targetPersenPotInfaqKaryawan',
             'nominalTargetZakat',
             'nominalTargetZakatMaal',
             'nominalTargetZakatFitrah',
             'nominalTargetZakatProfesi',
             'nominalTargetZakatMuzaki',
+            'nominalTargetInfaq',
+            'nominalTargetInfaqNonRutin',
+            'nominalTargetInfaqRutin',
+            'nominalTargetInfaqBsi',
+            'nominalTargetQrisBsi',
+            'nominalTargetInfaqBpd',
+            'nominalTargetQrisBpd',
+            'nominalTargetKencleng',
+            'nominalTargetProgramEskternal',
+            'nominalTargetProgramInternal',
+            'nominalTargetBagiHasilBpd',
+            'nominalTargetQurban',
+            'nominalTargetInfaqRefund',
+            'nominalTargetDonasi',
+            'nominalTargetTakjil',
+            'nominalTargetFidyah',
+            'nominalTargetJumatBerkah',
+            'nominalTargetInfaqTakmirKampus',
+            'nominalTargetInfaqStandAcara',
+            'nominalTargetPotInfaqGajiDosen',
+            'nominalTargetPotInfaqHrkbk',
+            'nominalTargetPotInfaqKaryawan',
             'realisasiZakatMaal',
             'realisasiZakatFitrah',
             'realisasiZakatProfesi',
@@ -247,7 +283,15 @@ class TableFundraising extends Component
             'realisasiInfaqStandAcara',
             'realisasiPotInfaqGaji',
             'realisasiPotInfaqHrkbk',
-            'realisasiPotInfaqkaryawan',
+            'realisasiPotInfaqKaryawan',
+            'totalRealisasiZakat',
+            'totalRealisasiInfaqNonRutin',
+            'totalRealisasiInfaqRutin',
+            'totalRealisasiInfaq',
+            'totalRealisasiZakatInfaq',
+            'persenRealisasiZakat',
+            'persenRealisasiInfaqNonRutin',
+            'persenRealisasiInfaqRutin',
         ));
     }
 }
