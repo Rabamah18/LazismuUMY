@@ -36,12 +36,16 @@
                             <p class="break-normal truncate hover:break-all">{{ $penyaluran->uraian }}</p>
                         </div>
                         <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
-                            <p class="w-36">{{ __('Sumber Dana') }}</p>
-                            <p>{{ $penyaluran->sumberDana->name ?? '-' }}</p>
+                            <p class="w-36">{{ __('Sumber Donasi') }}</p>
+                            <p>{{ $penyaluran->programSumber->sumberDonasi->name ?? '-' }}</p>
                         </div>
                         <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
                             <p class="w-36">{{ __('Program Sumber') }}</p>
                             <p>{{ $penyaluran->programSumber->name ?? '-' }}</p>
+                        </div>
+                        <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
+                            <p class="w-36">{{ __('Sumber Dana') }}</p>
+                            <p>{{ $penyaluran->sumberDana->name ?? '-' }}</p>
                         </div>
                         <div x-data="{nominal: {{ $penyaluran->nominal }}}" class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
                             <p class="w-36">{{ __('Nominal') }}</p>

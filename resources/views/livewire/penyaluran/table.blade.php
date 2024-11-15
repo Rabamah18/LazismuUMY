@@ -162,10 +162,13 @@
                         {{ __('Uraian') }}
                     </th>
                     <th scope="col" class="px-6 py-3 lg:table-cell">
-                        {{ __('Sumber Dana') }}
+                        {{ __('Sumber Donasi') }}
                     </th>
                     <th scope="col" class="px-6 py-3 lg:table-cell">
                         {{ __('Program Sumber') }}
+                    </th>
+                    <th scope="col" class="px-6 py-3 lg:table-cell">
+                        {{ __('Sumber Dana') }}
                     </th>
                     <th scope="col" class="px-6 py-3 lg:table-cell">
                         {{ __('Nominal') }}
@@ -240,7 +243,7 @@
                         <td class="px-6 py-4 lg:table-cell">
                             <div class="flex">
                                 <p>
-                                    {{ $penyaluran->sumberDana->name ?? '-' }}
+                                    {{ $penyaluran->programSumber->sumberDonasi->name ?? '-' }}
                                 </p>
                             </div>
                         </td>
@@ -249,6 +252,14 @@
                             <div class="flex">
                                 <p>
                                     {{ $penyaluran->programSumber->name ?? '-' }}
+                                </p>
+                            </div>
+                        </td>
+
+                        <td class="px-6 py-4 lg:table-cell">
+                            <div class="flex">
+                                <p>
+                                    {{ $penyaluran->sumberDana->name ?? '-' }}
                                 </p>
                             </div>
                         </td>

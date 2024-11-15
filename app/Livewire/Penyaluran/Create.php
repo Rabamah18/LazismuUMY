@@ -12,6 +12,7 @@ use App\Models\Penyaluran;
 use App\Models\SumberDana;
 use App\Models\ProgramPilar;
 use App\Models\ProgramSumber;
+use App\Models\SumberDonasi;
 use Illuminate\Support\Carbon;
 use Livewire\Attributes\Validate;
 use Illuminate\Database\Eloquent\Collection;
@@ -61,6 +62,10 @@ class Create extends Component
 
     public $selectedProgramSumber;
 
+    public $sumberDonasis;
+
+    public $selectedSumberDonasi;
+
     public $nominal;
 
     public $isPindahDana;
@@ -83,6 +88,7 @@ class Create extends Component
         // $this->programPilars = ProgramPilar::query()->get();
         $this->sumberDanas = SumberDana::query()->get();
         $this->programSumbers = ProgramSumber::query()->get();
+        $this->sumberDonasis = SumberDonasi::query()->get();
     }
 
     public function rules()
@@ -101,6 +107,7 @@ class Create extends Component
             'selectedProgramPilar' => 'nullable|exists:program_pilars,id',
             'selectedSumberDana' => 'nullable|exists:sumber_danas,id',
             'selectedProgramSumber' => 'nullable|exists:program_sumbers,id',
+            'selectedSumberDonasi' => 'nullable|exists:sumber_donasis,id',
             'isPindahDana' => 'nullable|boolean'
 
 
@@ -118,6 +125,12 @@ class Create extends Component
     {
         $this->programPilars = ProgramPilar::query()->where('pilar_id', $this->selectedPilar)->get();
         $this->reset('selectedProgramPilar');
+    }
+
+    public function updatedSelectedSumberDonasi()
+    {
+        $this->programSumbers = ProgramSumber::query()->where('sumber_donasi_id', $this->selectedSumberDonasi)->get();
+        $this->reset('selectedProgramSumber');
     }
 
     public function parseRupiah($value)

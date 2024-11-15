@@ -29,7 +29,6 @@
                 <th scope="col" class="px-6 py-3 lg:table-cell">
                     {{ __('Wanita') }}
                 </th>
-                </th>
                 <th scope="col" class="px-6 py-3 lg:table-cell">
                     {{ __('Provinsi') }}
                 </th>

@@ -10,6 +10,7 @@ use App\Models\ProgramPilar;
 use App\Models\ProgramSumber;
 use App\Models\Provinsi;
 use App\Models\SumberDana;
+use App\Models\SumberDonasi;
 use App\Models\Tahun;
 use Illuminate\Support\Carbon;
 use Livewire\Attributes\Validate;
@@ -62,6 +63,10 @@ class Edit extends Component
 
     public $selectedProgramSumber;
 
+    public $sumberDonasis;
+
+    public $selectedSumberDonasi;
+
     public $nominal;
 
     public $isPindahDana = true;
@@ -90,6 +95,8 @@ class Edit extends Component
         $this->selectedSumberDana = $this->penyaluran->sumber_dana_id;
         $this->programSumbers = ProgramSumber::query()->get();
         $this->selectedProgramSumber = $this->penyaluran->program_sumber_id;
+        $this->sumberDonasis = SumberDonasi::query()->get();
+        $this->selectedSumberDonasi = $this->penyaluran->programSumber->sumber_donasi_id ?? '';
         $this->nominal = $this->penyaluran->nominal;
         $this->isPindahDana = $penyaluran->pindahdana;
 
@@ -108,6 +115,7 @@ class Edit extends Component
         $this->selectedProgramPilar = $penyaluran->programPilar;
         $this->selectedSumberDana = $penyaluran->sumberDana;
         $this->selectedProgramSumber = $penyaluran->programSumber;
+        $this->selectedSumberDonasi = $penyaluran->sumberDonasi;
         $this->selectedTahun = $penyaluran->tahun;
         $this->selectedProvinsi = $penyaluran->provinsi;
         $this->selectedKabupaten = $penyaluran->kabupaten;
@@ -131,6 +139,7 @@ class Edit extends Component
             'selectedProgramPilar' => 'nullable|exists:program_pilars,id',
             'selectedSumberDana' => 'nullable|exists:sumber_danas,id',
             'selectedProgramSumber' => 'nullable|exists:program_sumbers,id',
+            'selectedSumberDonasi' => 'required|exists:sumber_donasis,id',
 
         ];
     }
@@ -146,6 +155,12 @@ class Edit extends Component
     {
         $this->programPilars = ProgramPilar::query()->where('pilar_id', $this->selectedPilar)->get();
         $this->reset('selectedProgramPilar');
+    }
+
+    public function updatedSelectedSumberDonasi()
+    {
+        $this->programSumbers = ProgramSumber::query()->where('sumber_donasi_id', $this->selectedSumberDonasi)->get();
+        $this->reset('selectedProgramSumber');
     }
 
     public function parseRupiah($value)
