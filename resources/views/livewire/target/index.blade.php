@@ -19,4 +19,5 @@
     <livewire:target.target-program-pilar :tahun="$selectedTahun" />
     <livewire:target.target-sumber-donasi :tahun="$selectedTahun" />
     <livewire:target.target-program-sumber :tahun="$selectedTahun" />
+    <livewire:target.target-sub-infaq :tahun="$selectedTahun" />
 </div>
