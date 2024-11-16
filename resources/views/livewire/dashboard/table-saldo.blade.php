@@ -3,155 +3,154 @@
         {{ __('Tabel Saldo') }}
     </x-card.title>
     <div class="relative mt-6 overflow-auto rounded-md">
-        <table class="w-full text-base text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+        <table class="w-full text-base text-left text-gray-500 table-auto dark:text-gray-400">
+            <thead
+                class="text-xs text-gray-700 uppercase bg-gray-100 border dark:bg-gray-700 dark:text-gray-400 border-x-transparent">
                 <tr>
-                    <th rowspan="2">
+                    <th rowspan="2" class="w-2 py-3 pl-6 text-center">
                         No.
                     </th>
-                    <th rowspan="2">
+                    <th rowspan="2" class="px-6 py-3">
                         Nama sumber Saldo
                     </th>
-                    <th colspan="3" class="">
+                    <th colspan="3" class="px-6 py-3 text-center">
                         saldo
                     </th>
                 </tr>
-                <tr>
-                    <th>
+                <tr class="border border-x-transparent">
+                    <th class="px-6 py-3">
                         Zakat
                     </th>
-                    <th>
+                    <th class="px-6 py-3">
                         Infaq
                     </th>
-                    <th>
+                    <th class="px-6 py-3">
                         Amil
                     </th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Kas Tunai Zakat</td>
-                    <td>
-                        {{ $saldoTunaiZakat }}
+            <tbody class="odd:bg-white odd:dark:bg-gray-800 even:bg-gray-100 even:dark:bg-gray-700">
+                <tr class="bg-white dark:bg-gray-800">
+                    <td class="px-6 py-2">1</td>
+                    <td class="px-6 py-2">Kas Tunai Zakat</td>
+                    <td class="px-6 py-2">
+                        Rp. {{ $saldoTunaiZakat }}
                     </td>
-                    <td>-</td>
-                    <td>-</td>
+                    <td class="px-6 py-2">-</td>
+                    <td class="px-6 py-2">-</td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Kas Bsi Zakat</td>
-                    <td>
-                        {{ $saldoBsiZakat }}
+                <tr >
+                    <td class="px-6 py-2">2</td>
+                    <td class="px-6 py-2">Kas Bsi Zakat</td>
+                    <td class="px-6 py-2">
+                        Rp. {{ $saldoBsiZakat }}
                     </td>
-                    <td>-</td>
-                    <td>-</td>
+                    <td class="px-6 py-2">-</td>
+                    <td class="px-6 py-2">-</td>
                 </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Kas BPD DIY Zakat</td>
-                    <td>
-                        {{ $saldoBpddiyZakat }}
+                <tr class="bg-white dark:bg-gray-800">
+                    <td class="px-6 py-2">3</td>
+                    <td class="px-6 py-2">Kas BPD DIY Zakat</td>
+                    <td class="px-6 py-2">
+                        Rp. {{ $saldoBpddiyZakat }}
                     </td>
-                    <td>-</td>
-                    <td>-</td>
+                    <td class="px-6 py-2">-</td>
+                    <td class="px-6 py-2">-</td>
                 </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Kas Tunai Infaq</td>
-                    <td>
-                        {{ $saldoTunaiInfaq }}
+                <tr >
+                    <td class="px-6 py-2">4</td>
+                    <td class="px-6 py-2">Kas Tunai Infaq</td>
+                    <td class="px-6 py-2">
+                        Rp. {{ $saldoTunaiInfaq }}
                     </td>
-                    <td>-</td>
-                    <td>-</td>
+                    <td class="px-6 py-2">-</td>
+                    <td class="px-6 py-2">-</td>
                 </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Kas BSI Infaq</td>
-                    <td>-</td>
-                    <td>
-                        {{ $saldoBsiInfaq }}
+                <tr class="bg-white dark:bg-gray-800">
+                    <td class="px-6 py-2">5</td>
+                    <td class="px-6 py-2">Kas BSI Infaq</td>
+                    <td class="px-6 py-2">-</td>
+                    <td class="px-6 py-2">
+                        Rp. {{ $saldoBsiInfaq }}
                     </td>
-                    <td>-</td>
+                    <td class="px-6 py-2">-</td>
                 </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Kas BPD DIY Infaq</td>
-                    <td>-</td>
-                    <td>
-                        {{ $saldoBpddiyInfaq }}
+                <tr >
+                    <td class="px-6 py-2">6</td>
+                    <td class="px-6 py-2">Kas BPD DIY Infaq</td>
+                    <td class="px-6 py-2">-</td>
+                    <td class="px-6 py-2">
+                        Rp. {{ $saldoBpddiyInfaq }}
                     </td>
-                    <td>-</td>
+                    <td class="px-6 py-2">-</td>
                 </tr>
-                <tr>
-                    <td>7</td>
-                    <td>Kas Muamalat Infaq</td>
-                    <td>-</td>
-                    <td>
-                        {{ $saldoMuamalatInfaq }}
+                <tr class="bg-white dark:bg-gray-800">
+                    <td class="px-6 py-2">7</td>
+                    <td class="px-6 py-2">Kas Muamalat Infaq</td>
+                    <td class="px-6 py-2">-</td>
+                    <td class="px-6 py-2">
+                        Rp. {{ $saldoMuamalatInfaq }}
                     </td>
-                    <td>-</td>
+                    <td class="px-6 py-2">-</td>
                 </tr>
-                <tr>
-                    <td>8</td>
-                    <td>Kas Madina Infaq</td>
-                    <td>-</td>
-                    <td>
-                        {{ $saldoMadinaInfaq }}
+                <tr >
+                    <td class="px-6 py-2">8</td>
+                    <td class="px-6 py-2">Kas Madina Infaq</td>
+                    <td class="px-6 py-2">-</td>
+                    <td class="px-6 py-2">
+                        Rp. {{ $saldoMadinaInfaq }}
                     </td>
-                    <td>-</td>
+                    <td class="px-6 py-2">-</td>
                 </tr>
-                <tr>
-                    <td>9</td>
-                    <td>Kas Bank Amil</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>
-                        {{ $saldoBankAmil }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td>Kas Besar Amil</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>
-                        {{ $saldoBesarAmil }}
+                <tr class="bg-white dark:bg-gray-800">
+                    <td class="px-6 py-2">9</td>
+                    <td class="px-6 py-2">Kas Bank Amil</td>
+                    <td class="px-6 py-2">-</td>
+                    <td class="px-6 py-2">-</td>
+                    <td class="px-6 py-2">
+                        Rp. {{ $saldoBankAmil }}
                     </td>
                 </tr>
-                <tr>
-                    <td>11</td>
-                    <td>Kas Kecil Amil</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>
-                        {{ $saldoKecilAmil }}
+                <tr >
+                    <td class="px-6 py-2">10</td>
+                    <td class="px-6 py-2">Kas Besar Amil</td>
+                    <td class="px-6 py-2">-</td>
+                    <td class="px-6 py-2">-</td>
+                    <td class="px-6 py-2">
+                        Rp. {{ $saldoBesarAmil }}
                     </td>
                 </tr>
-                <tr>
-                    <td>12</td>
-                    <td>Kas Madina Amil</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>
-                        {{ $saldoMadinaAmil }}
+                <tr class="bg-white dark:bg-gray-800">
+                    <td class="px-6 py-2">11</td>
+                    <td class="px-6 py-2">Kas Kecil Amil</td>
+                    <td class="px-6 py-2">-</td>
+                    <td class="px-6 py-2">-</td>
+                    <td class="px-6 py-2">
+                        Rp. {{ $saldoKecilAmil }}
                     </td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td rowspan="3">Total Zakat & Infaq</td>
-                    <td>{{ $totalZakat }}</td>
-                    <td>{{ $totalInfaq }}</td>
-                    <td>{{ $totalAmil }}</td>
+                    <td class="px-6 py-2">12</td>
+                    <td class="px-6 py-2">Kas Madina Amil</td>
+                    <td class="px-6 py-2">-</td>
+                    <td class="px-6 py-2">-</td>
+                    <td class="px-6 py-2">
+                        Rp. {{ $saldoMadinaAmil }}
+                    </td>
                 </tr>
-                <tr>
-                    <td></td>
-                    <td colspan="2"> {{ $totalZakatInfaq }}</td>
-                    <td></td>
+                <tr class="border border-collapse border-x-transparent">
+                    <td class="px-20 py-2" rowspan="3" colspan="2">Total Zakat & Infaq</td>
+                    <td class="px-6 py-2">Rp. {{ $totalZakat }}</td>
+                    <td class="px-6 py-2">Rp. {{ $totalInfaq }}</td>
+                    <td class="px-6 py-2" rowspan="2">Rp. {{ $totalAmil }}</td>
                 </tr>
-                <tr>
-                    <td></td>
-                    <td colspan="3">{{ $totalSemua }}</td>
+                <tr class="border border-collapse border-x-transparent">
+                    <td class="px-6 py-2"></td>
+                    <td class="px-6 py-2" colspan="2"> Rp. {{ $totalZakatInfaq }}</td>
+                </tr>
+                <tr class="border border-collapse border-x-transparent">
+                    <td class="px-6 py-2"></td>
+                    <td class="px-6 py-2" colspan="3">Rp. {{ $totalSemua }}</td>
                 </tr>
             </tbody>
         </table>
