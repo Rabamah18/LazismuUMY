@@ -15,8 +15,10 @@
 
     <livewire:dashboard.table-saldo :selectedTahun="$selectedTahun" :key="$selectedTahun">
 
-        @livewire('dashboard.table-fundraising')
+        <livewire:dashboard.table-fundraising :selectedTahun="$selectedTahun" :key="$selectedTahun">
 
-        @livewire('dashboard.table-tasyaruf')
+            {{-- @livewire('dashboard.table-fundraising') --}}
+
+            @livewire('dashboard.table-tasyaruf')
 
 </div>
