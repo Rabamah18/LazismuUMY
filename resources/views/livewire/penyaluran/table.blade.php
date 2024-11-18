@@ -441,6 +441,10 @@
 
                    </td>
 
+                   <td>
+                    
+                   </td>
+
                    {{-- @dump($totalNominal) --}}
                    <td wire:key="nominal-{{ $totalNominal }}"
                         x-data="{

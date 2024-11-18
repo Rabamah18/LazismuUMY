@@ -40,13 +40,15 @@
                         </div>
                     </td>
 
-                    <td class="px-6 py-4 lg:table-cell">
+                    <td wire:key="nominal-{{ $targetTahunan->id }}" x-data="{
+                        nominal: {{ $targetTahunan->nominal }},
+                    }"
+                        class="px-6 py-4 lg:table-cell">
                         <div class="flex">
-                            <p>
-                                {{ $targetTahunan->nominal }}
-                            </p>
+                            <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
                         </div>
                     </td>
+
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p>
@@ -54,6 +56,7 @@
                             </p>
                         </div>
                     </td>
+
                     <td class="py-4 pl-6 pr-2 lg:pr-4">
                         <div class="flex space-x-2 justify-items-start">
                             <a href="{{ route('targettahunan.edit', ['targettahunan'=>$targetTahunan]) }}"

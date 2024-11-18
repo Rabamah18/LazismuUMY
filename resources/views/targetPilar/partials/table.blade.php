@@ -40,11 +40,12 @@
                         </div>
                     </td>
 
-                    <td class="px-6 py-4 lg:table-cell">
+                    <td wire:key="nominal-{{ $targetpilar->id }}" x-data="{
+                        nominal: {{ $targetpilar->nominal }},
+                    }"
+                        class="px-6 py-4 lg:table-cell">
                         <div class="flex">
-                            <p>
-                                {{ __($targetpilar->nominal) }}
-                            </p>
+                            <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
                         </div>
                     </td>
 
