@@ -27,6 +27,7 @@
             </x-select-input>
             <x-input-error class="mt-2" :messages="$errors->get('sumber_donasi_id')" />
         </div>
+        
 
         <div>
             <x-input-label for="program_sumber_id" :value="__('Program Sumber')" />
@@ -42,6 +43,7 @@
             <x-input-error class="mt-2" :messages="$errors->get('program_sumber_id')" />
         </div>
 
+
         <div>
             <x-input-label for="sumber_dana_id" :value="__('Sumber Dana')" />
             <x-select-input wire:model.change="selectedSumberDana" id="sumber_dana" class="block w-full mt-1">
@@ -55,6 +57,21 @@
             </x-select-input>
             <x-input-error class="mt-2" :messages="$errors->get('sumber_dana_id')" />
         </div>
+
+
+        {{-- <div>
+            <x-input-label for="currentSaldo" :value="__('Saldo Saat Ini')" />
+            <x-text-input id="currentSaldo" wire:model="currentSaldo" type="number" class="block w-full mt-1"
+                :value="old('currentSaldo')" required autocomplete="currentSaldo" />
+            <x-input-error class="mt-2" :messages="$errors->get('currentSaldo')" />
+        </div> --}}
+
+        <div>
+            <p>
+                Saldo Saat Ini : {{ $currentSaldo }}
+            </p>
+        </div>
+
 
         <div x-data="{ nominal: '' }">
             <x-input-label for="nominal" :value="__('Nominal')" />
