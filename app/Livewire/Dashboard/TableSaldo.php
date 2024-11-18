@@ -4,10 +4,31 @@ namespace App\Livewire\Dashboard;
 
 use App\Models\Penghimpunan;
 use App\Models\Penyaluran;
+use App\Models\SumberDana;
+use App\Models\SumberDonasi;
+use Livewire\Attributes\On;
+use Livewire\Attributes\Reactive;
 use Livewire\Component;
 
 class TableSaldo extends Component
 {
+    #[Reactive]
+    public $selectedTahun;
+
+    public $sumberDonasis;
+
+    public function mount( $selectedTahun)
+    {
+        $this->$selectedTahun = $selectedTahun;
+        $this->sumberDonasis = SumberDonasi::query()->get();
+    }
+
+    public function updatedSelectedTahun()
+    {
+        $this->dispatch('updateTable');
+    }
+
+    #[On('updatedTable')]
     public function render()
     {
         $tunaiZakatPenghimpunan = Penghimpunan::query()
@@ -17,7 +38,7 @@ class TableSaldo extends Component
                 });
             })
             ->whereHas('sumberDana', function ($query) {
-                $query->where('name', 'Tunai');
+                $query->where('name', 'Tunai Zakat');
             })
             ->sum('nominal');
         $tunaiZakatPenyaluran = Penyaluran::query()
@@ -27,7 +48,7 @@ class TableSaldo extends Component
                 });
             })
             ->whereHas('sumberDana', function ($query) {
-                $query->where('name', 'Tunai');
+                $query->where('name', 'Tunai Zakat');
             })
             ->sum('nominal');
         $saldoTunaiZakat = $tunaiZakatPenghimpunan - $tunaiZakatPenyaluran;
@@ -302,7 +323,6 @@ class TableSaldo extends Component
             'totalAmil',
             'totalZakatInfaq',
             'totalSemua',
-
         ));
     }
 }

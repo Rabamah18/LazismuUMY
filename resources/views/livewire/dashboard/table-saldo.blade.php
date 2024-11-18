@@ -39,7 +39,7 @@
                     <td class="px-6 py-2">-</td>
                     <td class="px-6 py-2">-</td>
                 </tr>
-                <tr >
+                <tr>
                     <td class="px-6 py-2">2</td>
                     <td class="px-6 py-2">Kas Bsi Zakat</td>
                     <td class="px-6 py-2">
@@ -57,7 +57,7 @@
                     <td class="px-6 py-2">-</td>
                     <td class="px-6 py-2">-</td>
                 </tr>
-                <tr >
+                <tr>
                     <td class="px-6 py-2">4</td>
                     <td class="px-6 py-2">Kas Tunai Infaq</td>
                     <td class="px-6 py-2">
@@ -75,7 +75,7 @@
                     </td>
                     <td class="px-6 py-2">-</td>
                 </tr>
-                <tr >
+                <tr>
                     <td class="px-6 py-2">6</td>
                     <td class="px-6 py-2">Kas BPD DIY Infaq</td>
                     <td class="px-6 py-2">-</td>
@@ -93,7 +93,7 @@
                     </td>
                     <td class="px-6 py-2">-</td>
                 </tr>
-                <tr >
+                <tr>
                     <td class="px-6 py-2">8</td>
                     <td class="px-6 py-2">Kas Madina Infaq</td>
                     <td class="px-6 py-2">-</td>
@@ -111,7 +111,7 @@
                         Rp. {{ $saldoBankAmil }}
                     </td>
                 </tr>
-                <tr >
+                <tr>
                     <td class="px-6 py-2">10</td>
                     <td class="px-6 py-2">Kas Besar Amil</td>
                     <td class="px-6 py-2">-</td>
@@ -152,6 +152,17 @@
                     <td class="px-6 py-2"></td>
                     <td class="px-6 py-2" colspan="3">Rp. {{ $totalSemua }}</td>
                 </tr>
+
+                @forelse ($sumberDonasis as $sumberDonasi)
+                    <livewire:dashboard.saldo-per-sumber-donasi :selectedTahun="$this->selectedTahun" :sumberDonasi="$sumberDonasi" :key="$sumberDonasi->id">
+
+                    @empty
+                        <tr class="bg-white dark:bg-gray-800">
+                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-gray-200">
+                                Empty
+                            </td>
+                        </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

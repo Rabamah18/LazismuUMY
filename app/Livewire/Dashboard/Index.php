@@ -2,8 +2,9 @@
 
 namespace App\Livewire\Dashboard;
 
-use Carbon\Carbon;
 use App\Models\Tahun;
+use Carbon\Carbon;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Index extends Component
@@ -21,6 +22,12 @@ class Index extends Component
             ->first()->id;
     }
 
+    public function updatedSelectedTahun()
+    {
+        $this->dispatch('updateTable');
+    }
+
+    #[On('updatedTable')]
     public function render()
     {
         return view('livewire.dashboard.index');
