@@ -106,9 +106,9 @@ class PenghimpunansExport implements FromQuery, ShouldAutoSize, WithColumnFormat
 
         return [
             $penghimpunan->id,
-            $penghimpunan->tanggal, //->isoFormat('LL'),
+            \Carbon\Carbon::parse($penghimpunan->tanggal)->format('d/m/Y'), //->isoFormat('LL'),
             $penghimpunan->uraian,
-            $penghimpunan->nominal,
+            $this->formatRupiah($penghimpunan->nominal),
             $penghimpunan->lembaga_count,
             $penghimpunan->male_count,
             $penghimpunan->female_count,
@@ -118,5 +118,13 @@ class PenghimpunansExport implements FromQuery, ShouldAutoSize, WithColumnFormat
             $penghimpunan->sumberDana->name ?? null,
             $penghimpunan->tahun->name ?? null,
         ];
+    }
+
+    /**
+     * Helper untuk format Rupiah
+     */
+    private function formatRupiah($nominal)
+    {
+        return 'Rp ' . number_format($nominal, 0, ',', '.');
     }
 }
