@@ -2,6 +2,7 @@
     {{-- Filter Tahunan --}}
     <div class="flex justify-end w-full flex-wrap gap-2">
         <div class="flex items-center gap-2">
+            <x-input-label for="tahun" :value="__('Tahun')" />
             <x-select-input id="tahun" wire:model.lazy="selectedTahun" class="">
                 <option value="">{{ __('Tahun') }}</option>
                 @foreach ($tahuns as $tahun)

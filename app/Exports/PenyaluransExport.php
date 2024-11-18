@@ -44,7 +44,9 @@ class PenyaluransExport implements FromQuery, ShouldAutoSize, WithColumnFormatti
 
     public string $proSum;
 
-    public function __construct(string $month, string $year, string $provinsi, string $kabupaten, string $ashnaf, string $pilar, string $proPil, string $sumDa, string $proSum)
+    public string $sumDon;
+
+    public function __construct(string $month, string $year, string $provinsi, string $kabupaten, string $ashnaf, string $pilar, string $proPil, string $sumDa, string $proSum, string $sumDon)
     {
         $this->month = $month;
         $this->year = $year;
@@ -55,6 +57,8 @@ class PenyaluransExport implements FromQuery, ShouldAutoSize, WithColumnFormatti
         $this->proPil = $proPil;
         $this->sumDa = $sumDa;
         $this->proSum = $proSum;
+        $this->sumDon = $sumDon;
+
 
     }
 
@@ -63,7 +67,7 @@ class PenyaluransExport implements FromQuery, ShouldAutoSize, WithColumnFormatti
         // return Penyaluran::query()->with('pilar', 'programPilar', 'ashnaf', 'tahun');
 
         return Penyaluran::orderByDesc('updated_at')
-            ->with('ashnaf', 'tahun', 'pilar', 'programPilar')
+            ->with('ashnaf', 'tahun', 'programPilar', 'kabupaten', 'sumberDana', 'programSumber')
             ->when($this->month, function ($query) {
                 $query->whereMonth('tanggal', $this->month);
             })
@@ -94,6 +98,11 @@ class PenyaluransExport implements FromQuery, ShouldAutoSize, WithColumnFormatti
             })
             ->when($this->proSum, function ($query) {
                 $query->where('program_sumber_id', $this->proSum);
+            })
+            ->when($this->sumDon, function ($query) {
+                $query->whereHas('programSumber', function ($query) {
+                    $query->where('sumber_donasi_id', $this->sumDon);
+                });
             });
     }
 
@@ -103,8 +112,9 @@ class PenyaluransExport implements FromQuery, ShouldAutoSize, WithColumnFormatti
             'Id',
             'Tanggal',
             'Uraian',
-            'Sumber Dana',
+            'Sumber Donasi',
             'Program Sumber',
+            'Sumber Dana',
             'Nominal',
             'Pilar',
             'Program Pilar',
@@ -126,8 +136,9 @@ class PenyaluransExport implements FromQuery, ShouldAutoSize, WithColumnFormatti
             $penyaluran->id,
             $penyaluran->tanggal, //->isoFormat('LL'),
             $penyaluran->uraian,
-            $penyaluran->sumberDana->name ?? null,
+            $penyaluran->programSumber->sumberDonasi->name ?? null,
             $penyaluran->programSumber->name ?? null,
+            $penyaluran->sumberDana->name ?? null,
             $penyaluran->nominal,
             $penyaluran->programPilar->pilar->name ?? null,
             $penyaluran->programPilar->name ?? null,

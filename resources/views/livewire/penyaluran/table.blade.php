@@ -113,11 +113,11 @@
                         </option>
                     @endforeach
                 </x-select-input>
-                <x-select-input wire:model.lazy="selectedSumberDana" id="sumber_dana" class="">
-                    <option value="">{{ __('Sumber Dana') }}</option>
-                    @foreach ($sumberDanas as $sumberDana)
-                        <option value="{{ $sumberDana->id }}">
-                            {{ $sumberDana->name }}
+                <x-select-input id="sumber_donasi" wire:model.lazy="selectedSumberDonasi" class="">
+                    <option value="">{{ __('Sumber Donasi') }}</option>
+                    @foreach ($sumberDonasis as $sumberDonasi)
+                        <option value="{{ $sumberDonasi->id }}">
+                            {{ $sumberDonasi->name }}
                         </option>
                     @endforeach
                 </x-select-input>
@@ -127,6 +127,14 @@
                     @foreach ($programSumbers as $programSumber)
                         <option value="{{ $programSumber->id }}">
                             {{ $programSumber->name }}
+                        </option>
+                    @endforeach
+                </x-select-input>
+                <x-select-input wire:model.lazy="selectedSumberDana" id="sumber_dana" class="">
+                    <option value="">{{ __('Sumber Dana') }}</option>
+                    @foreach ($sumberDanas as $sumberDana)
+                        <option value="{{ $sumberDana->id }}">
+                            {{ $sumberDana->name }}
                         </option>
                     @endforeach
                 </x-select-input>
