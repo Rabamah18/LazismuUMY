@@ -9,19 +9,19 @@
         <table class="w-full text-base text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th>
+                    <th scope="col" class="w-2 py-3 pl-6 text-center">
                         No.
                     </th>
-                    <th>
+                    <th scope="col" class="px-6 py-3">
                         Nama Akun
                     </th>
-                    <th>
+                    <th scope="col" class="px-6 py-3">
                         Target
                     </th>
-                    <th>
+                    <th scope="col" class="px-6 py-3 text-center">
                         Realisasi
                     </th>
-                    <th>
+                    <th scope="col" class="px-6 py-3">
                         Realisasi sub Pilar
                     </th>
                 </tr>
@@ -30,18 +30,18 @@
             <tbody>
                 <tr>
                     <td rowspan="2"></td>
-                    <td rowspan="2">
+                    <td rowspan="2" class="px-6 py-4 lg:table-cell">
                         Zakat({{ $targetPersenZakat }}%)
                     </td>
-                    <td rowspan="2">
+                    <td rowspan="2" class="px-6 py-4 lg:table-cell">
                         Rp. {{ $nominalTargetZakat }}
                     </td>
-                    <td>
+                    <td class="px-6 py-4 text-center lg:table-cell">
                         {{ $pembulatanPersenRealisaiZakat }}%
                     </td>
                 </tr>
                 <tr>
-                    <td rowspan="{{ $sumberZakats->count() + 1 }}">
+                    <td rowspan="{{ $sumberZakats->count() + 1 }}" class="px-6 py-4 text-center lg:table-cell">
                         Rp. {{ $totalRealisasiZakat }}
                     </td>
                 </tr>
@@ -57,51 +57,53 @@
                         </tr>
                 @endforelse
                 <tr>
-                    <td></td>
-                    <td>
+                    <td class="px-6 py-4 lg:table-cell"></td>
+                    <td class="px-6 py-4 lg:table-cell">
                         Total
                     </td>
-                    <td>
+                    <td class="px-6 py-4 lg:table-cell">
                         Rp. {{ $nominalTargetZakat }}
                     </td>
-                    <td></td>
-                    <td>
+                    <td class="px-6 py-4 lg:table-cell"></td>
+                    <td class="px-6 py-4 lg:table-cell">
                         Rp. {{ $totalRealisasiZakat }}
                     </td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td>
+                    <td class="px-6 py-4 lg:table-cell"></td>
+                    <td class="px-6 py-4 lg:table-cell">
                         Realisasi
                     </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="px-6 py-4 lg:table-cell"></td>
+                    <td class="px-6 py-4 lg:table-cell"></td>
+                    <td class="px-6 py-4 lg:table-cell"></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td>Infaq({{ $targetPersenInfaq }}%)</td>
-                    <td>
+                    <td class="px-6 py-4 lg:table-cell"></td>
+                    <td class="px-6 py-4 text-center lg:table-cell">
+                        Infaq({{ $targetPersenInfaq }}%)
+                    </td>
+                    <td class="px-6 py-4 lg:table-cell">
                         Rp. {{ $nominalTargetInfaq }}
                     </td>
-                    <td>
+                    <td class="px-6 py-4 lg:table-cell">
                         {{ $pembulatanPersenRealisaiInfaq }}%
                     </td>
                 </tr>
                 <tr>
-                    <td rowspan="2"></td>
-                    <td rowspan="2">
+                    <td class="px-6 py-4 lg:table-cell" rowspan="2"></td>
+                    <td class="px-6 py-4 text-center lg:table-cell" rowspan="2">
                         Infaq Non Rutin({{ $targetPersenInfaqNR }}%)
                     </td>
-                    <td rowspan="2">
+                    <td class="px-6 py-4 lg:table-cell" rowspan="2">
                         Rp. {{ $nominalTargetInfaqNonRutin }}
                     </td>
-                    <td>
+                    <td class="px-6 py-4 text-center lg:table-cell">
                         {{ $pembulatanPersenRealisaiInfaqNonRutin }}%
                     </td>
                 </tr>
                 <tr>
-                    <td rowspan="{{ $sumberInfaqNonRutins->count() + 1 }}">
+                    <td class="px-6 py-4 text-center lg:table-cell" rowspan="{{ $sumberInfaqNonRutins->count() + 1 }}">
                         Rp. {{ $totalRealisasiInfaqNonRutin }}
                     </td>
                 </tr>
@@ -117,41 +119,41 @@
                         </tr>
                 @endforelse
                 <tr>
-                    <td></td>
-                    <td>
+                    <td class="px-6 py-4 lg:table-cell"></td>
+                    <td class="px-6 py-4 lg:table-cell">
                         Total
                     </td>
-                    <td>
+                    <td class="px-6 py-4 lg:table-cell">
                         Rp. {{ $nominalTargetInfaqNonRutin }}
                     </td>
-                    <td></td>
-                    <td>
+                    <td class="px-6 py-4 lg:table-cell"></td>
+                    <td class="px-6 py-4 lg:table-cell">
                         Rp. {{ $totalRealisasiInfaqNonRutin }}
                     </td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td>
+                    <td class="px-6 py-4 lg:table-cell"></td>
+                    <td class="px-6 py-4 lg:table-cell">
                         Realisasi
                     </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="px-6 py-4 lg:table-cell"></td>
+                    <td class="px-6 py-4 lg:table-cell"></td>
+                    <td class="px-6 py-4 lg:table-cell"></td>
                 </tr>
                 <tr>
-                    <td rowspan="2"></td>
-                    <td rowspan="2">
+                    <td class="px-6 py-4 lg:table-cell" rowspan="2"></td>
+                    <td class="px-6 py-4 lg:table-cell" rowspan="2">
                         Infaq Rutin({{ $targetPersenInfaqR }}%)
                     </td>
-                    <td rowspan="2">
+                    <td class="px-6 py-4 lg:table-cell" rowspan="2">
                         Rp. {{ $nominalTargetInfaqRutin }}
                     </td>
-                    <td>
+                    <td class="px-6 py-4 text-center lg:table-cell">
                         {{ $pembulatanPersenRealisaiInfaqRutin }}%
                     </td>
                 </tr>
                 <tr>
-                    <td rowspan="{{ $sumberInfaqRutins->count() + 1 }}">
+                    <td class="px-6 py-4 text-center lg:table-cell" rowspan="{{ $sumberInfaqRutins->count() + 1 }}">
                         Rp. {{ $totalRealisasiInfaqRutin }}
                     </td>
                 </tr>
@@ -167,26 +169,26 @@
                         </tr>
                 @endforelse
                 <tr>
-                    <td></td>
-                    <td>
+                    <td class="px-6 py-4 lg:table-cell"></td>
+                    <td class="px-6 py-4 lg:table-cell">
                         Total
                     </td>
-                    <td>
+                    <td class="px-6 py-4 lg:table-cell">
                         Rp. {{ $nominalTargetInfaqRutin }}
                     </td>
-                    <td></td>
-                    <td>
+                    <td class="px-6 py-4 lg:table-cell"></td>
+                    <td class="px-6 py-4 lg:table-cell">
                         Rp. {{ $totalRealisasiInfaqRutin }}
                     </td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td>
+                    <td class="px-6 py-4 lg:table-cell"></td>
+                    <td class="px-6 py-4 lg:table-cell">
                         Realisasi
                     </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="px-6 py-4 lg:table-cell"></td>
+                    <td class="px-6 py-4 lg:table-cell"></td>
+                    <td class="px-6 py-4 lg:table-cell"></td>
                 </tr>
             </tbody>
         </table>

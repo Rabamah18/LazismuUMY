@@ -2,16 +2,15 @@
 
 namespace App\Livewire\Dashboard;
 
-use index;
-use Livewire\Component;
-use Livewire\Attributes\On;
 use App\Models\Penghimpunan;
 use App\Models\ProgramSumber;
-use App\Models\TargetSubInfaq;
-use Livewire\Attributes\Reactive;
-use App\Models\TargetSumberDonasi;
 use App\Models\TargetProgramSumber;
+use App\Models\TargetSubInfaq;
+use App\Models\TargetSumberDonasi;
 use App\Models\TargetTahunan as ModelTargetTahunan;
+use Livewire\Attributes\On;
+use Livewire\Attributes\Reactive;
+use Livewire\Component;
 
 class TableFundraising extends Component
 {
@@ -64,28 +63,6 @@ class TableFundraising extends Component
 
                 return $item;
             });
-
-    }
-
-    public function getPersenProSum(int $selectedTahun, string $proSum)
-    {
-        return TargetProgramSumber::query()
-            ->whereHas('ProgramSumber', function ($query) use ($proSum) {
-                $query->where('name', $proSum);
-            })
-            ->where('tahun_id', $selectedTahun)
-            ->sum('nominal');
-    }
-
-    public function getRealisasiProsum(int $selectedTahun, string $proSum)
-    {
-        return Penghimpunan::query()
-            ->whereHas('programSumber', function ($query) use ($proSum) {
-                $query->where('name', $proSum);
-            })
-            ->where('tahun_id', $selectedTahun)
-            ->where('pindahdana', false)
-            ->sum('nominal');
     }
 
     public function updatedSelectedTahun()
