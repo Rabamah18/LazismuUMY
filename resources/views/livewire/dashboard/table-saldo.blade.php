@@ -154,7 +154,7 @@
                 </tr>
 
                 @forelse ($sumberDonasis as $sumberDonasi)
-                    <livewire:dashboard.saldo-per-sumber-donasi :selectedTahun="$this->selectedTahun" :sumberDonasi="$sumberDonasi" :key="$sumberDonasi->id">
+                    <livewire:dashboard.saldo-per-sumber-donasi :selectedTahun="$this->selectedTahun" :sumberDonasi="$sumberDonasi" :key="$sumberDonasi->id"/>
 
                     @empty
                         <tr class="bg-white dark:bg-gray-800">

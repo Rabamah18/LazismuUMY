@@ -11,14 +11,10 @@
         </x-select-input>
     </div>
 
-    @dump($selectedTahun)
+    <livewire:dashboard.table-saldo :selectedTahun="$selectedTahun" :key="'Saldo' . $selectedTahun" />
 
-    <livewire:dashboard.table-saldo :selectedTahun="$selectedTahun" :key="$selectedTahun">
+    <livewire:dashboard.table-fundraising :selectedTahun="$selectedTahun" :key="'Fundraising' . $selectedTahun" />
 
-        <livewire:dashboard.table-fundraising :selectedTahun="$selectedTahun" :key="$selectedTahun">
-
-            {{-- @livewire('dashboard.table-fundraising') --}}
-
-            @livewire('dashboard.table-tasyaruf')
+    <livewire:dashboard.table-tasyaruf :selectedTahun="$selectedTahun" :key="'Tasyaruf' . $selectedTahun" />
 
 </div>
