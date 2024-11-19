@@ -10,6 +10,7 @@ use App\Models\Kabupaten;
 use App\Models\Penyaluran;
 use App\Models\SumberDana;
 use App\Models\ProgramPilar;
+use App\Models\SumberDonasi;
 use App\Models\ProgramSumber;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -25,8 +26,9 @@ class PenyaluranImportCsv implements ToModel, WithCustomCsvSettings, WithHeading
         return new Penyaluran([
             'tanggal' => $row['tanggal'],
             'uraian' => $row['uraian'],
-            'sumber_dana_id' => SumberDana::where('name', $row['sumber_dana'])->first()?->id,
+            'sumber_donasi_id' => SumberDonasi::where('name', $row['sumber_donasi'])->first()?->id,
             'program_sumber_id' => ProgramSumber::where('name', $row['program_sumber'])->first()?->id,
+            'sumber_dana_id' => SumberDana::where('name', $row['sumber_dana'])->first()?->id,
             'nominal' => $row['nominal'],
             'pilar_id' => Pilar::where('name', $row['pilar'])->first()?->id,
             'program_pilar_id' => ProgramPilar::where('name', $row['program_pilar'])->first()?->id,

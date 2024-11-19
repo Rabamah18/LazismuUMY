@@ -113,11 +113,11 @@
                         </option>
                     @endforeach
                 </x-select-input>
-                <x-select-input wire:model.lazy="selectedSumberDana" id="sumber_dana" class="">
-                    <option value="">{{ __('Sumber Dana') }}</option>
-                    @foreach ($sumberDanas as $sumberDana)
-                        <option value="{{ $sumberDana->id }}">
-                            {{ $sumberDana->name }}
+                <x-select-input id="sumber_donasi" wire:model.lazy="selectedSumberDonasi" class="">
+                    <option value="">{{ __('Sumber Donasi') }}</option>
+                    @foreach ($sumberDonasis as $sumberDonasi)
+                        <option value="{{ $sumberDonasi->id }}">
+                            {{ $sumberDonasi->name }}
                         </option>
                     @endforeach
                 </x-select-input>
@@ -127,6 +127,14 @@
                     @foreach ($programSumbers as $programSumber)
                         <option value="{{ $programSumber->id }}">
                             {{ $programSumber->name }}
+                        </option>
+                    @endforeach
+                </x-select-input>
+                <x-select-input wire:model.lazy="selectedSumberDana" id="sumber_dana" class="">
+                    <option value="">{{ __('Sumber Dana') }}</option>
+                    @foreach ($sumberDanas as $sumberDana)
+                        <option value="{{ $sumberDana->id }}">
+                            {{ $sumberDana->name }}
                         </option>
                     @endforeach
                 </x-select-input>
@@ -162,10 +170,13 @@
                         {{ __('Uraian') }}
                     </th>
                     <th scope="col" class="px-6 py-3 lg:table-cell">
-                        {{ __('Sumber Dana') }}
+                        {{ __('Sumber Donasi') }}
                     </th>
                     <th scope="col" class="px-6 py-3 lg:table-cell">
                         {{ __('Program Sumber') }}
+                    </th>
+                    <th scope="col" class="px-6 py-3 lg:table-cell">
+                        {{ __('Sumber Dana') }}
                     </th>
                     <th scope="col" class="px-6 py-3 lg:table-cell">
                         {{ __('Nominal') }}
@@ -240,7 +251,7 @@
                         <td class="px-6 py-4 lg:table-cell">
                             <div class="flex">
                                 <p>
-                                    {{ $penyaluran->sumberDana->name ?? '-' }}
+                                    {{ $penyaluran->programSumber->sumberDonasi->name ?? '-' }}
                                 </p>
                             </div>
                         </td>
@@ -249,6 +260,14 @@
                             <div class="flex">
                                 <p>
                                     {{ $penyaluran->programSumber->name ?? '-' }}
+                                </p>
+                            </div>
+                        </td>
+
+                        <td class="px-6 py-4 lg:table-cell">
+                            <div class="flex">
+                                <p>
+                                    {{ $penyaluran->sumberDana->name ?? '-' }}
                                 </p>
                             </div>
                         </td>

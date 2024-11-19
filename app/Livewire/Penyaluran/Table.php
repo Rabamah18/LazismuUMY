@@ -15,6 +15,7 @@ use App\Models\ProgramPilar;
 use Livewire\Attributes\Url;
 use Livewire\WithPagination;
 use App\Models\ProgramSumber;
+use App\Models\SumberDonasi;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -70,6 +71,10 @@ class Table extends Component
 
     public $selectedProgramSumber;
 
+    public $sumberDonasis;
+
+    public $selectedSumberDonasi;
+
     public $nominal;
 
     public $total;
@@ -93,6 +98,7 @@ class Table extends Component
         $this->programPilars = ProgramPilar::query()->get();
         $this->sumberDanas = SumberDana::query()->get();
         $this->programSumbers = ProgramSumber::query()->get();
+        $this->sumberDonasis = SumberDonasi::query()->get();
 
     }
 
@@ -172,6 +178,14 @@ class Table extends Component
         $this->dispatch('dataUpdated');
     }
 
+    public function updatedSelectedSumberDonasi()
+    {
+        $this->programSumbers = ProgramSumber::query()->where('sumber_donasi_id', $this->selectedSumberDonasi)->get();
+        $this->reset('selectedProgramSumber');
+        $this->resetPage();
+        $this->dispatch('dataUpdated');
+    }
+
     public function updatedTotal()
     {
 
@@ -228,6 +242,11 @@ class Table extends Component
                     $query->where('program_sumber_id', $this->selectedProgramSumber);
                 }
             })
+            ->when($this->selectedSumberDonasi, function ($query) {
+                $query->whereHas('programSumber', function ($query) {
+                    $query->where('sumber_donasi_id', $this->selectedSumberDonasi);
+                });
+            })
             ->paginate($this->paginate);
 
         //Get the Filter Data
@@ -277,6 +296,11 @@ class Table extends Component
         } else {
             $query->where('program_sumber_id', $this->selectedProgramSumber);
         }
+    })
+    ->when($this->selectedSumberDonasi, function ($query) {
+        $query->whereHas('programSumber', function ($query) {
+            $query->where('sumber_donasi_id', $this->selectedSumberDonasi);
+        });
     })
     ->get();
 

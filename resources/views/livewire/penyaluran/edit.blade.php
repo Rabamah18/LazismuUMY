@@ -15,17 +15,17 @@
         </div>
 
         <div>
-            <x-input-label for="sumber_dana_id" :value="__('Sumber Dana')" />
-            <x-select-input wire:model.change="selectedSumberDana" id="sumber_dana" class="block w-full mt-1">
-                <option value="">{{ __('Select Sumber Dana') }}</option>
-                @foreach ($sumberDanas as $sumberDana)
-                    <option value="{{ $sumberDana->id }}"
-                        {{ request('sumber_dana_id') == 'sumber_dana_id' ? 'selected' : '' }}>
-                        {{ $sumberDana->name }}
+            <x-input-label for="sumber_donasi_id" :value="__('Sumber Donasi')" />
+            <x-select-input wire:model.change="selectedSumberDonasi" id="sumber_donasi" class="block w-full mt-1">
+                <option value="">{{ __('Select Sumber Donasi') }}</option>
+                @foreach ($sumberDonasis as $sumberDonasi)
+                    <option value="{{ $sumberDonasi->id }}"
+                        {{ request('sumber_donasi_id') == 'sumber_donasi_id' ? 'selected' : '' }}>
+                        {{ $sumberDonasi->name }}
                     </option>
                 @endforeach
             </x-select-input>
-            <x-input-error class="mt-2" :messages="$errors->get('sumber_dana_id')" />
+            <x-input-error class="mt-2" :messages="$errors->get('sumber_donasi_id')" />
         </div>
 
         <div>
@@ -40,6 +40,20 @@
                 @endforeach
             </x-select-input>
             <x-input-error class="mt-2" :messages="$errors->get('program_sumber_id')" />
+        </div>
+
+        <div>
+            <x-input-label for="sumber_dana_id" :value="__('Sumber Dana')" />
+            <x-select-input wire:model.change="selectedSumberDana" id="sumber_dana" class="block w-full mt-1">
+                <option value="">{{ __('Select Sumber Dana') }}</option>
+                @foreach ($sumberDanas as $sumberDana)
+                    <option value="{{ $sumberDana->id }}"
+                        {{ request('sumber_dana_id') == 'sumber_dana_id' ? 'selected' : '' }}>
+                        {{ $sumberDana->name }}
+                    </option>
+                @endforeach
+            </x-select-input>
+            <x-input-error class="mt-2" :messages="$errors->get('sumber_dana_id')" />
         </div>
 
         <div x-data="{

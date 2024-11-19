@@ -10,6 +10,7 @@ use App\Models\ProgramPilar;
 use App\Models\ProgramSumber;
 use App\Models\Provinsi;
 use App\Models\SumberDana;
+use App\Models\SumberDonasi;
 use App\Models\Tahun;
 use Illuminate\Support\Carbon;
 use Livewire\Attributes\Validate;
@@ -62,6 +63,10 @@ class Edit extends Component
 
     public $selectedProgramSumber;
 
+    public $sumberDonasis;
+
+    public $selectedSumberDonasi;
+
     public $nominal;
 
     public $isPindahDana = true;
@@ -69,51 +74,57 @@ class Edit extends Component
     public function mount(Penyaluran $penyaluran)
     {
 
-        $this->tanggal = Carbon::parse($this->penyaluran->tanggal)->format('Y-m-d');
         $this->tahuns = Tahun::query()->get();
-        $this->selectedTahun = $this->penyaluran->tahun_id;
-        $this->provinsis = Provinsi::query()->get();
-        $this->selectedProvinsi = $this->penyaluran->provinsi_id;
-        $this->kabupatens = Kabupaten::query()->get();
-        $this->selectedKabupaten = $this->penyaluran->kabupaten_id;
-        $this->uraian = $this->penyaluran->uraian;
-        $this->ashnafs = Ashnaf::query()->get();
-        $this->selectedAshnaf = $this->penyaluran->ashnaf_id;
-        $this->lembaga = $this->penyaluran->lembaga_count;
-        $this->pria = $this->penyaluran->male_count;
-        $this->wanita = $this->penyaluran->female_count;
-        $this->pilars = Pilar::query()->get();
-        $this->selectedPilar = $this->penyaluran->programPilar->pilar_id ?? '';
-        $this->programPilars = ProgramPilar::query()->get();
-        $this->selectedProgramPilar = $this->penyaluran->program_pilar_id;
-        $this->sumberDanas = SumberDana::query()->get();
-        $this->selectedSumberDana = $this->penyaluran->sumber_dana_id;
+        $this->sumberDonasis = SumberDonasi::query()->get();
         $this->programSumbers = ProgramSumber::query()->get();
-        $this->selectedProgramSumber = $this->penyaluran->program_sumber_id;
-        $this->nominal = $this->penyaluran->nominal;
-        $this->isPindahDana = $penyaluran->pindahdana;
+        $this->sumberDanas = SumberDana::query()->get();
+        $this->pilars = Pilar::query()->get();
+        $this->programPilars = ProgramPilar::query()->get();
+        $this->ashnafs = Ashnaf::query()->get();
+        $this->provinsis = Provinsi::query()->get();
+        $this->kabupatens = Kabupaten::query()->get();
 
-    }
+        $this->penyaluran = $penyaluran;
 
-    public function setPenyaluran(Penyaluran $penyaluran)
-    {
-        $this->tanggal = $penyaluran->tanggal;
+        $this->tanggal = Carbon::parse($this->penyaluran->tanggal)->format('Y-m-d');
         $this->uraian = $penyaluran->uraian;
+        $this->selectedSumberDonasi = $penyaluran->programSumber->sumberDonasi->id;
+        $this->selectedProgramSumber = $penyaluran->programSumber->id;
+        $this->selectedSumberDana = $penyaluran->sumberDana->id;
         $this->nominal = $penyaluran->nominal;
-        $this->selectedAshnaf = $penyaluran->ashnaf;
+        $this->selectedPilar = $penyaluran->programPilar->pilar->id;
+        $this->selectedProgramPilar = $penyaluran->programPilar->id;
+        $this->selectedAshnaf = $penyaluran->ashnaf->id;
         $this->lembaga = $penyaluran->lembaga_count;
         $this->pria = $penyaluran->male_count;
         $this->wanita = $penyaluran->female_count;
-        $this->selectedPilar = $penyaluran->pilar;
-        $this->selectedProgramPilar = $penyaluran->programPilar;
-        $this->selectedSumberDana = $penyaluran->sumberDana;
-        $this->selectedProgramSumber = $penyaluran->programSumber;
-        $this->selectedTahun = $penyaluran->tahun;
-        $this->selectedProvinsi = $penyaluran->provinsi;
-        $this->selectedKabupaten = $penyaluran->kabupaten;
+        $this->selectedProvinsi = $penyaluran->kabupaten->provinsi->id;
+        $this->selectedKabupaten = $penyaluran->kabupaten->id;
+        $this->selectedTahun = $penyaluran->tahun->id;
         $this->isPindahDana = $penyaluran->pindahdana;
 
     }
+
+    // public function setPenyaluran(Penyaluran $penyaluran)
+    // {
+    //     $this->tanggal = $penyaluran->tanggal;
+    //     $this->uraian = $penyaluran->uraian;
+    //     $this->nominal = $penyaluran->nominal;
+    //     $this->selectedAshnaf = $penyaluran->ashnaf;
+    //     $this->lembaga = $penyaluran->lembaga_count;
+    //     $this->pria = $penyaluran->male_count;
+    //     $this->wanita = $penyaluran->female_count;
+    //     $this->selectedPilar = $penyaluran->pilar;
+    //     $this->selectedProgramPilar = $penyaluran->programPilar;
+    //     $this->selectedSumberDana = $penyaluran->sumberDana;
+    //     $this->selectedProgramSumber = $penyaluran->programSumber;
+    //     $this->selectedSumberDonasi = $penyaluran->sumberDonasi;
+    //     $this->selectedTahun = $penyaluran->tahun;
+    //     $this->selectedProvinsi = $penyaluran->provinsi;
+    //     $this->selectedKabupaten = $penyaluran->kabupaten;
+    //     $this->isPindahDana = $penyaluran->pindahdana;
+
+    // }
 
     public function rules()
     {
@@ -131,6 +142,7 @@ class Edit extends Component
             'selectedProgramPilar' => 'nullable|exists:program_pilars,id',
             'selectedSumberDana' => 'nullable|exists:sumber_danas,id',
             'selectedProgramSumber' => 'nullable|exists:program_sumbers,id',
+            'selectedSumberDonasi' => 'required|exists:sumber_donasis,id',
 
         ];
     }
@@ -146,6 +158,12 @@ class Edit extends Component
     {
         $this->programPilars = ProgramPilar::query()->where('pilar_id', $this->selectedPilar)->get();
         $this->reset('selectedProgramPilar');
+    }
+
+    public function updatedSelectedSumberDonasi()
+    {
+        $this->programSumbers = ProgramSumber::query()->where('sumber_donasi_id', $this->selectedSumberDonasi)->get();
+        $this->reset('selectedProgramSumber');
     }
 
     public function parseRupiah($value)
