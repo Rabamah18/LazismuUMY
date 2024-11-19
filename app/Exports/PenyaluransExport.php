@@ -134,12 +134,12 @@ class PenyaluransExport implements FromQuery, ShouldAutoSize, WithColumnFormatti
 
         return [
             $penyaluran->id,
-            $penyaluran->tanggal, //->isoFormat('LL'),
+            \Carbon\Carbon::parse($penyaluran->tanggal)->format('d/m/Y'), //->isoFormat('LL'),
             $penyaluran->uraian,
             $penyaluran->programSumber->sumberDonasi->name ?? null,
             $penyaluran->programSumber->name ?? null,
             $penyaluran->sumberDana->name ?? null,
-            $penyaluran->nominal,
+            $this->formatRupiah($penyaluran->nominal),
             $penyaluran->programPilar->pilar->name ?? null,
             $penyaluran->programPilar->name ?? null,
             $penyaluran->ashnaf->name ?? null,
@@ -150,5 +150,13 @@ class PenyaluransExport implements FromQuery, ShouldAutoSize, WithColumnFormatti
             $penyaluran->kabupaten->name ?? null,
             $penyaluran->tahun->name ?? null,
         ];
+    }
+
+    /**
+     * Helper untuk format Rupiah
+     */
+    private function formatRupiah($nominal)
+    {
+        return 'Rp ' . number_format($nominal, 0, ',', '.');
     }
 }

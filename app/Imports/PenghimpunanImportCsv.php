@@ -2,13 +2,14 @@
 
 namespace App\Imports;
 
+use Carbon\Carbon;
+use App\Models\Tahun;
+use App\Models\SumberDana;
 use App\Models\Penghimpunan;
 use App\Models\ProgramSumber;
-use App\Models\SumberDana;
-use App\Models\Tahun;
 use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithCustomCsvSettings;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithCustomCsvSettings;
 
 class PenghimpunanImportCsv implements ToModel, WithCustomCsvSettings, WithHeadingRow
 {
@@ -18,9 +19,9 @@ class PenghimpunanImportCsv implements ToModel, WithCustomCsvSettings, WithHeadi
     public function model(array $row)
     {
         return new Penghimpunan([
-            'tanggal' => $row['tanggal'],
+            'tanggal' => Carbon::createFromFormat('d/m/Y', $row['tanggal'])->toDateTimeString(),
             'uraian' => $row['uraian'],
-            'nominal' => $row['nominal'],
+            'nominal' => $this->parseRupiah($row['nominal']),
             'lembaga_count' => $row['jumlah_lembaga'],
             'male_count' => $row['jumlah_pria'],
             'female_count' => $row['jumlah_wanita'],
@@ -30,6 +31,15 @@ class PenghimpunanImportCsv implements ToModel, WithCustomCsvSettings, WithHeadi
             'tahun_id' => Tahun::where('name', $row['tahun'])->first()?->id,
             'user_id' => Auth()->user()->id
         ]);
+    }
+
+    public function parseRupiah($value)
+    {
+        // Remove "Rp.", commas, and dots from the nominal input
+        $numericValue = preg_replace('/[Rp \s]/', '', $value);
+
+        // Convert the resulting string to an integer
+        return (int) str_replace('.', '', $numericValue);
     }
 
     public function getCsvSettings(): array
