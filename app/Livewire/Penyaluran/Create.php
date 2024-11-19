@@ -2,20 +2,21 @@
 
 namespace App\Livewire\Penyaluran;
 
-use App\Models\Pilar;
-use App\Models\Tahun;
 use App\Models\Ashnaf;
-use Livewire\Component;
-use App\Models\Provinsi;
 use App\Models\Kabupaten;
+use App\Models\Penghimpunan;
 use App\Models\Penyaluran;
-use App\Models\SumberDana;
+use App\Models\Pilar;
 use App\Models\ProgramPilar;
 use App\Models\ProgramSumber;
+use App\Models\Provinsi;
+use App\Models\SumberDana;
 use App\Models\SumberDonasi;
+use App\Models\Tahun;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Carbon;
 use Livewire\Attributes\Validate;
-use Illuminate\Database\Eloquent\Collection;
+use Livewire\Component;
 
 class Create extends Component
 {
@@ -68,6 +69,8 @@ class Create extends Component
 
     public $nominal;
 
+    public $currentSaldo;
+
     public $isPindahDana;
 
     public function mount()
@@ -75,7 +78,6 @@ class Create extends Component
 
         $this->tanggal = Carbon::now()->format('Y-m-d');
         $this->tahuns = Tahun::query()->get();
-
 
         // query to find the record in Tahun where 'tahun' matches the current year
         $this->selectedTahun = Tahun::query()
@@ -108,8 +110,7 @@ class Create extends Component
             'selectedSumberDana' => 'nullable|exists:sumber_danas,id',
             'selectedProgramSumber' => 'nullable|exists:program_sumbers,id',
             'selectedSumberDonasi' => 'nullable|exists:sumber_donasis,id',
-            'isPindahDana' => 'nullable|boolean'
-
+            'isPindahDana' => 'nullable|boolean',
 
         ];
     }
@@ -131,6 +132,33 @@ class Create extends Component
     {
         $this->programSumbers = ProgramSumber::query()->where('sumber_donasi_id', $this->selectedSumberDonasi)->get();
         $this->reset('selectedProgramSumber');
+    }
+
+    public function getSaldo($selectedTahun, $sumberDana, $sumberDonasi)
+    {
+        $tunaiSaldoPenghimpunan = Penghimpunan::query()
+            ->whereHas('programSumber', function ($query) use ($sumberDonasi) {
+                $query->where('sumber_donasi_id', $sumberDonasi);
+            })
+            ->where('sumber_dana_id', $sumberDana)
+            ->where('tahun_id', $selectedTahun)
+            ->sum('nominal');
+
+        $tunaiSaldoPenyaluran = Penyaluran::query()
+            ->whereHas('programSumber', function ($query) use ($sumberDonasi) {
+                $query->where('sumber_donasi_id', $sumberDonasi);
+            })
+            ->where('sumber_dana_id', $sumberDana)
+            ->where('tahun_id', $selectedTahun)
+            ->sum('nominal');
+
+        return $tunaiSaldoPenghimpunan - $tunaiSaldoPenyaluran;
+        dd($tunaiSaldoPenghimpunan, $tunaiSaldoPenyaluran);
+    }
+
+    public function updatedSelectedSumberDana()
+    {
+        $this->currentSaldo = $this->getSaldo($this->selectedTahun, $this->selectedSumberDana, $this->selectedSumberDonasi);
     }
 
     public function parseRupiah($value)
