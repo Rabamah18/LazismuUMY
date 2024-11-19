@@ -165,21 +165,6 @@
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profil') }}
                         </x-dropdown-link>
-                        <x-dropdown-link :href="route('targetsumberdonasi.index')">
-                            {{ __('Target Sumber Donasi') }}
-                        </x-dropdown-link>
-                        <x-dropdown-link :href="route('targetprogramsumber.index')">
-                            {{ __('Target Program Sumber') }}
-                        </x-dropdown-link>
-                        <x-dropdown-link :href="route('targetpilar.index')">
-                            {{ __('Target Pilar') }}
-                        </x-dropdown-link>
-                        <x-dropdown-link :href="route('targetprogrampilar.index')">
-                            {{ __('Target Program') }}
-                        </x-dropdown-link>
-                        <x-dropdown-link :href="route('targettahunan.index')">
-                            {{ __('Target Tahunan') }}
-                        </x-dropdown-link>
                         <x-dropdown-link :href="route('target.index')">
                             {{ __('Manage Target') }}
                         </x-dropdown-link>

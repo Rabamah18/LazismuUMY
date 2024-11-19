@@ -41,9 +41,12 @@
                             </p>
                         </div>
                     </td>
-                    <td class="px-6 py-4 lg:table-cell">
+                    <td wire:key="nominal-{{ $targetSumberDonasi->id }}" x-data="{
+                        nominal: {{ $targetSumberDonasi->nominal }},
+                    }"
+                        class="px-6 py-4 lg:table-cell">
                         <div class="flex">
-                            {{ $targetSumberDonasi->nominal }}
+                            <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
                         </div>
                     </td>
                     <td class="px-6 py-4 lg:table-cell">
