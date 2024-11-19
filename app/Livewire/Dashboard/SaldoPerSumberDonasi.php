@@ -21,36 +21,18 @@ class SaldoPerSumberDonasi extends Component
 
     public $sumberDanas;
 
-    // public function getSaldo($selectedTahun, $sumberDana, $sumberDonasi)
-    // {
-    //     $tunaiSaldoPenghimpunan = Penghimpunan::query()
-    //         ->whereHas('programSumber', function ($query) use ($sumberDonasi) {
-    //             $query->where('sumber_donasi_id', $sumberDonasi->id);
-    //         })
-    //         ->where('sumber_dana_id', $sumberDana->id)
-    //         ->where('tahun_id', $selectedTahun)
-    //         ->sum('nominal');
-
-    //     $tunaiSaldoPenyaluran = Penyaluran::query()
-    //         ->whereHas('programSumber', function ($query) use ($sumberDonasi) {
-    //             $query->where('sumber_donasi_id', $sumberDonasi->id);
-    //         })
-    //         ->where('sumber_dana_id', $sumberDana->id)
-    //         ->where('tahun_id', $selectedTahun)
-    //         ->sum('nominal');
-
-    //     return $tunaiSaldoPenghimpunan - $tunaiSaldoPenyaluran;
-    // }
-
     public function mount($selectedTahun, $sumberDonasi)
     {
         $this->selectedTahun = $selectedTahun;
         $this->sumberDonasi = $sumberDonasi;
         $this->sumberDanas = SumberDana::query()
             ->where('name', 'like', '%'.$this->sumberDonasi->name.'%')
-            ->get();
+            ->get()
+            ->map(function ($item, $key) {
+                $item->setAttribute('index', $key + 1); // Tambahkan indeks secara manual
 
-        Log::info('Received data: '.$selectedTahun);
+                return $item;
+            });
     }
 
     public function updatedSelectedTahun()
@@ -61,10 +43,6 @@ class SaldoPerSumberDonasi extends Component
     #[On('updatedTable')]
     public function render()
     {
-        // $saldoPerSumberDana = $this->getSaldo($this->selectedTahun, $this->sumberDana, $this->sumberDonasi);
-
-        return view('livewire.dashboard.saldo-per-sumber-donasi',
-            // ['selectedTahun' => $this->selectedTahun, 'sumberDanas' => $this->sumberDanas, 'sumberDonasi' => $this->sumberDonasi]
-        );
+        return view('livewire.dashboard.saldo-per-sumber-donasi');
     }
 }

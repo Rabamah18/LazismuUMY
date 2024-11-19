@@ -2,10 +2,11 @@
 
 namespace App\Livewire\Dashboard;
 
-use App\Models\Penghimpunan;
-use App\Models\Penyaluran;
-use Livewire\Attributes\Reactive;
 use Livewire\Component;
+use App\Models\Penyaluran;
+use Livewire\Attributes\On;
+use App\Models\Penghimpunan;
+use Livewire\Attributes\Reactive;
 
 class SaldoPerSumberDana extends Component
 {
@@ -46,6 +47,12 @@ class SaldoPerSumberDana extends Component
         return $tunaiSaldoPenghimpunan - $tunaiSaldoPenyaluran;
     }
 
+    public function updatedSelectedTahun()
+    {
+        $this->dispatch('updateTable');
+    }
+
+    #[On('updatedTable')]
     public function render()
     {
         $saldoPerSumberDana = $this->getSaldo($this->selectedTahun, $this->sumberDana, $this->sumberDonasi);
