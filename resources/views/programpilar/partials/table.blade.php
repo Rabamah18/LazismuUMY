@@ -11,7 +11,7 @@
                 <th scope="col" class="px-6 py-3 lg:table-cell">
                     {{ __('Pilar') }}
                 </th>
-                <th scope="col" class="py-3 pl-6 pr-2 lg:pr-4">
+                <th scope="col" class="py-3 pl-6 pr-2 text-center lg:pr-4">
                     {{ __('Option') }}
                 </th>
             </tr>
@@ -23,9 +23,8 @@
                         {{-- loop --}}
                         <div class="flex">
                             <div class="hover:underline whitespace-nowrap">
-                                {{ ($programPilars->currentpage() - 1) * $programPilars->perpage() + $loop->index + 1 }}
+                                {{ $loop->iteration }}
                             </div>
-
                         </div>
                     </td>
 
@@ -35,7 +34,6 @@
                             <p>
                                 {{ $programPilar->name }}
                             </p>
-
                         </div>
                     </td>
                     <td class="px-6 py-4 lg:table-cell">
@@ -43,12 +41,10 @@
                             <p>
                                 {{ $programPilar->pilar->name ?? '-'  }}
                             </p>
-
                         </div>
                     </td>
-                    <td class="py-4 pl-6 pr-2 lg:pr-4">
-                        <div class="flex space-x-2 justify-items-start">
-                            <a href="{{ route('programpilar.show', $programPilar) }}" class="hover:underline">Lihat</a>
+                    <td class="py-4 pl-6 pr-2 text-center lg:pr-4">
+                        <div class="flex justify-center space-x-2">
                             <a href="{{ route('programpilar.edit', $programPilar) }}"
                                 class="text-indigo-500 hover:underline">Ubah</a>
                             <button x-data="" class="text-red-500 hover:underline"

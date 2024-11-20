@@ -15,7 +15,6 @@
                     {{ __('Edit Data Program yang sudah ada.') }}
                 </x-card.description>
                 <div class="max-w-xl">
-                    {{-- @dump($programPilar) --}}
                     <form method="post" action="{{ route('programpilar.update', $programpilar) }}" class="mt-6 space-y-6">
                         @csrf
                         @method('patch')

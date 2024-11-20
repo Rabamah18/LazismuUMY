@@ -18,7 +18,7 @@ class ProgramPilarController extends Controller
             ->when($request->pilar, function ($query, $pilar) {
                 $query->where('pilar_id', '=', $pilar);
             })
-            ->paginate(10);
+            ->get();
 
         return view('programpilar.index', compact('programPilars', 'pilars'));
     }
@@ -67,7 +67,6 @@ class ProgramPilarController extends Controller
     {
         $pilars = Pilar::query()->get();
 
-        //dd($programPilar);
         return view('programpilar.edit', compact('programpilar', 'pilars'));
     }
 
