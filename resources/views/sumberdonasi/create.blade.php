@@ -21,7 +21,7 @@
                         <div>
                             <x-input-label for="sumberdonasi" :value="__('Nama Sumber Donasi')" />
                             <x-text-input id="sumberdonasi" name="sumberdonasi" type="text" class="block w-full mt-1"
-                                :value="old('sumberdonasi')" required autocomplete="sumberdonasi" />
+                                :value="old('sumberdonasi')" required autofocus autocomplete="sumberdonasi" />
                             <x-input-error class="mt-2" :messages="$errors->get('sumberdonasi')" />
                         </div>
 
