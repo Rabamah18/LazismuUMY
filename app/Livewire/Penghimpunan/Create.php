@@ -113,7 +113,7 @@ class Create extends Component
             'program_sumber_id' => $this->selectedProgramSumber,
             'sumber_dana_id' => $this->selectedSumberDana,
             'tahun_id' => $this->selectedTahun,
-            'pindahdana' => $this->isPindahDana,
+            'pindahdana' => $this->isPindahDana == null ? false : $this->isPindahDana,
             'user_id' => auth()->user()->id,
             'lampiran' => $this->lampiran,
         ]);

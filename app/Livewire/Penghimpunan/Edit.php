@@ -126,7 +126,7 @@ class Edit extends Component
             'program_sumber_id' => $this->selectedProgramSumber,
             'sumber_dana_id' => $this->selectedSumberDana,
             'tahun_id' => $this->selectedTahun,
-            'pindahdana' => $this->isPindahDana,
+            'pindahdana' => $this->isPindahDana == null ? false : $this->isPindahDana,
             'lampiran' => $this->lampiran,
             'user_id' => auth()->user()->id,
         ]);

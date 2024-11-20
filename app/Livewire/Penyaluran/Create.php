@@ -73,6 +73,8 @@ class Create extends Component
 
     public $isPindahDana;
 
+    public $lampiran;
+
     public function mount()
     {
 
@@ -110,6 +112,7 @@ class Create extends Component
             'selectedSumberDana' => 'nullable|exists:sumber_danas,id',
             'selectedProgramSumber' => 'nullable|exists:program_sumbers,id',
             'selectedSumberDonasi' => 'nullable|exists:sumber_donasis,id',
+            'lampiran' => 'nullable|url:http,https',
             'isPindahDana' => 'nullable|boolean',
 
         ];
@@ -153,7 +156,6 @@ class Create extends Component
             ->sum('nominal');
 
         return $tunaiSaldoPenghimpunan - $tunaiSaldoPenyaluran;
-        dd($tunaiSaldoPenghimpunan, $tunaiSaldoPenyaluran);
     }
 
     public function updatedSelectedSumberDana()
@@ -183,9 +185,9 @@ class Create extends Component
             'uraian' => $this->uraian,
             'nominal' => $nominal,
             'ashnaf_id' => $this->selectedAshnaf,
-            'lembaga_count' => $this->lembaga,
-            'male_count' => $this->pria,
-            'female_count' => $this->wanita,
+            'lembaga_count' => $this->lembaga == null || $this->lembaga == '' ? 0 : $this->lembaga,
+            'male_count' => $this->pria == null || $this->pria == '' ? 0 : $this->pria,
+            'female_count' => $this->wanita == null || $this->wanita == '' ? 0 : $this->wanita,
             'pilar_id' => $this->selectedPilar,
             'program_pilar_id' => $this->selectedProgramPilar,
             'sumber_dana_id' => $this->selectedSumberDana,
@@ -193,9 +195,9 @@ class Create extends Component
             'tahun_id' => $this->selectedTahun,
             'provinsi_id' => $this->selectedProvinsi,
             'kabupaten_id' => $this->selectedKabupaten,
-            'pindahdana' => $this->isPindahDana,
+            'pindahdana' => $this->isPindahDana == null ? false : $this->isPindahDana,
             'user_id' => auth()->user()->id,
-
+            'lampiran' => $this->lampiran,
         ]);
 
         return redirect()->route('penyaluran.index');
