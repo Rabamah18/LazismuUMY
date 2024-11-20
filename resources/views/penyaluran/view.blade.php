@@ -10,13 +10,21 @@
     <div class="sm:py-6">
         <div class="max-w-full mx-auto sm:px-6 sm:space-y-6">
             <x-card.app>
-                <div class="flex">
+                <div class="flex justify-between">
                     <x-card.title>
                         {{ __('Informasi Penyaluran') }}
                     </x-card.title>
-                    {{-- <div class="ml-auto">
-                        @include('penyaluran.partials.action')
-                    </div> --}}
+                    <div>
+                        <x-button.link-primary href="{{ route('penyaluran.edit', $penyaluran) }}">
+                            {{ __('Edit') }}
+                        </x-button.link-primary>
+                        @if ($penyaluran->lampiran)
+                            <x-button.link-primary href="{{ $penyaluran->lampiran }}" target="_blank"
+                                rel="noopener noreferrer">
+                                {{ __('Lihat Lampiran >') }}
+                            </x-button.link-primary>
+                        @endif
+                    </div>
                 </div>
                 <x-card.description>
                     {{ __('mengatur Informasi Penyaluran.') }}
@@ -47,7 +55,8 @@
                             <p class="w-36">{{ __('Sumber Dana') }}</p>
                             <p>{{ $penyaluran->sumberDana->name ?? '-' }}</p>
                         </div>
-                        <div x-data="{nominal: {{ $penyaluran->nominal }}}" class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
+                        <div x-data="{ nominal: {{ $penyaluran->nominal }} }"
+                            class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
                             <p class="w-36">{{ __('Nominal') }}</p>
                             <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
                         </div>
