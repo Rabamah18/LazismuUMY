@@ -21,7 +21,7 @@
                         <div>
                             <x-input-label for="ashnaf" :value="__('Ashnaf')" />
                             <x-text-input id="ashnaf" name="ashnaf" type="text" class="block w-full mt-1"
-                                :value="old('ashnaf')" required autocomplete="ashnaf" />
+                                :value="old('ashnaf')" required autofocus autocomplete="ashnaf"/>
                             <x-input-error class="mt-2" :messages="$errors->get('ashnaf')" />
                         </div>
 

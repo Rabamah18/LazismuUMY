@@ -1,5 +1,4 @@
 <div class="relative mt-6 overflow-x-visible overflow-y-visible rounded-md md:block">
-    {{-- "@dump($pilars)" --}}
     <table class="w-full text-base text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -12,7 +11,7 @@
                 <th scope="col" class="px-6 py-3 lg:table-cell">
                     {{ __('Program') }}
                 </th>
-                <th scope="col" class="py-3 pl-6 pr-2 lg:pr-4">
+                <th scope="col" class="py-3 pl-6 pr-2 text-center lg:pr-4">
                     {{ __('Option') }}
                 </th>
             </tr>
@@ -46,8 +45,8 @@
                             </a>
                         </div>
                     </td>
-                    <td class="py-4 pl-6 pr-2 lg:pr-4">
-                        <div class="flex space-x-2 justify-items-start">
+                    <td class="py-4 pl-6 pr-2 text-center lg:pr-4">
+                        <div class="flex justify-center space-x-2">
                             <a href="{{ route('pilar.show', $pilar) }}" class="hover:underline">Lihat</a>
                             <a href="{{ route('pilar.edit', $pilar) }}" class="text-indigo-500 hover:underline">Ubah</a>
                             <button x-data="" class="text-red-500 hover:underline"

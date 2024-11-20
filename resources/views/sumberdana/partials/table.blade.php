@@ -11,7 +11,7 @@
                 <th scope="col" class="px-6 py-3 lg:table-cell">
                     {{ __('Rekening Sumber Dana') }}
                 </th>
-                <th scope="col" class="py-3 pl-6 pr-2 lg:pr-4">
+                <th scope="col" class="py-3 pl-6 pr-2 text-center lg:pr-4">
                     {{ __('Option') }}
                 </th>
             </tr>
@@ -23,8 +23,7 @@
                         {{-- loop --}}
                         <div class="flex">
                             <div class="hover:underline whitespace-nowrap">
-                                {{-- {{ ($sumberDanas->currentpage() - 1) * $sumberDanas->perpage() + $loop->index + 1 }} --}}
-                                {{ $sumberDana->id }}
+                                {{ $loop->iteration }}
                             </div>
 
                         </div>
@@ -45,8 +44,8 @@
                             </p>
                         </div>
                     </td>
-                    <td class="py-4 pl-6 pr-2 lg:pr-4">
-                        <div class="flex space-x-2 justify-items-start">
+                    <td class="py-4 pl-6 pr-2 text-center lg:pr-4">
+                        <div class="flex justify-center space-x-2">
                             <a href="{{ route('sumberdana.edit', $sumberDana) }}"
                                 class="text-indigo-500 hover:underline">Edit</a>
                             <button x-data="" class="text-red-500 hover:underline"

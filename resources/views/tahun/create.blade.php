@@ -18,13 +18,13 @@
                     <form method="post" action="{{ route('tahun.store') }}" class="mt-6 space-y-6">
                         @csrf
                         @method('post')
-                        <div>
+                        <div x-data>
                             <x-input-label for="tahun" :value="__('Tahun')" />
                             <x-text-input id="tahun" name="tahun" type="text" class="block w-full mt-1"
-                                :value="old('tahun')" required autocomplete="tahun" />
+                                :value="old('tahun')" autocomplete="tahun" autofocus
+                                x-on:input="event.target.value = event.target.value.replace(/[^0-9]/g, '')" />
                             <x-input-error class="mt-2" :messages="$errors->get('tahun')" />
                         </div>
-
                         <div class="flex items-center gap-4">
                             <x-button.primary>{{ __('Save') }}</x-button.primary>
                         </div>

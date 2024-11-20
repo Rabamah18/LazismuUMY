@@ -27,9 +27,11 @@
 
                         <div x-data="{ norek: '{{ $sumberdana->rekening_sumda }}' }">
                             <x-input-label for="norek" :value="__('Nomor Rekening')" />
+
                             <x-text-input id="norek" name="norek" type="text" class="block w-full mt-1"
-                                x-bind:value="norek" required autocomplete="norek"
-                                x-on:input="norek = $event.target.value.replace(/[^0-9]/g, '')" />
+                                x-model="norek" x-on:input="norek = $event.target.value.replace(/[^0-9]/g, '')"
+                                autocomplete="norek" placeholder="Masukkan hanya angka" />
+
                             <x-input-error class="mt-2" :messages="$errors->get('norek')" />
                         </div>
 

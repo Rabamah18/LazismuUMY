@@ -15,7 +15,6 @@
                     {{ __('Edit Data Kabupaten/Negara yang sudah ada.') }}
                 </x-card.description>
                 <div class="max-w-xl">
-                    {{-- @dump($kabupaten) --}}
                     <form method="post" action="{{ route('kabupaten.update', $kabupaten) }}" class="mt-6 space-y-6">
                         @csrf
                         @method('patch')
@@ -32,6 +31,7 @@
                             </x-select-input>
                             <x-input-error class="mt-2" :messages="$errors->get('pilar_id')" />
                         </div>
+                        
                         <div>
                             <x-input-label for="name" :value="__('Name')" />
                             <x-text-input id="name" name="name" type="text" class="block w-full mt-1"

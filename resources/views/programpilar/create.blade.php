@@ -20,7 +20,7 @@
                         @method('post')
                         <div>
                             <x-input-label for="pilar_id" :value="__('Pilar')" />
-                            <x-select-input id="pilar" name="pilar_id" class="block w-full mt-1">
+                            <x-select-input id="pilar" name="pilar_id" class="block w-full mt-1" required autofocus>
                                 <option value="">{{ __('Select Pilar') }}</option>
                                 @foreach ($pilars as $pilar)
                                     <option value="{{ $pilar->id }}"

@@ -18,18 +18,9 @@
                         </x-button.link-primary>
                     </div>
                 </div>
-                @if (request('search') || request('role') || request('verified_account'))
-                    <x-card.description>
-                        {{ __('Filter for') }}
-                        @if (request('search'))
-                            <span class="font-semibold">{{ request('search') }}</span>
-                        @endif
-                    </x-card.description>
-                @else
-                    <x-card.description>
-                        {{ __('Mengatur daftar Tahun pembukuan.') }}
-                    </x-card.description>
-                @endif
+                <x-card.description>
+                    {{ __('Mengatur daftar Tahun pembukuan.') }}
+                </x-card.description>
                 @if ($errors->any())
                     <div>
                         <ul class="mt-3 text-sm text-red-600 list-none dark:text-red-400">
@@ -39,12 +30,6 @@
                         </ul>
                     </div>
                 @endif
-                <div class="w-full mt-6">
-                    <form class="flex flex-col justify-between gap-2 lg:flex-row">
-                        <x-text-input id="search" name="search" type="text" class="w-full lg:w-1/3"
-                            placeholder="{{ __('Search here') }}" value="{{ request('search') }}" autofocus />
-                    </form>
-                </div>
 
                 @include('tahun.partials.table')
 

@@ -69,13 +69,13 @@ class ProvinsiController extends Controller
     public function update(Request $request, Provinsi $provinsi)
     {
         $request->validate([
-            'name' => 'required|max:40'
+            'name' => 'required|max:40',
 
         ]);
         //dd($request);
 
         $provinsi->update([
-            'name' =>$request->name,
+            'name' => $request->name,
 
         ]);
 
@@ -90,7 +90,7 @@ class ProvinsiController extends Controller
         $provinsi->delete();
 
         return redirect()
-           ->route('provinsi.index')
-           ->with('success', 'Provinsi deleted successfully!');
+            ->route('provinsi.index')
+            ->with('success', 'Provinsi deleted successfully!');
     }
 }

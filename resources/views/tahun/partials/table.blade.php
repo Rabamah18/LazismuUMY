@@ -8,7 +8,7 @@
                 <th scope="col" class="px-6 py-3 lg:table-cell">
                     {{ __('Tahun') }}
                 </th>
-                <th scope="col" class="py-3 pl-6 pr-2 lg:pr-4">
+                <th scope="col" class="py-3 pl-6 pr-2 text-center lg:pr-4">
                     {{ __('Option') }}
                 </th>
             </tr>
@@ -20,7 +20,7 @@
                         {{-- loop --}}
                         <div class="flex">
                             <div class="hover:underline whitespace-nowrap">
-                                {{ ($tahuns->currentpage() - 1) * $tahuns->perpage() + $loop->index + 1 }}
+                                {{ $loop->iteration }}
                             </div>
 
                         </div>
@@ -35,9 +35,8 @@
 
                         </div>
                     </td>
-                    <td class="py-4 pl-6 pr-2 lg:pr-4">
-                        <div class="flex space-x-2 justify-items-start">
-                            <a href="{{ route('tahun.show', $tahun) }}" class="hover:underline">Lihat</a>
+                    <td class="py-4 pl-6 pr-2 text-center lg:pr-4">
+                        <div class="flex justify-center space-x-2 ">
                             <a href="{{ route('tahun.edit', $tahun) }}"
                                 class="text-indigo-500 hover:underline">Ubah</a>
                                 <button x-data="" class="text-red-500 hover:underline"

@@ -20,7 +20,7 @@
                         @method('post')
                         <div>
                             <x-input-label for="provinsi_id" :value="__('Provinsi/Luar Negeri')" />
-                            <x-select-input id="provinsi" name="provinsi_id" class="block w-full mt-1">
+                            <x-select-input id="provinsi" name="provinsi_id" class="block w-full mt-1" autofocus>
                                 <option value="">{{ __('Select Provinsi/Luar Negeri') }}</option>
                                 @foreach ($provinsis as $provinsi)
                                     <option value="{{ $provinsi->id }}"

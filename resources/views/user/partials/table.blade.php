@@ -14,7 +14,7 @@
                 <th scope="col" class="px-6 py-3 lg:table-cell">
                     {{ __('Role') }}
                 </th>
-                <th scope="col" class="py-3 pl-6 pr-2 lg:pr-4">
+                <th scope="col" class="py-3 pl-6 pr-2 text-center lg:pr-4">
                     {{ __('Option') }}
                 </th>
             </tr>
@@ -26,9 +26,8 @@
                         {{-- loop --}}
                         <div class="flex">
                             <div class="hover:underline whitespace-nowrap">
-                                {{-- {{ ($users->currentpage() - 1) * $users->perpage() + $loop->index + 1 }} --}}
                                 <p>
-                                    {{ $user->id }}
+                                    {{ $loop->iteration }}
                                 </p>
                             </div>
                         </div>
@@ -55,9 +54,8 @@
                             </p>
                         </div>
                     </td>
-                    <td class="py-4 pl-6 pr-2 lg:pr-4">
-                        <div class="flex space-x-2 justify-items-start">
-                            {{-- <a href="{{ route('sumberdana.edit', $sumberDana) }}" class="hover:underline">View</a> --}}
+                    <td class="py-4 pl-6 pr-2 text-center lg:pr-4">
+                        <div class="flex justify-center space-x-2">
                             <a href="{{ route('user.edit', $user) }}" class="text-indigo-500 hover:underline">Edit</a>
                             <button x-data="" class="text-red-500 hover:underline"
                                 x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion{{ $user->id }}')">
