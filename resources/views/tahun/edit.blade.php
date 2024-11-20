@@ -19,11 +19,14 @@
                     <form method="post" action="{{ route('tahun.update', $tahun) }}" class="mt-6 space-y-6">
                         @csrf
                         @method('patch')
-                        <div>
-                            <x-input-label for="name" :value="__('Name')" />
-                            <x-text-input id="name" name="name" type="text" class="block w-full mt-1"
-                                :value="old('name', $tahun->name)" required autocomplete="name" />
-                            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                        <div x-data="{ tahun: '{{ $tahun->name }}' }">
+                            <x-input-label for="tahun" :value="__('Tahun')" />
+
+                            <x-text-input id="tahun" name="tahun" type="text" class="block w-full mt-1" required
+                                x-model="tahun" x-on:input="tahun = $event.target.value.replace(/[^0-9]/g, '')"
+                                autocomplete="tahun" placeholder="Masukkan hanya angka" />
+
+                            <x-input-error class="mt-2" :messages="$errors->get('tahun')" />
                         </div>
 
                         <div class="flex items-center gap-4">

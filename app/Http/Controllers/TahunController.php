@@ -13,7 +13,7 @@ class TahunController extends Controller
     public function index()
     {
         $tahuns = Tahun::query()
-            ->paginate(10);
+            ->get();
 
         return view('tahun.index', compact('tahuns'));
     }
@@ -69,13 +69,13 @@ class TahunController extends Controller
     public function update(Request $request, Tahun $tahun)
     {
         $request->validate([
-            'name' => 'required|max:4'
+            'tahun' => 'required|max:4',
 
         ]);
         //dd($request);
 
         $tahun->update([
-            'name' =>$request->name,
+            'name' => $request->tahun,
 
         ]);
 
@@ -90,7 +90,7 @@ class TahunController extends Controller
         $tahun->delete();
 
         return redirect()
-           ->route('tahun.index')
-           ->with('success', 'Tahun deleted successfully!');
+            ->route('tahun.index')
+            ->with('success', 'Tahun deleted successfully!');
     }
 }
