@@ -21,13 +21,13 @@
                         <div>
                             <x-input-label for="name" :value="__('Name Sumber Dana')" />
                             <x-text-input id="name" name="name" type="text" class="block w-full mt-1"
-                                :value="old('name')" required autocomplete="name" />
+                                :value="old('name')" required autofocus autocomplete="name" />
                             <x-input-error class="mt-2" :messages="$errors->get('name')" />
                         </div>
                         <div x-data>
                             <x-input-label for="norek" :value="__('Nomor Rekening')" />
                             <x-text-input id="norek" name="norek" type="text" class="block w-full mt-1"
-                                :value="old('norek')" required autocomplete="norek"
+                                :value="old('norek')" autocomplete="norek"
                                 x-on:input="event.target.value = event.target.value.replace(/[^0-9]/g, '')" />
                             <x-input-error class="mt-2" :messages="$errors->get('norek')" />
                         </div>

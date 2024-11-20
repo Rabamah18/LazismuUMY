@@ -71,9 +71,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('kabupaten', KabupatenController::class)->except('show');
     Route::resource('sumberdonasi', SumberDonasiController::class)->except('show');
     Route::resource('programsumber', ProgramSumberController::class)->except('show');
-    Route::resource('sumberdana', SumberDanaController::class);
-    Route::resource('tahun', TahunController::class);
-    Route::resource('user', UserController::class);
+    Route::resource('sumberdana', SumberDanaController::class)->except('show');
+    Route::resource('tahun', TahunController::class)->except('show');
+    Route::resource('user', UserController::class)->except('show');
 
     Route::resource('targettahunan', TargetTahunanController::class);
     Route::resource('targetsumberdonasi', TargetSumberDonasiController::class);
