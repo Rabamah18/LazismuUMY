@@ -64,7 +64,7 @@ Route::middleware('auth')->group(function () {
     Route::get('penyaluran/export', [PenyaluranController::class, 'export'])->name('penyaluran.export');
     Route::resource('penyaluran', PenyaluranController::class);
 
-    Route::resource('ashnaf', AshnafController::class);
+    Route::resource('ashnaf', AshnafController::class)->except('show');
     Route::resource('pilar', PilarController::class);
     Route::resource('programpilar', ProgramPilarController::class);
     Route::resource('provinsi', ProvinsiController::class);

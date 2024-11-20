@@ -21,7 +21,7 @@
                         <div>
                             <x-input-label for="pilar" :value="__('Pilar')" />
                             <x-text-input id="pilar" name="pilar" type="text" class="block w-full mt-1"
-                                :value="old('pilar')" required autocomplete="pilar" />
+                                :value="old('pilar')" required autofocus autocomplete="pilar" />
                             <x-input-error class="mt-2" :messages="$errors->get('pilar')" />
                         </div>
 
