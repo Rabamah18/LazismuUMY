@@ -28,7 +28,7 @@
 
             </thead>
             <tbody>
-                <tr>
+                <tr class="bg-gray-200 dark:bg-gray-600">
                     <td rowspan="2"></td>
                     <td rowspan="2" class="px-6 py-4 lg:table-cell">
                         Zakat({{ $targetPersenZakat }}%)
@@ -39,6 +39,7 @@
                     <td class="px-6 py-4 text-center lg:table-cell">
                         {{ $pembulatanPersenRealisaiZakat }}%
                     </td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td rowspan="{{ $sumberZakats->count() + 1 }}" class="px-6 py-4 text-center lg:table-cell">
@@ -56,7 +57,7 @@
                             </td>
                         </tr>
                 @endforelse
-                <tr>
+                <tr class="bg-orange-200 dark:bg-gray-600">
                     <td class="px-6 py-4 lg:table-cell"></td>
                     <td class="px-6 py-4 lg:table-cell">
                         Total
@@ -78,21 +79,22 @@
                     <td class="px-6 py-4 lg:table-cell"></td>
                     <td class="px-6 py-4 lg:table-cell"></td>
                 </tr>
-                <tr>
+                <tr class="bg-gray-200 dark:bg-gray-600">
                     <td class="px-6 py-4 lg:table-cell"></td>
-                    <td class="px-6 py-4 text-center lg:table-cell">
+                    <td class="px-6 py-4 lg:table-cell">
                         Infaq({{ $targetPersenInfaq }}%)
                     </td>
                     <td class="px-6 py-4 lg:table-cell">
                         Rp. {{ $nominalTargetInfaq }}
                     </td>
-                    <td class="px-6 py-4 lg:table-cell">
+                    <td class="px-6 py-4 text-center lg:table-cell">
                         {{ $pembulatanPersenRealisaiInfaq }}%
                     </td>
+                    <td></td>
                 </tr>
-                <tr>
+                <tr class="bg-indigo-200 dark:bg-indigo-900">
                     <td class="px-6 py-4 lg:table-cell" rowspan="2"></td>
-                    <td class="px-6 py-4 text-center lg:table-cell" rowspan="2">
+                    <td class="px-6 py-4 lg:table-cell" rowspan="2">
                         Infaq Non Rutin({{ $targetPersenInfaqNR }}%)
                     </td>
                     <td class="px-6 py-4 lg:table-cell" rowspan="2">
@@ -101,6 +103,7 @@
                     <td class="px-6 py-4 text-center lg:table-cell">
                         {{ $pembulatanPersenRealisaiInfaqNonRutin }}%
                     </td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td class="px-6 py-4 text-center lg:table-cell" rowspan="{{ $sumberInfaqNonRutins->count() + 1 }}">
@@ -118,7 +121,7 @@
                             </td>
                         </tr>
                 @endforelse
-                <tr>
+                <tr class="bg-orange-200 dark:bg-gray-600">
                     <td class="px-6 py-4 lg:table-cell"></td>
                     <td class="px-6 py-4 lg:table-cell">
                         Total
@@ -140,7 +143,7 @@
                     <td class="px-6 py-4 lg:table-cell"></td>
                     <td class="px-6 py-4 lg:table-cell"></td>
                 </tr>
-                <tr>
+                <tr class="bg-indigo-200 dark:bg-indigo-900">
                     <td class="px-6 py-4 lg:table-cell" rowspan="2"></td>
                     <td class="px-6 py-4 lg:table-cell" rowspan="2">
                         Infaq Rutin({{ $targetPersenInfaqR }}%)
@@ -151,6 +154,7 @@
                     <td class="px-6 py-4 text-center lg:table-cell">
                         {{ $pembulatanPersenRealisaiInfaqRutin }}%
                     </td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td class="px-6 py-4 text-center lg:table-cell" rowspan="{{ $sumberInfaqRutins->count() + 1 }}">
@@ -168,7 +172,7 @@
                             </td>
                         </tr>
                 @endforelse
-                <tr>
+                <tr class="bg-orange-200 dark:bg-gray-600">
                     <td class="px-6 py-4 lg:table-cell"></td>
                     <td class="px-6 py-4 lg:table-cell">
                         Total

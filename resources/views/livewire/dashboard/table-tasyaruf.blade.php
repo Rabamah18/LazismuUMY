@@ -1,6 +1,6 @@
 <x-card.app>
     <x-card.title>
-        {{ __('Tabel Fundraising') }}
+        {{ __('Tabel Tasyaruf') }}
     </x-card.title>
     <x-card.description>
         {{ __('Target Tahun ini: ' . $targetselectedTahun) }}
