@@ -44,6 +44,8 @@ class Create extends Component
 
     public $isPindahDana;
 
+    public $lampiran;
+
     public function mount()
     {
         $this->tanggal = Carbon::now()->format('Y-m-d');
@@ -72,6 +74,7 @@ class Create extends Component
             'selectedProgramSumber' => 'required|exists:program_sumbers,id',
             'selectedSumberDana' => 'required|exists:sumber_danas,id',
             'selectedTahun' => 'required|exists:tahuns,id',
+            'lampiran' => 'nullable|url:http,https',
             'isPindahDana' => 'nullable|boolean',
         ];
 
@@ -98,20 +101,21 @@ class Create extends Component
 
         // Remove any non-numeric characters for safe storage as integer
         $numnominal = $this->parseRupiah($this->nominal);
-        
+
         Penghimpunan::create([
             'tanggal' => $this->tanggal,
             'uraian' => $this->uraian,
             'nominal' => $numnominal,
-            'lembaga_count' => $this->lembaga ?? 0,
-            'male_count' => $this->pria ?? 0,
-            'female_count' => $this->wanita ?? 0,
-            'no_name_count' => $this->noname ?? 0,
+            'lembaga_count' => $this->lembaga == null || $this->lembaga == '' ? 0 : $this->lembaga,
+            'male_count' => $this->pria == null || $this->pria == '' ? 0 : $this->pria,
+            'female_count' => $this->wanita == null || $this->wanita == '' ? 0 : $this->wanita,
+            'no_name_count' => $this->noname == null || $this->noname == '' ? 0 : $this->noname,
             'program_sumber_id' => $this->selectedProgramSumber,
             'sumber_dana_id' => $this->selectedSumberDana,
             'tahun_id' => $this->selectedTahun,
-            'pindahdana' => $this->isPindahDana,
+            'pindahdana' => $this->isPindahDana == null ? false : $this->isPindahDana,
             'user_id' => auth()->user()->id,
+            'lampiran' => $this->lampiran,
         ]);
 
         return redirect()->route('penghimpunan.index')->with('success', 'Penghimpunan created successfully!');

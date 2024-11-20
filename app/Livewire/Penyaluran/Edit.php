@@ -69,7 +69,9 @@ class Edit extends Component
 
     public $nominal;
 
-    public $isPindahDana = true;
+    public $isPindahDana;
+
+    public $lampiran;
 
     public function mount(Penyaluran $penyaluran)
     {
@@ -101,30 +103,11 @@ class Edit extends Component
         $this->selectedProvinsi = $penyaluran->kabupaten->provinsi->id;
         $this->selectedKabupaten = $penyaluran->kabupaten->id;
         $this->selectedTahun = $penyaluran->tahun->id;
+        $this->lampiran = $penyaluran->lampiran;
         $this->isPindahDana = $penyaluran->pindahdana;
 
     }
 
-    // public function setPenyaluran(Penyaluran $penyaluran)
-    // {
-    //     $this->tanggal = $penyaluran->tanggal;
-    //     $this->uraian = $penyaluran->uraian;
-    //     $this->nominal = $penyaluran->nominal;
-    //     $this->selectedAshnaf = $penyaluran->ashnaf;
-    //     $this->lembaga = $penyaluran->lembaga_count;
-    //     $this->pria = $penyaluran->male_count;
-    //     $this->wanita = $penyaluran->female_count;
-    //     $this->selectedPilar = $penyaluran->pilar;
-    //     $this->selectedProgramPilar = $penyaluran->programPilar;
-    //     $this->selectedSumberDana = $penyaluran->sumberDana;
-    //     $this->selectedProgramSumber = $penyaluran->programSumber;
-    //     $this->selectedSumberDonasi = $penyaluran->sumberDonasi;
-    //     $this->selectedTahun = $penyaluran->tahun;
-    //     $this->selectedProvinsi = $penyaluran->provinsi;
-    //     $this->selectedKabupaten = $penyaluran->kabupaten;
-    //     $this->isPindahDana = $penyaluran->pindahdana;
-
-    // }
 
     public function rules()
     {
@@ -143,6 +126,8 @@ class Edit extends Component
             'selectedSumberDana' => 'nullable|exists:sumber_danas,id',
             'selectedProgramSumber' => 'nullable|exists:program_sumbers,id',
             'selectedSumberDonasi' => 'required|exists:sumber_donasis,id',
+            'lampiran' => 'nullable|url:http,https',
+            'isPindahDana' => 'nullable|boolean',
 
         ];
     }
@@ -187,9 +172,9 @@ class Edit extends Component
             'uraian' => $this->uraian,
             'nominal' => $nominal,
             'ashnaf_id' => $this->selectedAshnaf,
-            'lembaga_count' => $this->lembaga,
-            'male_count' => $this->pria,
-            'female_count' => $this->wanita,
+            'lembaga_count' => $this->lembaga == '' ? 0 : $this->lembaga,
+            'male_count' => $this->pria == '' ? 0 : $this->pria,
+            'female_count' => $this->wanita == '' ? 0 : $this->wanita,
             'pilar_id' => $this->selectedPilar,
             'program_pilar_id' => $this->selectedProgramPilar,
             'sumber_dana_id' => $this->selectedSumberDana,
@@ -198,6 +183,9 @@ class Edit extends Component
             'provinsi_id' => $this->selectedProvinsi,
             'kabupaten_id' => $this->selectedKabupaten,
             'user_id' => auth()->user()->id,
+            'pindahdana' => $this->isPindahDana == null ? false : $this->isPindahDana,
+            'lampiran' => $this->lampiran,
+
         ]);
 
         return redirect()->route('penyaluran.index');

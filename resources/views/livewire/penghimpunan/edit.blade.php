@@ -128,6 +128,13 @@
         <x-input-error class="mt-2" :messages="$errors->get('selectedTahun')" />
     </div>
 
+    <div>
+        <x-input-label for="lampiran" :value="__('Lampirkan Link GDrive Bukti')" />
+        <x-text-input id="lampiran" wire:model="lampiran" type="text" class="block w-full mt-1" :value="old('lampiran')"
+            autocomplete="lampiran" />
+        <x-input-error class="mt-2" :messages="$errors->get('lampiran')" />
+    </div>
+
     <div class="block mt-4">
         <label for="pindah_dana" class="inline-flex items-center">
             <input id="pindah_dana" type="checkbox"

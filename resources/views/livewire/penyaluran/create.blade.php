@@ -3,7 +3,7 @@
         <div>
             <x-input-label for="tanggal" :value="__('Tanggal')" />
             <x-text-input wire:model='tanggal' id="tanggal" type='date' class="block w-full mt-1" :value="old('tanggal')"
-                autofocus required autocomplete="tanggal" />
+                required autocomplete="tanggal" />
             <x-input-error class="mt-2" :messages="$errors->get('tanggal')" />
         </div>
 
@@ -16,7 +16,8 @@
 
         <div>
             <x-input-label for="sumber_donasi_id" :value="__('Sumber Donasi')" />
-            <x-select-input wire:model.change="selectedSumberDonasi" id="sumber_donasi" class="block w-full mt-1">
+            <x-select-input wire:model.change="selectedSumberDonasi" id="sumber_donasi" class="block w-full mt-1"
+                required>
                 <option value="">{{ __('Select Sumber Donasi') }}</option>
                 @foreach ($sumberDonasis as $sumberDonasi)
                     <option value="{{ $sumberDonasi->id }}"
@@ -27,11 +28,11 @@
             </x-select-input>
             <x-input-error class="mt-2" :messages="$errors->get('sumber_donasi_id')" />
         </div>
-        
 
         <div>
             <x-input-label for="program_sumber_id" :value="__('Program Sumber')" />
-            <x-select-input wire:model.change="selectedProgramSumber" id="program_sumber" class="block w-full mt-1">
+            <x-select-input wire:model.change="selectedProgramSumber" id="program_sumber" class="block w-full mt-1"
+                required>
                 <option value="">{{ __('Select Program Sumber') }}</option>
                 @foreach ($programSumbers as $programSumber)
                     <option value="{{ $programSumber->id }}"
@@ -43,10 +44,9 @@
             <x-input-error class="mt-2" :messages="$errors->get('program_sumber_id')" />
         </div>
 
-
         <div>
             <x-input-label for="sumber_dana_id" :value="__('Sumber Dana')" />
-            <x-select-input wire:model.change="selectedSumberDana" id="sumber_dana" class="block w-full mt-1">
+            <x-select-input wire:model.change="selectedSumberDana" id="sumber_dana" class="block w-full mt-1" required>
                 <option value="">{{ __('Select Sumber Dana') }}</option>
                 @foreach ($sumberDanas as $sumberDana)
                     <option value="{{ $sumberDana->id }}"
@@ -58,25 +58,16 @@
             <x-input-error class="mt-2" :messages="$errors->get('sumber_dana_id')" />
         </div>
 
-
-        {{-- <div>
-            <x-input-label for="currentSaldo" :value="__('Saldo Saat Ini')" />
-            <x-text-input id="currentSaldo" wire:model="currentSaldo" type="number" class="block w-full mt-1"
-                :value="old('currentSaldo')" required autocomplete="currentSaldo" />
-            <x-input-error class="mt-2" :messages="$errors->get('currentSaldo')" />
-        </div> --}}
-
         <div>
-            <p>
-                Saldo Saat Ini : {{ $currentSaldo }}
+            <p class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                Saldo Saat Ini : {{ $currentSaldo ?? 'Select Sumber Dana' }}
             </p>
         </div>
-
 
         <div x-data="{ nominal: '' }">
             <x-input-label for="nominal" :value="__('Nominal')" />
 
-            <x-text-input wire:model="nominal" id="nominal" type="text" class="block w-full mt-1" x-model="nominal"
+            <x-text-input wire:model="nominal" id="nominal" type="text" class="block w-full mt-1" x-model="nominal" required
                 x-on:input="nominal = 'Rp. ' + $event.target.value.replace(/[^,\d]/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.')"
                 placeholder="Rp." autocomplete="off" />
 
@@ -119,7 +110,7 @@
 
         <div>
             <x-input-label for="ashnaf_id" :value="__('Ashnaf')" />
-            <x-select-input wire:model.change="selectedAshnaf" id="ashnaf" class="block w-full mt-1">
+            <x-select-input wire:model.change="selectedAshnaf" id="ashnaf" class="block w-full mt-1" required>
                 <option value="">{{ __('Select Ashnaf') }}</option>
                 @foreach ($ashnafs as $ashnaf)
                     <option value="{{ $ashnaf->id }}" {{ request('ashnaf_id') == 'ashnaf_id' ? 'selected' : '' }}>
@@ -132,28 +123,28 @@
 
         <div>
             <x-input-label for="lembaga" :value="__('Lembaga')" />
-            <x-text-input wire:model='lembaga' id="lembaga" type="number" class="block w-full mt-1" :value="old('lembaga')"
-                autocomplete="lembaga" min="0" placeholder="0"/>
+            <x-text-input wire:model='lembaga' id="lembaga" type="number" class="block w-full mt-1"
+                :value="old('lembaga')" autocomplete="lembaga" min="0" placeholder="0" />
             <x-input-error class="mt-2" :messages="$errors->get('lembaga')" />
         </div>
 
         <div>
             <x-input-label for="pria" :value="__('Pria')" />
             <x-text-input wire:model='pria' id="pria" type="number" class="block w-full mt-1" :value="old('pria')"
-                autocomplete="pria" min="0" placeholder="0"/>
+                autocomplete="pria" min="0" placeholder="0" />
             <x-input-error class="mt-2" :messages="$errors->get('pria')" />
         </div>
 
         <div>
             <x-input-label for="wanita" :value="__('Wanita')" />
             <x-text-input wire:model='wanita' id="wanita" type="number" class="block w-full mt-1" :value="old('wanita')"
-                autocomplete="wanita" min="0" placeholder="0"/>
+                autocomplete="wanita" min="0" placeholder="0" />
             <x-input-error class="mt-2" :messages="$errors->get('wanita')" />
         </div>
 
         <div>
             <x-input-label for="selectedProvinsi" :value="__('Provinsi/Luar Negeri')" />
-            <x-select-input wire:model.change="selectedProvinsi" id="provinsi" class="block w-full mt-1">
+            <x-select-input wire:model.change="selectedProvinsi" id="provinsi" class="block w-full mt-1" required>
                 <option value="">{{ __('Select Provinsi/Luar Negeri') }}</option>
                 @foreach ($provinsis as $provinsi)
                     <option value="{{ $provinsi->id }}">
@@ -166,7 +157,7 @@
 
         <div>
             <x-input-label for="selectedKabupaten" :value="__('Kabupaten/Negara')" />
-            <x-select-input wire:model.change="selectedKabupaten" id="kabupaten" class="block w-full mt-1"
+            <x-select-input wire:model.change="selectedKabupaten" id="kabupaten" class="block w-full mt-1" required
                 disabled="{{ $selectedProvinsi == null ? 'disabled' : '' }}">
                 @if ($selectedProvinsi == null)
                     <option value="">{{ 'Please Select Provinsi/Luar Negeri' }}</option>
@@ -186,7 +177,7 @@
 
         <div>
             <x-input-label for="tahun_id" :value="__('Tahun')" />
-            <x-select-input wire:model.change="selectedTahun" id="tahun" class="block w-full mt-1"
+            <x-select-input wire:model.change="selectedTahun" id="tahun" class="block w-full mt-1" required
                 placeholder="Select Tahun">
                 <option value="">{{ __('Select Tahun') }}</option>
                 @foreach ($tahuns as $tahun)
@@ -196,6 +187,13 @@
                 @endforeach
             </x-select-input>
             <x-input-error class="mt-2" :messages="$errors->get('tahun_id')" />
+        </div>
+
+        <div>
+            <x-input-label for="lampiran" :value="__('Lampirkan Link GDrive Bukti')" />
+            <x-text-input id="lampiran" wire:model="lampiran" type="text" class="block w-full mt-1"
+                :value="old('lampiran')" autocomplete="lampiran" />
+            <x-input-error class="mt-2" :messages="$errors->get('lampiran')" />
         </div>
 
         <div class="block mt-4">

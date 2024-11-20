@@ -10,17 +10,26 @@
     <div class="sm:py-6">
         <div class="max-w-full mx-auto sm:px-6 sm:space-y-6">
             <x-card.app>
-                <div class="flex">
+                <div class="flex justify-between">
                     <x-card.title>
                         {{ __('Informasi Penghimpunan') }}
                     </x-card.title>
-                    {{-- <div class="ml-auto">
-                        @include('penghimpunan.partials.action')
-                    </div> --}}
+                    <div>
+                        <x-button.link-primary href="{{ route('penghimpunan.edit', $penghimpunan) }}">
+                            {{ __('Edit') }}
+                        </x-button.link-primary>
+                        @if ($penghimpunan->lampiran)
+                            <x-button.link-primary href="{{ $penghimpunan->lampiran }}" target="_blank"
+                                rel="noopener noreferrer">
+                                {{ __('Lihat Lampiran >') }}
+                            </x-button.link-primary>
+                        @endif
+                    </div>
                 </div>
                 <x-card.description>
                     {{ __('mengatur Informasi Penghimpunan.') }}
                 </x-card.description>
+
                 <div class="mt-6">
                     <div class="min-w-full space-y-3 sm:space-y-1">
                         <div class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:flex">
