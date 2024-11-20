@@ -21,7 +21,7 @@
                     <x-text-input wire:model.lazy='dateStart' id="tanggal" type='date' class="block w-full mt-1" :value="old('tanggal')"/>
                 </div>
 
-                <div class=" flex items-center gap-2">
+                <div class="flex items-center gap-2 ">
                     <x-input-label for="tanggal" :value="__('Tanggal Akhir')" />
                     <x-text-input wire:model.lazy='dateEnd' id="tanggal" type='date' class="block w-full mt-1" :value="old('tanggal')"/>
                 </div>
@@ -371,6 +371,10 @@
 
                         <td class="py-4 pl-6 pr-2 lg:pr-4">
                             <div class="flex space-x-2 justify-items-start">
+                                @if($penyaluran->lampiran)
+                                    <a href="{{ $penyaluran->lampiran }}" target="_blank" rel="noopener noreferrer"
+                                        class="text-green-500 hover:underline">Lampiran</a>
+                                    @endif
                                 <a href="{{ route('penyaluran.show', $penyaluran) }}"
                                     class="hover:underline">Lihat</a>
                                 <a href="{{ route('penyaluran.edit', $penyaluran) }}"
@@ -442,7 +446,7 @@
                    </td>
 
                    <td>
-                    
+
                    </td>
 
                    {{-- @dump($totalNominal) --}}
