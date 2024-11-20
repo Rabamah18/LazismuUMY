@@ -9,9 +9,9 @@
                     {{ __('Provinsi') }}
                 </th>
                 <th scope="col" class="px-6 py-3 lg:table-cell">
-                    {{ __('Name') }}
+                    {{ __('Kabupaten') }}
                 </th>
-                <th scope="col" class="py-3 pl-6 pr-2 lg:pr-4">
+                <th scope="col" class="py-3 pl-6 pr-2 text-center lg:pr-4">
                     {{ __('Option') }}
                 </th>
             </tr>
@@ -45,9 +45,8 @@
 
                         </div>
                     </td>
-                    <td class="py-4 pl-6 pr-2 lg:pr-4">
-                        <div class="flex space-x-2 justify-items-start">
-                            <a href="{{ route('kabupaten.show', $kabupaten) }}" class="hover:underline">Lihat</a>
+                    <td class="py-4 pl-6 pr-2 text-center lg:pr-4">
+                        <div class="flex justify-center space-x-2">
                             <a href="{{ route('kabupaten.edit', $kabupaten) }}"
                                 class="text-indigo-500 hover:underline">Ubah</a>
                                 <button x-data="" class="text-red-500 hover:underline"
