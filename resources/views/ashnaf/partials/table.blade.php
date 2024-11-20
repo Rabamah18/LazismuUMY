@@ -8,7 +8,7 @@
                 <th scope="col" class="px-6 py-3 lg:table-cell">
                     {{ __('Ashnaf') }}
                 </th>
-                <th scope="col" class="py-3 pl-6 pr-2 lg:pr-4">
+                <th scope="col" class="py-3 pl-6 pr-2 text-center lg:pr-4">
                     {{ __('Option') }}
                 </th>
             </tr>
@@ -35,9 +35,8 @@
 
                         </div>
                     </td>
-                    <td class="py-4 pl-6 pr-2 lg:pr-4">
-                        <div class="flex space-x-2 justify-items-start">
-                            <a href="{{ route('ashnaf.show', $ashnaf) }}" class="hover:underline">Lihat</a>
+                    <td class="items-center py-4 pl-6 pr-2 text-center lg:pr-4">
+                        <div class="flex items-center justify-center space-x-2">
                             <a href="{{ route('ashnaf.edit', $ashnaf) }}"
                                 class="text-indigo-500 hover:underline">Ubah</a>
                             <button x-data="" class="text-red-500 hover:underline"
@@ -46,8 +45,7 @@
                             </button>
 
                             <x-modal name="confirm-user-deletion{{ $ashnaf->id }}" :show="$errors->userDeletion->isNotEmpty()" focusable>
-                                <form method="post" action="{{ route('ashnaf.destroy', $ashnaf) }}"
-                                    class="p-6">
+                                <form method="post" action="{{ route('ashnaf.destroy', $ashnaf) }}" class="p-6">
                                     @csrf
                                     @method('delete')
 

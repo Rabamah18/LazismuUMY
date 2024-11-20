@@ -46,8 +46,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::resource('ashnaf', AshnafController::class);
-    Route::resource('kabupaten', KabupatenController::class);
 
     Route::get('penghimpunan/export', [PenghimpunanController::class, 'export'])->name('penghimpunan.export');
     // Route::get('penghimpunan/exportexel', [PenghimpunanController::class, 'exportExel'])->name('penghimpunan.exportexel');
@@ -66,20 +64,21 @@ Route::middleware('auth')->group(function () {
     Route::get('penyaluran/export', [PenyaluranController::class, 'export'])->name('penyaluran.export');
     Route::resource('penyaluran', PenyaluranController::class);
 
+    Route::resource('ashnaf', AshnafController::class);
     Route::resource('pilar', PilarController::class);
     Route::resource('programpilar', ProgramPilarController::class);
-    Route::resource('programsumber', ProgramSumberController::class);
     Route::resource('provinsi', ProvinsiController::class);
+    Route::resource('kabupaten', KabupatenController::class);
+    Route::resource('sumberdonasi', SumberDonasiController::class);
+    Route::resource('programsumber', ProgramSumberController::class);
     Route::resource('sumberdana', SumberDanaController::class);
     Route::resource('tahun', TahunController::class);
     Route::resource('user', UserController::class);
-    Route::resource('sumberdonasi', SumberDonasiController::class);
 
     Route::resource('targettahunan', TargetTahunanController::class);
     Route::resource('targetsumberdonasi', TargetSumberDonasiController::class);
     Route::resource('targetprogramsumber', TargetProgramSumberController::class);
     Route::resource('targetsubinfaq', TargetSubInfaqController::class);
-
     Route::resource('targetpilar', TargetPilarController::class);
     Route::resource('targetprogrampilar', TargetProgramPilarController::class);
 
