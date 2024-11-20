@@ -15,7 +15,6 @@
                     {{ __('Edit Data Provinsi/Luar Negeri yang sudah ada.') }}
                 </x-card.description>
                 <div class="max-w-xl">
-                    {{-- @dump($provinsi) --}}
                     <form method="post" action="{{ route('provinsi.update', $provinsi) }}" class="mt-6 space-y-6">
                         @csrf
                         @method('patch')

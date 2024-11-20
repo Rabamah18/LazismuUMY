@@ -8,7 +8,7 @@
                 <th scope="col" class="px-6 py-3 lg:table-cell">
                     {{ __('Name') }}
                 </th>
-                <th scope="col" class="py-3 pl-6 pr-2 lg:pr-4">
+                <th scope="col" class="py-3 pl-6 pr-2 text-center lg:pr-4">
                     {{ __('Option') }}
                 </th>
             </tr>
@@ -22,7 +22,6 @@
                             <div class="hover:underline whitespace-nowrap">
                                 {{ ($provinsis->currentpage() - 1) * $provinsis->perpage() + $loop->index + 1 }}
                             </div>
-
                         </div>
                     </td>
 
@@ -32,12 +31,10 @@
                             <p>
                                 {{ $provinsi->name }}
                             </p>
-
                         </div>
                     </td>
-                    <td class="py-4 pl-6 pr-2 lg:pr-4">
-                        <div class="flex space-x-2 justify-items-start">
-                            <a href="{{ route('provinsi.show', $provinsi) }}" class="hover:underline">Lihat</a>
+                    <td class="py-4 pl-6 pr-2 text-center lg:pr-4">
+                        <div class="flex justify-center space-x-2">
                             <a href="{{ route('provinsi.edit', $provinsi) }}"
                                 class="text-indigo-500 hover:underline">Ubah</a>
                             <button x-data="" class="text-red-500 hover:underline"

@@ -66,7 +66,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('ashnaf', AshnafController::class)->except('show');
     Route::resource('pilar', PilarController::class);
-    Route::resource('programpilar', ProgramPilarController::class);
+    Route::resource('programpilar', ProgramPilarController::class)->except('show');
     Route::resource('provinsi', ProvinsiController::class);
     Route::resource('kabupaten', KabupatenController::class);
     Route::resource('sumberdonasi', SumberDonasiController::class);
