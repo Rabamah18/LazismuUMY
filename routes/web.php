@@ -70,7 +70,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('provinsi', ProvinsiController::class)->except('show');
     Route::resource('kabupaten', KabupatenController::class)->except('show');
     Route::resource('sumberdonasi', SumberDonasiController::class)->except('show');
-    Route::resource('programsumber', ProgramSumberController::class);
+    Route::resource('programsumber', ProgramSumberController::class)->except('show');
     Route::resource('sumberdana', SumberDanaController::class);
     Route::resource('tahun', TahunController::class);
     Route::resource('user', UserController::class);

@@ -21,13 +21,13 @@
                         <div>
                             <x-input-label for="name" :value="__('Name')" />
                             <x-text-input id="name" name="name" type="text" class="block w-full mt-1"
-                                :value="old('name')" required autocomplete="name" />
+                                :value="old('name')" required autofocus autocomplete="name" />
                             <x-input-error class="mt-2" :messages="$errors->get('name')" />
                         </div>
 
                         <div>
                             <x-input-label for="sumber_donasi_id" :value="__('Sumber Donasi')" />
-                            <x-select-input id="sumber_donasi" name="sumber_donasi_id" class="block w-full mt-1">
+                            <x-select-input id="sumber_donasi" name="sumber_donasi_id" class="block w-full mt-1" required>
                                 <option value="">{{ __('Select Sumber Donasi') }}</option>
                                 @foreach ($sumberDonasis as $sumberDonasi)
                                     <option value="{{ $sumberDonasi->id }}"
