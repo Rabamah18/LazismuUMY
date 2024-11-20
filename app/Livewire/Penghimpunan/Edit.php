@@ -44,6 +44,8 @@ class Edit extends Component
 
     public $selectedSumberDana;
 
+    public $lampiran;
+
     public $isPindahDana;
 
     public function mount(Penghimpunan $penghimpunan)
@@ -66,6 +68,7 @@ class Edit extends Component
         $this->selectedProgramSumber = $penghimpunan->programSumber->id;
         $this->selectedSumberDana = $penghimpunan->sumberDana->id;
         $this->selectedTahun = $penghimpunan->tahun->id;
+        $this->lampiran = $penghimpunan->lampiran;
         $this->isPindahDana = $penghimpunan->pindahdana;
 
     }
@@ -84,6 +87,7 @@ class Edit extends Component
             'selectedProgramSumber' => 'required|exists:program_sumbers,id',
             'selectedSumberDana' => 'required|exists:sumber_danas,id',
             'selectedTahun' => 'required|exists:tahuns,id',
+            'lampiran' => 'nullable|url:http,https',
             'isPindahDana' => 'nullable|boolean',
         ];
 
@@ -110,19 +114,20 @@ class Edit extends Component
 
         // Remove any non-numeric characters for safe storage as integer
         $numnominal = $this->parseRupiah($this->nominal);
-
+        // dd($this->lembaga);
         $this->penghimpunan->update([
             'tanggal' => $this->tanggal,
             'uraian' => $this->uraian,
             'nominal' => $numnominal,
-            'lembaga_count' => $this->lembaga ?? 0,
-            'male_count' => $this->pria ?? 0,
-            'female_count' => $this->wanita ?? 0,
-            'no_name_count' => $this->noname ?? 0,
+            'lembaga_count' => $this->lembaga == '' ? 0 : $this->lembaga,
+            'male_count' => $this->pria == '' ? 0 : $this->pria,
+            'female_count' => $this->wanita == '' ? 0 : $this->wanita,
+            'no_name_count' => $this->noname == '' ? 0 : $this->noname,
             'program_sumber_id' => $this->selectedProgramSumber,
             'sumber_dana_id' => $this->selectedSumberDana,
             'tahun_id' => $this->selectedTahun,
             'pindahdana' => $this->isPindahDana,
+            'lampiran' => $this->lampiran,
             'user_id' => auth()->user()->id,
         ]);
 

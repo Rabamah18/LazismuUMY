@@ -280,6 +280,10 @@
                         @can('update', App\Models\Penghimpunan::class)
                             <td class="w-24 py-4 pl-6 pr-2 text-center lg:pr-4">
                                 <div class="flex space-x-2 justify-items-start">
+                                    @if($penghimpunan->lampiran)
+                                    <a href="{{ $penghimpunan->lampiran }}" target="_blank" rel="noopener noreferrer"
+                                        class="text-green-500 hover:underline">Lampiran</a>
+                                    @endif
                                     <a href="{{ route('penghimpunan.show', $penghimpunan) }}"
                                         class="hover:underline">Detail</a>
                                     <a href="{{ route('penghimpunan.edit', $penghimpunan) }}"

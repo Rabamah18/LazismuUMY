@@ -36,18 +36,18 @@
 
     <div>
         <x-input-label for="lembaga" :value="__('Jumlah Lembaga')" />
-        <x-text-input id="lembaga" wire:model="lembaga" type="number" class="block w-full mt-1" :value="old('lembaga')"
-            autocomplete="lembaga" min="0" placeholder="0" />
+        <x-text-input id="lembaga" wire:model.lazy="lembaga" type="number" class="block w-full mt-1"
+            :value="old('lembaga')" autocomplete="lembaga" min="0" placeholder="0" />
         <x-input-error class="mt-2" :messages="$errors->get('lembaga')" />
     </div>
-
+    @dump($lembaga)
     <div>
         <x-input-label for="pria" :value="__('Jumlah Pria')" />
-        <x-text-input id="pria" wire:model="pria" type="number" class="block w-full mt-1" :value="old('pria')"
+        <x-text-input id="pria" wire:model.lazy="pria" type="number" class="block w-full mt-1" :value="old('pria')"
             autocomplete="pria" min="0" placeholder="0" />
         <x-input-error class="mt-2" :messages="$errors->get('pria')" />
     </div>
-
+    @dump($pria)
     <div>
         <x-input-label for="wanita" :value="__('Jumlah Wanita')" />
         <x-text-input id="wanita" wire:model="wanita" type="number" class="block w-full mt-1" :value="old('wanita')"
@@ -75,7 +75,7 @@
         </x-select-input>
         <x-input-error class="mt-2" :messages="$errors->get('selectedSumberDonasi')" />
     </div>
-    @dump($selectedSumberDonasi, $selectedProgramSumber)
+
     <div>
         <x-input-label for="program_sumber_id" :value="__('Program Sumber')" />
         <x-select-input wire:model.change="selectedProgramSumber" id="program_sumber" class="block w-full mt-1"
@@ -121,6 +121,13 @@
             @endforeach
         </x-select-input>
         <x-input-error class="mt-2" :messages="$errors->get('selectedTahun')" />
+    </div>
+
+    <div>
+        <x-input-label for="lampiran" :value="__('Lampirkan Link GDrive Bukti')" />
+        <x-text-input id="lampiran" wire:model="lampiran" type="text" class="block w-full mt-1" :value="old('lampiran')"
+            autocomplete="lampiran" />
+        <x-input-error class="mt-2" :messages="$errors->get('lampiran')" />
     </div>
 
     <div class="block mt-4">
