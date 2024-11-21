@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-            {{ __('Program') }}
+            {{ __('Target Program') }}
         </h2>
     </x-slot>
 
@@ -9,10 +9,10 @@
         <div class="max-w-full mx-auto sm:px-6 sm:space-y-6">
             <x-card.app>
                 <x-card.title>
-                    {{ __('Create Data Program') }}
+                    {{ __('Edit Data Target Program') }}
                 </x-card.title>
                 <x-card.description>
-                    {{ __('Create a new Data Program.') }}
+                    {{ __('Edit a new Data Target Program.') }}
                 </x-card.description>
                 <div class="max-w-xl">
                     <form method="post" action="{{ route('targetprogrampilar.update', $targetprogrampilar) }}" class="mt-6 space-y-6">
@@ -24,18 +24,18 @@
                                 <option value="">{{ __('Select Program') }}</option>
                                 @foreach ($programPilars as $programPilar)
                                     <option value="{{ $programPilar->id }}"
-                                        {{ request('program_pilar_id') == 'program_pilar_id' ? 'selected' : '' }}>
+                                        {{ $programPilar->id == $targetprogrampilar->programPilar->id ? 'selected' : '' }}>
                                         {{ $programPilar->name }}
-                                    </option>
+                                        </option>
                                 @endforeach
                             </x-select-input>
                             <x-input-error class="mt-2" :messages="$errors->get('program_pilar_id')" />
                         </div>
 
                         <div>
-                            <x-input-label for="nominal" :value="__('Jumlah nominal')" />
-                            <x-text-input id="nominal" name="nominal" type="number" class="block w-full mt-1"
-                                :value="old('nominal')" autocomplete="nominal" min="0" placeholder="0" />
+                            <x-input-label for="nominal" :value="__('Persentage (%)')" />
+                            <x-text-input id="nominal" name="nominal" type="number" class="block w-full mt-1" required
+                                :value="old('nominal', $targetprogrampilar->nominal)" autocomplete="nominal" min="0" placeholder="0.00" step="0.01"/>
                             <x-input-error class="mt-2" :messages="$errors->get('nominal')" />
                         </div>
 
@@ -44,9 +44,10 @@
                             <x-select-input id="tahun" name="tahun_id" class="block w-full mt-1">
                                 <option value="">{{ __('Select Tahun') }}</option>
                                 @foreach ($tahuns as $tahun)
-                                    <option value="{{ $tahun->id }}"
-                                        {{ request('tahun_id') == 'tahun_id' ? 'selected' : '' }}> {{ $tahun->name }}
-                                    </option>
+                                <option value="{{ $tahun->id }}"
+                                    {{ $tahun->id == $targetprogrampilar->tahun->id ? 'selected' : '' }}>
+                                    {{ $tahun->name }}
+                                </option>
                                 @endforeach
                             </x-select-input>
                             <x-input-error class="mt-2" :messages="$errors->get('tahun_id')" />
