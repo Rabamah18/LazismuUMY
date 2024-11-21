@@ -10,7 +10,7 @@
             <x-card.app>
                 <div class="flex">
                     <x-card.title>
-                        {{ __('Semua daftar Target Program Sumber') }}
+                        {{ __('Semua Daftar Target Program Sumber') }}
                     </x-card.title>
                     <div class="ml-auto">
                         <x-button.link-primary href="{{ route('targetprogramsumber.create') }}">

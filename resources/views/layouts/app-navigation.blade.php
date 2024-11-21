@@ -36,12 +36,16 @@
                             {{ __('Program') }}
                         </x-nav-link>
 
-                        <x-nav-link :href="route('sumberdana.index')" :active="request()->routeIs('sumberdana.*')" class="hidden xl:inline-flex">
-                            {{ __('Sumber Dana') }}
+                        <x-nav-link :href="route('sumberdonasi.index')" :active="request()->routeIs('sumberdonasi.*')" class="hidden xl:inline-flex">
+                            {{ __('Sumber Donasi') }}
                         </x-nav-link>
 
                         <x-nav-link :href="route('programsumber.index')" :active="request()->routeIs('programsumber.*')" class="hidden xl:inline-flex">
                             {{ __('Program Sumber') }}
+                        </x-nav-link>
+
+                        <x-nav-link :href="route('sumberdana.index')" :active="request()->routeIs('sumberdana.*')" class="hidden xl:inline-flex">
+                            {{ __('Sumber Dana') }}
                         </x-nav-link>
 
                         <x-nav-link :href="route('ashnaf.index')" :active="request()->routeIs('ashnaf.*')" class="hidden 2xl:inline-flex">
@@ -66,7 +70,7 @@
                         <x-dropdown align="left" width="48">
                             <x-slot name="trigger">
                                 <button
-                                    class="2xl:hidden inline-flex items-center py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md dark:text-gray-400 dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none">
+                                    class="inline-flex items-center py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md 2xl:hidden dark:text-gray-400 dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none">
                                     <div>{{ __('Setting') }}</div>
 
                                     <div class="ms-1">
@@ -87,11 +91,14 @@
                                 <x-dropdown-link :href="route('programpilar.index')" class="lg:hidden">
                                     {{ __('Program') }}
                                 </x-dropdown-link>
-                                <x-dropdown-link :href="route('sumberdana.index')" class="xl:hidden">
-                                    {{ __('Sumber Dana') }}
+                                <x-dropdown-link :href="route('sumberdonasi.index')" class="xl:hidden">
+                                    {{ __('Sumber Donasi') }}
                                 </x-dropdown-link>
                                 <x-dropdown-link :href="route('programsumber.index')" class="xl:hidden">
                                     {{ __('Program Sumber') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('sumberdana.index')" class="xl:hidden">
+                                    {{ __('Sumber Dana') }}
                                 </x-dropdown-link>
                                 <x-dropdown-link :href="route('ashnaf.index')" class="2xl:hidden">
                                     {{ __('Ashnaf') }}
@@ -217,11 +224,14 @@
             <x-responsive-nav-link :href="route('programpilar.index')" :active="request()->routeIs('programpilar.*')">
                 {{ __('Program Pilar') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('sumberdana.index')" :active="request()->routeIs('sumberdana.*')">
-                {{ __('Sumber Dana') }}
+            <x-responsive-nav-link :href="route('sumberdonasi.index')" :active="request()->routeIs('sumberdonasi.*')">
+                {{ __('Sumber Donasi') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('programsumber.index')" :active="request()->routeIs('programsumber.*')">
                 {{ __('Program Sumber') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('sumberdana.index')" :active="request()->routeIs('sumberdana.*')">
+                {{ __('Sumber Dana') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('ashnaf.index')" :active="request()->routeIs('ashnaf.*')">
                 {{ __('Ashnaf') }}

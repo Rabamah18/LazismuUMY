@@ -9,12 +9,12 @@
                     {{ __('Jenis Target') }}
                 </th>
                 <th scope="col" class="px-6 py-3 lg:table-cell">
-                    {{ __('Nominal') }}
+                    {{ __('Persentage') }}
                 </th>
                 <th scope="col" class="px-6 py-3 lg:table-cell">
                     {{ __('Tahun') }}
                 </th>
-                <th scope="col" class="py-3 pl-6 pr-2 lg:pr-4">
+                <th scope="col" class="py-3 pl-6 pr-2 text-center lg:pr-4">
                     {{ __('Option') }}
                 </th>
             </tr>
@@ -26,8 +26,7 @@
                         {{-- loop --}}
                         <div class="flex">
                             <div class="hover:underline whitespace-nowrap">
-                                {{-- {{ ($targetsubinfaqs->currentpage() - 1) * $targetsubinfaqs->perpage() + $loop->index + 1 }} --}}
-                                {{ $targetsubinfaq->id }}
+                                {{ $loop->iteration }}
                             </div>
 
                         </div>
@@ -41,12 +40,10 @@
                         </div>
                     </td>
 
-                    <td wire:key="nominal-{{ $targetsubinfaq->id }}" x-data="{
-                        nominal: {{ $targetsubinfaq->nominal }},
-                    }"
+                    <td x-data="{nominal: {{ $targetsubinfaq->nominal }}}"
                         class="px-6 py-4 lg:table-cell">
                         <div class="flex">
-                            <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                            <p x-text="nominal.toString()+' %'"></p>
                         </div>
                     </td>
 
@@ -57,9 +54,9 @@
                             </p>
                         </div>
                     </td>
-                    <td class="py-4 pl-6 pr-2 lg:pr-4">
-                        <div class="flex space-x-2 justify-items-start">
-                            <a href="{{ route('targettahunan.edit', $targetsubinfaq) }}"
+                    <td class="py-4 pl-6 pr-2 text-center lg:pr-4">
+                        <div class="flex justify-center space-x-2 ">
+                            <a href="{{ route('targetsubinfaq.edit', $targetsubinfaq) }}"
                                 class="text-indigo-500 hover:underline">Edit</a>
                             <button x-data="" class="text-red-500 hover:underline"
                                 x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion{{ $targetsubinfaq->id }}')">

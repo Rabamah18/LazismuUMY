@@ -40,7 +40,7 @@ class TargetProgramSumberController extends Controller
             'nominal' => 'required',
             'tahun_id' => 'required|exists:tahuns,id',
         ]);
-        // dd($request->all());
+
         TargetProgramSumber::create([
             'nominal' => $request->nominal,
             'program_sumber_id' => $request->program_sumber_id,

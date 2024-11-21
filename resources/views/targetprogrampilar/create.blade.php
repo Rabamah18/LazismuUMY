@@ -20,7 +20,7 @@
                         @method('post')
                         <div>
                             <x-input-label for="program_pilar_id" :value="__('Program')" />
-                            <x-select-input id="program_pilar" name="program_pilar_id" class="block w-full mt-1">
+                            <x-select-input id="program_pilar" name="program_pilar_id" class="block w-full mt-1" required>
                                 <option value="">{{ __('Select Program') }}</option>
                                 @foreach ($programPilars as $programPilar)
                                     <option value="{{ $programPilar->id }}"
@@ -33,15 +33,16 @@
                         </div>
 
                         <div>
-                            <x-input-label for="nominal" :value="__('Jumlah nominal')" />
+                            <x-input-label for="nominal" :value="__('Persentage(%)')" />
                             <x-text-input id="nominal" name="nominal" type="number" class="block w-full mt-1"
-                                :value="old('nominal')" autocomplete="nominal" min="0" placeholder="0" />
+                                :value="old('nominal')" autocomplete="nominal" min="0" step="0.01"
+                                placeholder="0.00" required/>
                             <x-input-error class="mt-2" :messages="$errors->get('nominal')" />
                         </div>
 
                         <div class="mt-4">
                             <x-input-label for="tahun_id" :value="__('Tahun')" />
-                            <x-select-input id="tahun" name="tahun_id" class="block w-full mt-1">
+                            <x-select-input id="tahun" name="tahun_id" class="block w-full mt-1" required>
                                 <option value="">{{ __('Select Tahun') }}</option>
                                 @foreach ($tahuns as $tahun)
                                     <option value="{{ $tahun->id }}"

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-            {{ __('Create Data Target Tahunan') }}
+            {{ __('Create Data Target sub-Infaq') }}
         </h2>
     </x-slot>
 
@@ -9,10 +9,10 @@
         <div class="max-w-full mx-auto sm:px-6 sm:space-y-6">
             <x-card.app>
                 <x-card.title>
-                    {{ __('Create Data Target Tahunan') }}
+                    {{ __('Create Data Target sub-Infaq') }}
                 </x-card.title>
                 <x-card.description>
-                    {{ __('Create a new Data Target Tahunan.') }}
+                    {{ __('Create a new Data Target sub-Infaq.') }}
                 </x-card.description>
                 <div class="max-w-xl">
                     <form method="post" action="{{ route('targetsubinfaq.update', $targetsubinfaq) }}"
@@ -21,22 +21,22 @@
                         @method('patch')
                         <div>
                             <x-input-label for="jenis" :value="__('Jenis Target')" />
-                            <x-select-input id="jenis" name="jenis" class="block w-full mt-1">
+                            <x-select-input id="jenis" name="jenis" class="block w-full mt-1" required>
                                 <option value="">{{ __('Pilih Target') }}</option>
-                                <option value="penghimpunan">
-                                    Penghimpunan
-                                </option>
-                                <option value="penyaluran">
-                                    Penyaluran
-                                </option>
+                                @foreach ($types as $type)
+                                    <option value="{{ $type->value }}"
+                                        {{ $targetsubinfaq->jenis == $type->value ? 'selected' : '' }}>
+                                        {{ $type->name }}
+                                    </option>
+                                @endforeach
                             </x-select-input>
                             <x-input-error class="mt-2" :messages="$errors->get('jenis')" />
                         </div>
 
                         <div>
-                            <x-input-label for="nominal" :value="__('Jumlah nominal')" />
-                            <x-text-input id="nominal" name="nominal" type="number" class="block w-full mt-1"
-                                :value="old('nominal', $targetsubinfaq->nominal)" autocomplete="nominal" min="0" placeholder="0" />
+                            <x-input-label for="nominal" :value="__('Persentage (%)')" />
+                            <x-text-input id="nominal" name="nominal" type="number" class="block w-full mt-1" required
+                                :value="old('nominal', $targetsubinfaq->nominal)" autocomplete="nominal" min="0" placeholder="0.00" step="0.01"/>
                             <x-input-error class="mt-2" :messages="$errors->get('nominal')" />
                         </div>
 

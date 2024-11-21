@@ -8,6 +8,17 @@ use Illuminate\Http\Request;
 
 class TargetTahunanController extends Controller
 {
+    protected $types;
+    public function __construct() {
+        // Define $types as a collection of objects
+        $this->types = collect([
+            (object) ['name' => 'Penghimpunan', 'value' => 'penghimpunan'],
+            (object) ['name' => 'Penyaluran', 'value' => 'penyaluran'],
+        ]);
+
+        // Share $types with all views rendered by this controller
+        view()->share('types', $this->types);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -40,8 +51,10 @@ class TargetTahunanController extends Controller
             'tahun_id' => 'required|exists:tahuns,id',
         ]);
 
+        $intnominal = $this->ubahRupiah($request->input('nominal'));
+
         TargetTahunan::create([
-            'nominal' => $request->nominal,
+            'nominal' => $intnominal,
             'jenis' => $request->jenis,
             'tahun_id' => $request->tahun_id,
         ]);
@@ -82,11 +95,11 @@ class TargetTahunanController extends Controller
         ]);
 
         // Remove any non-numeric characters for safe storage as integer
-        // $nominal = $this->ubahRupiah($request->input('nominal'));
+        $intnominal = $this->ubahRupiah($request->input('nominal'));
 
         $targettahunan->update([
             'jenis' => $request->jenis,
-            'nominal' => $request->nominal,
+            'nominal' => $intnominal,
             'tahun_id' => $request->tahun_id,
         ]);
 

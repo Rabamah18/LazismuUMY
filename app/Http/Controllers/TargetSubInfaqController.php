@@ -8,6 +8,19 @@ use Illuminate\Http\Request;
 
 class TargetSubInfaqController extends Controller
 {
+    protected $types;
+
+    public function __construct() {
+        // Define $types as a collection of objects
+        $this->types = collect([
+            (object) ['name' => 'Infaq non-Rutin', 'value' => 'infaqnonrutin'],
+            (object) ['name' => 'Infaq Rutin', 'value' => 'infaqrutin'],
+        ]);
+
+        // Share $types with all views rendered by this controller
+        view()->share('types', $this->types);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -63,7 +76,8 @@ class TargetSubInfaqController extends Controller
      */
     public function edit(TargetSubInfaq $targetsubinfaq)
     {
-        return view('targetsubinfaq.edit', compact('targetsubinfaqs'));
+        $tahuns = Tahun::query()->get();
+        return view('targetsubinfaq.edit', compact('targetsubinfaq','tahuns'));
     }
 
     /**

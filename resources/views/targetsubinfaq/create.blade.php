@@ -22,20 +22,20 @@
                             <x-input-label for="jenis" :value="__('Jenis Target')" />
                             <x-select-input id="jenis" name="jenis" class="block w-full mt-1">
                                 <option value="">{{ __('Pilih Target') }}</option>
-                                <option value="infaqnonrutin">
-                                    Infaq non-Rutin
-                                </option>
-                                <option value="infaqrutin">
-                                    Infaq Rutin
-                                </option>
+                                @foreach ($types as $type)
+                                    <option value="{{ $type->value }}">
+                                        {{ $type->name }}
+                                    </option>
+                                @endforeach
                             </x-select-input>
                             <x-input-error class="mt-2" :messages="$errors->get('jenis')" />
                         </div>
 
                         <div>
-                            <x-input-label for="nominal" :value="__('Jumlah nominal')" />
+                            <x-input-label for="nominal" :value="__('Persentage(%)')" />
                             <x-text-input id="nominal" name="nominal" type="number" class="block w-full mt-1"
-                                :value="old('nominal')" autocomplete="nominal" min="0" placeholder="0" />
+                                :value="old('nominal')" autocomplete="nominal" min="0" step="0.01"
+                                placeholder="0.00" required/>
                             <x-input-error class="mt-2" :messages="$errors->get('nominal')" />
                         </div>
 

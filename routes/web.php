@@ -75,12 +75,12 @@ Route::middleware('auth')->group(function () {
     Route::resource('tahun', TahunController::class)->except('show');
     Route::resource('user', UserController::class)->except('show');
 
-    Route::resource('targettahunan', TargetTahunanController::class);
-    Route::resource('targetsumberdonasi', TargetSumberDonasiController::class);
-    Route::resource('targetprogramsumber', TargetProgramSumberController::class);
-    Route::resource('targetsubinfaq', TargetSubInfaqController::class);
-    Route::resource('targetpilar', TargetPilarController::class);
-    Route::resource('targetprogrampilar', TargetProgramPilarController::class);
+    Route::resource('targettahunan', TargetTahunanController::class)->except('show');
+    Route::resource('targetsumberdonasi', TargetSumberDonasiController::class)->except('show');
+    Route::resource('targetprogramsumber', TargetProgramSumberController::class)->except('show');
+    Route::resource('targetsubinfaq', TargetSubInfaqController::class)->except('show');
+    Route::resource('targetpilar', TargetPilarController::class)->except('show');
+    Route::resource('targetprogrampilar', TargetProgramPilarController::class)->except('show');
 
     Route::view('/target', 'target.index')->name('target.index');
 
