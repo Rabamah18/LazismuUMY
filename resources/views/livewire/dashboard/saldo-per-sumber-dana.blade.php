@@ -2,26 +2,42 @@
         <td class="justify-center w-2 py-4 pl-6 font-medium text-gray-900 dark:text-gray-200">
             {{ $sumberDana->index }}
         </td>
-        <td class="px-6 py-4 lg:table-cell">
+        <td class="px-6 py-4 text-left lg:table-cell">
             {{ $sumberDana->name }}
         </td>
         @if ($sumberDonasi->name == 'Zakat')
-            <td class="px-6 py-4 lg:table-cell">
+            {{-- <td class="px-6 py-4 lg:table-cell">
                 {{ $saldoPerSumberDana }}
+            </td> --}}
+            <td wire:key="nominal-{{ $saldoPerSumberDana }}" x-data="{ nominal: {{ $saldoPerSumberDana }} }"
+                class="px-6 py-4 text-right lg:table-cell">
+                <div class="flex">
+                    <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                </div>
             </td>
-            <td class="px-6 py-4 lg:table-cell">-</td>
-            <td class="px-6 py-4 lg:table-cell">-</td>
+            <td class="px-6 py-4 text-rightlg:table-cell">-</td>
+            <td class="px-6 py-4 text-rightlg:table-cell">-</td>
         @elseif ($sumberDonasi->name == 'Infaq')
-            <td class="px-6 py-4 lg:table-cell">-</td>
-            <td class="px-6 py-4 lg:table-cell">
-                {{ $saldoPerSumberDana }}
+            <td class="px-6 py-4 text-rightlg:table-cell">-</td>
+            <td wire:key="nominal-{{ $saldoPerSumberDana }}" x-data="{
+                nominal: {{ $saldoPerSumberDana }},
+            }"
+                class="px-6 py-4 text-rightlg:table-cell">
+                <div class="flex">
+                    <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                </div>
             </td>
-            <td class="px-6 py-4 lg:table-cell">-</td>
+            <td class="px-6 py-4 text-rightlg:table-cell">-</td>
         @else
-            <td class="px-6 py-4 lg:table-cell">-</td>
-            <td class="px-6 py-4 lg:table-cell">-</td>
-            <td class="px-6 py-4 lg:table-cell">
-                {{ $saldoPerSumberDana }}
+            <td class="px-6 py-4 text-rightlg:table-cell">-</td>
+            <td class="px-6 py-4 text-rightlg:table-cell">-</td>
+            <td wire:key="nominal-{{ $saldoPerSumberDana }}" x-data="{
+                nominal: {{ $saldoPerSumberDana }},
+            }"
+                class="px-6 py-4 text-rightlg:table-cell">
+                <div class="flex">
+                    <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                </div>
             </td>
         @endif
     </tr>
