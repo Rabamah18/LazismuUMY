@@ -9,12 +9,12 @@
                     {{ __('Pilar') }}
                 </th>
                 <th scope="col" class="px-6 py-3 lg:table-cell">
-                    {{ __('Nominal') }}
+                    {{ __('Persentage') }}
                 </th>
                 <th scope="col" class="px-6 py-3 lg:table-cell">
                     {{ __('Tahun') }}
                 </th>
-                <th scope="col" class="px-6 py-3 lg:table-cell">
+                <th scope="col" class="px-6 py-3 text-center lg:table-cell">
                     {{ __('Option') }}
                 </th>
             </tr>
@@ -26,8 +26,7 @@
                         {{-- loop --}}
                         <div class="flex">
                             <div class="hover:underline whitespace-nowrap">
-                                {{-- {{ ($targetPilars->currentpage() - 1) * $targetPilars->perpage() + $loop->index + 1 }} --}}
-                                {{ $targetpilar->id }}
+                                {{ $loop->iteration }}
                             </div>
                         </div>
                     </td>
@@ -40,12 +39,10 @@
                         </div>
                     </td>
 
-                    <td wire:key="nominal-{{ $targetpilar->id }}" x-data="{
-                        nominal: {{ $targetpilar->nominal }},
-                    }"
+                    <td x-data="{nominal: {{ $targetpilar->nominal }}}"
                         class="px-6 py-4 lg:table-cell">
                         <div class="flex">
-                            <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                            <p x-text="nominal.toString()+' %'"></p>
                         </div>
                     </td>
 
@@ -57,8 +54,8 @@
                         </div>
                     </td>
 
-                    <td class="py-4 pl-6 pr-2 lg:pr-4">
-                        <div class="flex space-x-2 justify-items-start">
+                    <td class="py-4 pl-6 pr-2 text-center lg:pr-4">
+                        <div class="flex justify-center space-x-2">
                             <a href="{{ route('targetpilar.edit', ['targetpilar' => $targetpilar]) }}"
                                 class="text-indigo-500 hover:underline">Ubah</a>
                             <button x-data="" class="text-red-500 hover:underline"
