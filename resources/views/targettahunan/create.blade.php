@@ -22,31 +22,23 @@
                             <x-input-label for="jenis" :value="__('Jenis Target')" />
                             <x-select-input id="jenis" name="jenis" class="block w-full mt-1">
                                 <option value="">{{ __('Pilih Target') }}</option>
-                                <option value="penghimpunan">
-                                    Penghimpunan
-                                </option>
-                                <option value="penyaluran">
-                                    Penyaluran
-                                </option>
+                                @foreach ($types as $type)
+                                    <option value="{{ $type->value }}">
+                                        {{ $type->name }}
+                                    </option>
+                                @endforeach
                             </x-select-input>
                             <x-input-error class="mt-2" :messages="$errors->get('jenis')" />
                         </div>
 
-                        {{-- <div x-data="{ nominal: '' }">
-                            <x-input-label for="nominal" :value="__('Nominal')" />
+                        <div x-data="{ nominal: '' }">
+                            <x-input-label for="nominal" :value="__('Jumlah Nominal')" />
 
                             <x-text-input id="nominal" name="nominal" type="text" class="block w-full mt-1"
                                 x-model="nominal"
                                 x-on:input="nominal = 'Rp. ' + $event.target.value.replace(/[^,\d]/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.')"
                                 placeholder="Rp." autocomplete="off" />
 
-                            <x-input-error class="mt-2" :messages="$errors->get('nominal')" />
-                        </div> --}}
-
-                        <div>
-                            <x-input-label for="nominal" :value="__('Jumlah nominal')" />
-                            <x-text-input id="nominal" name="nominal" type="number" class="block w-full mt-1"
-                                :value="old('nominal')" autocomplete="nominal" min="0" placeholder="0" />
                             <x-input-error class="mt-2" :messages="$errors->get('nominal')" />
                         </div>
 

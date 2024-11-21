@@ -14,7 +14,7 @@
                 <th scope="col" class="px-6 py-3 lg:table-cell">
                     {{ __('Tahun') }}
                 </th>
-                <th scope="col" class="py-3 pl-6 pr-2 lg:pr-4">
+                <th scope="col" class="py-3 pl-6 pr-2 text-center lg:pr-4">
                     {{ __('Option') }}
                 </th>
             </tr>
@@ -26,8 +26,7 @@
                         {{-- loop --}}
                         <div class="flex">
                             <div class="hover:underline whitespace-nowrap">
-                                {{-- {{ ($targetTahunans->currentpage() - 1) * $targetTahunans->perpage() + $loop->index + 1 }} --}}
-                                {{ $targetTahunan->id }}
+                                {{ $loop->iteration }}
                             </div>
                         </div>
                     </td>
@@ -40,9 +39,7 @@
                         </div>
                     </td>
 
-                    <td wire:key="nominal-{{ $targetTahunan->id }}" x-data="{
-                        nominal: {{ $targetTahunan->nominal }},
-                    }"
+                    <td x-data="{nominal: {{ $targetTahunan->nominal }}}"
                         class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
@@ -57,8 +54,8 @@
                         </div>
                     </td>
 
-                    <td class="py-4 pl-6 pr-2 lg:pr-4">
-                        <div class="flex space-x-2 justify-items-start">
+                    <td class="py-4 pl-6 pr-2 text-center lg:pr-4">
+                        <div class="flex justify-center space-x-2">
                             <a href="{{ route('targettahunan.edit', ['targettahunan'=>$targetTahunan]) }}"
                                 class="text-indigo-500 hover:underline">Edit</a>
                             <button x-data="" class="text-red-500 hover:underline"

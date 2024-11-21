@@ -13,7 +13,6 @@
             </x-select-input>
         </div>
     </div>
-    @dump($selectedTahun)
     {{-- Include child components with selectedTahun as parameter --}}
     <livewire:target.target-tahunan :tahun="$selectedTahun">
         <livewire:target.target-pilar :tahun="$selectedTahun" />

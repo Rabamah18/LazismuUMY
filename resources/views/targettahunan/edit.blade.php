@@ -23,31 +23,37 @@
                             <x-input-label for="jenis" :value="__('Jenis Target')" />
                             <x-select-input id="jenis" name="jenis" class="block w-full mt-1">
                                 <option value="">{{ __('Pilih Target') }}</option>
-                                <option value="penghimpunan">
-                                    Penghimpunan
-                                </option>
-                                <option value="penyaluran">
-                                    Penyaluran
-                                </option>
+                                @foreach ($types as $type)
+                                    <option value="{{ $type->value }}"
+                                        {{ $targettahunan->jenis == $type->value ? 'selected' : '' }}>
+                                        {{ $type->name }}
+                                    </option>
+                                @endforeach
                             </x-select-input>
                             <x-input-error class="mt-2" :messages="$errors->get('jenis')" />
                         </div>
 
-                        {{-- <div x-data="{ nominal: '' }">
+                        <div x-data="{
+                            nominal: '{{ $targettahunan->nominal }}',
+                            formattedNominal: ''
+                        }" x-init="// Format the initial value of nominal on page load
+                        formattedNominal = 'Rp. ' + (nominal || '').replace(/[^,\d]/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.');">
                             <x-input-label for="nominal" :value="__('Nominal')" />
 
-                            <x-text-input id="nominal" name="nominal" type="text" class="block w-full mt-1"
-                                x-model="nominal"
-                                x-on:input="nominal = 'Rp. ' + $event.target.value.replace(/[^,\d]/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.')"
+                            <x-text-input id="formatted_nominal" name="nominal" type="text" class="block w-full mt-1"
+                                x-model="formattedNominal"
+                                x-on:input="
+                                // Format the displayed nominal with 'Rp.' and thousands separators
+                                formattedNominal = 'Rp. ' + $event.target.value.replace(/[^,\d]/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+                                // Update the hidden nominal field with an integer-only value
+                                nominal = $event.target.value.replace(/[^0-9]/g, '');
+                            "
                                 placeholder="Rp." autocomplete="off" />
 
-                            <x-input-error class="mt-2" :messages="$errors->get('nominal')" />
-                        </div> --}}
+                            <!-- Hidden input to send the integer value -->
+                            <input type="hidden" name="nominal" :value="nominal">
 
-                        <div>
-                            <x-input-label for="nominal" :value="__('Jumlah nominal')" />
-                            <x-text-input id="nominal" name="nominal" type="number" class="block w-full mt-1"
-                                :value="old('nominal', $targettahunan->nominal)" autocomplete="nominal" min="0" placeholder="0" />
                             <x-input-error class="mt-2" :messages="$errors->get('nominal')" />
                         </div>
 
