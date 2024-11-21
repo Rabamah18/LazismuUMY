@@ -1,5 +1,4 @@
 <div class="relative mt-6 overflow-x-visible overflow-y-visible rounded-md md:block">
-    {{-- "@dump($pilars)" --}}
     <table class="w-full text-base text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -10,12 +9,12 @@
                     {{ __('Sumbar Donasi') }}
                 </th>
                 <th scope="col" class="px-6 py-3 lg:table-cell">
-                    {{ __('Nominal') }}
+                    {{ __('Persentage') }}
                 </th>
                 <th scope="col" class="px-6 py-3 lg:table-cell">
                     {{ __('Tahun') }}
                 </th>
-                <th scope="col" class="py-3 pl-6 pr-2 lg:pr-4">
+                <th scope="col" class="py-3 pl-6 pr-2 text-center lg:pr-4">
                     {{ __('Option') }}
                 </th>
             </tr>
@@ -27,8 +26,7 @@
                         {{-- loop --}}
                         <div class="flex">
                             <div class="hover:underline whitespace-nowrap">
-                                {{-- {{ ($targetSumberDonasis->currentpage() - 1) * $targetSumberDonasis->perpage() + $loop->index + 1 }} --}}
-                                {{ $targetSumberDonasi->id }}
+                                {{ $loop->iteration }}
                             </div>
                         </div>
                     </td>
@@ -41,21 +39,20 @@
                             </p>
                         </div>
                     </td>
-                    <td wire:key="nominal-{{ $targetSumberDonasi->id }}" x-data="{
-                        nominal: {{ $targetSumberDonasi->nominal }},
-                    }"
+                    <td x-data="{nominal: {{ $targetSumberDonasi->nominal }}}"
                         class="px-6 py-4 lg:table-cell">
                         <div class="flex">
-                            <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                            <p x-text="nominal.toString()+' %'"></p>
                         </div>
                     </td>
+
                     <td class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             {{ $targetSumberDonasi->tahun->name }}
                         </div>
                     </td>
-                    <td class="py-4 pl-6 pr-2 lg:pr-4">
-                        <div class="flex space-x-2 justify-items-start">
+                    <td class="py-4 pl-6 pr-2 text-center lg:pr-4">
+                        <div class="flex justify-center space-x-2">
                             <a href="{{ route('targetsumberdonasi.edit', ['targetsumberdonasi' => $targetSumberDonasi]) }}"
                                 class="text-indigo-500 hover:underline">Ubah</a>
                             <button x-data="" class="text-red-500 hover:underline"
