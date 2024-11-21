@@ -77,8 +77,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('targettahunan', TargetTahunanController::class)->except('show');
     Route::resource('targetsumberdonasi', TargetSumberDonasiController::class)->except('show');
-    Route::resource('targetprogramsumber', TargetProgramSumberController::class);
-    Route::resource('targetsubinfaq', TargetSubInfaqController::class);
+    Route::resource('targetprogramsumber', TargetProgramSumberController::class)->except('show');
+    Route::resource('targetsubinfaq', TargetSubInfaqController::class)->except('show');
     Route::resource('targetpilar', TargetPilarController::class);
     Route::resource('targetprogrampilar', TargetProgramPilarController::class);
 
