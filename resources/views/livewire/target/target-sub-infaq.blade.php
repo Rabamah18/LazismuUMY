@@ -20,7 +20,7 @@
                         {{ __('Jenis Target') }}
                     </th>
                     <th scope="col" class="px-6 py-3 lg:table-cell">
-                        {{ __('Nominal') }}
+                        {{ __('Persentage') }}
                     </th>
                     <th scope="col" class="px-6 py-3 lg:table-cell">
                         {{ __('Tahun') }}
@@ -34,8 +34,7 @@
                         {{-- loop --}}
                         <div class="flex">
                             <div class="hover:underline whitespace-nowrap">
-                                {{-- {{ ($targetsubinfaqs->currentpage() - 1) * $targetsubinfaqs->perpage() + $loop->index + 1 }} --}}
-                                {{ $targetsubinfaq->id }}
+                                {{ $loop->iteration }}
                             </div>
 
                         </div>
@@ -49,12 +48,10 @@
                         </div>
                     </td>
 
-                    <td wire:key="nominal-{{ $targetsubinfaq->id }}" x-data="{
-                        nominal: {{ $targetsubinfaq->nominal }},
-                    }"
+                    <td x-data="{nominal: {{ $targetsubinfaq->nominal }}}"
                         class="px-6 py-4 lg:table-cell">
                         <div class="flex">
-                            <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                            <p x-text="nominal.toString()+' %'"></p>
                         </div>
                     </td>
 

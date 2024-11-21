@@ -34,8 +34,7 @@
                         {{-- loop --}}
                         <div class="flex">
                             <div class="hover:underline whitespace-nowrap">
-                                {{-- {{ ($targetTahunans->currentpage() - 1) * $targetTahunans->perpage() + $loop->index + 1 }} --}}
-                                {{ $targetTahunan->id }}
+                                {{ $loop->iteration }}
                             </div>
 
                         </div>
@@ -49,9 +48,7 @@
                         </div>
                     </td>
 
-                    <td wire:key="nominal-{{ $targetTahunan->id }}" x-data="{
-                        nominal: {{ $targetTahunan->nominal }},
-                    }"
+                    <td x-data="{nominal: {{ $targetTahunan->nominal }}}"
                         class="px-6 py-4 lg:table-cell">
                         <div class="flex">
                             <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
