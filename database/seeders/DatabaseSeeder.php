@@ -30,8 +30,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ProvinsiSeeder::class);
         $this->call(TahunSeeder::class);
 
-        Penghimpunan::factory(100)->create();
-        Penyaluran::factory(100)->create();
+        // Penghimpunan::factory(100)->create();
+        // Penyaluran::factory(100)->create();
 
     }
 }

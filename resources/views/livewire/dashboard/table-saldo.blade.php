@@ -3,7 +3,7 @@
         {{ __('Tabel Saldo') }}
     </x-card.title>
     <div class="relative mt-6 overflow-auto rounded-md">
-        <table class="w-full text-base text-left text-gray-500 table-auto dark:text-gray-400">
+        <table class="w-full text-gray-500 table-auto dark:text-gray-400">
             <thead
                 class="text-xs text-gray-700 uppercase bg-gray-100 border border-t-0 dark:bg-gray-700 dark:text-gray-400 border-x-transparent">
                 <tr>
@@ -31,27 +31,54 @@
             </thead>
             <tbody>
                 @forelse ($sumberDonasis as $sumberDonasi)
-                    <livewire:dashboard.saldo-per-sumber-donasi :selectedTahun="$this->selectedTahun" :sumberDonasi="$sumberDonasi" :key="$sumberDonasi->id"/>
-                    @empty
-                        <tr class="bg-white dark:bg-gray-800">
-                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-gray-200">
-                                Empty
-                            </td>
-                        </tr>
+                    <livewire:dashboard.saldo-per-sumber-donasi :selectedTahun="$this->selectedTahun" :sumberDonasi="$sumberDonasi" :key="$sumberDonasi->id" />
+                @empty
+                    <tr class="bg-white dark:bg-gray-800">
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-gray-200">
+                            Empty
+                        </td>
+                    </tr>
                 @endforelse
                 <tr class="border border-collapse border-x-transparent">
                     <td class="px-20 py-2" rowspan="3" colspan="2">Total Zakat & Infaq</td>
-                    <td class="px-6 py-2">Rp. {{ $totalZakat }}</td>
-                    <td class="px-6 py-2">Rp. {{ $totalInfaq }}</td>
-                    <td class="px-6 py-2 border-l-2 border-gray-400" rowspan="2">Rp. {{ $totalAmil }}</td>
+                    <td class="px-6 py-2" wire:key="nominal-{{ $totalZakat }}" x-data="{ nominal: {{ $totalZakat }} }">
+                        <div class="flex">
+                            <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                        </div>
+                        {{-- Rp. {{ $totalZakat }} --}}
+                    </td>
+                    <td class="px-6 py-2" wire:key="nominal-{{ $totalInfaq }}" x-data="{ nominal: {{ $totalInfaq }} }">
+                        <div class="flex">
+                            <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                        </div>
+                        {{-- Rp. {{ $totalInfaq }} --}}
+                    </td>
+                    <td class="px-6 py-2 border-l-2 border-gray-400" rowspan="2"
+                        wire:key="nominal-{{ $totalAmil }}" x-data="{ nominal: {{ $totalAmil }} }">
+                        <div class="flex">
+                            <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                        </div>
+                        {{-- Rp. {{ $totalAmil }} --}}
+                    </td>
                 </tr>
                 <tr class="border border-collapse border-x-transparent">
                     <td class="px-6 py-2"></td>
-                    <td class="px-6 py-2" colspan="2"> Rp. {{ $totalZakatInfaq }}</td>
+                    <td class="px-6 py-2" colspan="2" wire:key="nominal-{{ $totalZakatInfaq }}"
+                        x-data="{ nominal: {{ $totalZakatInfaq }} }">
+                        <div class="flex">
+                            <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                        </div>
+                        {{-- Rp. {{ $totalZakatInfaq }} --}}
+                    </td>
                 </tr>
                 <tr class="border border-collapse border-x-transparent">
                     <td class="px-6 py-2"></td>
-                    <td class="px-6 py-2" colspan="3">Rp. {{ $totalSemua }}</td>
+                    <td class="px-6 py-2" colspan="3" wire:key="nominal-{{ $totalSemua }}" x-data="{ nominal: {{ $totalSemua }} }">
+                        <div class="flex">
+                            <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                        </div>
+                        {{-- Rp. {{ $totalSemua }} --}}
+                    </td>
                 </tr>
             </tbody>
         </table>
