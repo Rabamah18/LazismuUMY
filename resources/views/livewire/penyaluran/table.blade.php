@@ -160,7 +160,7 @@
         <table class="table-fixed w-full text-base text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th scope="col" class="w-10 px-6 py-3 text-center">
+                    <th scope="col" class="w-10 px-6 py-3 border-collapse border-2 text-center">
                         {{ __('No.') }}
                     </th>
                     <th scope="col" class="w-60 px-6 py-3 xl:table-cell whitespace-nowrap">
@@ -199,11 +199,10 @@
                     <th scope="col" class="w-60 px-6 py-3 lg:table-cell">
                         {{ __('Wanita') }}
                     </th>
-                    </th>
                     <th scope="col" class="w-60 px-6 py-3 lg:table-cell whitespace-nowrap">
                         {{ __('Provinsi/Luar Negeri') }}
                     </th>
-                    <th scope="col" class="w-60 px-6 py-3 lg:table-cell whitespace-nowrap">
+                    <th scope="col" class="w-96 px-6 py-3 lg:table-cell whitespace-nowrap">
                         {{ __('Kabupaten/Negara') }}
                     </th>
                     <th scope="col" class="w-60 px-6 py-3 lg:table-cell">
@@ -220,7 +219,7 @@
             <tbody>
                 @forelse ($penyalurans as $penyaluran)
                     <tr class="odd:bg-white odd:dark:bg-gray-800 even:bg-gray-100 even:dark:bg-gray-700">
-                        <td scope="row" class="w-10 px-6 py-4 text-center font-medium text-gray-900 dark:text-gray-200">
+                        <td scope="row" class="w-10 px-6 py-4 border-collapse border-2  text-center font-medium text-gray-900 dark:text-gray-200">
                             <div class="flex">
                                 <div class="hover:underline whitespace-nowrap">
                                     {{ ($penyalurans->currentpage() - 1) * $penyalurans->perpage() + $loop->index + 1 }}
@@ -229,7 +228,7 @@
                         </td>
 
                         <td scope="row"
-                            class="w-50 px-6 py-4 text-gray-500 font-base dark:text-gray-400 xl:table-cell">
+                            class="w-50 px-6 py-4 border-collapse border-2 text-gray-500 font-base dark:text-gray-400 xl:table-cell">
                             <div class="flex whitespace-nowrap">
                                 <p>
                                     {{ $penyaluran->tanggal->isoFormat('LL') }}
@@ -238,7 +237,7 @@
                         </td>
 
                         <td scope="row"
-                            class="px-6 py-4 font-medium text-gray-900 dark:text-gray-200 flex justify-start w-60">
+                            class="px-6 py-4 border-collapse border-2  font-medium text-gray-900 dark:text-gray-200 flex justify-start w-60">
                             <div class="flex">
                                 <a href="{{ route('penyaluran.show', $penyaluran) }}"
                                     class="hover:underline whitespace-nowrap">
@@ -248,7 +247,7 @@
                             </div>
                         </td>
 
-                        <td class="px-6 py-4 lg:table-cell w-96">
+                        <td class="px-6 py-4 border-collapse border-2 lg:table-cell w-96">
                             <div class="flex">
                                 <p>
                                     {{ $penyaluran->programSumber->sumberDonasi->name ?? '-' }}
@@ -256,7 +255,7 @@
                             </div>
                         </td>
 
-                        <td class="px-6 py-4 lg:table-cell min-w-[200px]">
+                        <td class="px-6 py-4 border-collapse border-2 lg:table-cell min-w-[200px]">
                             <div class="flex whitespace-nowrap">
                                 <p>
                                     {{ $penyaluran->programSumber->name ?? '-' }}
@@ -264,7 +263,7 @@
                             </div>
                         </td>
 
-                        <td class="px-6 py-4 lg:table-cell min-w-[200px]">
+                        <td class="px-6 py-4 border-collapse border-2 lg:table-cell min-w-[200px]">
                             <div class="flex whitespace-nowrap">
                                 <p>
                                     {{ $penyaluran->sumberDana->name ?? '-' }}
@@ -284,34 +283,34 @@
                                     updateNominal()
                                 })
                             "
-                            class="px-6 py-4 lg:table-cell min-w-[180px]">
+                            class="px-6 py-4 border-collapse border-2 lg:table-cell min-w-[180px]">
                             <div class="flex whitespace-nowrap">
                                 <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
                             </div>
                         </td>
 
-                        <td class="px-6 py-4 lg:table-cell min-w-[200px]">
+                        <td class="px-6 py-4 border-collapse border-2 lg:table-cell min-w-[200px]">
                             <div class="flex whitespace-nowrap">
                                 <p>
                                     {{ $penyaluran->programPilar->pilar->name ?? '-' }}
                                 </p>
                             </div>
                         </td>
-                        <td class="px-6 py-4 lg:table-cell min-w-[200px]">
+                        <td class="px-6 py-4 border-collapse border-2 lg:table-cell min-w-[200px]">
                             <div class="flex whitespace-nowrap">
                                 <p>
                                     {{ $penyaluran->programPilar->name ?? '-' }}
                                 </p>
                             </div>
                         </td>
-                        <td class="px-6 py-4 lg:table-cell">
+                        <td class="px-6 py-4border-collapse border-2  lg:table-cell">
                             <div class="flex whitespace-nowrap">
                                 <p>
                                     {{ $penyaluran->ashnaf->name ?? '-' }}
                                 </p>
                             </div>
                         </td>
-                        <td class="px-6 py-4 lg:table-cell">
+                        <td class="px-6 py-4 border-collapse border-2  lg:table-cell">
                             <div class="flex">
                                 <p>
                                     {{ $penyaluran->lembaga_count ?? '-' }}
@@ -319,7 +318,7 @@
 
                             </div>
                         </td>
-                        <td class="px-6 py-4 lg:table-cell">
+                        <td class="px-6 py-4 border-collapse border-2 lg:table-cell">
                             <div class="flex">
                                 <p>
                                     {{ $penyaluran->male_count ?? '-' }}
@@ -327,7 +326,7 @@
 
                             </div>
                         </td>
-                        <td class="px-6 py-4 lg:table-cell">
+                        <td class="px-6 py-4 border-collapse border-2 lg:table-cell">
                             <div class="flex">
                                 <p>
                                     {{ $penyaluran->female_count ?? '-' }}
@@ -335,7 +334,7 @@
 
                             </div>
                         </td>
-                        <td class="px-6 py-4 lg:table-cell">
+                        <td class="px-6 py-4 border-collapse border-2 lg:table-cell">
                             <div class="flex whitespace-nowrap">
                                 <p>
                                     {{ $penyaluran->kabupaten->provinsi->name ?? '-' }}
@@ -343,7 +342,7 @@
 
                             </div>
                         </td>
-                        <td class="px-6 py-4 lg:table-cell">
+                        <td class="px-6 py-4 border-collapse border-2 lg:table-cell">
                             <div class="flex whitespace-nowrap">
                                 <p>
                                     {{ $penyaluran->kabupaten->name ?? '-' }}
@@ -351,7 +350,7 @@
 
                             </div>
                         </td>
-                        <td class="px-6 py-4 lg:table-cell">
+                        <td class="px-6 py-4 border-collapse border-2 lg:table-cell">
                             <div class="flex">
                                 <p>
                                     {{ $penyaluran->tahun->name ?? '-'}}
@@ -360,7 +359,7 @@
                             </div>
                         </td>
 
-                        <td class="px-6 py-4 lg:table-cell">
+                        <td class="px-6 py-4 border-collapse border-2 lg:table-cell">
                             <div class="flex">
                                 <p>
                                     {{ $penyaluran->editedBy->name  ?? '-'}}
