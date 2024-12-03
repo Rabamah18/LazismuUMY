@@ -160,58 +160,58 @@
         <table class="table-fixed w-full text-base text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th scope="col" class="w-10 p-0 border-collapse border-2 text-center">
+                    <th scope="col" class="w-10 p-0 text-center">
                         {{ __('No.') }}
                     </th>
-                    <th scope="col" class="w-36 p-0 border-collapse border-2 whitespace-nowrap text-center">
+                    <th scope="col" class="w-36 p-0 whitespace-nowrap text-center">
                         {{ __('Tanggal') }}
                     </th>
-                    <th scope="col" class="w-36 p-0 border-collapse border-2 whitespace-nowrap text-center">
+                    <th scope="col" class="w-36 p-0 whitespace-nowrap text-center">
                         {{ __('Uraian') }}
                     </th>
-                    <th scope="col" class="w-32 p-0 border-collapse border-2 lg:table-cell whitespace-nowrap text-center">
+                    <th scope="col" class="w-32 p-0 lg:table-cell whitespace-nowrap text-center">
                         {{ __('Sumber Donasi') }}
                     </th>
-                    <th scope="col" class="w-64 p-0 border-collapse border-2 lg:table-cell whitespace-nowrap text-center">
+                    <th scope="col" class="w-64 p-0 px-4 lg:table-cell whitespace-nowrap">
                         {{ __('Program Sumber') }}
                     </th>
-                    <th scope="col" class="w-40 p-0 border-collapse border-2 lg:table-cell whitespace-nowrap text-center">
+                    <th scope="col" class="w-40 p-0 px-4 lg:table-cell whitespace-nowrap">
                         {{ __('Sumber Dana') }}
                     </th>
-                    <th scope="col" class="w-40 p-0 border-collapse border-2 lg:table-cell whitespace-nowrap text-center">
+                    <th scope="col" class="w-48 p-0 lg:table-cell whitespace-nowrap text-center">
                         {{ __('Nominal') }}
                     </th>
-                    <th scope="col" class="w-32 p-0 border-collapse border-2 lg:table-cell whitespace-nowrap text-center">
+                    <th scope="col" class="w-32 p-0 px-3 lg:table-cell whitespace-nowrap">
                         {{ __('Pilar') }}
                     </th>
-                    <th scope="col" class="w-64 p-0 border-collapse border-2 lg:table-cell whitespace-nowrap text-center">
+                    <th scope="col" class="w-64 p-0 px-4 lg:table-cell whitespace-nowrap">
                         {{ __('Program') }}
                     </th>
-                    <th scope="col" class="w-24 px-6 py-3 border-collapse border-2 lg:table-cell">
+                    <th scope="col" class="w-24 p-0 lg:table-cell whitespace-nowrap text-center">
                         {{ __('Ashnaf') }}
                     </th>
-                    <th scope="col" class="w-24 p-0 border-collapse border-2 lg:table-cell whitespace-nowrap text-center">
+                    <th scope="col" class="w-24 p-0 lg:table-cell whitespace-nowrap text-center">
                         {{ __('Lembaga') }}
                     </th>
-                    <th scope="col" class="w-24 p-0 border-collapse border-2 lg:table-cell whitespace-nowrap text-center">
+                    <th scope="col" class="w-24 p-0 lg:table-cell whitespace-nowrap text-center">
                         {{ __('Pria') }}
                     </th>
-                    <th scope="col" class="w-24 p-0 border-collapse border-2 lg:table-cell whitespace-nowrap text-center">
+                    <th scope="col" class="w-24 p-0 lg:table-cell whitespace-nowrap text-center">
                         {{ __('Wanita') }}
                     </th>
-                    <th scope="col" class="w-60 p-0 border-collapse border-2 lg:table-cell whitespace-nowrap text-center">
+                    <th scope="col" class="w-60 p-0 px-6 lg:table-cell whitespace-nowrap">
                         {{ __('Provinsi/Luar Negeri') }}
                     </th>
-                    <th scope="col" class="w-80 p-0 border-collapse border-2 lg:table-cell whitespace-nowrap text-center">
+                    <th scope="col" class="w-80 p-0 px-3 lg:table-cell whitespace-nowrap">
                         {{ __('Kabupaten/Negara') }}
                     </th>
-                    <th scope="col" class="w-24 px-6 py-3 border-collapse border-2 lg:table-cell">
+                    <th scope="col" class="w-24 px-7 py-3 lg:table-cell">
                         {{ __('Tahun') }}
                     </th>
-                    <th scope="col" class="w-24 px-6 py-3 border-collapse border-2 lg:table-cell">
+                    <th scope="col" class="w-24 px-6 py-3 lg:table-cell">
                         {{ __('Edit By') }}
                     </th>
-                    <th scope="col" class="w-40 p-0 border-collapse border-2 lg:pr-4 whitespace-nowrap text-center">
+                    <th scope="col" class="w-60 p-0 lg:pr-4 whitespace-nowrap text-center">
                         {{ __('Option') }}
                     </th>
                 </tr>
@@ -219,8 +219,8 @@
             <tbody>
                 @forelse ($penyalurans as $penyaluran)
                     <tr class="odd:bg-white odd:dark:bg-gray-800 even:bg-gray-100 even:dark:bg-gray-700">
-                        <td class="p-2 center-align text-gray-900 dark:text-gray-200 border-collapse border-2">
-                            <div class="flex">
+                        <td class="p-2 text-center text-gray-900 dark:text-gray-200">
+                            <div class="flex justify-center">
                                 <div class="hover:underline whitespace-nowrap">
                                     {{ ($penyalurans->currentpage() - 1) * $penyalurans->perpage() + $loop->index + 1 }}
                                 </div>
@@ -228,8 +228,8 @@
                         </td>
 
                         <td scope="row"
-                            class="w-40 p-0 px-1 center-align text-gray-500 font-base dark:text-gray-400 xl:table-cell border-collapse border-2">
-                            <div class="flex whitespace-nowrap">
+                            class="w-40 p-0 px-1 text-center text-gray-500 font-base dark:text-gray-400 xl:table-cell">
+                            <div class="flex whitespace-nowrap justify-center">
                                 <p>
                                     {{ $penyaluran->tanggal->isoFormat('LL') }}
                                 </p>
@@ -237,7 +237,7 @@
                         </td>
 
                         <td scope="row"
-                            class="px-6 py-4 font-medium text-gray-900 dark:text-gray-200 flex justify-start w-36 border-collapse border-2">
+                            class="px-6 py-4 font-medium text-gray-900 dark:text-gray-200 flex justify-start w-36">
                             <div class="flex">
                                 <a href="{{ route('penyaluran.show', $penyaluran) }}"
                                     class="hover:underline whitespace-nowrap">
@@ -247,7 +247,7 @@
                             </div>
                         </td>
 
-                        <td class="p-0 px-11 border-collapse border-2 lg:table-cell w-96">
+                        <td class="p-0 px-11 lg:table-cell w-96">
                             <div class="flex">
                                 <p>
                                     {{ $penyaluran->programSumber->sumberDonasi->name ?? '-' }}
@@ -255,7 +255,7 @@
                             </div>
                         </td>
 
-                        <td class="px-4 py-4 border-collapse border-2 lg:table-cell min-w-[200px]">
+                        <td class="px-4 py-4 lg:table-cell min-w-[200px]">
                             <div class="flex whitespace-nowrap">
                                 <p>
                                     {{ $penyaluran->programSumber->name ?? '-' }}
@@ -263,7 +263,7 @@
                             </div>
                         </td>
 
-                        <td class="px-4 py-4 border-collapse border-2 lg:table-cell min-w-[200px]">
+                        <td class="px-4 py-4 lg:table-cell min-w-[200px]">
                             <div class="flex whitespace-nowrap">
                                 <p>
                                     {{ $penyaluran->sumberDana->name ?? '-' }}
@@ -283,58 +283,61 @@
                                     updateNominal()
                                 })
                             "
-                            class="p-0 px-4 border-collapse border-2 lg:table-cell min-w-[180px]">
-                            <div class="flex whitespace-nowrap">
-                                <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                            class="p-0 px-4 lg:table-cell min-w-[180px]">
+                            <div class="flex justify-between">
+                                <p>Rp.</p>
+                                <p x-text="nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
                             </div>
                         </td>
 
-                        <td class="p-0 px-3 border-collapse border-2 lg:table-cell min-w-[200px]">
+                        <td class="p-0 px-3 lg:table-cell min-w-[200px]">
                             <div class="flex whitespace-nowrap">
                                 <p>
                                     {{ $penyaluran->programPilar->pilar->name ?? '-' }}
                                 </p>
                             </div>
                         </td>
-                        <td class="p-0 px-4 border-collapse border-2 lg:table-cell min-w-[200px]">
+
+                        <td class="p-0 px-4 lg:table-cell min-w-[200px]">
                             <div class="flex whitespace-nowrap">
                                 <p>
                                     {{ Str::limit($penyaluran->programPilar->name, 30, '...') }}
                                 </p>
                             </div>
                         </td>
-                        <td class="p-0 px-3 border-collapse border-2  lg:table-cell">
-                            <div class="flex whitespace-nowrap">
+
+                        <td class="p-0 px-3 text-center lg:table-cell">
+                            <div class="flex whitespace-nowrap justify-center">
                                 <p>
                                     {{ $penyaluran->ashnaf->name ?? '-' }}
                                 </p>
                             </div>
                         </td>
-                        <td class="px-6 py-4 border-collapse border-2  lg:table-cell">
-                            <div class="flex">
+                        <td class="px-6 py-4 text-center lg:table-cell">
+                            <div class="flex justify-center">
                                 <p>
                                     {{ $penyaluran->lembaga_count ?? '-' }}
                                 </p>
 
                             </div>
                         </td>
-                        <td class="px-6 py-4 border-collapse border-2 lg:table-cell">
-                            <div class="flex">
+                        <td class="px-6 py-4 text-center lg:table-cell">
+                            <div class="flex justify-center">
                                 <p>
                                     {{ $penyaluran->male_count ?? '-' }}
                                 </p>
 
                             </div>
                         </td>
-                        <td class="px-6 py-4 border-collapse border-2 lg:table-cell">
-                            <div class="flex">
+                        <td class="px-6 py-4 text-center lg:table-cell">
+                            <div class="flex justify-center">
                                 <p>
                                     {{ $penyaluran->female_count ?? '-' }}
                                 </p>
 
                             </div>
                         </td>
-                        <td class="px-6 py-4 border-collapse border-2 lg:table-cell">
+                        <td class="px-6 py-4 lg:table-cell">
                             <div class="flex whitespace-nowrap">
                                 <p>
                                     {{ $penyaluran->kabupaten->provinsi->name ?? '-' }}
@@ -342,7 +345,7 @@
 
                             </div>
                         </td>
-                        <td class="p-0 px-3 border-collapse border-2 lg:table-cell">
+                        <td class="p-0 px-3 lg:table-cell">
                             <div class="flex whitespace-nowrap">
                                 <p>
                                     {{ $penyaluran->kabupaten->name ?? '-' }}
@@ -350,8 +353,8 @@
 
                             </div>
                         </td>
-                        <td class="px-6 py-4 border-collapse border-2 lg:table-cell">
-                            <div class="flex">
+                        <td class="px-5 py-4 text-center lg:table-cell">
+                            <div class="flex justify-center">
                                 <p>
                                     {{ $penyaluran->tahun->name ?? '-'}}
                                 </p>
@@ -359,8 +362,8 @@
                             </div>
                         </td>
 
-                        <td class="px-6 py-4 border-collapse border-2 lg:table-cell">
-                            <div class="flex">
+                        <td class="px-6 py-4 text-centerlg:table-cell">
+                            <div class="flex justify-center">
                                 <p>
                                     {{ $penyaluran->editedBy->name  ?? '-'}}
                                 </p>
@@ -368,7 +371,7 @@
                             </div>
                         </td>
 
-                        <td class="p-0 px-3 border-collapse border-2">
+                        <td class="p-0 px-3">
                             <div class="flex space-x-2 justify-items-start">
                                 @if($penyaluran->lampiran)
                                     <a href="{{ $penyaluran->lampiran }}" target="_blank" rel="noopener noreferrer"
