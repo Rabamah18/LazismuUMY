@@ -116,19 +116,19 @@
         </div>
     </div>
     <div class="relative mt-6 overflow-auto rounded-md">
-        <table class="w-full text-base text-left text-gray-500 dark:text-gray-400">
+        <table class="w-full text-base text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th scope="col" class="w-2 py-3 pl-6 text-center">
+                    <th scope="col" class="px-4 py-3 text-center">
                         {{ __('No.') }}
                     </th>
-                    <th scope="col" class="w-full px-6 py-3 xl:table-cell min-w-48">
+                    <th scope="col" class="px-6 py-3 xl:table-cell min-w-48">
                         {{ __('Tanggal') }}
                     </th>
                     <th scope="col" class="px-6 py-3">
                         {{ __('Uraian') }}
                     </th>
-                    <th scope="col" class="w-full px-6 py-3 lg:table-cell min-w-44">
+                    <th scope="col" class="px-6 py-3 lg:table-cell min-w-44">
                         {{ __('Nominal') }}
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -143,13 +143,13 @@
                     <th scope="col" class="px-6 py-3">
                         {{ __('No Name') }}
                     </th>
-                    <th scope="col" class="px-6 py-3 lg:table-cell">
+                    <th scope="col" class="px-6 py-3 text-left lg:table-cell whitespace-nowrap">
                         {{ __('Sumber Donasi') }}
                     </th>
-                    <th scope="col" class="px-6 py-3 lg:table-cell">
+                    <th scope="col" class="px-6 py-3 text-left lg:table-cell whitespace-nowrap">
                         {{ __('Program Sumber') }}
                     </th>
-                    <th scope="col" class="px-6 py-3 lg:table-cell">
+                    <th scope="col" class="px-6 py-3 text-left lg:table-cell whitespace-nowrap">
                         {{ __('Sumber Dana') }}
                     </th>
                     <th scope="col" class="px-6 py-3 lg:table-cell">
@@ -169,109 +169,101 @@
                 @forelse ($penghimpunans as $penghimpunan)
                     <tr class="odd:bg-white odd:dark:bg-gray-800 even:bg-gray-100 even:dark:bg-gray-700">
                         <td scope="row"
-                            class="justify-center w-2 py-4 pl-6 font-medium text-gray-900 dark:text-gray-200">
-                            <div class="flex">
-                                <div class="hover:underline whitespace-nowrap">
-                                    {{ ($penghimpunans->currentpage() - 1) * $penghimpunans->perpage() + $loop->index + 1 }}
-                                </div>
-
+                            class="px-4 py-2 font-medium text-gray-900 dark:text-gray-200 ">
+                            <div class="flex justify-center">
+                                {{ ($penghimpunans->currentpage() - 1) * $penghimpunans->perpage() + $loop->index + 1 }}
                             </div>
                         </td>
                         <td scope="row"
-                            class="w-full px-6 py-4 text-gray-500 font-base dark:text-gray-400 xl:table-cell min-w-48">
+                            class="px-4 py-2 text-gray-500 font-base dark:text-gray-400 xl:table-cell min-w-48">
                             <div class="flex">
                                 <p>
                                     {{ $penghimpunan->tanggal->isoFormat('LL') }}
                                 </p>
                             </div>
                         </td>
-                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-gray-200">
+                        <td scope="row" class="px-4 py-2 font-medium text-gray-900 dark:text-gray-200">
 
                             <div class="flex">
                                 <a href="{{ route('penghimpunan.show', $penghimpunan) }}"
                                     class="hover:underline whitespace-nowrap">
                                     {{ Str::limit($penghimpunan->uraian, 10, '...') }}
                                 </a>
-
                             </div>
                         </td>
 
                         <td wire:key="nominal-{{ $penghimpunan->id }}" x-data="{
                             nominal: {{ $penghimpunan->nominal }},
                         }"
-                            class="w-full px-6 py-4 lg:table-cell min-w-44">
-                            <div class="flex">
-                                <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                            class="px-4 py-2 text-right lg:table-cell min-w-44">
+                            <div class="flex justify-between">
+                                <p>Rp.</p>
+                                <p x-text="nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
                             </div>
                         </td>
 
-                        <td class="px-6 py-4 lg:table-cell">
-                            <div class="flex">
+                        <td class="px-4 py-2 text-center lg:table-cell">
+                            <div class="flex justify-center">
                                 <p>
                                     {{ $penghimpunan->lembaga_count ?? '-' }}
                                 </p>
-
                             </div>
                         </td>
 
-                        <td class="px-6 py-4 lg:table-cell">
-                            <div class="flex">
+                        <td class="px-4 py-2 text-center lg:table-cell">
+                            <div class="flex justify-center">
                                 <p>
                                     {{ $penghimpunan->male_count ?? '-' }}
                                 </p>
-
                             </div>
                         </td>
 
-                        <td class="px-6 py-4 lg:table-cell">
-                            <div class="flex">
+                        <td class="px-4 py-2 text-center lg:table-cell">
+                            <div class="flex justify-center">
                                 <p>
                                     {{ $penghimpunan->female_count ?? '-' }}
                                 </p>
-
                             </div>
                         </td>
 
-                        <td class="px-6 py-4 lg:table-cell">
-                            <div class="flex">
+                        <td class="px-4 py-2 text-center lg:table-cell">
+                            <div class="flex justify-center">
                                 <p>
                                     {{ $penghimpunan->no_name_count ?? '-' }}
                                 </p>
-
                             </div>
                         </td>
 
-                        <td class="px-6 py-4 lg:table-cell">
+                        <td class="px-6 py-2 lg:table-cell">
                             <div class="flex">
                                 <p>
                                     {{ $penghimpunan->programSumber->sumberDonasi->name ?? '-' }}
                                 </p>
                             </div>
                         </td>
-                        <td class="px-6 py-4 lg:table-cell">
+                        <td class="px-6 py-2 lg:table-cell">
                             <div class="flex">
                                 <p>
                                     {{ $penghimpunan->programSumber->name ?? '-' }}
                                 </p>
                             </div>
                         </td>
-                        <td class="px-6 py-4 lg:table-cell">
+                        <td class="px-6 py-2 lg:table-cell">
                             <div class="flex">
                                 <p>
                                     {{ $penghimpunan->sumberDana->name ?? '-' }}
                                 </p>
                             </div>
                         </td>
-                        <td class="px-6 py-4 lg:table-cell">
-                            <div class="flex">
+                        <td class="px-4 py-2 text-center lg:table-cell">
+                            <div class="flex justify-center">
                                 <p>
                                     {{ $penghimpunan->tahun->name ?? '-' }}
                                 </p>
-
                             </div>
                         </td>
-                        <td class="px-6 py-4 lg:table-cell">
-                            <div class="flex">
+                        <td class="px-4 py-2 text-center lg:table-cell">
+                            <div class="flex justify-center">
                                 <p>
                                     {{ $penghimpunan->editedBy->name ?? '-' }}
                                 </p>
@@ -280,9 +272,9 @@
                         @can('update', App\Models\Penghimpunan::class)
                             <td class="w-24 py-4 pl-6 pr-2 text-center lg:pr-4">
                                 <div class="flex space-x-2 justify-items-start">
-                                    @if($penghimpunan->lampiran)
-                                    <a href="{{ $penghimpunan->lampiran }}" target="_blank" rel="noopener noreferrer"
-                                        class="text-green-500 hover:underline">Lampiran</a>
+                                    @if ($penghimpunan->lampiran)
+                                        <a href="{{ $penghimpunan->lampiran }}" target="_blank"
+                                            rel="noopener noreferrer" class="text-green-500 hover:underline">Lampiran</a>
                                     @endif
                                     <a href="{{ route('penghimpunan.show', $penghimpunan) }}"
                                         class="hover:underline">Detail</a>
@@ -328,7 +320,7 @@
                     </tr>
                 @empty
                     <tr class="bg-white dark:bg-gray-800">
-                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-gray-200">
+                        <td scope="row" class="px-4 py-2 font-medium text-gray-900 dark:text-gray-200">
                             Empty
                         </td>
                     </tr>
@@ -340,52 +332,44 @@
                     <td wire:key="nominal-{{ $totalNominal }}" x-data="{
                         nominal: {{ $totalNominal }},
                     }"
-                        class="px-6 py-4 lg:table-cell">
-                        <div class="flex">
-                            <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                        class="px-4 py-2 lg:table-cell whitespace-nowrap">
+                        <div class="flex justify-between">
+                            <p>Rp.</p>
+                            <p x-text="nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
                         </div>
                     </td>
 
-                    <td class="px-6 py-4 lg:table-cell">
-                        <div class="flex">
+                    <td class="px-4 py-2 text-center lg:table-cell">
+                        <div class="flex justify-center">
                             <p>
                                 {{ $lembagaCount ?? '-' }}
                             </p>
-
                         </div>
                     </td>
 
-                    <td class="px-6 py-4 lg:table-cell">
-                        <div class="flex">
+                    <td class="px-4 py-2 text-center lg:table-cell">
+                        <div class="flex justify-center">
                             <p>
                                 {{ $maleCount ?? '-' }}
                             </p>
-
                         </div>
                     </td>
 
-                    <td class="px-6 py-4 lg:table-cell">
-                        <div class="flex">
+                    <td class="px-4 py-2 text-center lg:table-cell">
+                        <div class="flex justify-center">
                             <p>
                                 {{ $femaleCount ?? '-' }}
                             </p>
-
                         </div>
                     </td>
 
-                    <td class="px-6 py-4 lg:table-cell">
-                        <div class="flex">
+                    <td class="px-4 py-2 text-center lg:table-cell">
+                        <div class="flex justify-center">
                             <p>
                                 {{ $noNameCount ?? '-' }}
                             </p>
-
                         </div>
                     </td>
-
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
                 </tr>
             </tbody>
         </table>
