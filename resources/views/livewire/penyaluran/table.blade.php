@@ -465,8 +465,9 @@
                             })
                         "
                         class="p-0 px-4 lg:table-cell">
-                        <div class="flex">
-                            <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                        <div class="flex justify-between">
+                            <p>Rp.</p>
+                            <p x-text="nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
                         </div>
                     </td>
 
@@ -482,20 +483,20 @@
 
                    </td>
 
-                   <td class="px-6 py-4 lg:table-cell" >
-                    <div class="flex">
+                   <td class="px-6 py-4 text-center lg:table-cell" >
+                    <div class="flex justify-center">
                         <p>{{ $lembagaCount  }}</p>
                     </div>
                    </td>
 
-                   <td class="px-6 py-4 lg:table-cell">
-                    <div class="flex">
+                   <td class="px-6 py-4 text-center lg:table-cell">
+                    <div class="flex justify-center">
                         {{ $maleCount }}
                     </div>
                    </td>
 
-                   <td class="px-6 py-4 lg:table-cell" >
-                    <div class="flex">
+                   <td class="px-6 py-4 text-centerlg:table-cell" >
+                    <div class="flex justify-center">
                         {{ $femaleCount }}
                     </div>
                    </td>
