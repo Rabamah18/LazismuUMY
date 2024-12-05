@@ -243,7 +243,6 @@
                                     class="hover:underline whitespace-nowrap">
                                     {{ Str::limit($penyaluran->uraian, 10, '...') }}
                                 </a>
-
                             </div>
                         </td>
 
@@ -313,61 +312,60 @@
                                 </p>
                             </div>
                         </td>
+
                         <td class="px-6 py-4 text-center lg:table-cell">
                             <div class="flex justify-center">
                                 <p>
                                     {{ $penyaluran->lembaga_count ?? '-' }}
                                 </p>
-
                             </div>
                         </td>
+
                         <td class="px-6 py-4 text-center lg:table-cell">
                             <div class="flex justify-center">
                                 <p>
                                     {{ $penyaluran->male_count ?? '-' }}
                                 </p>
-
                             </div>
                         </td>
+
                         <td class="px-6 py-4 text-center lg:table-cell">
                             <div class="flex justify-center">
                                 <p>
                                     {{ $penyaluran->female_count ?? '-' }}
                                 </p>
-
                             </div>
                         </td>
+
                         <td class="px-6 py-4 lg:table-cell">
                             <div class="flex whitespace-nowrap">
                                 <p>
                                     {{ $penyaluran->kabupaten->provinsi->name ?? '-' }}
                                 </p>
-
                             </div>
                         </td>
+
                         <td class="p-0 px-3 lg:table-cell">
                             <div class="flex whitespace-nowrap">
                                 <p>
                                     {{ $penyaluran->kabupaten->name ?? '-' }}
                                 </p>
-
                             </div>
                         </td>
+
                         <td class="px-5 py-4 text-center lg:table-cell">
                             <div class="flex justify-center">
                                 <p>
                                     {{ $penyaluran->tahun->name ?? '-'}}
                                 </p>
-
                             </div>
                         </td>
 
-                        <td class="px-6 py-4 text-centerlg:table-cell">
+                        <td class="px-6 py-4 text-center lg:table-cell">
                             <div class="flex justify-center">
                                 <p>
                                     {{ $penyaluran->editedBy->name  ?? '-'}}
                                 </p>
-
                             </div>
                         </td>
 
