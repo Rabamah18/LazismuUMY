@@ -20,12 +20,12 @@
     <div class="flex flex-wrap items-center justify-end gap-2 mt-2 sm:mt-4">
         <div class="flex items-center">
             <x-input-label for="tanggal" :value="__('Tanggal Awal')" />
-            <x-text-input wire:model.lazy='dateStart' id="tanggal" type='date' class="block w-full mt-1"
+            <x-text-input wire:model.lazy='dateStart' id="tanggal" type='date' class="block w-full"
                 :value="old('tanggal')" />
         </div>
         <div class="flex items-center">
             <x-input-label for="tanggal" :value="__('Tanggal Akhir')" />
-            <x-text-input wire:model.lazy='dateEnd' id="tanggal" type='date' class="block w-full mt-1"
+            <x-text-input wire:model.lazy='dateEnd' id="tanggal" type='date' class="block w-full"
                 :value="old('tanggal')" />
         </div>
         <x-select-input id="tahun" wire:model.lazy="selectedTahun" class="">
@@ -104,7 +104,7 @@
         <table class="w-full text-base text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-4 py-3 text-center">
                         {{ __('No.') }}
                     </th>
                     <th scope="col" class="px-6 py-3 xl:table-cell">
@@ -128,19 +128,19 @@
                     <th scope="col" class="px-6 py-3">
                         {{ __('No Name') }}
                     </th>
-                    <th scope="col" class="px-6 py-3 lg:table-cell">
+                    <th scope="col" class="px-6 py-3 text-left lg:table-cell whitespace-nowrap">
                         {{ __('Sumber Donasi') }}
                     </th>
-                    <th scope="col" class="px-6 py-3 lg:table-cell">
+                    <th scope="col" class="px-6 py-3 text-left lg:table-cell whitespace-nowrap">
                         {{ __('Program Sumber') }}
                     </th>
-                    <th scope="col" class="px-6 py-3 lg:table-cell">
+                    <th scope="col" class="px-6 py-3 text-left lg:table-cell whitespace-nowrap">
                         {{ __('Sumber Dana') }}
                     </th>
-                    <th scope="col" class="px-6 py-3 lg:table-cell">
+                    <th scope="col" class="px-6 py-3 text-center lg:table-cell">
                         {{ __('Tahun') }}
                     </th>
-                    <th scope="col" class="px-6 py-3 lg:table-cell">
+                    <th scope="col" class="px-6 py-3 text-center lg:table-cell">
                         {{ __('Edited by') }}
                     </th>
                 </tr>
@@ -148,105 +148,108 @@
             <tbody>
                 @forelse ($penghimpunans as $penghimpunan)
                     <tr class="odd:bg-white odd:dark:bg-gray-800 even:bg-gray-100 even:dark:bg-gray-700">
-                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-gray-200">
-
-                            <div class="flex">
-                                <div class="hover:underline whitespace-nowrap">
-                                    {{ $penghimpunan->id }}
-                                </div>
-
+                        <td scope="row" class="px-4 py-2 font-medium text-gray-900 dark:text-gray-200">
+                            <div class="flex justify-center">
+                                    {{ $loop->iteration }}
                             </div>
                         </td>
-                        <td scope="row" class="px-6 py-4 text-gray-500 font-base dark:text-gray-400 xl:table-cell">
+
+                        <td scope="row" class="px-4 py-2 text-gray-500 font-base dark:text-gray-400 xl:table-cell whitespace-nowrap">
                             <div class="flex">
                                 <p>
                                     {{ $penghimpunan->tanggal->isoFormat('LL') }}
                                 </p>
                             </div>
                         </td>
-                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-gray-200">
+
+                        <td scope="row" class="px-4 py-2 font-medium text-gray-900 dark:text-gray-200">
 
                             <div class="flex">
                                 <a href="{{ route('penghimpunan.show', $penghimpunan) }}"
                                     class="hover:underline whitespace-nowrap">
                                     {{ Str::limit($penghimpunan->uraian, 10, '...') }}
                                 </a>
-
                             </div>
                         </td>
 
-                        <td class="px-6 py-4 lg:table-cell">
-                            <div class="flex">
-                                <p>
-                                    {{ $penghimpunan->nominal }}
-                                </p>
-
+                        <td wire:key="nominal-{{ $penghimpunan->id }}"
+                            x-data="{nominal: {{ $penghimpunan->nominal }}}"
+                            class="px-4 py-2 text-right lg:table-cell min-w-44">
+                            <div class="flex justify-between">
+                                <p>Rp.</p>
+                                <p x-text="nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
                             </div>
                         </td>
-                        <td class="px-6 py-4 lg:table-cell">
-                            <div class="flex">
+
+                        <td class="px-4 py-2 lg:table-cell">
+                            <div class="flex justify-center">
                                 <p>
                                     {{ $penghimpunan->lembaga_count ?? '-' }}
                                 </p>
 
                             </div>
                         </td>
-                        <td class="px-6 py-4 lg:table-cell">
-                            <div class="flex">
+
+                        <td class="px-4 py-2 lg:table-cell">
+                            <div class="flex justify-center">
                                 <p>
                                     {{ $penghimpunan->male_count ?? '-' }}
                                 </p>
 
                             </div>
                         </td>
-                        <td class="px-6 py-4 lg:table-cell">
-                            <div class="flex">
+
+                        <td class="px-4 py-2 lg:table-cell">
+                            <div class="flex justify-center">
                                 <p>
                                     {{ $penghimpunan->female_count ?? '-' }}
                                 </p>
 
                             </div>
                         </td>
-                        <td class="px-6 py-4 lg:table-cell">
-                            <div class="flex">
+
+                        <td class="px-4 py-2 lg:table-cell">
+                            <div class="flex justify-center">
                                 <p>
                                     {{ $penghimpunan->no_name_count ?? '-' }}
                                 </p>
-
                             </div>
                         </td>
 
-                        <td class="px-6 py-4 lg:table-cell">
+                        <td class="px-6 py-2 lg:table-cell">
                             <div class="flex">
                                 <p>
                                     {{ $penghimpunan->programSumber->sumberDonasi->name ?? '-' }}
                                 </p>
                             </div>
                         </td>
-                        <td class="px-6 py-4 lg:table-cell">
+
+                        <td class="px-6 py-2 lg:table-cell">
                             <div class="flex">
                                 <p>
                                     {{ $penghimpunan->programSumber->name ?? '-' }}
                                 </p>
                             </div>
                         </td>
-                        <td class="px-6 py-4 lg:table-cell">
+
+                        <td class="px-6 py-2 lg:table-cell">
                             <div class="flex">
                                 <p>
                                     {{ $penghimpunan->sumberDana->name ?? '-' }}
                                 </p>
                             </div>
                         </td>
-                        <td class="px-6 py-4 lg:table-cell">
-                            <div class="flex">
+
+                        <td class="px-4 py-2 lg:table-cell">
+                            <div class="flex justify-center">
                                 <p>
                                     {{ $penghimpunan->tahun->name ?? '-' }}
                                 </p>
-
                             </div>
                         </td>
-                        <td class="px-6 py-4 lg:table-cell">
-                            <div class="flex">
+
+                        <td class="px-4 py-2 lg:table-cell">
+                            <div class="flex justify-center">
                                 <p>
                                     {{ $penghimpunan->editedBy->name ?? '-' }}
                                 </p>
@@ -255,7 +258,7 @@
                     </tr>
                 @empty
                     <tr class="bg-white dark:bg-gray-800">
-                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-gray-200">
+                        <td scope="row" class="px-4 py-2 font-medium text-gray-900 dark:text-gray-200">
                             Empty
                         </td>
                     </tr>
