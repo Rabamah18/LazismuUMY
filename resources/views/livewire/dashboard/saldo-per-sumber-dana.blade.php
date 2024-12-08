@@ -6,37 +6,37 @@
             {{ $sumberDana->name }}
         </td>
         @if ($sumberDonasi->name == 'Zakat')
-            {{-- <td class="px-6 py-4 lg:table-cell">
-                {{ $saldoPerSumberDana }}
-            </td> --}}
             <td wire:key="nominal-{{ $saldoPerSumberDana }}" x-data="{ nominal: {{ $saldoPerSumberDana }} }"
-                class="px-6 py-4 text-right lg:table-cell">
-                <div class="flex">
-                    <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                class="px-6 py-4 lg:table-cell">
+                <div class="flex justify-between">
+                    <p>Rp.</p>
+                    <p x-text="nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
                 </div>
             </td>
-            <td class="px-6 py-4 text-rightlg:table-cell">-</td>
-            <td class="px-6 py-4 text-rightlg:table-cell">-</td>
+            <td class="px-6 py-4 text-right lg:table-cell">-</td>
+            <td class="px-6 py-4 text-right lg:table-cell">-</td>
         @elseif ($sumberDonasi->name == 'Infaq')
-            <td class="px-6 py-4 text-rightlg:table-cell">-</td>
+            <td class="px-6 py-4 text-right lg:table-cell">-</td>
             <td wire:key="nominal-{{ $saldoPerSumberDana }}" x-data="{
                 nominal: {{ $saldoPerSumberDana }},
             }"
-                class="px-6 py-4 text-rightlg:table-cell">
-                <div class="flex">
-                    <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                class="px-6 py-4 lg:table-cell">
+                <div class="flex justify-between">
+                    <p>Rp.</p>
+                    <p x-text="nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
                 </div>
             </td>
-            <td class="px-6 py-4 text-rightlg:table-cell">-</td>
+            <td class="px-6 py-4 text-right lg:table-cell">-</td>
         @else
-            <td class="px-6 py-4 text-rightlg:table-cell">-</td>
-            <td class="px-6 py-4 text-rightlg:table-cell">-</td>
+            <td class="px-6 py-4 text-right lg:table-cell">-</td>
+            <td class="px-6 py-4 text-right lg:table-cell">-</td>
             <td wire:key="nominal-{{ $saldoPerSumberDana }}" x-data="{
                 nominal: {{ $saldoPerSumberDana }},
             }"
-                class="px-6 py-4 text-rightlg:table-cell">
-                <div class="flex">
-                    <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                class="px-6 py-4 lg:table-cell">
+                <div class="flex justify-between">
+                    <p>Rp.</p>
+                    <p x-text="nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
                 </div>
             </td>
         @endif

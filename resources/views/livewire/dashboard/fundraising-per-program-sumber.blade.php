@@ -5,10 +5,16 @@
     <td class="px-6 py-4 lg:table-cell">
         {{ $programSumber->name }}({{ $persenTargetProSum }}%)
     </td>
-    <td class="px-6 py-4 lg:table-cell">
-        Rp. {{ $nominalTargetProSum }}
+    <td wire:key="nominal-{{ $nominalTargetProSum }}" x-data="{ nominal: {{ $nominalTargetProSum }} }" class="px-6 py-4 lg:table-cell min-w-44">
+        <div class="flex justify-between">
+            <p>Rp.</p>
+            <p x-text="nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+        </div>
     </td>
-    <td class="px-6 py-4 lg:table-cell">
-        {{ $nominalRealisasiProSum }}
+    <td wire:key="nominal-{{ $nominalRealisasiProSum }}" x-data="{ nominal: {{ $nominalRealisasiProSum }} }" class="px-6 py-4 lg:table-cell min-w-44">
+        <div class="flex justify-between">
+            <p>Rp.</p>
+            <p x-text="nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+        </div>
     </td>
 </tr>
