@@ -17,12 +17,12 @@
             <div class="flex flex-wrap items-center justify-end gap-2">
                 <div class="flex items-center">
                     <x-input-label for="tanggal" :value="__('Tanggal Awal')" />
-                    <x-text-input wire:model.lazy='dateStart' id="tanggal" type='date' class="block w-full mt-1"
+                    <x-text-input wire:model.lazy='dateStart' id="tanggal" type='date' class="block w-full"
                         :value="old('tanggal')" />
                 </div>
                 <div class="flex items-center">
                     <x-input-label for="tanggal" :value="__('Tanggal Akhir')" />
-                    <x-text-input wire:model.lazy='dateEnd' id="tanggal" type='date' class="block w-full mt-1"
+                    <x-text-input wire:model.lazy='dateEnd' id="tanggal" type='date' class="block w-full"
                         :value="old('tanggal')" />
                 </div>
                 <x-select-input id="tahun" wire:model.lazy="selectedTahun" class="">
@@ -122,7 +122,7 @@
                     <th scope="col" class="px-4 py-3 text-center">
                         {{ __('No.') }}
                     </th>
-                    <th scope="col" class="px-6 py-3 xl:table-cell min-w-48">
+                    <th scope="col" class="px-6 py-3 xl:table-cell">
                         {{ __('Tanggal') }}
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -152,10 +152,10 @@
                     <th scope="col" class="px-6 py-3 text-left lg:table-cell whitespace-nowrap">
                         {{ __('Sumber Dana') }}
                     </th>
-                    <th scope="col" class="px-6 py-3 lg:table-cell">
+                    <th scope="col" class="px-6 py-3 text-center lg:table-cell">
                         {{ __('Tahun') }}
                     </th>
-                    <th scope="col" class="px-6 py-3 lg:table-cell">
+                    <th scope="col" class="px-6 py-3 text-center lg:table-cell">
                         {{ __('Edited by') }}
                     </th>
                     @can('update', App\Models\Penghimpunan::class)
@@ -168,14 +168,13 @@
             <tbody>
                 @forelse ($penghimpunans as $penghimpunan)
                     <tr class="odd:bg-white odd:dark:bg-gray-800 even:bg-gray-100 even:dark:bg-gray-700">
-                        <td scope="row"
-                            class="px-4 py-2 font-medium text-gray-900 dark:text-gray-200 ">
+                        <td scope="row" class="px-4 py-2 font-medium text-gray-900 dark:text-gray-200 ">
                             <div class="flex justify-center">
                                 {{ ($penghimpunans->currentpage() - 1) * $penghimpunans->perpage() + $loop->index + 1 }}
                             </div>
                         </td>
                         <td scope="row"
-                            class="px-4 py-2 text-gray-500 font-base dark:text-gray-400 xl:table-cell min-w-48">
+                            class="px-4 py-2 text-gray-500 font-base dark:text-gray-400 xl:table-cell whitespace-nowrap">
                             <div class="flex">
                                 <p>
                                     {{ $penghimpunan->tanggal->isoFormat('LL') }}
@@ -192,9 +191,8 @@
                             </div>
                         </td>
 
-                        <td wire:key="nominal-{{ $penghimpunan->id }}" x-data="{
-                            nominal: {{ $penghimpunan->nominal }},
-                        }"
+                        <td wire:key="nominal-{{ $penghimpunan->id }}"
+                            x-data="{nominal: {{ $penghimpunan->nominal }}}"
                             class="px-4 py-2 text-right lg:table-cell min-w-44">
                             <div class="flex justify-between">
                                 <p>Rp.</p>
@@ -270,8 +268,8 @@
                             </div>
                         </td>
                         @can('update', App\Models\Penghimpunan::class)
-                            <td class="w-24 py-4 pl-6 pr-2 text-center lg:pr-4">
-                                <div class="flex space-x-2 justify-items-start">
+                            <td class="px-4 py-2 text-center lg:pr-4">
+                                <div class="flex justify-center space-x-2 justify-items-center">
                                     @if ($penghimpunan->lampiran)
                                         <a href="{{ $penghimpunan->lampiran }}" target="_blank"
                                             rel="noopener noreferrer" class="text-green-500 hover:underline">Lampiran</a>

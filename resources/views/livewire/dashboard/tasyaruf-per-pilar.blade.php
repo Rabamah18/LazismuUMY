@@ -12,20 +12,26 @@
     <tr class="bg-orange-300 dark:bg-gray-600">
         <td class="px-6 py-4 lg:table-cell"></td>
         <td class="px-6 py-4 lg:table-cell"></td>
-        <td class="px-6 py-4 lg:table-cell">
-            Rp. {{ $nominalTargetPilar }}
+        <td wire:key="nominal-{{ $nominalTargetPilar }}" x-data="{ nominal: {{ $nominalTargetPilar }} }" class="px-6 py-4 lg:table-cell min-w-44">
+            <div class="flex justify-between">
+                <p>Rp.</p>
+                <p x-text="nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+            </div>
         </td>
-        <td class="px-6 py-4 lg:table-cell">
+        <td class="px-6 py-4 text-center lg:table-cell">
             {{ $lembagaPilar }}
         </td>
-        <td class="px-6 py-4 lg:table-cell">
+        <td class="px-6 py-4 text-center lg:table-cell">
             {{ $lakiPilar }}
         </td>
-        <td class="px-6 py-4 lg:table-cell">
+        <td class="px-6 py-4 text-center lg:table-cell">
             {{ $perempuanPilar }}
         </td>
-        <td class="px-6 py-4 lg:table-cell">
-            Rp. {{ $realisasiPilar }}
+        <td wire:key="nominal-{{ $realisasiPilar }}" x-data="{ nominal: {{ $realisasiPilar }} }" class="px-6 py-4 lg:table-cell min-w-44">
+            <div class="flex justify-between">
+                <p>Rp.</p>
+                <p x-text="nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+            </div>
         </td>
     </tr>
 </div>

@@ -7,7 +7,7 @@
             <thead
                 class="text-xs text-gray-700 uppercase bg-gray-100 border border-t-0 dark:bg-gray-700 dark:text-gray-400 border-x-transparent">
                 <tr>
-                    <th rowspan="2" class="w-2 py-3 pl-6 text-center">
+                    <th rowspan="2" class="px-4 py-3 text-center">
                         No.
                     </th>
                     <th rowspan="2" class="px-6 py-3 border-gray-400 border-x-2">
@@ -41,43 +41,45 @@
                 @endforelse
                 <tr class="border border-collapse border-x-transparent">
                     <td class="px-20 py-2" rowspan="3" colspan="2">Total Zakat & Infaq</td>
-                    <td class="px-6 py-2" wire:key="nominal-{{ $totalZakat }}" x-data="{ nominal: {{ $totalZakat }} }">
-                        <div class="flex">
-                            <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                    <td class="px-6 py-2 min-w-44" wire:key="nominal-{{ $totalZakat }}" x-data="{ nominal: {{ $totalZakat }} }">
+                        <div class="flex justify-between">
+                            <p>Rp.</p>
+                            <p x-text="nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
                         </div>
-                        {{-- Rp. {{ $totalZakat }} --}}
                     </td>
-                    <td class="px-6 py-2" wire:key="nominal-{{ $totalInfaq }}" x-data="{ nominal: {{ $totalInfaq }} }">
-                        <div class="flex">
-                            <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                    <td class="px-6 py-2 min-w-44" wire:key="nominal-{{ $totalInfaq }}" x-data="{ nominal: {{ $totalInfaq }} }">
+                        <div class="flex justify-between">
+                            <p>Rp.</p>
+                            <p x-text="nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
                         </div>
-                        {{-- Rp. {{ $totalInfaq }} --}}
                     </td>
-                    <td class="px-6 py-2 border-l-2 border-gray-400" rowspan="2"
+                    <td class="px-6 py-2 border-l-2 border-gray-400 min-w-44" rowspan="2"
                         wire:key="nominal-{{ $totalAmil }}" x-data="{ nominal: {{ $totalAmil }} }">
-                        <div class="flex">
-                            <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                        <div class="flex justify-between">
+                            <p>Rp.</p>
+                            <p x-text="nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
                         </div>
-                        {{-- Rp. {{ $totalAmil }} --}}
                     </td>
                 </tr>
                 <tr class="border border-collapse border-x-transparent">
-                    <td class="px-6 py-2"></td>
                     <td class="px-6 py-2" colspan="2" wire:key="nominal-{{ $totalZakatInfaq }}"
                         x-data="{ nominal: {{ $totalZakatInfaq }} }">
-                        <div class="flex">
-                            <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                        <div class="flex justify-center">
+                            <div class="flex gap-4">
+                                <p>Rp.</p>
+                                <p x-text="nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                            </div>
                         </div>
-                        {{-- Rp. {{ $totalZakatInfaq }} --}}
                     </td>
                 </tr>
                 <tr class="border border-collapse border-x-transparent">
-                    <td class="px-6 py-2"></td>
                     <td class="px-6 py-2" colspan="3" wire:key="nominal-{{ $totalSemua }}" x-data="{ nominal: {{ $totalSemua }} }">
-                        <div class="flex">
-                            <p x-text="'Rp. ' + nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                        <div class="flex justify-center">
+                            <div class="flex gap-4">
+                                <p>Rp.</p>
+                                <p x-text="nominal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')"></p>
+                            </div>
                         </div>
-                        {{-- Rp. {{ $totalSemua }} --}}
                     </td>
                 </tr>
             </tbody>
