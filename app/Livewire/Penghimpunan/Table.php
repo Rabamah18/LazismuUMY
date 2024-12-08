@@ -51,6 +51,9 @@ class Table extends Component
     public function mount()
     {
         $this->dateEnd = Carbon::now()->format('Y-m-d');
+        $this->selectedTahun = Tahun::query()
+            ->where('name', Carbon::now()->year)
+            ->first()->id;
         $this->sumberDonasis = SumberDonasi::query()->get();
         $this->programSumbers = ProgramSumber::query()->get();
         $this->sumberDanas = SumberDana::query()->get();

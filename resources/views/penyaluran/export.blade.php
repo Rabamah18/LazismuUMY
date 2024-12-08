@@ -7,11 +7,7 @@
 
     <div class="sm:py-7">
         <div class="max-w-full mx-auto sm:px-6 sm:space-y-6">
-            <x-card.app>
-
-                @livewire('penyaluran.export-filter')
-
-            </x-card.app>
+            @livewire('penyaluran.export-filter')
         </div>
     </div>
 </x-app-layout>
