@@ -24,16 +24,27 @@
                             <x-input-label for="doc" :value="__('Upload File')" />
                             <x-file-input name="doc" accept=".csv" class="mt-1 dark:text-gray-400"></x-file-input>
                             <x-input-helper>
-                                Format : csv - Max 2MB
+                                Format : csv
                             </x-input-helper>
                             <x-input-error class="mt-2" :messages="$errors->get('doc')" />
                         </div>
                         <div class="flex items-center gap-4">
                             <x-primary-button>{{ __('Import') }}</x-primary-button>
 
-                            @if (session('success'))
-                                <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 5000)"
-                                    class="text-sm text-gray-600 dark:text-gray-400">{{ __('Imported.') }}</p>
+                            @if ($errors->any())
+                                <div class="alert alert-danger" role="alert">
+                                    @foreach ($errors->all() as $error)
+                                        <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 10000)"
+                                            class="text-sm text-red-600 dark:text-red-400">
+                                            Errors: {{ implode(', ', $error['messages']) }} <br>
+                                            Baris ke: {{ $error['row'] }}, Kolom: {{ $error['attribute'] }} <br>
+                                            {{-- Values: {{ json_encode($error['values']) }} --}}
+                                        </p>
+                                    @endforeach
+                                </div>
+                            @elseif (session('success'))
+                                <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 10000)"
+                                    class="text-sm text-green-600 dark:text-green-400">{{ __('Imported.') }}</p>
                             @endif
                         </div>
                     </form>

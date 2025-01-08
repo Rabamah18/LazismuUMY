@@ -208,7 +208,7 @@ class PenyaluranController extends Controller
     public function importFileExel(Request $request)
     {
         $request->validate([
-            'doc' => 'required|file|mimes:xlsx,xls|max:2048',
+            'doc' => 'required|file|mimes:xlsx,xls',
         ]);
 
         $file = $request->file('doc');
@@ -217,9 +217,32 @@ class PenyaluranController extends Controller
         $path = 'penyaluran/'.$filename;
         Storage::put($path, file_get_contents($file));
 
-        Excel::import(new PenyaluranImportExel, $path);
+        // Excel::import(new PenyaluranImportExel, $path);
 
-        return redirect()->back()->with('success', 'Data imported successfully!');
+        $import = new PenyaluranImportExel;
+
+        try {
+            $import->import($path, 'local', \Maatwebsite\Excel\Excel::XLSX);
+
+            return redirect()->back()->with('success', 'Data imported successfully!');
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            $failures = $e->failures();
+
+            foreach ($failures as $failure) {
+                $errors[] = [
+                    'row' => $failure->row(), // Baris yang bermasalah
+                    'attribute' => $failure->attribute(), // Kolom yang gagal
+                    'messages' => $failure->errors(), // Pesan error
+                    'values' => $failure->values(), // Nilai dari baris yang gagal
+                ];
+            }
+
+            // Redirect dengan pesan error
+            return redirect()->back()->withErrors(['import_errors' => $errors])->withInput();
+        } catch (\Exception $e) {
+            // Tangkap error lain selain ValidationException
+            return redirect()->back()->with('error', 'An unexpected error occurred: '.$e->getMessage());
+        }
     }
 
     public function importFileCsv(Request $request)
@@ -234,8 +257,31 @@ class PenyaluranController extends Controller
         $path = 'penyaluran/'.$filename;
         Storage::put($path, file_get_contents($file));
 
-        Excel::import(new PenyaluranImportCsv, $path);
+        // Excel::import(new PenyaluranImportCsv, $path);
 
-        return redirect()->back()->with('success', 'Data imported successfully!');
+        $import = new PenyaluranImportCsv;
+
+        try {
+            $import->import($path, 'local', \Maatwebsite\Excel\Excel::CSV);
+
+            return redirect()->back()->with('success', 'Data imported successfully!');
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            $failures = $e->failures();
+
+            foreach ($failures as $failure) {
+                $errors[] = [
+                    'row' => $failure->row(), // Baris yang bermasalah
+                    'attribute' => $failure->attribute(), // Kolom yang gagal
+                    'messages' => $failure->errors(), // Pesan error
+                    'values' => $failure->values(), // Nilai dari baris yang gagal
+                ];
+            }
+
+            // Redirect dengan pesan error
+            return redirect()->back()->withErrors(['import_errors' => $errors])->withInput();
+        } catch (\Exception $e) {
+            // Tangkap error lain selain ValidationException
+            return redirect()->back()->with('error', 'An unexpected error occurred: '.$e->getMessage());
+        }
     }
 }

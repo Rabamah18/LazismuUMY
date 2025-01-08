@@ -13,16 +13,20 @@ use App\Models\SumberDana;
 use App\Models\ProgramPilar;
 use App\Models\SumberDonasi;
 use App\Models\ProgramSumber;
+use Illuminate\Validation\Rule;
+use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\ToModel;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithValidation;
 
-class PenyaluranImportExel implements ToModel, WithHeadingRow
+class PenyaluranImportExel implements ToModel, WithHeadingRow, WithValidation
 {
+    use Importable;
+
     public function model(array $row)
     {
         return new Penyaluran([
-            // 'tanggal' => $row['tanggal'],
             'tanggal' => $this->convertExcelDate($row['tanggal']),
             'uraian' => $row['uraian'],
             'sumber_donasi_id' => SumberDonasi::where('name', $row['sumber_donasi'])->first()?->id,
@@ -35,12 +39,54 @@ class PenyaluranImportExel implements ToModel, WithHeadingRow
             'lembaga_count' => $row['jumlah_lembaga'],
             'male_count' => $row['jumlah_pria'],
             'female_count' => $row['jumlah_wanita'],
-            // 'lokasi_id' => $row['lokasi'],
             'provinsi_id' => Provinsi::where('name', $row['provinsi'])->first()?->id,
             'kabupaten_id' => Kabupaten::where('name', $row['kabupaten'])->first()?->id,
             'tahun_id' => Tahun::where('name', $row['tahun'])->first()?->id,
+            'user_id' => auth()->user()->id,
         ]);
     }
+
+    public function rules(): array
+    {
+        return [
+            'tanggal' => ['required'], // Tanggal harus ada dan valid
+            'uraian' => ['required', 'string'], // Uraian wajib diisi
+            'program_sumber' => ['required', Rule::exists('program_sumbers', 'name')], // Validasi nama harus ada di tabel
+            'sumber_dana' => ['required', Rule::exists('sumber_danas', 'name')], // Validasi nama harus ada di tabel
+            'nominal' => ['required', 'numeric'], // Nominal harus berupa angka
+            'program_pilar' => ['required', Rule::exists('program_pilars', 'name')], // Validasi nama harus ada di tabel
+            'ashnaf' => ['required', Rule::exists('ashnafs', 'name')], // Validasi nama harus ada di tabel
+            'jumlah_lembaga' => ['nullable', 'integer'], // Nullable dan integer
+            'jumlah_pria' => ['nullable', 'integer'], // Nullable dan integer
+            'jumlah_wanita' => ['nullable', 'integer'], // Nullable dan integer
+            'kabupaten' => ['required', Rule::exists('kabupatens', column: 'name')], // Validasi nama harus ada di tabel
+            'tahun' => ['required', Rule::exists('tahuns', 'name')], // Validasi nama harus ada di tabel
+
+        ];
+    }
+
+    public function customValidationMessages()
+    {
+        return [
+            'tanggal.required' => 'Kolom tanggal wajib diisi.',
+            'uraian.required' => 'Kolom uraian wajib diisi.',
+            'program_sumber.required' => 'Nama Program sumber wajib diisi.',
+            'program_sumber.exists' => 'Nama Program sumber belum atau tidak terdaftar pada sistem.',
+            'sumber_dana.required' => 'Nama Sumber dana wajib diisi.',
+            'sumber_dana.exists' => 'Nama Sumber dana belum atau tidak terdaftar pada sistem.',
+            'nominal.required' => 'Kolom nominal wajib diisi.',
+            'nominal.numeric' => 'Kolom nominal harus berupa angka.',
+            'program_pilar.required' => 'Nama Program Pilar wajib diisi.',
+            'program_pilar.exists' => 'Nama Program Pilar belum atau tidak terdaftar pada sistem.',
+            'ashnaf.required' => 'Nama Ashnaf wajib diisi.',
+            'ashnaf.exists' => 'Nama Ashnaf belum atau tidak terdaftar pada sistem.',
+            'kabupaten.required' => 'Kabupaten atau Negara wajib diisi.',
+            'kabupaten.exists' => 'Kabupaten atau Negara belum atau tidak terdaftar pada sistem.',
+            'tahun.required' => 'Tahun wajib diisi.',
+            'tahun.exists' => 'Tahun belum atau tidak terdaftar pada sistem.',
+        ];
+    }
+
 
     private function convertExcelDate($value)
     {

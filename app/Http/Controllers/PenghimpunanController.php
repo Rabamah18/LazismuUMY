@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use App\Imports\PenghimpunanImportCsv;
 use App\Imports\PenghimpunanImportExel;
 use App\Models\Penghimpunan;
-use App\Models\ProgramSumber;
-use App\Models\SumberDana;
-use App\Models\Tahun;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
@@ -115,7 +112,7 @@ class PenghimpunanController extends Controller
         $this->authorize('create', Penghimpunan::class);
 
         $request->validate([
-            'doc' => 'required|file|mimes:xlsx,xls|max:2048',
+            'doc' => 'required|file|mimes:xlsx,xls',
         ]);
 
         $file = $request->file('doc');
@@ -124,9 +121,33 @@ class PenghimpunanController extends Controller
         $path = 'penghimpunan/'.$filename;
         Storage::put($path, file_get_contents($file));
 
-        Excel::import(new PenghimpunanImportExel, $path);
+        // Excel::import(new PenghimpunanImportExel, $path);
 
-        return redirect()->back()->with('success', 'Data imported successfully!');
+        $import = new PenghimpunanImportExel;
+
+        try {
+            $import->import($path, 'local', \Maatwebsite\Excel\Excel::XLSX);
+
+            return redirect()->back()->with('success', 'Data imported successfully!');
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            $failures = $e->failures();
+
+            foreach ($failures as $failure) {
+                $errors[] = [
+                    'row' => $failure->row(), // Baris yang bermasalah
+                    'attribute' => $failure->attribute(), // Kolom yang gagal
+                    'messages' => $failure->errors(), // Pesan error
+                    'values' => $failure->values(), // Nilai dari baris yang gagal
+                ];
+            }
+
+            // Redirect dengan pesan error
+            return redirect()->back()->withErrors(['import_errors' => $errors])->withInput();
+        } catch (\Exception $e) {
+            // Tangkap error lain selain ValidationException
+            return redirect()->back()->with('error', 'An unexpected error occurred: '.$e->getMessage());
+        }
+
     }
 
     public function importFileCsv(Request $request)
@@ -143,8 +164,31 @@ class PenghimpunanController extends Controller
         $path = 'penghimpunan/'.$filename;
         Storage::put($path, file_get_contents($file));
 
-        Excel::import(new PenghimpunanImportCsv, $path);
+        // Excel::import(new PenghimpunanImportCsv, $path);
 
-        return redirect()->back()->with('success', 'Data imported successfully!');
+        $import = new PenghimpunanImportCsv;
+
+        try {
+            $import->import($path, 'local', \Maatwebsite\Excel\Excel::CSV);
+
+            return redirect()->back()->with('success', 'Data imported successfully!');
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            $failures = $e->failures();
+
+            foreach ($failures as $failure) {
+                $errors[] = [
+                    'row' => $failure->row(), // Baris yang bermasalah
+                    'attribute' => $failure->attribute(), // Kolom yang gagal
+                    'messages' => $failure->errors(), // Pesan error
+                    'values' => $failure->values(), // Nilai dari baris yang gagal
+                ];
+            }
+
+            // Redirect dengan pesan error
+            return redirect()->back()->withErrors(['import_errors' => $errors])->withInput();
+        } catch (\Exception $e) {
+            // Tangkap error lain selain ValidationException
+            return redirect()->back()->with('error', 'An unexpected error occurred: '.$e->getMessage());
+        }
     }
 }

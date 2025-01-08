@@ -183,21 +183,21 @@ class Create extends Component
         Penyaluran::create([
             'tanggal' => $this->tanggal,
             'uraian' => $this->uraian,
+            'program_sumber_id' => $this->selectedProgramSumber,
+            'sumber_dana_id' => $this->selectedSumberDana,
             'nominal' => $nominal,
+            'pilar_id' => $this->selectedPilar,
+            'program_pilar_id' => $this->selectedProgramPilar,
             'ashnaf_id' => $this->selectedAshnaf,
             'lembaga_count' => $this->lembaga == null || $this->lembaga == '' ? 0 : $this->lembaga,
             'male_count' => $this->pria == null || $this->pria == '' ? 0 : $this->pria,
             'female_count' => $this->wanita == null || $this->wanita == '' ? 0 : $this->wanita,
-            'pilar_id' => $this->selectedPilar,
-            'program_pilar_id' => $this->selectedProgramPilar,
-            'sumber_dana_id' => $this->selectedSumberDana,
-            'program_sumber_id' => $this->selectedProgramSumber,
-            'tahun_id' => $this->selectedTahun,
             'provinsi_id' => $this->selectedProvinsi,
             'kabupaten_id' => $this->selectedKabupaten,
+            'tahun_id' => $this->selectedTahun,
+            'lampiran' => $this->lampiran,
             'pindahdana' => $this->isPindahDana == null ? false : $this->isPindahDana,
             'user_id' => auth()->user()->id,
-            'lampiran' => $this->lampiran,
         ]);
 
         return redirect()->route('penyaluran.index');
