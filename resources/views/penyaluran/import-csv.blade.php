@@ -31,9 +31,12 @@
                         <div class="flex items-center gap-4">
                             <x-primary-button>{{ __('Import') }}</x-primary-button>
 
-                            @if ($errors->any())
+                            @if ($errors->has('import_errors'))
                                 <div class="alert alert-danger" role="alert">
-                                    @foreach ($errors->all() as $error)
+                                    @foreach ($errors->get('import_errors') as $errorGroup)
+                                        @php
+                                            $error = json_decode($errorGroup, true);
+                                        @endphp
                                         <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 10000)"
                                             class="text-sm text-red-600 dark:text-red-400">
                                             Errors: {{ implode(', ', $error['messages']) }} <br>

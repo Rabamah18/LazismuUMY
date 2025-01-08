@@ -297,7 +297,7 @@
                         <td class="p-0 px-4 lg:table-cell min-w-[200px]">
                             <div class="flex whitespace-nowrap">
                                 <p>
-                                    {{ Str::limit($penyaluran->programPilar->name, 30, '...') }}
+                                    {{ $penyaluran->programPilar?->name ? Str::limit($penyaluran->programPilar->name, 30, '...') : '-' }}
                                 </p>
                             </div>
                         </td>
