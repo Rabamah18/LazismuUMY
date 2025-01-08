@@ -142,7 +142,13 @@ class PenghimpunanController extends Controller
             }
 
             // Redirect dengan pesan error
-            return redirect()->back()->withErrors(['import_errors' => $errors])->withInput();
+            // return redirect()->back()->withErrors(['import_errors' => $errors])->withInput();
+
+            return redirect()->back()->withErrors([
+                'import_errors' => collect($errors)->map(function ($error) {
+                    return json_encode($error);
+                }),
+            ])->withInput();
         } catch (\Exception $e) {
             // Tangkap error lain selain ValidationException
             return redirect()->back()->with('error', 'An unexpected error occurred: '.$e->getMessage());
@@ -185,7 +191,14 @@ class PenghimpunanController extends Controller
             }
 
             // Redirect dengan pesan error
-            return redirect()->back()->withErrors(['import_errors' => $errors])->withInput();
+            // return redirect()->back()->withErrors(['import_errors' => $errors])->withInput();
+
+            return redirect()->back()->withErrors([
+                'import_errors' => collect($errors)->map(function ($error) {
+                    return json_encode($error);
+                }),
+            ])->withInput();
+
         } catch (\Exception $e) {
             // Tangkap error lain selain ValidationException
             return redirect()->back()->with('error', 'An unexpected error occurred: '.$e->getMessage());
