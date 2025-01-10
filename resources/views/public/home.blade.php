@@ -8,29 +8,29 @@
     <div x-data="{
         autoplayIntervalTime: 7000,
         slides: [{
-                imgSrc: 'https://penguinui.s3.amazonaws.com/component-assets/carousel/default-slide-1.webp',
-                imgAlt: 'Vibrant abstract painting with swirling blue and light pink hues on a canvas.',
-                title: 'Front end developers',
-                description: 'The architects of the digital world, constantly battling against their mortal enemy – browser compatibility.',
-                ctaUrl: 'https://example.com',
-                ctaText: 'Become a Developer',
+                imgSrc: 'image/slider/Flayer-Web_Selamat-Datang.png',
+                imgAlt: 'Flayer selamat datang Lazismu UMY.',
+                title: 'Selamat Datang',
+                description: 'Selamat Datang di Lazismu UMY',
+                ctaUrl: '',
+                ctaText: '',
             },
-            {
-                imgSrc: 'https://penguinui.s3.amazonaws.com/component-assets/carousel/default-slide-2.webp',
-                imgAlt: 'Vibrant abstract painting with swirling red, yellow, and pink hues on a canvas.',
-                title: 'Back end developers',
-                description: 'Because not all superheroes wear capes, some wear headphones and stare at terminal screens',
-                ctaUrl: 'https://example.com',
-                ctaText: 'Become a Developer',
-            },
-            {
-                imgSrc: 'https://penguinui.s3.amazonaws.com/component-assets/carousel/default-slide-3.webp',
-                imgAlt: 'Vibrant abstract painting with swirling blue and purple hues on a canvas.',
-                title: 'Full stack developers',
-                description: 'Where &quot;burnout&quot; is just a fancy term for &quot;Tuesday&quot;.',
-                ctaUrl: 'https://example.com',
-                ctaText: 'Become a Developer',
-            },
+            // {
+            //     imgSrc: 'https://penguinui.s3.amazonaws.com/component-assets/carousel/default-slide-2.webp',
+            //     imgAlt: 'Vibrant abstract painting with swirling red, yellow, and pink hues on a canvas.',
+            //     title: 'Back end developers',
+            //     description: 'Because not all superheroes wear capes, some wear headphones and stare at terminal screens',
+            //     ctaUrl: 'https://example.com',
+            //     ctaText: 'Become a Developer',
+            // },
+            // {
+            //     imgSrc: 'https://penguinui.s3.amazonaws.com/component-assets/carousel/default-slide-3.webp',
+            //     imgAlt: 'Vibrant abstract painting with swirling blue and purple hues on a canvas.',
+            //     title: 'Full stack developers',
+            //     description: 'Where &quot;burnout&quot; is just a fancy term for &quot;Tuesday&quot;.',
+            //     ctaUrl: 'https://example.com',
+            //     ctaText: 'Become a Developer',
+            // },
         ],
         currentSlideIndex: 1,
         isPaused: false,
@@ -40,14 +40,14 @@
             // Pause autoplay
             clearInterval(this.autoplayInterval);
             clearTimeout(this.pauseTimeout);
-    
+
             if (this.currentSlideIndex > 1) {
                 this.currentSlideIndex = this.currentSlideIndex - 1
             } else {
                 // If it's the first slide, go to the last slide
                 this.currentSlideIndex = this.slides.length
             }
-    
+
             // Resume autoplay after 4000ms
             this.pauseTimeout = setTimeout(() => {
                 this.autoplay();
@@ -57,14 +57,14 @@
             // Pause autoplay
             clearInterval(this.autoplayInterval);
             clearTimeout(this.pauseTimeout);
-    
+
             if (this.currentSlideIndex < this.slides.length) {
                 this.currentSlideIndex = this.currentSlideIndex + 1
             } else {
                 // If it's the last slide, go to the first slide
                 this.currentSlideIndex = 1
             }
-    
+
             // Resume autoplay after 4000ms
             this.pauseTimeout = setTimeout(() => {
                 this.autoplay();
