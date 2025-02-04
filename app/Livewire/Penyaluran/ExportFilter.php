@@ -148,7 +148,7 @@ class ExportFilter extends Component
 
     public function render()
     {
-        $penyalurans = Penyaluran::orderByDesc('updated_at')
+        $penyalurans = Penyaluran::orderByDesc('tanggal')
             ->when($this->dateStart && $this->dateEnd, function ($query) {
                 $query->whereBetween('tanggal', [Carbon::parse($this->dateStart)->startOfDay(),
                 Carbon::parse($this->dateEnd)->endOfDay()]);

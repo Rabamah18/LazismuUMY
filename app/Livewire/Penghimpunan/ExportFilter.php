@@ -58,7 +58,7 @@ class ExportFilter extends Component
 
     public function render()
     {
-        $penghimpunans = Penghimpunan::orderByDesc('updated_at')
+        $penghimpunans = Penghimpunan::orderByDesc('tanggal')
             ->when($this->dateStart && $this->dateEnd, function ($query) {
                 $query->whereBetween('tanggal', [
                     Carbon::parse($this->dateStart)->startOfDay(),

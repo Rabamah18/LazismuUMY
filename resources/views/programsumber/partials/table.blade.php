@@ -9,7 +9,7 @@
                     {{ __('Name') }}
                 </th>
                 <th scope="col" class="px-6 py-3 lg:table-cell">
-                    {{ __('Sumber Donasifff') }}
+                    {{ __('Sumber Donasi') }}
                 </th>
                 <th scope="col" class="py-3 pl-6 pr-2 text-center lg:pr-4">
                     {{ __('Option') }}

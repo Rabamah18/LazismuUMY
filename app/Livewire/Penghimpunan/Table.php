@@ -119,7 +119,7 @@ class Table extends Component
     public function render()
     {
         // Get the filtered data
-        $penghimpunansQuery = Penghimpunan::orderByDesc('updated_at')
+        $penghimpunansQuery = Penghimpunan::orderByDesc('tanggal')
             ->when($this->search, function ($query) {
                 $query->where('uraian', 'like', '%'.$this->search.'%');
             })
