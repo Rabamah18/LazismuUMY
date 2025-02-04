@@ -196,7 +196,7 @@ class Table extends Component
 
     public function render()
     {
-        $penyalurans = Penyaluran::orderByDesc('updated_at')
+        $penyalurans = Penyaluran::orderByDesc('tanggal')
             ->when($this->search, function ($query): void {
                 $query->where(function ($query) {
                     $query->where('uraian', 'like', '%'.$this->search.'%');
