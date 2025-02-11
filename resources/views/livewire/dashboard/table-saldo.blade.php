@@ -1,6 +1,6 @@
 <x-card.app>
     <x-card.title>
-        {{ __('Tabel Saldo') }}
+        {{ __('Tabel Sisa Saldo') }}
     </x-card.title>
     <div class="relative mt-6 overflow-auto rounded-md">
         <table class="w-full text-gray-500 table-auto dark:text-gray-400">
