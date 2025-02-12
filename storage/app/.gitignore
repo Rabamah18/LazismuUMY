@@ -1,3 +1,5 @@
 *
 !public/
+!penghimpunan/
+!penyaluaran/
 !.gitignore
